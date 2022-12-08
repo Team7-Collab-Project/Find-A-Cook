@@ -3,10 +3,10 @@ CREATE TABLE cooks (
 	firstname VARCHAR(50),
 	surname VARCHAR(50),
 	address VARCHAR(50),
-	contact_number VARCHAR(50),
-	email VARCHAR(50),
+	contact_number VARCHAR(15),
+	email VARCHAR(150),
 	password VARCHAR(50),
-	profile_img_id VARCHAR(50)
+	profile_img_id VARCHAR(300)
 );
 insert into cooks (firstname, surname, address, contact_number, email, password, profile_img_id) values ('Louis', 'Labbati', '716 Dapin Avenue', '345-131-3101', 'llabbati0@deliciousdays.com', 'uBK79q', 'qE9FsbWo');
 insert into cooks (firstname, surname, address, contact_number, email, password, profile_img_id) values ('Dannie', 'Beidebeke', '05 Walton Hill', '322-214-4464', 'dbeidebeke1@elegantthemes.com', 'Ga0spAI9i', 'ChZgU0');
