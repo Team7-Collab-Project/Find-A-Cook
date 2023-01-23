@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import BackButton from './components/BackButton';
 
 function UploadDocuments() {
     const [selectedFile, setSelectedFile] = useState();
@@ -6,7 +7,6 @@ function UploadDocuments() {
 
     const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
-		//setIsSelected(true);
 	};
 
 	const handleSubmission = () => {
@@ -30,20 +30,28 @@ function UploadDocuments() {
 			});
 	};
 
-  return <div>
-            <div><h2>Upload documents</h2></div>
+    return (
+        <><BackButton /><div id='documentform'>
+            <div><h1>Upload documents</h1></div>
+            <br></br>
             <div><h3>Upload Garda Vetting Document</h3></div>
+            <label class='uploadbutton'>
             <input type='file' name='file' onChange={changeHandler} />
-            <div>
-                <button onClick={handleSubmission}>Submit</button>
-            </div>
+            Upload
+            </label>
+
+            <br></br>
 
             <div><h3>Upload Food Safety Document</h3></div>
+            <label class='uploadbutton'>
             <input type='file' name='file' onChange={changeHandler} />
+            Upload
+            </label>
             <div>
-                <button onClick={handleSubmission}>Submit</button>
+                <button id='submit' onClick={handleSubmission}>Submit</button>
             </div>
-  </div>;
+        </div></>
+    );
 }
 
 
