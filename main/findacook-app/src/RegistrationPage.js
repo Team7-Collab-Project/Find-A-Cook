@@ -32,9 +32,9 @@ function RegistrationPage() {
       </label>
       <br />
       <h2> OR </h2>
-      <p>Twitter</p>
-      <p>Google</p>
-      <p>Facebook</p>
+      <p>Twitter *placeholder*</p>
+      <p>Google *placeholder*</p>
+      <p>Facebook *placeholder*</p>
       <button type="submit">Next</button>
     </form></>
   );
