@@ -6,6 +6,7 @@ import LoginPage from './LoginPage';
 import UploadDocuments from './UploadDocuments';
 import RegistrationPage from './RegistrationPage';
 import GuestPage from './GuestPage';
+import TestPage from './TestPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -18,6 +19,7 @@ root.render(
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/register" element={<RegistrationPage/>} />
         <Route path="/guest" element={<GuestPage/>} />
+        <Route path="/test" element={<TestPage/>} />
         <Route path="/documentupload" element={<UploadDocuments/>} />
       
     </Routes>

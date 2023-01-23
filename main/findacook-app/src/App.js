@@ -6,6 +6,7 @@ import LoginPage from './LoginPage';
 import RegistrationPage from './RegistrationPage';
 import LandingPage from './LandingPage';
 import GuestPage from './GuestPage';
+import TestPage from './TestPage.js'
 
 function App() {
   return (
