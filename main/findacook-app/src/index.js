@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import LoginPage from './LoginPage';
+import UploadDocuments from './UploadDocuments';
 import RegistrationPage from './RegistrationPage';
 import GuestPage from './GuestPage';
 import './index.css';
@@ -17,6 +18,7 @@ root.render(
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/register" element={<RegistrationPage/>} />
         <Route path="/guest" element={<GuestPage/>} />
+        <Route path="/documentupload" element={<UploadDocuments/>} />
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}
