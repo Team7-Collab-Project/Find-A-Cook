@@ -2,5 +2,82 @@
 .divContainer{
     height: 60px;
     background-color: white;
-    padding: 10px 20px;
   }
+
+  .divWrapper{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+
+  .searchBox{
+    border: 0.5px solid lightgray;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    padding: 5px;
+    color: gray;
+    font-size: 16;
+  }
+
+  .searchBox input{
+    border: none;
+    outline:none;
+  }
+
+  .searchBox input:active{
+    border: none;
+    outline:none;
+  }
+
+  /* .navLogo img{
+    background-color: #1f3744;
+    border-radius: 30px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 25px;
+    padding-top: 15px;
+    height: 40px;
+    justify-content: center;
+    background-position: center center;
+  }
+
+  .navLogo{
+    margin-right: 150px;
+  } */
+
+  .navLogo {
+    display: grid;
+    grid-template-areas: "img";
+    align-items: center;
+    justify-content: center;
+    background-color: #1f3744;
+    border-radius: 30px;
+    margin-right: 160px;
+  }
+
+  .navLogo img {
+    grid-area: img;
+    height: 40px;
+    padding: auto;
+    margin-left: 16px;
+  }
+
+  .right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .menuCart{
+    font-size: 20px;
+  }
+
+  
+  
+  
+  
+  
