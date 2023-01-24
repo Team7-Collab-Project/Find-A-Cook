@@ -3,10 +3,10 @@ const router = express.Router();
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'yourusername',
-  password: 'yourpassword',
-  database: 'yourdatabase'
+  host: 'Localhost New',
+  user: 'root',
+  password: '12345678',
+  database: 'test_db'
 });
 
 router.post('/api/register', async (req, res) => {
@@ -30,24 +30,36 @@ router.post('/api/register', async (req, res) => {
 });
 
 router.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
-
-  const query = `SELECT * FROM users WHERE email = '${email}' AND password = '${password}'`;
-
-  connection.query(query, (err, results) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-
-    if (results.length > 0) {
-      // User exists and password is correct
-      // You can now create a session or a token to keep the user logged in
-    } else {
-      // User does not exist or password is incorrect
-      return res.status(401).send('Email or password is incorrect');
-    }
+    const { email, password } = req.body;
+  
+    // Select the hashed password from the database for the entered email
+    const query = `SELECT password FROM users WHERE email = '${email}'`;
+    connection.query(query, (err, results) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+  
+      if (results.length > 0) {
+        // Compare the entered password with the hashed password
+        bcrypt.compare(password, results[0].password, (err, isMatch) => {
+          if (err) {
+            return res.status(500).send(err);
+          }
+  
+          if (isMatch) {
+            // Password is correct
+            // You can now create a session or a token to keep the user logged in
+          } else {
+            // Password is incorrect
+            return res.status(401).send('Email or password is incorrect');
+          }
+        });
+      } else {
+        // User with the entered email does not exist
+        return res.status(401).send('Email or password is incorrect');
+      }
+    });
   });
-});
 
 
 module.exports = router;
