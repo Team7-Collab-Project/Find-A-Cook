@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import BackButton from './components/BackButton';
 import axios from 'axios';
 
@@ -8,23 +8,24 @@ function RegistrationPage() {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-
-        axios
-            .post('/register', { name, email, password })
-            .then((res) => {
-                setMessage(res.data.message);
-            })
-            .catch((err) => {
-                console.log(err);
-                setMessage('Error registering user');
+        try {
+            const response = await axios.post('/api/register', {
+                name: name,
+                email: email,
+                password: password
             });
+
+            setMessage(response.data.message);
+        } catch (error) {
+            setMessage(error.message);
+        }
     };
 
-      return (
+    return (
         <div>
-            <><BackButton />
+            <BackButton />
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -45,10 +46,10 @@ function RegistrationPage() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button type="submit">Register</button>
-            </form></>
-        <p>{message}</p>
+            </form>
+            <p>{message}</p>
         </div>
-  );
+    );
 }
 
 export default RegistrationPage;

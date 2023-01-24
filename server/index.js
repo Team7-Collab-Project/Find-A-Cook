@@ -1,36 +1,53 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const router = express.Router();
 const mysql = require('mysql2');
 
-const app = express();
-app.use(bodyParser.json());
-
-// create connection to MySQL database
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'mydb'
+  user: 'yourusername',
+  password: 'yourpassword',
+  database: 'yourdatabase'
 });
 
-app.post('/register', (req, res) => {
-  const { name, email, password } = req.body;
+router.post('/api/register', async (req, res) => {
+    const { name, email, password } = req.body;
 
-  // insert user data into the database
-  connection.query(
-    'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-    [name, email, password],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ message: 'Error registering user' });
-      } else {
-        res.status(200).json({ message: 'User registered successfully' });
-      }
+    try {
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Insert the new user into the database
+      const query = `INSERT INTO users (name, email, password) VALUES ('${name}', '${email}', '${hashedPassword}')`;
+      connection.query(query, (err, results) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.send({ message: 'User registered successfully' });
+      });
+    } catch (err) {
+      res.status(500).send(err);
     }
-  );
 });
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+router.post('/api/login', (req, res) => {
+  const { email, password } = req.body;
+
+  const query = `SELECT * FROM users WHERE email = '${email}' AND password = '${password}'`;
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    if (results.length > 0) {
+      // User exists and password is correct
+      // You can now create a session or a token to keep the user logged in
+    } else {
+      // User does not exist or password is incorrect
+      return res.status(401).send('Email or password is incorrect');
+    }
+  });
 });
+
+
+module.exports = router;
