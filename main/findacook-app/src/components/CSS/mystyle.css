@@ -66,6 +66,10 @@ nav {
           align-items: center;
 }
 
+#codgs{
+    width: 2px;
+}
+
 @media only screen and (max-width: 1024px) {
   header .nav-btn {
     visibility: visible;
