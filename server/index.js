@@ -1,26 +1,33 @@
 const express = require('express');
 const mysql = require("mysql");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const db = mysql.createConnection({
   user: "root",
-  host: "127.0.0.1",
+  host: "localhost",
   password: "12345678",
-  database: "test_db"
+  database: "test_db",
+});
+
+
+app.post('/register', (req, res)=> {
+  const name = req.body.name
+  const email = req.body.email
+  const password = req.body.password
+
+  db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)", [name, email, password], (err, result)=> {
+    console.log(err);
+  });
 });
 
 app.listen("3001", () => {
   console.log("running server")
-})
-
-app.post('/register', (req, res)=> {
-  db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)", [user, password, email], (err, result)=> {
-    console.log(err);
-  })
-})
+});
 
 
 // const connection = mysql.createConnection({
