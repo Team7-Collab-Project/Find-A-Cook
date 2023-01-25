@@ -7,6 +7,10 @@ function MenuListItem() {
 
     const [quantity, setQuantity] = useState(1);
 
+    if(quantity == 0){
+        setQuantity(1);
+    }
+
     return(
         <>
         <img id="cdogs" src="../images/corndogs.jpg" />
