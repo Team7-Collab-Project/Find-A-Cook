@@ -35,9 +35,9 @@ function RegistrationPage() {
       <button type="submit">Next</button>
       <br />
       <h2> OR </h2>
-      <p>Twitter *placeholder*</p>
-      <p>Google *placeholder*</p>
-      <p>Facebook *placeholder*</p>
+      <img src="./images/twitIcon.png" width="50px" height="50px"></img>
+      <img src="./images/fbIcon.png" width="50px" height="50px"></img>
+      <img src="./images/googleIcon.png" width="50px" height="50px"></img>
       <br />
       <Link style={{textDecoration: 'none'}} to="/login"><p>Already have an account? Log in here</p></Link>
       

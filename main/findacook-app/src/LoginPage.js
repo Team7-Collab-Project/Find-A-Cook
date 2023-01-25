@@ -33,9 +33,9 @@ function LoginPage() {
       <button type="submit">Login</button>
       <br />
       <h2> OR </h2>
-      <p>Twitter *placeholder*</p>
-      <p>Google *placeholder*</p>
-      <p>Facebook *placeholder*</p>
+      <img src="./images/twitIcon.png" width="50px" height="50px"></img>
+      <img src="./images/fbIcon.png" width="50px" height="50px"></img>
+      <img src="./images/googleIcon.png" width="50px" height="50px"></img>
 
       <br></br>
       <Link style={{textDecoration: 'none'}} to="/register"><p>Don't have an account? Register here</p></Link>
