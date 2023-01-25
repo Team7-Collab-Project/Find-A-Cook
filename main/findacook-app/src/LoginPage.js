@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import BackButton from './components/BackButton';
 
 function LoginPage() {
@@ -28,12 +29,17 @@ function LoginPage() {
           value={password}
           onChange={(event) => setPassword(event.target.value)} />
       </label>
+      <br/>
+      <button type="submit">Login</button>
       <br />
       <h2> OR </h2>
       <p>Twitter *placeholder*</p>
       <p>Google *placeholder*</p>
       <p>Facebook *placeholder*</p>
-      <button type="submit">Login</button>
+
+      <br></br>
+      <Link style={{textDecoration: 'none'}} to="/register"><p>Don't have an account? Register here</p></Link>
+      
     </form></>
   );
 }
