@@ -12,12 +12,13 @@ function MenuListItem() {
     }
 
     return(
-        <>
-        <img id="cdogs" src="../images/corndogs.jpg" />
+        <>      
         <div className='menu-quick'>
-            <h3>American Corndogs</h3>
-            <h5>4 Crunchy Corndogs w/ Ketchup and Mustard</h5>
-            <h6>€10</h6>
+        <img id="cdogs" src="../images/corndogs.jpg" />
+  
+            <h1>American Corndogs</h1>
+            <h4>4 Crunchy Corndogs w/ Ketchup and Mustard</h4>
+            <h4>€10</h4>
             <div className='quantityDiv'>
             <button className='btn-quantity-minus' onClick={() => setQuantity(quantity - 1)}>
                 <FaMinusCircle />

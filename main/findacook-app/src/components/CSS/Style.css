@@ -102,6 +102,10 @@ nav {
 
 	.menu-quick{
 		text-align: center;
+		/* background-color: lightgrey; */
+		border-radius: 28px;
+		/* box-shadow: 2px 2px; */
+		box-shadow: 10px 20px 20px 0 #c9c9c9;
 	}
 
 	.btn-quantity-minus{
