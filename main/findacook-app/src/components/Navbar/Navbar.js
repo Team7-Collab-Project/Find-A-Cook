@@ -1,34 +1,38 @@
 import React from 'react';
-import '../CSS/Style.css'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { FaSearch } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
+import '../CSS/mystyle.css'
+import { useRef } from "react";
+import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 
 function Navbar() {
-    return (
-        <div className='divContainer'>
-            <div className='divWrapper'>
-                <div className='left'>
-                    <div className='searchBox'>
-                        <input />
-                        <FaSearch />
-                    </div>
-                </div>
-                <div className='center'>
-                    <div className='navLogo'>
-                    <img src="../images/logo-new-edit-01.png"/>
-                    </div>
-                    </div>
-                <div className='right'>
-                    <div className='menuCart'>
-                    <FaShoppingCart />
-                    </div>
-                </div>
-            </div>
+	const navRef = useRef();
 
-        </div>
-    )
+	const showNavbar = () => {
+		navRef.current.classList.toggle("responsive_nav");
+	};
+
+	return (
+		<header>
+			{/* <div className='navLogo'>
+            <img src="../images/logo-new-edit-01.png"/>
+            </div>  */}
+            {/* <h3>Find A Cook</h3> */}
+            <img src="../images/logo-new-edit-01.png"/>
+			<nav ref={navRef}>
+				<a href="/#">Placeholder</a>
+				<a href="/#">Placeholder</a>
+				<a href="/#">Placeholder</a>
+				<a href="/#">Placeholder</a>
+				<button
+					className="nav-btn nav-close-btn"
+					onClick={showNavbar}>
+					<FaTimes />
+				</button>
+			</nav>
+			<button className="nav-btn" onClick={showNavbar}>
+				<FaBars />
+			</button>
+		</header>
+	);
 }
 
 export default Navbar
