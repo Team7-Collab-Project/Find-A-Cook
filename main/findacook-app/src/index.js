@@ -8,6 +8,7 @@ import RegistrationPage from './RegistrationPage';
 import GuestPage from './GuestPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import VerifyPage from './VerifyPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path="/register" element={<RegistrationPage/>} />
         <Route path="/guest" element={<GuestPage/>} />
         <Route path="/documentupload" element={<UploadDocuments/>} />
+        <Route path="/verify" element={<VerifyPage/>} />
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}
