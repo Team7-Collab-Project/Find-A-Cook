@@ -7,6 +7,8 @@ import UploadDocuments from './UploadDocuments';
 import RegistrationPage from './RegistrationPage';
 import GuestPage from './GuestPage';
 import TestPage from './TestPage';
+import CartPage2 from './CartPage2';
+import OrderInfoPage from './OrderInfoPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import VerifyPage from './VerifyPage';
@@ -34,6 +36,8 @@ root.render(
         <Route path="/profile" element={<CookProfile/>}/>
         <Route path="/viewcooks" element={<ViewCooks/>}/>
         <Route path="/test" element={<TestPage/>} />
+        <Route path="/cart" element={<CartPage2/>} />
+        <Route path="/order" element={<OrderInfoPage/>} />
         <Route path="/documentupload" element={<UploadDocuments/>} />
       
     </Routes>
