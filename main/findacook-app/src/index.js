@@ -9,6 +9,7 @@ import GuestPage from './GuestPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import VerifyPage from './VerifyPage';
+import CookDashboard from './CookDashboard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path="/guest" element={<GuestPage/>} />
         <Route path="/documentupload" element={<UploadDocuments/>} />
         <Route path="/verify" element={<VerifyPage/>} />
+        <Route path="/cookdashboard" element={<CookDashboard/>} />
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}
