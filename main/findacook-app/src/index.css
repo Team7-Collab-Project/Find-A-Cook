@@ -163,6 +163,40 @@ form {
   cursor: pointer;
 }
 
+#cookdash {
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 100%;
+  min-height: 800px;
+  margin-bottom: 4%;
+  display: block;
+  text-align: center;
+}
+
+#cookdashimg {
+  display: block;
+  object-fit: cover;
+  width: 50%;
+  height: 50%;
+}
+
+#cookimgdiv {
+  display: block;
+  height: auto;
+}
+
+#cookname {
+  display: block;
+  text-align: left;
+  margin-left: 20px;
+}
+
+
 .loginForm {
   margin-left: 10%;
 }
