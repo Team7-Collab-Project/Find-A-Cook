@@ -7,7 +7,7 @@ function MenuListItem() {
 
     const [quantity, setQuantity] = useState(1);
 
-    if(quantity == 0){
+    if(quantity === 0){
         setQuantity(1);
     }
 
@@ -28,7 +28,15 @@ function MenuListItem() {
                 <FaPlusCircle />
             </button>
             </div>
-        </div>
+ </div>
+            <div className='ingredients'>
+                <h2>Ingredients</h2>
+
+
+                <h2>Details</h2>
+                <p>American-inspired corndogs - coated frankfurter sausages in a cornmeal batter, deep-fried and served with ketchup and yellow mustard.</p>
+            </div>
+       
         </>
     )
 }
