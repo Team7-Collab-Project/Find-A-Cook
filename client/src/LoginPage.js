@@ -5,43 +5,30 @@ import BackButton from './components/BackButton'
 function LoginPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setIsLoading(true);
-
-        try {
-            const response = await axios.post('/api/login', {
-                email: email,
-                password: password
-            });
-            if (response.data.token) {
-                // Succesful login
-                //can store the token in the local storage or in a cookie
-
-                //can redirect the user to a different page
-                localStorage.setItem('token', response.data.token);
-                window.location.href = '/dashboard';
+    const [loginStatus, setLoginStatus] = useState("")
+    
+    const login = () => {
+        axios.post('http://localhost:3001/login', {
+            email: email, 
+            password: password,
+        }).then((response) => {
+            if (response.data.message){
+                setLoginStatus(response.data.message)
             } else {
-                setError(response.data.message);
+                setLoginStatus(response.data[0].name)
             }
-        } catch (error) {
-            setError(error.message);
-        }
-        setIsLoading(false);
-         
-    };
+            console.log(response.data);
+        });
+    }
+    
     
     return (
         <><BackButton />
-        <form onSubmit={handleSubmit}>
             <label>
                 Email:
                 <input
                     type="email"
-                    value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     />
             </label>
@@ -50,15 +37,11 @@ function LoginPage() {
                 Password:
                 <input
                     type="password"
-                    value={password}
                     onChange={(event) =>setPassword(event.target.value)}
                     />
             </label>
-            <button type="submit" disabled={isLoading}>
-                {isLoading ? 'Loading...' : 'Next'}
-            </button>
-            {error && <div>{error}</div>}
-        </form>
+            <button onClick={login}>Login</button>
+            <h1>{loginStatus}</h1>
         </>
     )
 }
