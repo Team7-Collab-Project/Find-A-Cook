@@ -290,3 +290,23 @@ footer {
 .formInput {
   background-color: white;
 }
+
+#verifyCodes {
+  display: inline;
+  width: 100%;
+}
+
+.verifyCodeArea {
+  float: left;
+  width: 20%;
+  align-items: center;
+}
+
+#verifyCode1, #verifyCode2, #verifyCode3, #verifyCode4 {
+  background-color: white;
+  border: black solid 1px;
+  border-radius: 10%;
+  margin-left: 32.8%;
+  padding-left: 25px;
+  font-size: 30px;
+} 
