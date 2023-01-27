@@ -183,11 +183,44 @@ form {
   object-fit: cover;
   width: 50%;
   height: 50%;
+  margin: 0;
 }
 
 #cookimgdiv {
   display: block;
-  height: auto;
+  width: 50%;
+  height: 50%;
+}
+
+#profileimageoverlay {
+    position: relative;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008CBA;
+}
+
+#cookimgdiv:hover #profileimageoverlay {
+  opacity: .3;
+  cursor: pointer;
+}
+
+#changeprofileimagetext {
+  color: white;
+  font-size: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 #cookname {
