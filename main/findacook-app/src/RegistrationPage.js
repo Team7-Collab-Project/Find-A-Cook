@@ -20,6 +20,7 @@ function RegistrationPage() {
     <img id="loginLogo" src="./images/logo-new-edit-01.png"/>
     <form onSubmit={handleSubmit}>
     <FormControl sx={{ width: '25ch' }}>
+          <br />
           <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
           <br />
           <br />
