@@ -39,7 +39,7 @@ function VerifyPage() {
             <h4>Can't find it? Please check your spam folder.</h4>
             <br />
             <br />
-            <button className='btn' id="verifyBtn" type="submit">Verify Code</button>
+            <Link style={{textDecoration: 'none'}} to="/registerprofile"><button className='btn' id="verifyBtn" type="submit">Verify Code</button></Link>
             <br />
             <br />
             

@@ -9,7 +9,7 @@ import "./index.css";
 function RegistrationPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [phnum, setPhnum] = useState('');
+  const [birth, setBirth] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,7 +27,7 @@ function RegistrationPage() {
           <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your phone number" className='formInput' label="Phone Number" type="tel" value={phnum} onChange={(event) => setPhnum(event.target.value)}/>
+          <TextField variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>
           <br />
           <br />
           <br/>

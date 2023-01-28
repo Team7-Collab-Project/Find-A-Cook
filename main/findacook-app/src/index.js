@@ -10,6 +10,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import VerifyPage from './VerifyPage';
 import CookDashboard from './CookDashboard';
+import RegisinfoPage from './RegisInfoPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path="/documentupload" element={<UploadDocuments/>} />
         <Route path="/verify" element={<VerifyPage/>} />
         <Route path="/cookdashboard" element={<CookDashboard/>} />
+        <Route path="/registerprofile" element={<RegisinfoPage/>}/>
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}

@@ -21,6 +21,7 @@ function LoginPage() {
     <Link style={{textDecoration: 'none'}} to="/"><img id="loginLogo" alt="FindaCook logo" src="./images/logo-new-edit-01.png"/></Link>
     <form id='loginForm' onSubmit={handleSubmit}>
       <h2>Welcome Back</h2>
+      <h3>Please enter your email and password to log-in.</h3>
         <FormControl sx={{ width: '25ch' }}>
           <br/>
           <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
