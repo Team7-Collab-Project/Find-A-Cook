@@ -95,6 +95,15 @@ body {
   right: 34%;
 }
 
+#termsSubmitBtn{
+  width: 250px;
+  height: 55px;
+  font-size: 20px;
+  right: 5%;
+}
+
+
+
 .btn:focus {
   outline: none;
 }
@@ -171,6 +180,20 @@ body {
   margin-right: auto;
   width: 35%;
   min-height: 600px;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+#termsForm{
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  height: 80%;
+  min-height: 760px;
   margin-bottom: 4%;
   text-align: center;
 }
@@ -374,4 +397,35 @@ footer {
   height: 50px;
 } 
 
+#termsBox{
+  height: 500px;
+  width: 518px;
+  overflow: auto;
+  position: fixed;
+  left: 36.5%;
+}
+
+#termsContent{
+  height: 1780px;
+  width: 500px;
+  background-color: white;
+  font-size: small;
+  text-align: left;
+}
+
+#belowTerms{
+  position:fixed;
+  top: 85%;
+  left: 40%;
+}
+
+#agreeLbl {
+  left: 43%;
+  position:fixed;
+}
+
+#agree {
+  position: fixed;
+  left: 42%;
+}
 
