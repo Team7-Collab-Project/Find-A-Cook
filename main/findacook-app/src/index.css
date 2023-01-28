@@ -99,6 +99,10 @@ body {
   margin-bottom: 40px;
 }
 
+#verifyForm form{
+  max-height: 500px;
+}
+
 form {
   background-color: lightgray;
   border: black 2px solid;
@@ -291,22 +295,25 @@ footer {
   background-color: white;
 }
 
-#verifyCodes {
-  display: inline;
-  width: 100%;
-}
-
-.verifyCodeArea {
-  float: left;
-  width: 20%;
-  align-items: center;
+#verifyCodes{
+  left: 30%;
+  float:left;
+  width: 80%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 #verifyCode1, #verifyCode2, #verifyCode3, #verifyCode4 {
   background-color: white;
   border: black solid 1px;
   border-radius: 10%;
-  margin-left: 32.8%;
-  padding-left: 25px;
+  text-align: center;
   font-size: 30px;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  width: 50px;
+  height: 50px;
 } 
+
+
