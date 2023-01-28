@@ -3,12 +3,31 @@ import { Link } from 'react-router-dom';
 import BackButton from './components/BackButton';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
+import RememberPassword from './components/RememberPassword';
 
 
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  function handleLogin(event) {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+  
+    // check if the checkbox is checked
+    if (RememberPassword.checked) {
+      // save email and password to local storage
+      localStorage.setItem("email", email.value);
+      localStorage.setItem("password", password.value);
+    } else {
+      // remove email and password from local storage
+      localStorage.removeItem("email");
+      localStorage.removeItem("password");
+    }
+  
+    // perform login
+  }
 
 
   const handleSubmit = (event) => {
@@ -28,6 +47,7 @@ function LoginPage() {
           <br />
           <br />
           <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+          <RememberPassword />
           <br />
           <br />
           <br/>
