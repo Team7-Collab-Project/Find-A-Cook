@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import BackButton from './components/BackButton';
-import FormControl, { useFormControl } from '@mui/material/FormControl';
+import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import "./index.css";
 
@@ -17,8 +17,8 @@ function RegistrationPage() {
   };
   return (
     <><BackButton />
-    <img id="loginLogo" src="./images/logo-new-edit-01.png"/>
-    <form onSubmit={handleSubmit}>
+    <Link style={{textDecoration: 'none'}} to="/"><img id="loginLogo" alt="FindaCook logo" src="./images/logo-new-edit-01.png"/></Link>
+    <form id="regisForm" onSubmit={handleSubmit}>
     <FormControl sx={{ width: '25ch' }}>
           <br />
           <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
@@ -31,16 +31,16 @@ function RegistrationPage() {
           <br />
           <br />
           <br/>
-            <Link style={{textDecoration: 'none'}} to="/verify"><button type="submit">Next</button></Link>
+            <Link style={{textDecoration: 'none'}} to="/verify"><button type="submit" className='btn' id="regBtn">Next</button></Link>
           <br />
-        </FormControl>
+    </FormControl>
       
       <hr></hr><h2> OR </h2>
       <br />
       <br />
-      <img src="./images/twitIcon.png" width="50px" height="50px"></img>
-      <img src="./images/fbIcon.png" width="50px" height="50px"></img>
-      <img src="./images/googleIcon.png" width="50px" height="50px"></img>
+      <img src="./images/twitIcon.png" alt="Twitter Icon" width="50px" height="50px"></img>
+      <img src="./images/fbIcon.png" alt="Facebook Icon" width="50px" height="50px"></img>
+      <img src="./images/googleIcon.png" alt="Google Icon" width="50px" height="50px"></img>
       <br />
       <Link style={{textDecoration: 'none'}} to="/login"><p>Already have an account? Log in here</p></Link>
       

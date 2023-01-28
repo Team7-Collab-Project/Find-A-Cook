@@ -1,7 +1,7 @@
-import { TextField } from '@mui/material';
+
 import {Link} from 'react-router-dom';
 import BackButton from './components/BackButton';
-import Button from './components/Button'
+
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,7 +11,7 @@ const handleSubmit = (event) => {
 function VerifyPage() {
     return (
         <><BackButton />
-        <img id="loginLogo" src="./images/logo-new-edit-01.png"/>
+        <Link style={{textDecoration: 'none'}} to="/"><img id="loginLogo" alt="FindaCook logo" src="./images/logo-new-edit-01.png"/></Link>
         <form id="verifyForm" onSubmit={handleSubmit}>
             <h1>Verification</h1>
             <br />
@@ -35,14 +35,14 @@ function VerifyPage() {
             <br/>
             <br />
             <br />
-            <button>Resend Code</button>
-            <br/>
+            <button className='btn' id="resendBtn">Resend Code</button>
+            <h4>Can't find it? Please check your spam folder.</h4>
             <br />
             <br />
-            <button type="submit">Verify Code</button>
+            <button className='btn' id="verifyBtn" type="submit">Verify Code</button>
             <br />
             <br />
-            <h3>Can't find it? Please check your spam folder.</h3>
+            
         </form>
         </>
     );
