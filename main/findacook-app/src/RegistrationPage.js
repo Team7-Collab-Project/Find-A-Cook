@@ -21,13 +21,13 @@ function RegistrationPage() {
     <form id="regisForm" onSubmit={handleSubmit}>
     <FormControl sx={{ width: '25ch' }}>
           <br />
-          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
+          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required/>
+          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)} required/>
+          <TextField variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>
           <br />
           <br />
           <br/>

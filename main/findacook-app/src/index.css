@@ -269,6 +269,7 @@ body {
   width: 50%;
   height: 50%;
   margin: 0;
+  padding: 0;
 }
 
 #cookimgdiv {
@@ -306,6 +307,22 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+#profilepictureupload {
+  display: block;
+  border-radius: 10px;
+  margin: auto;
+  width: 100%;
+}
+
+#profilepictureupload:hover {
+  cursor: pointer;
+}
+
+#profilepictureupload input[type=file] {
+  display: none;
+
 }
 
 #cookname {
