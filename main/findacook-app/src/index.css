@@ -308,6 +308,22 @@ body {
   text-align: center;
 }
 
+#profilepictureupload {
+  display: block;
+  border-radius: 10px;
+  margin: auto;
+  width: 100%;
+}
+
+#profilepictureupload:hover {
+  cursor: pointer;
+}
+
+#profilepictureupload input[type=file] {
+  display: none;
+
+}
+
 #cookname {
   display: block;
   text-align: left;
