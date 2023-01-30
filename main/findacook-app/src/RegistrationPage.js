@@ -21,13 +21,13 @@ function RegistrationPage() {
     <form id="regisForm" onSubmit={handleSubmit}>
     <FormControl sx={{ width: '25ch' }}>
           <br />
-          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required/>
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>
+          <TextField variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)} required/>
           <br />
           <br />
           <br/>
@@ -36,11 +36,13 @@ function RegistrationPage() {
     </FormControl>
       
       <hr></hr><h2> OR </h2>
+      <h3>Sign-up with:</h3>
+      <br />
+      <img src="./images/twitIcon.png" id="twitSign" alt="Twitter Icon"></img>
+      <img src="./images/fbIcon.png" id="fbSign" alt="Facebook Icon"></img>
+      <img src="./images/googleIcon.png" id="gooSign" alt="Google Icon"></img>
       <br />
       <br />
-      <img src="./images/twitIcon.png" alt="Twitter Icon" width="50px" height="50px"></img>
-      <img src="./images/fbIcon.png" alt="Facebook Icon" width="50px" height="50px"></img>
-      <img src="./images/googleIcon.png" alt="Google Icon" width="50px" height="50px"></img>
       <br />
       <Link style={{textDecoration: 'none'}} to="/login"><p>Already have an account? Log in here</p></Link>
       

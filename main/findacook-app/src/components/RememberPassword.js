@@ -8,13 +8,10 @@ const RememberPassword = () => {
   };
 
   return (
-    <div>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={handleCheckboxChange}
-      />
-      <label>Remember password</label>
+    <div id="remPass">
+        <p>Forgot Password?</p>
+        <input id="RPCheck" type="checkbox" checked={checked} onChange={handleCheckboxChange} />
+        <label>Remember password</label>
     </div>
   );
 };

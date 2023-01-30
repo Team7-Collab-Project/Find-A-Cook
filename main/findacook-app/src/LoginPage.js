@@ -43,7 +43,7 @@ function LoginPage() {
       <h3>Please enter your email and password to log-in.</h3>
         <FormControl sx={{ width: '25ch' }}>
           <br/>
-          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
           <br />
           <br />
           <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
@@ -51,18 +51,20 @@ function LoginPage() {
           <br />
           <br />
           <br/>
-            <button className="btn" id="loginBtn" type="submit">Login</button>
+          <Link style={{textDecoration: 'none'}} to="/cookdashboard"><button className="btn" id="loginBtn" type="submit">Login</button></Link>
           <br />
         </FormControl>
       
       <hr></hr><h2> OR </h2>
+      <h3>Sign-in with:</h3>
+      <img src="./images/twitIcon.png" id="twitLogin" alt="Twitter Icon"></img>
+      <img src="./images/fbIcon.png" id="fbLogin" alt="Facebook Icon"></img>
+      <img src="./images/googleIcon.png" id="gooLogin" alt="Google Icon"></img>
       <br />
       <br />
-      <img src="./images/twitIcon.png" alt="Twitter Icon" width="50px" height="50px"></img>
-      <img src="./images/fbIcon.png" alt="Facebook Icon" width="50px" height="50px"></img>
-      <img src="./images/googleIcon.png" alt="Google Icon" width="50px" height="50px"></img>
-
-      <br></br>
+      <br />
+      <br />
+      <br />
       <Link style={{textDecoration: 'none'}} to="/register"><p>Don't have an account? Register here</p></Link>
       
     </form></>

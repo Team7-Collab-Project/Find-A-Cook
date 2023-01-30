@@ -429,3 +429,76 @@ footer {
   left: 42%;
 }
 
+#remPass{
+  float:left;
+  display: flex;
+  position: relative;
+}
+
+#remPass p{
+  float:left;
+  display: flex;
+  position: absolute;
+  left: 80%;
+  width: 40%;
+}
+
+#twitLogin {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 38.4%;
+  top:81%;
+  width: 65px;
+  height: 65px;
+}
+
+#twitSign {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 38.4%;
+  top:84%;
+  width: 65px;
+  height: 65px;
+}
+
+#fbLogin {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 48.4%;
+  top:81%;
+  width: 65px;
+  height: 65px;
+}
+
+#fbSign {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 48.4%;
+  top:84%;
+  width: 65px;
+  height: 65px;
+}
+
+#gooLogin {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 58.4%;
+  top:81%;
+  width: 65px;
+  height: 65px;
+}
+
+#gooSign {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 58.4%;
+  top:84%;
+  width: 65px;
+  height: 65px;
+}

@@ -23,16 +23,16 @@ function RegisinfoPage() {
     <form id="regisForm" onSubmit={handleSubmit}>
     <FormControl sx={{ width: '25ch' }}>
           <br />
-          <TextField variant="filled" helperText="Please enter your first name" className='formInput' label="First Name" value={fname} onChange={(event) => setFname(event.target.value)} />
+          <TextField variant="filled" helperText="Please enter your first name" className='formInput' label="First Name" value={fname} onChange={(event) => setFname(event.target.value)}  />
           <br />
           <br />
           <TextField variant="filled" helperText="Please enter your surname" className='formInput' label="Surname" value={lname} onChange={(event) => setLname(event.target.value)} />
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your phone number" className='formInput' label="Phone Number" type="tel" value={phnum} onChange={(event) => setPhnum(event.target.value)}/>
+          <TextField variant="filled" helperText="Please enter your phone number" className='formInput' label="Phone Number" type="tel" value={phnum} onChange={(event) => setPhnum(event.target.value)} />
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your address" className='formInput' label="Address" value={addr} onChange={(event) => setAddr(event.target.value)}/>
+          <TextField variant="filled" helperText="Please enter your address" className='formInput' label="Address" value={addr} onChange={(event) => setAddr(event.target.value)} />
           <br />
           <br />
           <br/>

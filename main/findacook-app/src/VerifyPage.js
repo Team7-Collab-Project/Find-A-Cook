@@ -6,7 +6,20 @@ import BackButton from './components/BackButton';
 const handleSubmit = (event) => {
     event.preventDefault();
     // Logic for registering
-  };
+    const code1 = document.getElementById("verifyCode1").value;
+    const code2 = document.getElementById("verifyCode2").value;
+    const code3 = document.getElementById("verifyCode3").value;
+    const code4 = document.getElementById("verifyCode4").value;
+    const enteredCode = code1 + code2 + code3 + code4;
+
+    if (enteredCode === "1234") {
+        // submit logic
+        window.location.href = "/registerprofile";
+    } else {
+        alert("Incorrect code, please try again.");
+    }
+
+};
   
 function VerifyPage() {
     return (
@@ -20,16 +33,16 @@ function VerifyPage() {
             <br/>
             <div id='verifyCodes'>
                 <div>
-                    <input id="verifyCode1" type="text" maxLength={1}/>
+                    <input id="verifyCode1" type="text" maxLength={1} onChange={e => document.getElementById("verifyCode2").focus()}required/>
                 </div>
                 <div>
-                    <input id="verifyCode2" type="text" maxLength={1}/>
+                    <input id="verifyCode2" type="text" maxLength={1} onChange={e => document.getElementById("verifyCode3").focus()} required/>
                 </div>
                 <div>
-                    <input id="verifyCode3" type="text" maxLength={1}/>
+                    <input id="verifyCode3" type="text" maxLength={1} onChange={e => document.getElementById("verifyCode4").focus()} required/>
                 </div>
                 <div>
-                    <input id="verifyCode4" type="text" maxLength={1}/>
+                    <input id="verifyCode4" type="text" maxLength={1} required/>
                 </div>
             </div>
             <br/>
@@ -39,7 +52,7 @@ function VerifyPage() {
             <h4>Can't find it? Please check your spam folder.</h4>
             <br />
             <br />
-            <Link style={{textDecoration: 'none'}} to="/registerprofile"><button className='btn' id="verifyBtn" type="submit">Verify Code</button></Link>
+            <button className='btn' id="verifyBtn" type="submit">Verify Code</button>
             <br />
             <br />
             
