@@ -21,13 +21,13 @@ function RegistrationPage() {
     <form id="regisForm" onSubmit={handleSubmit}>
     <FormControl sx={{ width: '25ch' }}>
           <br />
-          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+          <TextField required variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} inputProps={{ pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" }} />
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+          <TextField required variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} inputProps={{ pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"}}/>
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>
+          <TextField required variant="filled" helperText="Please enter your date of birth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>
           <br />
           <br />
           <br/>
