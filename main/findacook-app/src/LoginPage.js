@@ -33,6 +33,7 @@ function LoginPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Logic for logging in
+    window.location.href = "/cookdashboard";
   };
 
   return (
@@ -43,15 +44,15 @@ function LoginPage() {
       <h3>Please enter your email and password to log-in.</h3>
         <FormControl sx={{ width: '25ch' }}>
           <br/>
-          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
+          <TextField variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} inputProps={{ pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" }} required/>
           <br />
           <br />
-          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+          <TextField variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} inputProps={{ pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"}}/>
           <RememberPassword />
           <br />
           <br />
           <br/>
-          <Link style={{textDecoration: 'none'}} to="/cookdashboard"><button className="btn" id="loginBtn" type="submit">Login</button></Link>
+          <button className="btn" id="loginBtn" type="submit">Login</button>
           <br />
         </FormControl>
       

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import BackButton from './components/BackButton';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Navbar from './components/Navbar';
 
 
 
@@ -40,6 +41,7 @@ function CookDashboard() {
     return (
         <><BackButton />
         <div id='cookdash'>
+          <Navbar />
             <div><h1>Dashboard</h1></div>
                 <div id='cookimgdiv'>
                     <img src="./images/cookimg.jpg" alt="cook" id='cookdashimg' align='left'></img>

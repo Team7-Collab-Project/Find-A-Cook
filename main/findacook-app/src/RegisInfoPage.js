@@ -15,6 +15,7 @@ function RegisinfoPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Logic for registering
+    window.location.href = "/terms";
   };
 
   return (
@@ -36,7 +37,7 @@ function RegisinfoPage() {
           <br />
           <br />
           <br/>
-            <Link style={{textDecoration: 'none'}} to="/terms"><button type="submit" className='btn' id="regBtn">Next</button></Link>
+            <button type="submit" className='btn' id="regBtn">Next</button>
           <br />
     </FormControl>
     </form></>
