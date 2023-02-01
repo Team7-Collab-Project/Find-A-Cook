@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { Link} from 'react-router-dom';
 
-function TermsandConditions() {
+function TermsandConditions({submitCode}) {
     const [isDisabled, setIsDisabled] = useState(true);
     const termsBoxRef = useRef(null);
 
@@ -65,7 +65,7 @@ function TermsandConditions() {
                 <input id="agree" type="checkbox" name="agree" value="agree" disabled={isDisabled} required></input>
                 <label id="agreeLbl">I agree to the Terms & Conditions</label>
                 <br />
-                <Link style={{textDecoration: 'none'}} to="/login"><input className="btn" id="termsSubmitBtn" type="submit" value="Submit" disabled={isDisabled}></input></Link>
+                <input className="btn" id="termsSubmitBtn" type="submit" value="Submit" disabled={isDisabled}></input>
             </div>
         </div>
     );

@@ -7,6 +7,7 @@ import TermsandConditions from './components/TermsBox';
 const handleSubmit = (event) => {
     event.preventDefault();
     // Logic for registering
+    window.location.href = "/login";
   };
 
 
@@ -19,8 +20,7 @@ function TermsPage() {
             <h1>Terms and Conditions</h1>
             <h3>Please read through and accept our Terms and Conditions before your account is finalised.</h3>
             <br />           
-            <TermsandConditions />
-            
+            <TermsandConditions submitCode={handleSubmit}/>  
         </form>
         </>
     );
