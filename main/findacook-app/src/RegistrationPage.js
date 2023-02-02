@@ -16,14 +16,19 @@ function RegistrationPage() {
     const today = new Date();
     const birthDate = new Date(birth);
     const age = today.getFullYear() - birthDate.getFullYear();
-    if (age < 18) {
-      window.alert('You must be at least 18 years old to register.');
+    if (!email.match("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")) {
+      window.alert('Invalid email');
       return;
     }
     if (!password.match("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")) {
       window.alert('Password must contain 8 characters, an uppercase letter, a number and a special character');
       return;
     }
+    if (age < 18) {
+      window.alert('You must be at least 18 years old to register.');
+      return;
+    }
+    
     // Logic for registering
       window.location.href = "/verify";
   };
@@ -36,7 +41,7 @@ function RegistrationPage() {
           <TextField required variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} inputProps={{ pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" }} />
           <br />
           <br />
-          <TextField required variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} /*inputProps={{ pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"}}*//>
+          <TextField required variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} inputProps={{ pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"}}/>
           <br />
           <br />
           <TextField required variant="filled" helperText="Please enter your date of birth" id="regBirth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>          <br />
