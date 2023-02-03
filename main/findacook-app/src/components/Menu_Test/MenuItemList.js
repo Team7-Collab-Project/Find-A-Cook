@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import '../CSS/Style.css'
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../redux/actions/cartActions';
 
 function MenuListItem() {
 
@@ -10,6 +12,14 @@ function MenuListItem() {
     if(quantity === 0){
         setQuantity(1);
     }
+
+    const { product } = useSelector(state => state.products);
+
+    const dispatch = useDispatch();
+
+    const handleAddToCart = () => {
+		dispatch(addToCart(product));
+	};
 
     return(
         <>      
@@ -29,7 +39,7 @@ function MenuListItem() {
             </button>
             </div>
             <div className='add'>
-            <button className='addCartButton'>Add to Cart</button>
+            <button className='addCartButton' onClick={handleAddToCart}>Add to Cart</button>
         </div>
  </div>
             <div className='ingredients'>
