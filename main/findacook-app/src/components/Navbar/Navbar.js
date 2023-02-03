@@ -2,6 +2,7 @@ import React from 'react';
 import '../CSS/mystyle.css'
 import { useRef } from "react";
 import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 function Navbar() {
 	const navRef = useRef();
@@ -21,7 +22,9 @@ function Navbar() {
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
-				<a href="/#">Placeholder</a>
+				{/* <a href="/#"><FaShoppingCart /></a> */}
+				<Link to='/cart'><FaShoppingCart /></Link>
+				{/* <button><FaShoppingCart /></button> */}
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
