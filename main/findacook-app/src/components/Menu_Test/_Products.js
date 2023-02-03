@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import '../CSS/Style.css'
+import { addToCart } from '../../redux/actions/cartActions';
+import { useDispatch } from 'react-redux';
 
 const _Products = ({productItems, handleAddProduct}) => {
+
+    const dispatch = useDispatch();
+
+	const handleAddToCart = () => {
+		dispatch(addToCart(productItems));
+	};
 
     return(
         <div className='products'>
@@ -18,7 +26,7 @@ const _Products = ({productItems, handleAddProduct}) => {
                     </div>
                     <div className='product-price'>€{productItem.price}</div>
                     <div className='add'>
-            <button className='addCartButton' onClick={() => handleAddProduct(productItem)}>Add to Cart</button>
+            <button className='addCartButton' onClick={handleAddToCart}>Add to Cart</button>
         </div>
                 </div>
             ))
