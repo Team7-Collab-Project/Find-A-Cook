@@ -12,6 +12,7 @@ import VerifyPage from './VerifyPage';
 import CookDashboard from './CookDashboard';
 import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
+import 'font-awesome/css/font-awesome.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

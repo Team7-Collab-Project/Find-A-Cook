@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Link} from 'react-router-dom';
+
 
 function TermsandConditions({submitCode}) {
     const [isDisabled, setIsDisabled] = useState(true);
