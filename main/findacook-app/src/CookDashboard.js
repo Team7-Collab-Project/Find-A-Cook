@@ -3,6 +3,8 @@ import BackButton from './components/BackButton';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import HamburgNavbar from './components/HamburgNavbar';
+import Maps from './components/Maps';
+
 
 function CookDashboard() {
 
@@ -60,6 +62,7 @@ function CookDashboard() {
   return (
     <><HamburgNavbar setIsOpen={setIsOpen}/>
       <div id='cookdash' className={`${isOpen ? 'sidebar-open' : ''}`}>
+      {/*<Maps center={{ lat: 37.7749, lng: -122.4194 }} zoom={11}/>*/}
         <div><h1>Dashboard</h1></div>
           <div id='cookimgdiv'>
             <img src="./images/cookimg.jpg" alt="cook" id='cookdashimg' align='left' />
