@@ -4,13 +4,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddFoodForm = () => {
 
-    // const handleProductChange = evt => {
-	// 	setProductData({
-	// 		...productData,
-	// 		[evt.target.name]: evt.target.value,
-	// 	});
-	// };
+    const [product, setProduct] = useState('');
 
+    const handleProductChange = (evt) => {
+        setProduct(evt.target.vaalue);
+	};
+
+    const handleProductSubmit = (evt) => {
+        evt.preventDefault();
+
+        createProduct();
+    }
+
+const numberFormat = (value) =>
+  new Intl.NumberFormat('en-EU', {
+    style: 'currency',
+    currency: 'EUR'
+  }).format(value);
+
+
+  var num = 22;
 
   return (
     <div className="food-form-container">
@@ -28,11 +41,36 @@ const AddFoodForm = () => {
             <div className="">
 <Fragment>
     <div className="group">
-<input type='file' className="form-input" />
+<input type='file' className="form-input" required />
 {/* <label>Choose File</label> */}
+    </div>
+
+    <div className="group">
+<input type='text' className="form-input" required/>
+<span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Name</label>
+    </div>
+
+    <div className="group">
+<textarea type='textarea' className="form-input" required/>
+<span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Description</label>
+    </div>
+
+
+    <div className="group">
+<input type='text' className="form-input" value={numberFormat(num)} required/>
+<span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Price</label>
     </div>
 </Fragment>
             </div>
+
+
+            {/* TODO: ADD CATEGORY OPTION */}
 
           </form>
         </div>
