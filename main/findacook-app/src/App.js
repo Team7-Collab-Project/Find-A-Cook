@@ -1,11 +1,16 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Header from './components/Header'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import LoginPage from './LoginPage';
+import RegistrationPage from './RegistrationPage';
+import LandingPage from './LandingPage';
+import GuestPage from './GuestPage';
 
 function App() {
   return (
-    <div className="container">
-      <Header/>
+    <div>
+      
     </div>
   );
 }
