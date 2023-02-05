@@ -1,9 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
-import BackButton from './components/BackButton';
+//import BackButton from './components/BackButton';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import HamburgNavbar from './components/HamburgNavbar';
-import Maps from './components/Maps';
+//import Maps from './components/Maps';
 
 
 function CookDashboard() {
@@ -17,7 +17,7 @@ function CookDashboard() {
   const navbarRef = React.useRef(null);
 
   const handleClickOutside = event => {
-    if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+    if (isOpen && navbarRef.current && !navbarRef.current.contains(event.target)) {
       setClicksOutside(clicksOutside + 1);
     }
   };

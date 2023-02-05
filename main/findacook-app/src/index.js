@@ -24,7 +24,7 @@ root.render(
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/register" element={<RegistrationPage/>} />
         <Route path="/guest" element={<GuestPage/>} />
-        <Route path="/documentupload" element={<UploadDocuments/>} />
+        <Route path="/cookReg" element={<UploadDocuments/>} />
         <Route path="/verify" element={<VerifyPage/>} />
         <Route path="/cookdashboard" element={<CookDashboard/>} />
         <Route path="/registerprofile" element={<RegisinfoPage/>}/>

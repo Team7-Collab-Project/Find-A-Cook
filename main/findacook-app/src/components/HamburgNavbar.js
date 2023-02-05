@@ -34,19 +34,19 @@ function HamburgNavbar() {
         </div>
         <div className={`navbar-sidebar ${isOpen ? "show" : ""}`} onClick={() => setIsOpen(false)}>
           <ul className="navbar-list">
-          <Link style={{textDecoration: 'none'}} to="/profile"><li className="navbar-item">Profile</li></Link>
+            <Link style={{textDecoration: 'none'}} className="link" to="/profile"><li className="navbar-item">Profile</li></Link>
             <li className="navbar-item">Orders</li>
             <li className="navbar-item">Settings</li>
-            <li className="navbar-item">Become a Cook</li>
+            <Link style={{textDecoration: 'none'}} className="link" to="/cookReg"><li className="navbar-item">Become a Cook</li></Link>
             <li className="navbar-item">Contact</li>
-            <li className="navbar-item">Logout</li>
+            <Link style={{textDecoration: 'none'}} className="link" to="/"><li className="navbar-item">Logout</li></Link>
           </ul>
         </div>
         <div className="navbar-profile">
             <img id="navProfile" alt="profile" src="./images/man.png"/>
         </div>
         <div className="navbar-logo">
-          <img id="navLogo" alt="FindaCook logo" src="./images/logo-new-edit-01.png"/>
+        <Link style={{textDecoration: 'none'}} className="link" to="/cookdashboard"><img id="navLogo" alt="FindaCook logo" src="./images/logo-new-edit-01.png"/></Link>
         </div>
         <form id="navSearch">
             <input type="search" placeholder="Search..." />

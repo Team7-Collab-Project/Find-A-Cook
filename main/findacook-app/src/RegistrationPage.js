@@ -48,7 +48,6 @@ function RegistrationPage() {
           <br />
           <br/>
             <button type="submit" className='btn' id="regBtn">Next</button>
-          <br />
     </FormControl>
       
       <hr></hr><h2> OR </h2>
