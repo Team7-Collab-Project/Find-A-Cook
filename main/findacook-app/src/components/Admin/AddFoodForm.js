@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { FaPlus, FaMinusCircle } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Modal, Form } from "react-bootstrap";
 
 const AddFoodForm = () => {
 
@@ -14,22 +13,22 @@ const AddFoodForm = () => {
 
 
   return (
-    <div>
-      <div className="">
+    <div className="food-form-container">
+      <div >
         <div className="">
-          <form>
+          <form className="food-form">
           <div className=''>
-          <h5 className=''>Add Food</h5>
+          <h5 className='food-form-h5'>Insert New Food Item</h5>
           {/* <button className='close' data-dismiss='modal'>
 								<span>
 									<i className='fas fa-times'></i>
 								</span>
 							</button> */}
             </div>
-            <div className="modal-body">
+            <div className="">
 <Fragment>
-    <div className="insert-photo">
-<input type='file' />
+    <div className="group">
+<input type='file' className="form-input" />
 {/* <label>Choose File</label> */}
     </div>
 </Fragment>
