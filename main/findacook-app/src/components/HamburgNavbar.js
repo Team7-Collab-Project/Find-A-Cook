@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link} from 'react-router-dom'
 
 function HamburgNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,11 +34,12 @@ function HamburgNavbar() {
         </div>
         <div className={`navbar-sidebar ${isOpen ? "show" : ""}`} onClick={() => setIsOpen(false)}>
           <ul className="navbar-list">
-            <li className="navbar-item">Profile</li>
+          <Link style={{textDecoration: 'none'}} to="/profile"><li className="navbar-item">Profile</li></Link>
             <li className="navbar-item">Orders</li>
             <li className="navbar-item">Settings</li>
             <li className="navbar-item">Become a Cook</li>
             <li className="navbar-item">Contact</li>
+            <li className="navbar-item">Logout</li>
           </ul>
         </div>
         <div className="navbar-profile">
