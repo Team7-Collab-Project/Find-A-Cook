@@ -1,12 +1,14 @@
 const express = require('express');
 const mysql = require("mysql");
 const cors = require("cors");
+const nodemailer = require('nodemailer');
 
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const session = require('express-session')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const crypto = require('crypto');
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 const saltRounds = 10
 
 const app = express();
@@ -17,7 +19,7 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }));
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(session({
@@ -37,7 +39,6 @@ const db = mysql.createConnection({
   database: "test_db",
 });
 
-
 app.post('/register', (req, res)=> {
   const name = req.body.name
   const email = req.body.email
@@ -51,7 +52,7 @@ app.post('/register', (req, res)=> {
     }
 
 
-    db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)", [name, email, hash], (err, result)=> {
+    db.query("INSERT INTO users (name, email, password, usertype) VALUES (?,?,?,?)", [name, email, hash, "guest"], (err, result)=> {
       console.log(err);
     });
   })
@@ -69,6 +70,21 @@ app.get("/logout", (req, res) => {
   req.session.destroy();
   res.clearCookie("userId");
   res.send({ message: "Successfully logged out" });
+});
+
+app.get("/cook", (req, res, next) => {
+  if (!req.session.user || req.session.user[0].usertype !== "cook") {
+    return res.status(401);
+  }
+  next();
+});
+
+app.get("/userinfo", (req, res) => {
+  if (req.session.user) {
+    res.send(req.session.user);
+  } else {
+    res.send({ message: "No user information found" });
+  }
 });
 
 app.post('/login', (req, res) => {
@@ -100,6 +116,4 @@ app.post('/login', (req, res) => {
 
 app.listen("3001", () => {
   console.log("running server")
-});
-
-
+})

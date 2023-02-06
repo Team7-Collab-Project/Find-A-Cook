@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import BackButton from './components/BackButton';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 
 function RegistrationPage() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    
+    axios.defaults.withCredentials = true
     const register = () => {
         axios.post('http://localhost:3001/register', {
             name: name, 

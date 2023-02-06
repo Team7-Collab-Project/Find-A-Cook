@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import BackButton from './components/BackButton'
+import { useNavigate, Redirect } from "react-router-dom";
+import LogoutButton from "./components/LogoutButton";
 
 function LoginPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const [loginStatus, setLoginStatus] = useState("")
-    
+    const navigate = useNavigate();
+
     axios.defaults.withCredentials = true
     const login = () => {
         axios.post('http://localhost:3001/login', {
@@ -15,22 +18,21 @@ function LoginPage() {
             password: password,
         }).then((response) => {
             if (response.data.message){
-                setLoginStatus(response.data.message)
+                setLoginStatus(response.data.message);
             } else {
-                setLoginStatus(response.data[0].name)
+                setLoginStatus(response.data[0].name);
+                // redirect to appropriate page based on user type
+                const userType = response.data[0].usertype;
+                if (userType === "cook") {
+                    navigate("/cook")
+                } else {
+                    navigate("/guest")
+                }
             }
             console.log(response.data);
         });
     }
 
-    const logout = () => {
-        axios.get("http://localhost:3001/logout").then((response) => {
-          if (response.data.message === "Successfully logged out") {
-            setLoginStatus("");
-            // redirect to login page
-          }
-        });
-      };
     
     useEffect(()=> {
         axios.get("http://localhost:3001/login").then((response)=> {
@@ -57,7 +59,7 @@ function LoginPage() {
             </label>
             <button onClick={login}>Login</button>
             <h1>{loginStatus}</h1>
-            <button onClick={logout}>Logout</button>
+            <LogoutButton setLoginStatus={setLoginStatus} />
         </>
     )
 }
