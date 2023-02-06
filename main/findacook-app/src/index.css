@@ -217,6 +217,10 @@ body {
   text-align: center;
 }
 
+#termsForm h1, h3{
+  font-size: larger;
+}
+
 #documentform {
   background-color: lightgray;
   border: black 2px solid;
