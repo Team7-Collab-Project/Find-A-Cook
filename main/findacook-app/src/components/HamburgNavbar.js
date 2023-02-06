@@ -1,25 +1,19 @@
-import React, { useState } from "react";
-import { Link} from 'react-router-dom'
+import React, { useState, useCallback, useEffect, useRef } from "react";
+import { Link} from 'react-router-dom';
+import useClickOutside from "./useClickOutside";
 
 function HamburgNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [clicksOutside, setClicksOutside] = useState(0);
-  const navbarRef = React.useRef(null);
+  const navbarRef = useRef(null);
 
   const handleClickOutside = event => {
-    if (!navbarRef.current.contains(event.target)) {
-      setClicksOutside(clicksOutside + 1);
-    }
+    setClicksOutside(clicksOutside + 1);
   };
 
-  React.useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  });
+  useClickOutside(navbarRef, handleClickOutside, isOpen);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (clicksOutside > 0) {
       setIsOpen(false);
       setClicksOutside(0);

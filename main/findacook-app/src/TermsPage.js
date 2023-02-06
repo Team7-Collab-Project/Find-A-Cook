@@ -7,7 +7,7 @@ import TermsandConditions from './components/TermsBox';
 const handleSubmit = (event) => {
     event.preventDefault();
     // Logic for registering
-    window.location.href = "/login";
+    window.location.href = "/cookdashboard";
   };
 
 

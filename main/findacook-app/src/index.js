@@ -14,6 +14,8 @@ import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
 import 'font-awesome/css/font-awesome.min.css';
 import CookProfile from './CookProfile';
+import CustModal from './components/CustModal';
+import CookModal from './components/CookModal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,6 +32,8 @@ root.render(
         <Route path="/registerprofile" element={<RegisinfoPage/>}/>
         <Route path="/terms" element={<TermsPage/>}/>
         <Route path="/profile" element={<CookProfile/>}/>
+        <Route path="/welcomeCust" element={<CustModal/>}></Route>
+        <Route path="/welcomeCook" element={<CookModal/>}></Route>
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}
