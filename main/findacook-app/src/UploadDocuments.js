@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import BackButton from './components/BackButton';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
+import {Link} from 'react-router-dom';
 
 function UploadDocuments() {
     const [selectedFile, setSelectedFile] = useState();
@@ -49,11 +50,6 @@ function UploadDocuments() {
             <form id="documentform" onSubmit={handleSubmission}>
                 <div><h1>Become a Cook</h1></div>
                 <br></br>
-                <TextField required variant="filled" helperText="Please enter your name" className='formInput' label="Name" value={name} onChange={(event) => setName(event.target.value)} inputProps={{ pattern: "^[A-Za-z]{1,40}$" }} />
-                <br />
-                <br />
-                <TextField required variant="filled" helperText="Please enter your surname" className='formInput' label="Surname" value={surname} onChange={(event) => setSurname(event.target.value)} inputProps={{ pattern: "^[A-Za-z]{1,40}$" }} />
-                <br />
                 <br />
                 <label class='uploadbutton'>
                 <input required type='file' name='file' onChange={changeHandler} />
@@ -74,8 +70,13 @@ function UploadDocuments() {
                 <input required type='file' name='file' onChange={changeHandler} />
                 Upload Proof of Identity
                 </label>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 <div>
-                    <button type='submit' id='submit'>Submit</button>
+                    <Link style={{textDecoration: 'none'}} className="link" to="/cookdashboard"><button type='submit' id='submit'>Submit</button></Link>
                 </div>
             </form>
         </div></>

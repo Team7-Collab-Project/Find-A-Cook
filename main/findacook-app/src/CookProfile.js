@@ -15,7 +15,8 @@ import HamburgNavbar from './components/HamburgNavbar';
 function CookProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
-    name: "Name",
+    name: "Louise Gorman",
+    speciality:"Indian",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque, justo euismod egestas tempor, libero libero iaculis purus, quis convallis enim mi ac magna.",
     facebook: "#",
     instagram: "#",
@@ -33,6 +34,7 @@ function CookProfile() {
     setProfile({
       ...profile,
       name: event.target.name.value,
+      speciality: event.target.speciality.value,
       bio: event.target.bio.value,
       facebook: event.target.facebook.value,
       instagram: event.target.instagram.value,
@@ -44,20 +46,6 @@ function CookProfile() {
   const [isOpen, setIsOpen] = useState(false);
 const [clicksOutside, setClicksOutside] = useState(0);
 const navbarRef = React.useRef(null);
-const [selectedFile, setSelectedFile] = useState();
-
-const handleClickOutside = event => {
-  if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-    setClicksOutside(clicksOutside + 1);
-  }
-};
-
-React.useEffect(() => {
-  document.addEventListener("click", handleClickOutside);
-  return () => {
-    document.removeEventListener("click", handleClickOutside);
-  };
-});
 
 React.useEffect(() => {
   if (clicksOutside > 0) {
@@ -65,10 +53,6 @@ React.useEffect(() => {
     setClicksOutside(0);
   }
 }, [clicksOutside]);
-
-const changeHandler = (event) => {
-  setSelectedFile(event.target.files[0]);
-};
 
   return (
     <><HamburgNavbar setIsOpen={setIsOpen}/>
@@ -78,7 +62,7 @@ const changeHandler = (event) => {
           <Image
             id="profileAvater"
             style={{ width: "280px", height: "280px" }}
-            src="./images/man.png"
+            src="./images/louise.jpg"
             roundedCircle
           />
         </Col>
@@ -120,6 +104,13 @@ const changeHandler = (event) => {
               <br />
               <p>Number of Reviews: {profile.reviews}</p>
               <br />
+              <label>Speciality: </label>
+              <FormControl
+                type="text"
+                placeholder={profile.speciality}
+                name="Speciality"
+                defaultValue={profile.speciality}
+              />
               <FormControl as="textarea" id="profileBio" name="bio" defaultValue={profile.bio} maxLength="300"/>
               <br />
               <Button type="submit">Save</Button>
@@ -135,7 +126,7 @@ const changeHandler = (event) => {
               <Badge variant="secondary">{profile.stars} stars</Badge>
               <br />
               <p>Number of Reviews: {profile.reviews}</p>
-              <br />
+              <p>Speciality: {profile.speciality}</p>
               <p id="profileBioP">{profile.bio}</p>
               <br />
               <Button id="profileEditBtn" onClick={handleEdit}>EDIT</Button>
@@ -152,8 +143,8 @@ const changeHandler = (event) => {
             <Card style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Title>Recent Dish</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Chicken Fajitas</Card.Subtitle>
-                <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque, justo euismod egestas tempor, libero liberoiaculis purus, quis convallis enim mi ac magna.</Card.Text>
+                <Card.Subtitle className="mb-2 text-muted">Vegan Tofu Masala</Card.Subtitle>
+                <Card.Img variant="top" src="./images/veganTofuMasala.jpg" height="163px" width="50px"/>
                 <Card.Link href="#">Learn more</Card.Link>
               </Card.Body>
             </Card>
@@ -162,8 +153,8 @@ const changeHandler = (event) => {
             <Card style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Title>Recent Dish</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Grilled Salmon</Card.Subtitle>
-                <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque, justo euismod egestas tempor, libero liberoiaculis purus, quis convallis enim mi ac magna.</Card.Text>
+                <Card.Subtitle className="mb-2 text-muted">Oats Chilla</Card.Subtitle>
+                <Card.Img variant="top" src="./images/Oats-Chilla-2.jpg" height="163px" width="50px"/>
                 <Card.Link href="#">Learn more</Card.Link>
               </Card.Body>
             </Card>
@@ -172,8 +163,8 @@ const changeHandler = (event) => {
             <Card style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Title>Recent Dish</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Beef Stir Fry</Card.Subtitle>
-                <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque, justo euismod egestas tempor, libero liberoiaculis purus, quis convallis enim mi ac magna.</Card.Text>
+                <Card.Subtitle className="mb-2 text-muted">Biryani</Card.Subtitle>
+                <Card.Img variant="top" src="./images/biryani.jpg" height="163px" width="50px"/>
                 <Card.Link href="#">Learn more</Card.Link>
               </Card.Body>
             </Card>
@@ -182,18 +173,8 @@ const changeHandler = (event) => {
             <Card style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Title>Recent Dish</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Beef Stir Fry</Card.Subtitle>
-                <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque, justo euismod egestas tempor, libero liberoiaculis purus, quis convallis enim mi ac magna.</Card.Text>
-                <Card.Link href="#">Learn more</Card.Link>
-              </Card.Body>
-            </Card>
-  	      </Col>
-          <Col sm={4}>
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>Recent Dish</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Beef Stir Fry</Card.Subtitle>
-                <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque, justo euismod egestas tempor, libero liberoiaculis purus, quis convallis enim mi ac magna.</Card.Text>
+                <Card.Subtitle className="mb-2 text-muted">Rice</Card.Subtitle>
+                <Card.Img variant="top" src="./images/n.jpg" height="163px" width="50px"/>
                 <Card.Link href="#">Learn more</Card.Link>
               </Card.Body>
             </Card>

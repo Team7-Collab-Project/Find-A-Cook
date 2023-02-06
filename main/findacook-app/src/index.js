@@ -14,6 +14,8 @@ import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
 import 'font-awesome/css/font-awesome.min.css';
 import CookProfile from './CookProfile';
+import CustModal from './components/CustModal';
+import CookModal from './components/CookModal';
 import ViewCooks from './ViewCooks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

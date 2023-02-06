@@ -4,19 +4,23 @@ import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 const MapContainer = (props) => {
   return (
     <Map
+      id="googleMap"
       google={props.google}
-      style={{width: "100%", height:"30%"}}
-      zoom={14}
-      initialCenter={{
-        lat: 37.7749,
-        lng: -122.4194,
+      style={{width: "1400px",
+        height:"500px",
+      position: "relative",
+      display:"flex"
       }}
-    >
-      <Marker position={{ lat: 37.7749, lng: -122.4194 }} />
+      zoom={18}
+      initialCenter={{
+        lat: 53.98139256616432,
+        lng: -6.391474178227545
+      }}>
+      <Marker position={{ lat: 53.98139256616432, lng: -6.391474178227545 }} />
     </Map>
   );
 };
 
 export default GoogleApiWrapper({
-  apiKey: 'API_KEY_GOES_HERE',
+  apiKey: 'AIzaSyBCK-4YK-v9b3hh75bij1OobcqiCg5MgZU',
 })(MapContainer);

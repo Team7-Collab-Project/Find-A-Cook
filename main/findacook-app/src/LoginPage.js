@@ -52,7 +52,7 @@ function LoginPage() {
           <br />
           <br />
           <br/>
-          <button className="btn" id="loginBtn" type="submit">Login</button>
+          <button className="btn" id="loginBtn" type="submit" href="/CustModal?showModal=true">Login</button>
           <br />
         </FormControl>
       

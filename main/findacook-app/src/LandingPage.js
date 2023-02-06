@@ -12,7 +12,7 @@ const LandingPage = () => {
             <div id="btnGroup">
                     <Link style={{textDecoration: 'none'}} className="link" to="/login"><Button id="loginBtn" text='Login' /></Link>
                     <Link style={{textDecoration: 'none'}} className="link" to="/register"><Button id="RegBtn" text='Register' /></Link>
-                    <Link style={{textDecoration: 'none'}} className="link" to="/cookdashboard"><Button id="guestBtn" text='Continue as Guest' /> </Link>
+                    <Link style={{textDecoration: 'none'}} className="link" to="/viewcooks"><Button id="guestBtn" text='Continue as Guest' /> </Link>
             </div>
         </div>
     )
