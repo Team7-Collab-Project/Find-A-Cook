@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createProduct } from "../../api/product";
+// import { createProduct } from "../../api/product";
 import isEmpty from 'validator/lib/isEmpty';
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ const AddFoodForm = () => {
     const [success, setSuccess] = useState('');
     const dispatch = useDispatch();
     const [productData, setProductData] = useState({
-		productImage: '',
+		productImage: null,
 		productName: '',
 		productDescription: '',
 		productPrice: '',
@@ -34,64 +34,177 @@ const AddFoodForm = () => {
     //     console.log('this does something')
 	// };
 
-    const handleProductSubmit = (evt) => {
-        evt.preventDefault();
 
-		if (productImage === null) {
-			setError('Please select an image.');
-		} else if (
-			isEmpty(productName) ||
-			isEmpty(productDescription) ||
-			isEmpty(productPrice)
-		) {
-			setError('Form Is Incomplete');
-		} else if (isEmpty(productName)) {
-			setError('Give your item a name.');
-		} else if (isEmpty(productDescription)) {
-			setError('Tell your clients more about your product.');
-        } else {
-			let formData = new FormData();
-
-			formData.append('productImage', productImage);
-			formData.append('productName', productName);
-			formData.append('productDescription', productDescription);
-			formData.append('productPrice', productPrice);
-
-			dispatch(createProduct(formData));
-			setProductData({
-				productImage: null,
-				productName: '',
-				productDescription: '',
-				productPrice: ''
-			})
-
-            createProduct(formData);
-        }
-
-        // TODO: THIS IS KINDA BROKEN!!!!
-
-        // if (isEmpty(product)) {
-        //     setError('Form Is Incomplete');
-        //     console.log('emptyyyyy')
-        // }
-        // else{
-        //     // const data = {product}
-        //     // createProduct(data);
-        //     console.log('maybe something happens?')
-        // }
-        // const data = {product}
-        // createProduct(data);
-
-        // createProduct();
-    }
-
-	const handleProductImage = (evt) => {
+  const handleProductImage = (evt) => {
 		console.log(evt.target.files[0]);
 		setProductData({
 			...productData,
 			[evt.target.name]: evt.target.files[0],
 		});
 	};
+
+    // const handleProductSubmit = (evt) => {
+    //     evt.preventDefault();
+
+		// if (productImage === null) {
+		// 	setError('Please select an image.');
+		// } else if (
+		// 	isEmpty(productName) ||
+		// 	isEmpty(productDescription) ||
+		// 	isEmpty(productPrice)
+		// ) {
+		// 	setError('Form Is Incomplete');
+		// } else if (isEmpty(productName)) {
+		// 	setError('Give your item a name.');
+		// } else if (isEmpty(productDescription)) {
+		// 	setError('Tell your clients more about your product.');
+    //     } else {
+		// 	let formData = new FormData();
+
+		// 	formData.append('productImage', productImage);
+		// 	formData.append('productName', productName);
+		// 	formData.append('productDescription', productDescription);
+		// 	formData.append('productPrice', productPrice);
+
+		// 	dispatch(createProduct(formData));
+		// 	setProductData({
+		// 		productImage: null,
+		// 		productName: '',
+		// 		productDescription: '',
+		// 		productPrice: ''
+		// 	})
+
+    //         // createProduct(formData)
+    //         //   .then((response) =>{
+    //         //     setProductData({
+    //         //       productImage: null,
+    //         //       productName: '',
+    //         //       productDescription: '',
+    //         //       productPrice: '',
+    //         //     })
+    //         //     setSuccess(response.data.successMessage)
+    //         //   })
+    //         //   .catch((err) => {
+    //         //     console.log(err)
+    //         //     setError(err.response.data.errorMessage)
+    //         //   })
+    //     }
+
+    //     // TODO: THIS IS KINDA BROKEN!!!!
+
+    //     // if (isEmpty(product)) {
+    //     //     setError('Form Is Incomplete');
+    //     //     console.log('emptyyyyy')
+    //     // }
+    //     // else{
+    //     //     // const data = {product}
+    //     //     // createProduct(data);
+    //     //     console.log('maybe something happens?')
+    //     // }
+    //     // const data = {product}
+    //     // createProduct(data);
+
+    //     // createProduct();
+    // }
+
+
+
+
+
+
+	// const handleProductImage = (evt) => {
+	// 	console.log(evt.target.files[0]);
+	// 	setProductData({
+	// 		...productData,
+	// 		[evt.target.name]: evt.target.files[0],
+	// 	});
+	// };
+
+
+//   const handleProductSubmit = (evt) => {
+//     evt.preventDefault();
+
+//     if (productImage === null) {
+//         error('Please select an image');
+//     } else if (
+//         isEmpty(productName) ||
+//         isEmpty(productDescription) ||
+//         isEmpty(productPrice)
+//     ) {
+//         setError('Form Is Incomplete');
+//     } else {
+//         let formData = new FormData();
+
+//         formData.append('productImage', productImage);
+//         formData.append('productName', productName);
+//         formData.append('productDescription', productDescription);
+//         formData.append('productPrice', productPrice);
+
+//         createProduct(formData)
+//             .then((response) => {
+//               setProductData({
+//                 productImage: null,
+//                 productName: '',
+//                 productDesc: '',
+//                 productPrice: '',
+//                 productCategory: '',
+//                 productQty: '',
+//             })
+//             setSuccess(response.data.successMessage)
+//             })
+//             .catch((err) => {
+//                 console.log(err);
+//                 setError(err.response.data.errorMessage)
+//             });
+//     }
+// };
+
+
+const handleProductSubmit = (evt) => {
+  evt.preventDefault();
+
+  const formData = new FormData();
+  formData.append('productImage', productImage);
+  formData.append('productName', productName);
+  formData.append('productDescription', productDescription);
+  formData.append('productPrice', productPrice);
+  let result = fetch("http://localhost:3001/api/product", {
+    method: 'POST',
+    body: formData
+})
+  // if (productImage === null) {
+  //   setError('Please select an image.');
+  // } else if (
+  //   isEmpty(productName) ||
+  //   isEmpty(productDescription) ||
+  //   isEmpty(productPrice)
+  // ) {
+  //   setError('Form is incomplete.');
+  // } else {
+  //   let formData = new FormData();
+
+  //   formData.append('productImage', productImage);
+  //   formData.append('productName', productName);
+  //   formData.append('productDescription', productDescription);
+  //   formData.append('productPrice', productPrice);
+
+  //   createProduct(formData)
+  //     .then((response) => {
+  //       setProductData({
+  //         productImage: null,
+  //         productName: '',
+  //         productDescription: '',
+  //         productPrice: '',
+  //       });
+  //       setSuccess(response.data.successMessage);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setError(err.response.data.errorMessage);
+  //     });
+  // }
+};
+
 
     const handleProductChange = (evt) => {
 		setProductData({
@@ -160,13 +273,15 @@ const numberFormat = (value) =>
 
 
             {/* TODO: ADD CATEGORY OPTION... */}
-
+            <button type="submit" className="form-footer-button">
+              Submit
+            </button>
           </form>
         </div>
       </div>
-      <button type="submit" className="form-footer-button" onClick={handleProductSubmit}>
+      {/* <button type="submit" className="form-footer-button" onClick={handleProductSubmit}>
               Submit
-            </button>
+            </button> */}
    
      </div>
   );
