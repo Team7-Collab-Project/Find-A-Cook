@@ -22,20 +22,50 @@ function ViewCooks() {
                 <List>
                 <ListItem disablePadding className="ListItem">
                     <ListItemButton className="ListItemButton">
-                        <img src='./images/cook1.jpg'/>
-                        <h2>Joane</h2>
+                        <table>
+                            <tr>
+                                <td><img src='./images/cook1.jpg'/></td>
+                                <td><h2>Joane</h2></td>
+                                <td><h2>Slavic</h2></td>
+                                <td><h2>View Menu</h2></td>
+                            </tr>
+                        </table>
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <img src='./images/cook2.jpg'/>
-                        <h2>Fahad</h2>
+                        <table>
+                            <tr>
+                                <td><img src='./images/cook2.jpg'/></td>
+                                <td><h2>Fahad</h2></td>
+                                <td><h2>Indian</h2></td>
+                                <td><h2>View Menu</h2></td>
+                            </tr>
+                        </table>
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <img src='./images/cook3.png'/>
-                        <h2>David</h2>
+                        <table>
+                            <tr>
+                                <td><img src='./images/cook3.png'/></td>
+                                <td><h2>David</h2></td>
+                                <td><h2>Mexican</h2></td>
+                                <td><h2>View Menu</h2></td>
+                            </tr>
+                            </table>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <table>
+                            <tr>
+                                <td><img src='./images/cook5.png'/></td>
+                                <td><h2>Niamh</h2></td>
+                                <td><h2>Italian</h2></td>
+                                <td><h2>View Menu</h2></td>
+                            </tr>
+                            </table>
                     </ListItemButton>
                 </ListItem>
                 </List>

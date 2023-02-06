@@ -713,22 +713,38 @@ footer {
   z-index: -1;
 }
 
-#cooklist img {
-  max-width: 20%;
-}
 
 #cooklist h2 {
   padding-left: 1%;
+  width: 200px;
 }
 
-.ListItem {
-  height: auto;
+#cooklist .ListItem {
+  line-height: 1000px;
 }
 
-.ListItemButton {
+#cooklist .ListItemButton {
   height: 10em;
 }
 
-.viewmenu {
+#cooklist .viewmenu {
   text-align: right;
+}
+
+#cooklist table tr td {
+  width: 100%;
+}
+
+#cooklist table tr {
+  height: 100%;
+  line-height: 10em;
+}
+
+#cooklist table tr td img {
+  max-width: 60%;
+  max-height: 300px;
+}
+
+#cooklist table {
+  border-collapse: collapse;
 }
