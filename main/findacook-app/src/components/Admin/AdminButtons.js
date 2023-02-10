@@ -3,12 +3,17 @@ import { FaPlus, FaMinusCircle } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
 import AddFoodForm from "./AddFoodForm";
+import AddCategoryForm from "./AddCategoryForm";
 
 const AdminButtons = () => {
 
   const [showAddFoodModal, setShowAddFoodModal] = useState(false);
-  const handleShow = () => setShowAddFoodModal(true);
-  const handleClose = () => setShowAddFoodModal(false);
+  const handleFoodShow = () => setShowAddFoodModal(true);
+  const handleFoodClose = () => setShowAddFoodModal(false);
+
+  const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
+  const handleCategoryShow = () => setShowAddCategoryModal(true);
+  const handleCategoryClose = () => setShowAddCategoryModal(false);
 
   return (
     <div className="">
@@ -17,10 +22,20 @@ const AdminButtons = () => {
           <div className="">
             <button
             className="add-food-btn"
-              onClick={handleShow}
+              onClick={handleFoodShow}
             >
               <FaPlus />
               <span> Add Food</span>
+            </button>
+          </div>
+
+          <div className="">
+            <button
+            className="add-food-btn"
+              onClick={handleCategoryShow}
+            >
+              <FaPlus />
+              <span> Add Category</span>
             </button>
           </div>
 
@@ -32,7 +47,7 @@ const AdminButtons = () => {
         </div>
       </div>
 
-      <Modal id='foodModal' show={showAddFoodModal} onHide={handleClose}>
+      <Modal id='foodModal' show={showAddFoodModal} onHide={handleFoodClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Food</Modal.Title>
         </Modal.Header>
@@ -41,7 +56,27 @@ const AdminButtons = () => {
         </Modal.Body>
         <Modal.Footer>
           <div className="">
-            <button className="form-footer-button" onClick={handleClose}>
+            <button className="form-footer-button" onClick={handleFoodClose}>
+              Close
+            </button>
+            {/* <button type="submit" className="form-footer-button">
+              Submit
+            </button> */}
+          </div>
+        </Modal.Footer>
+      </Modal>
+
+
+      <Modal id='categoryModal' show={showAddCategoryModal} onHide={handleCategoryClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Category</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <AddCategoryForm />
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="">
+            <button className="form-footer-button" onClick={handleCategoryClose}>
               Close
             </button>
             {/* <button type="submit" className="form-footer-button">
