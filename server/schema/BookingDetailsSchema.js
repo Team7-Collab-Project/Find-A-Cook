@@ -4,16 +4,16 @@ const { ObjectId } = mongoose.Schema;
 const bookings = new mongoose.Schema(
     {
         _id: {
-            type: ObjectId(),
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
         booking_id: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'BookingSchema',
             required: true,
         },
         item_id: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'MenuItemSchema',
             required: true,
         },

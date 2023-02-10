@@ -4,11 +4,11 @@ const { ObjectId } = mongoose.Schema;
 const bookings = new mongoose.Schema(
     {
         _id: {
-            type: ObjectId(),
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
         user_id: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'UserId',
             required: true,
         },
@@ -24,12 +24,12 @@ const bookings = new mongoose.Schema(
             type: Float,
             required: true,
         },
-        customer_cook_rating: {
-            type: String, 
-            required: true, //REVIEW REF
-        },
+        // customer_cook_rating: {
+        //     type: String, 
+        //     required: true, //REVIEW REF
+        // },
         address_id: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'AddressSchema',
             required: true,
         },

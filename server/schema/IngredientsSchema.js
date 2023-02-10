@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema;
 const ingredients = new mongoose.Schema(
     {
         _id: {
-            type: ObjectId(),
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
         name: {
@@ -12,7 +12,7 @@ const ingredients = new mongoose.Schema(
             required: true,
         },
         menu_item_id: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'MenuItemSchema',
             required: true,
         },

@@ -4,16 +4,16 @@ const { ObjectId } = mongoose.Schema;
 const emailVerification = new mongoose.Schema(
     {
         _id: {
-            type: ObjectId(),
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
         user_id: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'UserSchema',
             required: true,
         },
         user_email: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
 			ref: 'UserSchema',
             required: true,
         },

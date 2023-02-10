@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const address = new mongoose.Schema(
     {
         _id: {
-            type: ObjectId(),
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
         address_door_number: {
