@@ -2,6 +2,7 @@
   "name": "findacook-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@babel/runtime": "^7.20.13",
     "@chec/commerce.js": "^2.8.0",

@@ -1,40 +1,97 @@
 import React, { useState, Fragment } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { createCategory } from "../../api/category";
 import isEmpty from 'validator/lib/isEmpty';
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
-import { useDispatch } from 'react-redux';
-// import { createProduct } from '../../redux/actions/productActions';
 
 const AddCategoryForm = () => {
 
-    const [category, setCategory] = useState('');
+    const [categoryData, setCategoryData] = useState({
+      category_name: '',
+      category_description: '',
+    });
+  
+      const {
+        category_name,
+        category_description,
+    } = categoryData;
+
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const dispatch = useDispatch();
 
-    // const handleCategoryName = (evt) => {
-    //     setCategory(evt.target.value);
-    // }
-
-    const [productData, setProductData] = useState({
-      categoryName: '',
-      categoryDescription: '',
-    });
-
-    const handleProductChange = (evt) => {
-      setProductData({
-        ...productData,
-        [evt.target.name]: evt.target.value,
-      });
+    const handleCategoryChange = (evt) => {
+        setCategoryData({
+          ...categoryData,
+          [evt.target.name]: evt.target.value,
+        });
     };
-  
 
     const handleCategorySubmit = (evt) => {
         evt.preventDefault();
-        const data = { category }
 
-        createCategory(data)
+        if(isEmpty(category_name)) {
+          setError('Please enter a category name');
+        } else if(isEmpty(category_description)) {
+          setError('Please enter a category description');
+        } else {
+          // const data = { 
+          //   category_name: categoryName,
+          //   category_description: categoryDescription,
+          // };
+
+          // let formData = new FormData();
+
+          // formData.append('category_name', category_name);
+          // formData.append('category_description', category_description);
+  
+          // // createCategory(data)
+          // //   .then((response) => {
+          // //     setSuccess('Category created successfully');
+          // //     setCategoryData({
+          // //       categoryName: '',
+          // //       categoryDescription: '',
+          // //     });
+          // //   })
+          // //   .catch((err) => {
+          // //     setError('Error creating category');
+          // //   });
+
+          // createCategory(formData)
+          //   .then((response) => {
+          //     setCategoryData({
+          //       category_name: '',
+          //       category_description: '',
+          //     })
+          //     setSuccess('Successful')
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //     setError('Unsuccessful')
+          //   })
+
+
+
+
+
+          const data = { 
+            category_name: category_name,
+            category_description: category_description,
+          };
+          
+          createCategory(data)
+              .then((response) => {
+                setCategoryData({
+                  category_name: '',
+                  category_description: '',
+                })
+                setSuccess('Successful')
+              })
+              .catch((err) => {
+                console.log(err);
+                setError('Unsuccessful')
+              })
+        }
+    
     }
 
   return (
@@ -49,41 +106,34 @@ const AddCategoryForm = () => {
                 {error && showErrorMsg(error)}
                 {success && showSuccessMsg(success)}
 
-<Fragment>
+                <Fragment>
+                  <div className="group">
+                    <input type='text' className="form-input" name='category_name' onChange={handleCategoryChange} value={category_name} />
+                    <span className="highlight"></span>
+                    <span className="bar"></span>
+                    <label>Name</label>
+                  </div>
 
-    <div className="group">
-<input type='text' className="form-input" name='categoryName' onChange={handleProductChange} />
-<span className="highlight"></span>
-      <span className="bar"></span>
-      <label>Name</label>
-    </div>
-
-    <div className="group">
-<textarea type='textarea' className="form-input" name='categoryDescription' onChange={handleProductChange}  />
-<span className="highlight"></span>
-      <span className="bar"></span>
-      <label>Description</label>
-    </div>
-
-
-
-</Fragment>
+                  <div className="group">
+                    <textarea type='textarea' className="form-input" name='category_description' onChange={handleCategoryChange} value={category_description} />
+                    <span className="highlight"></span>
+                    <span className="bar"></span>
+                    <label>Description</label>
+                  </div>
+                </Fragment>
             </div>
 
-
-            {/* TODO: ADD CATEGORY OPTION... */}
             <button type="submit" className="form-footer-button">
               Submit
             </button>
           </form>
         </div>
       </div>
-      {/* <button type="submit" className="form-footer-button" onClick={handleProductSubmit}>
-              Submit
-            </button> */}
-   
-     </div>
+    </div>
   );
 };
+
+// export
+
 
 export default AddCategoryForm;
