@@ -5,10 +5,11 @@ import isEmpty from "validator/lib/isEmpty";
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 import { useDispatch } from "react-redux";
 import { getCategories } from '../../api/category'
-// import { createProduct } from '../../redux/actions/productActions';
+import axios from 'axios';
 
 const AddFoodForm = () => {
-  const [categories, setCatgories] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -20,25 +21,27 @@ const AddFoodForm = () => {
     productPrice: "",
   });
 
-  
-  useEffect(() => {
-    loadCategories();
-  }, [])
 
-  const loadCategories = async () =>{
-    await getCategories();
-  }
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+        setCategories(data);
+        console.log("Categories: ",data);
+        // const response = await getCategories();
+        // setCategories(response.formData);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
 
   const { productImage, productName, productDescription, productPrice } =
     productData;
-  // TODO: Make error + success messages reusable
 
-  // const handleProductChange = (evt) => {
-  //     setError('');
-  //     setSuccess('');
-  //     setProduct(evt.target.vaalue);
-  //     console.log('this does something')
-  // };
 
   const handleProductImage = (evt) => {
     console.log(evt.target.files[0]);
@@ -48,115 +51,7 @@ const AddFoodForm = () => {
     });
   };
 
-  // const handleProductSubmit = (evt) => {
-  //     evt.preventDefault();
 
-  // if (productImage === null) {
-  // 	setError('Please select an image.');
-  // } else if (
-  // 	isEmpty(productName) ||
-  // 	isEmpty(productDescription) ||
-  // 	isEmpty(productPrice)
-  // ) {
-  // 	setError('Form Is Incomplete');
-  // } else if (isEmpty(productName)) {
-  // 	setError('Give your item a name.');
-  // } else if (isEmpty(productDescription)) {
-  // 	setError('Tell your clients more about your product.');
-  //     } else {
-  // 	let formData = new FormData();
-
-  // 	formData.append('productImage', productImage);
-  // 	formData.append('productName', productName);
-  // 	formData.append('productDescription', productDescription);
-  // 	formData.append('productPrice', productPrice);
-
-  // 	dispatch(createProduct(formData));
-  // 	setProductData({
-  // 		productImage: null,
-  // 		productName: '',
-  // 		productDescription: '',
-  // 		productPrice: ''
-  // 	})
-
-  //         // createProduct(formData)
-  //         //   .then((response) =>{
-  //         //     setProductData({
-  //         //       productImage: null,
-  //         //       productName: '',
-  //         //       productDescription: '',
-  //         //       productPrice: '',
-  //         //     })
-  //         //     setSuccess(response.data.successMessage)
-  //         //   })
-  //         //   .catch((err) => {
-  //         //     console.log(err)
-  //         //     setError(err.response.data.errorMessage)
-  //         //   })
-  //     }
-
-  //     // TODO: THIS IS KINDA BROKEN!!!!
-
-  //     // if (isEmpty(product)) {
-  //     //     setError('Form Is Incomplete');
-  //     //     console.log('emptyyyyy')
-  //     // }
-  //     // else{
-  //     //     // const data = {product}
-  //     //     // createProduct(data);
-  //     //     console.log('maybe something happens?')
-  //     // }
-  //     // const data = {product}
-  //     // createProduct(data);
-
-  //     // createProduct();
-  // }
-
-  // const handleProductImage = (evt) => {
-  // 	console.log(evt.target.files[0]);
-  // 	setProductData({
-  // 		...productData,
-  // 		[evt.target.name]: evt.target.files[0],
-  // 	});
-  // };
-
-  //   const handleProductSubmit = (evt) => {
-  //     evt.preventDefault();
-
-  //     if (productImage === null) {
-  //         error('Please select an image');
-  //     } else if (
-  //         isEmpty(productName) ||
-  //         isEmpty(productDescription) ||
-  //         isEmpty(productPrice)
-  //     ) {
-  //         setError('Form Is Incomplete');
-  //     } else {
-  //         let formData = new FormData();
-
-  //         formData.append('productImage', productImage);
-  //         formData.append('productName', productName);
-  //         formData.append('productDescription', productDescription);
-  //         formData.append('productPrice', productPrice);
-
-  //         createProduct(formData)
-  //             .then((response) => {
-  //               setProductData({
-  //                 productImage: null,
-  //                 productName: '',
-  //                 productDesc: '',
-  //                 productPrice: '',
-  //                 productCategory: '',
-  //                 productQty: '',
-  //             })
-  //             setSuccess(response.data.successMessage)
-  //             })
-  //             .catch((err) => {
-  //                 console.log(err);
-  //                 setError(err.response.data.errorMessage)
-  //             });
-  //     }
-  // };
 
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
@@ -287,19 +182,24 @@ const AddFoodForm = () => {
                 </div>
 
                 <div className="group">
-                  <div className="form-row">
-                    <div className="form-group">
-                    <label className="text-secondary">Category</label>
-                      <select className="form-control">
-                        <option>Choose One...</option>
-                        <option>Pasta</option>
-                        <option>Dessert</option>
-                        <option>Drinks</option>
-                      </select>
-                    </div>
-                    
-                  </div>
-                </div>
+  <div className="form-row">
+    <div className="form-group">
+      <select className="form-control">
+        <option value="">Choose One...</option>
+        {categories && categories.map((c) => (
+          <option
+            key={c._id}
+            value={c._id}
+          >
+            {c.category_name}
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+</div>
+
+
               </Fragment>
             </div>
 
