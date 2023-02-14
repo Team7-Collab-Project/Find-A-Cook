@@ -34,45 +34,6 @@ const AddCategoryForm = () => {
         } else if(isEmpty(category_description)) {
           setError('Please enter a category description');
         } else {
-          // const data = { 
-          //   category_name: categoryName,
-          //   category_description: categoryDescription,
-          // };
-
-          // let formData = new FormData();
-
-          // formData.append('category_name', category_name);
-          // formData.append('category_description', category_description);
-  
-          // // createCategory(data)
-          // //   .then((response) => {
-          // //     setSuccess('Category created successfully');
-          // //     setCategoryData({
-          // //       categoryName: '',
-          // //       categoryDescription: '',
-          // //     });
-          // //   })
-          // //   .catch((err) => {
-          // //     setError('Error creating category');
-          // //   });
-
-          // createCategory(formData)
-          //   .then((response) => {
-          //     setCategoryData({
-          //       category_name: '',
-          //       category_description: '',
-          //     })
-          //     setSuccess('Successful')
-          //   })
-          //   .catch((err) => {
-          //     console.log(err);
-          //     setError('Unsuccessful')
-          //   })
-
-
-
-
-
           const data = { 
             category_name: category_name,
             category_description: category_description,

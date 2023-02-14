@@ -4,8 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import isEmpty from "validator/lib/isEmpty";
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 import { useDispatch } from "react-redux";
-import { getCategories } from '../../api/category'
-import axios from 'axios';
+import { getCategories } from "../../api/category";
+import { createProduct } from "../../api/product";
+import axios from "axios";
 
 const AddFoodForm = () => {
   const [categories, setCategories] = useState([]);
@@ -18,30 +19,33 @@ const AddFoodForm = () => {
     productImage: null,
     productName: "",
     productDescription: "",
+    productCategory: "",
     productPrice: "",
   });
-
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const data = await getCategories();
         setCategories(data);
-        console.log("Categories: ",data);
+        console.log("Categories: ", data);
         // const response = await getCategories();
         // setCategories(response.formData);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error("Error fetching categories:", error);
       }
     };
 
     fetchCategories();
   }, []);
 
-
-  const { productImage, productName, productDescription, productPrice } =
-    productData;
-
+  const {
+    productImage,
+    productName,
+    productDescription,
+    productCategory,
+    productPrice,
+  } = productData;
 
   const handleProductImage = (evt) => {
     console.log(evt.target.files[0]);
@@ -51,51 +55,30 @@ const AddFoodForm = () => {
     });
   };
 
-
-
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
 
-    const formData = new FormData();
-    formData.append("productImage", productImage);
-    formData.append("productName", productName);
-    formData.append("productDescription", productDescription);
-    formData.append("productPrice", productPrice);
-    let result = fetch("http://localhost:3001/api/product", {
-      method: "POST",
-      body: formData,
-    });
-    // if (productImage === null) {
-    //   setError('Please select an image.');
-    // } else if (
-    //   isEmpty(productName) ||
-    //   isEmpty(productDescription) ||
-    //   isEmpty(productPrice)
-    // ) {
-    //   setError('Form is incomplete.');
-    // } else {
-    //   let formData = new FormData();
+    if (productImage === null) {
+      setError("Please select an image.");
+    } else if (
+      isEmpty(productName) ||
+      isEmpty(productDescription) ||
+      isEmpty(productPrice)
+    ) {
+      setError("All fields are required.");
+    } else if (isEmpty(productCategory)) {
+      setError("Please select a category");
+    } else {
+      let formData = new FormData();
 
-    //   formData.append('productImage', productImage);
-    //   formData.append('productName', productName);
-    //   formData.append('productDescription', productDescription);
-    //   formData.append('productPrice', productPrice);
+      formData.append("productImage", productImage);
+      formData.append("productName", productName);
+      formData.append("productDescription", productDescription);
+      formData.append("productPrice", productPrice);
+      formData.append("productCategory", productCategory);
 
-    //   createProduct(formData)
-    //     .then((response) => {
-    //       setProductData({
-    //         productImage: null,
-    //         productName: '',
-    //         productDescription: '',
-    //         productPrice: '',
-    //       });
-    //       setSuccess(response.data.successMessage);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //       setError(err.response.data.errorMessage);
-    //     });
-    // }
+      createProduct((formData));
+    }
   };
 
   const handleProductChange = (evt) => {
@@ -182,24 +165,20 @@ const AddFoodForm = () => {
                 </div>
 
                 <div className="group">
-  <div className="form-row">
-    <div className="form-group">
-      <select className="form-control">
-        <option value="">Choose One...</option>
-        {categories && categories.map((c) => (
-          <option
-            key={c._id}
-            value={c._id}
-          >
-            {c.category_name}
-          </option>
-        ))}
-      </select>
-    </div>
-  </div>
-</div>
-
-
+                  <div className="form-row">
+                    <div className="form-group">
+                      <select className="form-control">
+                        <option value="">Choose One...</option>
+                        {categories &&
+                          categories.map((c) => (
+                            <option key={c._id} value={c._id}>
+                              {c.category_name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </Fragment>
             </div>
 
