@@ -77,7 +77,14 @@ const AddFoodForm = () => {
       formData.append("productPrice", productPrice);
       formData.append("productCategory", productCategory);
 
-      createProduct((formData));
+      createProduct((formData)
+        .then(response => {
+          console.log('Server Response Client', response)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        );
     }
   };
 
