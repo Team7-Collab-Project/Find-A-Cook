@@ -66,9 +66,7 @@ const AddFoodForm = () => {
       isEmpty(productPrice)
     ) {
       setError("All fields are required.");
-    } else if (isEmpty(productCategory)) {
-      setError("Please select a category");
-    } else {
+    }  else {
       let formData = new FormData();
 
       formData.append("productImage", productImage);
@@ -77,14 +75,13 @@ const AddFoodForm = () => {
       formData.append("productPrice", productPrice);
       formData.append("productCategory", productCategory);
 
-      createProduct((formData)
-        .then(response => {
-          console.log('Server Response Client', response)
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        );
+      createProduct(formData)
+          .then((response) => {
+            console.log('Server Response Client', response)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }
   };
 

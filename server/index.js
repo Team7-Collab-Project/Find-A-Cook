@@ -4,11 +4,13 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
 const mongoose = require('mongoose');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/category', categoryRoutes);
+app.use('/api/product', productRoutes);
 
 
 // connectDB();

@@ -21,6 +21,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.9.1",
     "morgan": "^1.10.0",
+    "multer": "*",
     "mysql": "^2.18.1",
     "mysql2": "^3.0.1",
     "nodemailer": "^6.9.1",
