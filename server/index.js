@@ -12,6 +12,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10
 
 const app = express();
+const stripe = require('stripe')('sk_test_51MYbfMDYuzoeBKxGcMhrNfA5j9wjsN4QqBDDofXq7ZXgfJhZB1K5R9MrUQZAEGVdzUgxgFcLyzSWIXLgbtUSD2Fz00NY3BBAUN');
+app.use(express.static("public"));
+
+
 
 app.use(express.json());
 app.use(cors({
@@ -112,6 +116,32 @@ app.post('/login', (req, res) => {
     }
     
   });
+});
+
+app.post("/checkout", async (req, res) => {
+
+  console.log(req.body);
+  const items = req.body.items;
+  let lineItems = [];
+  items.forEach((item)=> {
+      lineItems.push(
+          {
+              price: item.id,
+              quantity: item.quantity
+          }
+      )
+  });
+
+  const session = await stripe.checkout.sessions.create({
+      line_items: lineItems,
+      mode: 'payment',
+      success_url: "http://localhost:3000/order",
+      cancel_url: "http://localhost:3000/cancel"
+  });
+
+  res.send(JSON.stringify({
+      url: session.url
+  }));
 });
 
 app.listen("3001", () => {

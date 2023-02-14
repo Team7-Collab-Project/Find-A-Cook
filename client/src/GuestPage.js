@@ -1,18 +1,17 @@
 import React from 'react';
-import axios, { Axios } from 'axios';
+//import Navbar from './components/Navbarr';
+import Navbar from './components/Navbar/Navbar';
 
 function GuestPage() {
-  axios.get('http://localhost:3001/login')
-  .then(response => {
-    console.log(response.data);
-    if (response.data.loggedIn) {
-      console.log('User type: ', response.data.user[0].usertype);
-    }
-  })
-  .catch(error => {
-    console.error(error);
-  });
+  
 
+  return (
+    <><Navbar />
+    <div>
+      <h1>Hello </h1>
+    </div>
+    </>
+  )
 }
 
 export default GuestPage;
