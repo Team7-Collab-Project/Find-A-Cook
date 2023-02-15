@@ -3,10 +3,10 @@ const { ObjectId } = mongoose.Schema;
 
 const menus = new mongoose.Schema(
     {
-        filename: {
-            type: String,
-            required: true,
-        },
+        // filename: {
+        //     type: String,
+        //     required: true,
+        // },
         // user_id: {
         //     type: mongoose.Schema.Types.ObjectId,
 		// 	ref: 'UserSchema',
@@ -25,7 +25,7 @@ const menus = new mongoose.Schema(
             required: true,
         },
         category: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: ObjectId,
             ref: 'MenuCategorySchema',
             required: true,
         },

@@ -16,11 +16,11 @@ const AddFoodForm = () => {
   const [success, setSuccess] = useState("");
   const dispatch = useDispatch();
   const [productData, setProductData] = useState({
-    productImage: null,
-    productName: "",
-    productDescription: "",
-    productCategory: "",
-    productPrice: "",
+    // productImage: null,
+    item_name: "",
+    product_description: "",
+    category: "",
+    price: "",
   });
 
   useEffect(() => {
@@ -40,11 +40,11 @@ const AddFoodForm = () => {
   }, []);
 
   const {
-    productImage,
-    productName,
-    productDescription,
-    productCategory,
-    productPrice,
+    // productImage,
+    item_name: item_name,
+    product_description: product_description,
+    category: category,
+    price: price,
   } = productData;
 
   const handleProductImage = (evt) => {
@@ -58,29 +58,44 @@ const AddFoodForm = () => {
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
 
-    if (productImage === null) {
-      setError("Please select an image.");
-    } else if (
-      isEmpty(productName) ||
-      isEmpty(productDescription) ||
-      isEmpty(productPrice)
+    // if (productImage === null) {
+    //   setError("Please select an image.");
+    // } else
+     if (
+      isEmpty(item_name) ||
+      isEmpty(product_description) ||
+      isEmpty(price)
     ) {
       setError("All fields are required.");
     }  else {
-      let formData = new FormData();
+      const formData = {
+        // productImage: productImage,
+        category: category,
+        product_description: product_description,
+        item_name: item_name,
+        price: price,
+      }
 
-      formData.append("productImage", productImage);
-      formData.append("productName", productName);
-      formData.append("productDescription", productDescription);
-      formData.append("productPrice", productPrice);
-      formData.append("productCategory", productCategory);
+      // formData.append("productImage", productImage);
+      // formData.append("productName", productName);
+      // formData.append("productDescription", productDescription);
+      // formData.append("productPrice", productPrice);
+      // formData.append("productCategory", productCategory);
 
       createProduct(formData)
           .then((response) => {
-            console.log('Server Response Client', response)
+            setProductData({
+              // productImage: null,
+              category: '',
+              product_description: '',
+              item_name: '',
+              price: '',
+            })
+            setSuccess('Successful')
           })
           .catch((err) => {
             console.log(err);
+            setError('Unsuccessful')
           });
     }
   };
@@ -104,7 +119,7 @@ const AddFoodForm = () => {
     <div className="food-form-container">
       <div>
         <div className="">
-          <form className="food-form" onSubmit={handleProductSubmit}>
+          <form className="food-form" onSubmit={handleProductSubmit} >
             <div className="">
               <h5 className="food-form-h5">Insert New Food Item</h5>
               {/* <button className='close' data-dismiss='modal'>
@@ -118,23 +133,23 @@ const AddFoodForm = () => {
               {success && showSuccessMsg(success)}
 
               <Fragment>
-                <div className="group">
+                {/* <div className="group">
                   <input
                     type="file"
                     className="form-input"
                     onChange={handleProductImage}
                     name="productImage"
                   />
-                  {/* <label>Choose File</label> */}
-                </div>
+           
+                </div> */}
 
                 <div className="group">
                   <input
                     type="text"
                     className="form-input"
                     onChange={handleProductChange}
-                    name="productName"
-                    value={productName}
+                    name="item_name"
+                    value={item_name}
                   />
                   <span className="highlight"></span>
                   <span className="bar"></span>
@@ -146,8 +161,8 @@ const AddFoodForm = () => {
                     type="textarea"
                     className="form-input"
                     onChange={handleProductChange}
-                    name="productDescription"
-                    value={productDescription}
+                    name="product_description"
+                    value={product_description}
                   />
                   <span className="highlight"></span>
                   <span className="bar"></span>
@@ -160,8 +175,8 @@ const AddFoodForm = () => {
                     type="text"
                     className="form-input"
                     onChange={handleProductChange}
-                    name="productPrice"
-                    value={productPrice}
+                    name="price"
+                    value={price}
                   />
                   <span className="highlight"></span>
                   <span className="bar"></span>
@@ -171,8 +186,11 @@ const AddFoodForm = () => {
                 <div className="group">
                   <div className="form-row">
                     <div className="form-group">
-                      <select className="form-control">
-                        <option value="">Choose One...</option>
+                      <select 
+                      onChange={handleProductChange} 
+                      className="form-control"
+                      name='category'>
+                        <option>Choose One...</option>
                         {categories &&
                           categories.map((c) => (
                             <option key={c._id} value={c._id}>
