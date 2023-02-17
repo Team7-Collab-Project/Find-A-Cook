@@ -16,21 +16,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
 import SampleAdminDashboard from './SampleAdminDashboard';
+import { useDispatch } from 'react-redux'
+import { getCategories } from './redux/actions/categoryActions';
 
 function App() {
 
-  // const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
-  // const fetchProducts = async () => {
-  //   const { data } = await commerce.products.list();
+  useEffect(() => {
+          dispatch(getCategories());
+  }, [dispatch]);
 
-  //   setProducts(data);
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  //  // fetchCart();
-  // }, []);
   return (
     <div>
           <Routes>

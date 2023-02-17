@@ -12,11 +12,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import ProductPage from './ProductPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { commerce } from './lib/commerce';
 // import data from './components/Data/data';
 import App from './App';
 import {Provider} from 'react-redux'
 import store from './redux/store';
+
 
 
 // const store = configureStore({ allReducers });
