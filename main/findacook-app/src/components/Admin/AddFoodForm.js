@@ -1,20 +1,23 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { createProduct } from "../../api/product";
 import isEmpty from "validator/lib/isEmpty";
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
-import { useDispatch } from "react-redux";
 import { getCategories } from "../../api/category";
-import { createProduct } from "../../api/product";
+import { createProduct } from "../../redux/actions/productActions";
+import { clearMessages } from '../../redux/actions/messageActions';
 import axios from "axios";
 
+import { useSelector, useDispatch } from "react-redux";
+
 const AddFoodForm = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [product, setProduct] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const { success, error} = useSelector(state => state.messages);
+  const { loading } = useSelector(state => state.messages);
+  const { categories } = useSelector(state => state.categories)
+
+
   const dispatch = useDispatch();
+  const {errorMsg, setErrorMsg} = useState('');
+
   const [productData, setProductData] = useState({
     // productImage: null,
     item_name: "",
@@ -23,21 +26,28 @@ const AddFoodForm = () => {
     price: "",
   });
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await getCategories();
-        setCategories(data);
-        console.log("Categories: ", data);
-        // const response = await getCategories();
-        // setCategories(response.formData);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
 
-    fetchCategories();
-  }, []);
+  const handleMessages = evt => {
+    dispatch(clearMessages());
+    setErrorMsg('');
+  }
+
+
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const data = await getCategories();
+  //       setCategories(data);
+  //       console.log("Categories: ", data);
+  //       // const response = await getCategories();
+  //       // setCategories(response.formData);
+  //     } catch (error) {
+  //       console.error("Error fetching categories:", error);
+  //     }
+  //   };
+
+  //   fetchCategories();
+  // }, []);
 
   const {
     // productImage,
@@ -58,15 +68,12 @@ const AddFoodForm = () => {
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
 
-    // if (productImage === null) {
-    //   setError("Please select an image.");
-    // } else
      if (
       isEmpty(item_name) ||
       isEmpty(product_description) ||
       isEmpty(price)
     ) {
-      setError("All fields are required.");
+      setErrorMsg("All fields are required.");
     }  else {
       const formData = {
         // productImage: productImage,
@@ -76,27 +83,31 @@ const AddFoodForm = () => {
         price: price,
       }
 
-      // formData.append("productImage", productImage);
-      // formData.append("productName", productName);
-      // formData.append("productDescription", productDescription);
-      // formData.append("productPrice", productPrice);
-      // formData.append("productCategory", productCategory);
-
-      createProduct(formData)
-          .then((response) => {
-            setProductData({
+      dispatch(createProduct(formData));
+       setProductData({
               // productImage: null,
               category: '',
               product_description: '',
               item_name: '',
               price: '',
             })
-            setSuccess('Successful')
-          })
-          .catch((err) => {
-            console.log(err);
-            setError('Unsuccessful')
-          });
+
+
+      // createProduct(formData)
+      //     .then((response) => {
+      //       setProductData({
+      //         // productImage: null,
+      //         category: '',
+      //         product_description: '',
+      //         item_name: '',
+      //         price: '',
+      //       })
+      //       setSuccess('Successful')
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //       setErrorMsg('Unsuccessful')
+      //     });
     }
   };
 
@@ -116,7 +127,7 @@ const AddFoodForm = () => {
   var num = 22;
 
   return (
-    <div className="food-form-container">
+    <div className="food-form-container" onClick={handleMessages}>
       <div>
         <div className="">
           <form className="food-form" onSubmit={handleProductSubmit} >
@@ -129,7 +140,7 @@ const AddFoodForm = () => {
 							</button> */}
             </div>
             <div className="">
-              {error && showErrorMsg(error)}
+              {setErrorMsg && showErrorMsg(errorMsg)}
               {success && showSuccessMsg(success)}
 
               <Fragment>
