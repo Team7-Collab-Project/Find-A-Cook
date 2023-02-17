@@ -21,12 +21,25 @@ const _Products = ({ product }) => {
 
   return (
     <>
-      <div className="products">
-        <div className="cards">
-          <a href="#!">
-            <img className="product-image" src={`/uploads/${product.filename}`} />
-          </a>
+      <div className="col-md-4 my-3">
+        <div className="card h-100">
+   
+           <div>
+           <img className="img-fluid w-100" src={`/uploads/${product.filename}`} />
+           </div>
+           <div>
+                    <h3 className='card-body text-center'>{product.item_name}</h3>
+                    </div>
+                    <div className='product-price'>{product.price.toLocaleString("en-GB", {style:"currency", currency:"EUR"})}</div>
+       
+       <p>
+        {product.product_description.length > 60
+            ? product.product_description.substring(0, 60) + '...'
+            : product.product_description.substring(0, 60)
+        }
+       </p>
         </div>
+        
       </div>
     </>
   );
