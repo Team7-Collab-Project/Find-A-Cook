@@ -1,10 +1,20 @@
 import React, { useState, Fragment } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { createCategory } from "../../api/category";
+// import { createCategory } from "../../api/category";
 import isEmpty from 'validator/lib/isEmpty';
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 
+import { useSelector, useDispatch } from "react-redux";
+import {clearMessages} from '../../redux/actions/messageActions';
+import { createCategory } from "../../redux/actions/categoryActions";
+
 const AddCategoryForm = () => {
+
+    const { success, error} = useSelector(state => state.messages);
+    const { loading } = useSelector(state => state.messages);
+
+    const dispatch = useDispatch();
+    const {errorMsg, setErrorMsg} = useState('');
 
     const [categoryData, setCategoryData] = useState({
       category_name: '',
@@ -16,10 +26,15 @@ const AddCategoryForm = () => {
         category_description,
     } = categoryData;
 
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
+    // const [error, setError] = useState('');
+    // const [success, setSuccess] = useState('');
+
+    const handleMessages = evt => {
+      dispatch(clearMessages());
+    }
 
     const handleCategoryChange = (evt) => {
+        dispatch(clearMessages());
         setCategoryData({
           ...categoryData,
           [evt.target.name]: evt.target.value,
@@ -30,27 +45,33 @@ const AddCategoryForm = () => {
         evt.preventDefault();
 
         if(isEmpty(category_name)) {
-          setError('Please enter a category name');
+          setErrorMsg('Please enter a category name');
         } else if(isEmpty(category_description)) {
-          setError('Please enter a category description');
+          setErrorMsg('Please enter a category description');
         } else {
           const data = { 
             category_name: category_name,
             category_description: category_description,
           };
-          
-          createCategory(data)
-              .then((response) => {
-                setCategoryData({
-                  category_name: '',
-                  category_description: '',
-                })
-                setSuccess('Successful')
-              })
-              .catch((err) => {
-                console.log(err);
-                setError('Unsuccessful')
-              })
+
+          dispatch(createCategory(data));
+          setCategoryData({
+            category_name: '',
+            category_description: '',
+          })
+    
+          // createCategory(data)
+          //     .then((response) => {
+          //       setCategoryData({
+          //         category_name: '',
+          //         category_description: '',
+          //       })
+          //       setSuccess('Successful')
+          //     })
+          //     .catch((err) => {
+          //       console.log(err);
+          //       setError('Unsuccessful')
+          //     })
         }
     
     }
@@ -64,7 +85,7 @@ const AddCategoryForm = () => {
           <h5 className='food-form-h5'>Create New Category</h5>
             </div>
             <div className="">
-                {error && showErrorMsg(error)}
+                {setErrorMsg && showErrorMsg(errorMsg)}
                 {success && showSuccessMsg(success)}
 
                 <Fragment>
