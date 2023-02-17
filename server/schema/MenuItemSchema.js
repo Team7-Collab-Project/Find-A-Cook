@@ -26,7 +26,7 @@ const menus = new mongoose.Schema(
         },
         category: {
             type: ObjectId,
-            ref: 'MenuCategorySchema',
+            ref: 'Category',
             required: true,
         },
     },

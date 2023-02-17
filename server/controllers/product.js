@@ -1,4 +1,5 @@
 const Product = require('../schema/MenuItemSchema');
+// const MenuCategorySchema = require('./MenuCategorySchema');
 
 exports.create = async (req, res) => {
     console.log('req.body: ', req.body);
@@ -31,3 +32,16 @@ exports.create = async (req, res) => {
     }
 
 };
+
+
+exports.readAll = async (req, res) => {
+    try {
+      const products = await Product.find({}).populate('category', 'category_name');
+      res.status(200).json(products);
+    } catch (err) {
+      console.log('Product ReadAll Error: ', err);
+      res.status(500).json({
+        errorMessage: 'Please try again later',
+      });
+    }
+  };
