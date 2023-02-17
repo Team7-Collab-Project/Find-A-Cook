@@ -40,7 +40,8 @@ export const getProducts = () => async dispatch => {
 		dispatch({ type: STOP_LOADING });
 		dispatch({
 			type: GET_PRODUCTS,
-			payload: response.data.products,
+			payload: response.data,
+			
 		});
 	} catch (err) {
 		console.log('getProducts api error: ', err);

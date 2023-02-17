@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import isEmpty from "validator/lib/isEmpty";
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
-import { getCategories } from "../../api/category";
+// import { getCategories } from "../../api/category";
 import { createProduct } from "../../redux/actions/productActions";
 import { clearMessages } from '../../redux/actions/messageActions';
 import axios from "axios";
@@ -19,7 +19,7 @@ const AddFoodForm = () => {
   const {errorMsg, setErrorMsg} = useState('');
 
   const [productData, setProductData] = useState({
-    // productImage: null,
+    filename: null,
     item_name: "",
     product_description: "",
     category: "",
@@ -29,7 +29,7 @@ const AddFoodForm = () => {
 
   const handleMessages = evt => {
     dispatch(clearMessages());
-    setErrorMsg('');
+    // setErrorMsg('');
   }
 
 
@@ -50,11 +50,11 @@ const AddFoodForm = () => {
   // }, []);
 
   const {
-    // productImage,
-    item_name: item_name,
-    product_description: product_description,
-    category: category,
-    price: price,
+    filename,
+    item_name,
+    product_description,
+    category,
+    price
   } = productData;
 
   const handleProductImage = (evt) => {
@@ -68,24 +68,34 @@ const AddFoodForm = () => {
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
 
-     if (
+    if (filename === null) {
+			setErrorMsg('Please select an image');
+		} else if (
       isEmpty(item_name) ||
       isEmpty(product_description) ||
       isEmpty(price)
     ) {
       setErrorMsg("All fields are required.");
     }  else {
-      const formData = {
-        // productImage: productImage,
-        category: category,
-        product_description: product_description,
-        item_name: item_name,
-        price: price,
-      }
+      // const formData = {
+      //   filename: filename,
+      //   category: category,
+      //   product_description: product_description,
+      //   item_name: item_name,
+      //   price: price,
+      // }
+
+      let formData = new FormData();
+      
+      formData.append('filename', filename);
+			formData.append('category', category);
+			formData.append('product_description', product_description);
+			formData.append('item_name', item_name);
+			formData.append('price', price);
 
       dispatch(createProduct(formData));
        setProductData({
-              // productImage: null,
+              filename: null,
               category: '',
               product_description: '',
               item_name: '',
@@ -130,7 +140,13 @@ const AddFoodForm = () => {
     <div className="food-form-container" onClick={handleMessages}>
       <div>
         <div className="">
-          <form className="food-form" onSubmit={handleProductSubmit} >
+          <form 
+          className="food-form" 
+          onSubmit={handleProductSubmit}
+          // action="/upload"
+          method="POST"
+          encType="multipart/form-data"
+           >
             <div className="">
               <h5 className="food-form-h5">Insert New Food Item</h5>
               {/* <button className='close' data-dismiss='modal'>
@@ -144,15 +160,15 @@ const AddFoodForm = () => {
               {success && showSuccessMsg(success)}
 
               <Fragment>
-                {/* <div className="group">
+                <div className="group">
                   <input
                     type="file"
                     className="form-input"
                     onChange={handleProductImage}
-                    name="productImage"
+                    name="filename"
                   />
            
-                </div> */}
+                </div>
 
                 <div className="group">
                   <input

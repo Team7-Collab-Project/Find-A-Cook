@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/category', categoryRoutes);
 app.use('/api/product', productRoutes);
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 
 
 // connectDB();
