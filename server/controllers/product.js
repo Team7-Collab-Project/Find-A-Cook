@@ -1,4 +1,5 @@
 const Product = require('../schema/MenuItemSchema');
+const fs = require('fs');
 // const MenuCategorySchema = require('./MenuCategorySchema');
 
 exports.create = async (req, res) => {
@@ -53,3 +54,25 @@ exports.readAll = async (req, res) => {
       });
     }
   };
+
+
+  exports.delete = async (req, res) => {
+    try {
+      const productId = req.params.productId;
+      const deleteProduct = await Product.findByIdAndDelete(productId);
+
+      fs.unlink(`uploads/${deleteProduct.filename}`, (err) =>{
+        if (err) throw err;
+        console.log(
+          'Image successfully deleted from filesystem: ',
+          deleteProduct.filename
+        );
+      });
+      res.json(deleteProduct);
+    } catch (err) {
+      console.log(err, 'productController.delete error');
+      res.status(500).json({
+        errorMessage: 'Please try again later',
+      });
+    }
+  }

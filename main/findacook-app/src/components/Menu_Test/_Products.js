@@ -4,6 +4,7 @@ import { addToCart } from "../../redux/actions/cartActions";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import CartContext from "../../CartContext";
+import { deleteProduct } from "../../redux/actions/productActions";
 
 // const _Products = ({productItems, handleAddProduct}) => {
 const _Products = ({ product }) => {
@@ -18,6 +19,9 @@ const _Products = ({ product }) => {
   // const handleAddToCart = () => {
   // 	dispatch(addToCart(productItems));
   // };
+
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -38,6 +42,10 @@ const _Products = ({ product }) => {
             : product.product_description.substring(0, 60)
         }
        </p>
+       <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
+          <i className="far fa-trash-alt pr-1"></i>
+          Delete
+       </button>
         </div>
         
       </div>

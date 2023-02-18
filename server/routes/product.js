@@ -6,5 +6,6 @@ const productController = require('../controllers/product')
 router.post('/', upload.single('filename'), productController.create);
 
 router.get('/', productController.readAll);
+router.delete('/:productId', productController.delete);
 
 module.exports = router;
