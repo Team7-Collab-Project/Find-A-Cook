@@ -15,6 +15,7 @@ import TermsPage from './TermsPage';
 import 'font-awesome/css/font-awesome.min.css';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
+import ReviewCook from './ReviewCook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,6 +33,7 @@ root.render(
         <Route path="/terms" element={<TermsPage/>}/>
         <Route path="/profile" element={<CookProfile/>}/>
         <Route path="/viewcooks" element={<ViewCooks/>}/>
+        <Route path="/reviewcook" element={<ReviewCook/>}/>
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}
