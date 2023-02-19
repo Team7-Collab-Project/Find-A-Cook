@@ -13,7 +13,7 @@ const AdminBody = () => {
         <div className='adminBodyContainer'>
             <div className='adminBodyRow'>
                 <div className='adminBodyRow'>
-                    {products.map(product => (
+                    {products && products.map(product => (
                         <_Products key={product._id} product={product} />
                     ))}
                 </div>

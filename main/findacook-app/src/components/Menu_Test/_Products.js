@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import CartContext from "../../CartContext";
 import { deleteProduct } from "../../redux/actions/productActions";
+import { Link } from 'react-router-dom';
+
 
 // const _Products = ({productItems, handleAddProduct}) => {
 const _Products = ({ product }) => {
@@ -42,6 +44,13 @@ const _Products = ({ product }) => {
             : product.product_description.substring(0, 60)
         }
        </p>
+       <Link
+       to={`/edit/product/${product._id}`}
+       type="button"
+       className="btn btn-secondary btn-sm">
+        <i className="far fa-edit pr-1"></i>
+        Edit
+       </Link>
        <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
           <i className="far fa-trash-alt pr-1"></i>
           Delete

@@ -7,7 +7,8 @@ import {
 import {
 	CREATE_PRODUCT,
 	DELETE_PRODUCT,
-	GET_PRODUCTS
+	GET_PRODUCTS,
+	GET_PRODUCT
 } from '../constants/productConstants';
 
 export const createProduct = formData => async dispatch => {
@@ -43,6 +44,28 @@ export const getProducts = () => async dispatch => {
 			type: GET_PRODUCTS,
 			payload: response.data,
 			
+		});
+	} catch (err) {
+		console.log('getProducts api error: ', err);
+		dispatch({ type: STOP_LOADING });
+		dispatch({
+			type: SHOW_ERROR_MESSAGE,
+			payload: err.response.data.errorMessage,
+		});
+	}
+};
+
+
+
+export const getProduct = productId => async dispatch => {
+	try {
+		// console.log("id3", productId)
+		dispatch({ type: START_LOADING });
+		const response = await axios.get(`/api/product/${productId}`);
+		dispatch({ type: STOP_LOADING });
+		dispatch({
+			type: GET_PRODUCT,
+			payload: response.data,
 		});
 	} catch (err) {
 		console.log('getProducts api error: ', err);

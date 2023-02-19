@@ -16,6 +16,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
 import SampleAdminDashboard from './SampleAdminDashboard';
+import EditProduct from './components/Admin/EditProduct';
 import { useDispatch } from 'react-redux'
 import { getCategories } from './redux/actions/categoryActions';
 
@@ -41,6 +42,7 @@ function App() {
       <Route path="/product" element={<ProductPage/>} />
       <Route path="/admin" element={<SampleAdminDashboard/>} />
       <Route path="/documentupload" element={<UploadDocuments/>} />
+      <Route path="/edit/product/:productId" element={<EditProduct />} />
     
   </Routes>
     </div>

@@ -56,6 +56,22 @@ exports.readAll = async (req, res) => {
   };
 
 
+  exports.read = async (req, res) => {
+    try {
+      const productId = req.params.productId;
+      const product = await Product.findById(productId);
+
+      res.json(product);
+      console.log(product);
+    } catch (err) {
+      console.log('Product Read Error: ', err);
+      res.status(500).json({
+        errorMessage: 'Please try again later',
+      });
+    }
+  };
+
+
   exports.delete = async (req, res) => {
     try {
       const productId = req.params.productId;
