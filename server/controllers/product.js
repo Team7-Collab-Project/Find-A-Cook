@@ -72,6 +72,28 @@ exports.readAll = async (req, res) => {
   };
 
 
+  exports.update = async (req, res) => {
+    const productId = req.params.productId;
+
+    if (req.file !== undefined) {
+      req.body.filename = req.file.filename;
+    }
+  
+    const oldProduct = await Product.findByIdAndUpdate(productId, req.body);
+  
+    if (req.file !== undefined && req.file.filename !== oldProduct.filename) {
+      fs.unlink(`uploads/${oldProduct.filename}`, err => {
+        if (err) throw err;
+        console.log('Image deleted from the filesystem');
+      });
+    }
+  
+    res.json({
+      successMessage: 'Product successfully updated',
+    });
+  };
+
+
   exports.delete = async (req, res) => {
     try {
       const productId = req.params.productId;

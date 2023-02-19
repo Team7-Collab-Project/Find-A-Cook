@@ -5,11 +5,14 @@ import { getProduct } from "../../redux/actions/productActions";
 import { getCategories } from "../../redux/actions/categoryActions";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom';
 
 const EditProduct = () => {
   const { productId } = useParams();
   console.log("id 2", productId);
+
+  const navigate = useNavigate();
 
   // const productId = match.params.productId;
 
@@ -59,7 +62,8 @@ const EditProduct = () => {
 
     await axios.put(`/api/product/${productId}`, formData, config)
         .then(res => {
-            console.log('success: ', res);
+            console.log('Successfully updated product:', res);
+            navigate('/admin')
         }).catch(err => {
             console.log(err);
         })
@@ -79,8 +83,8 @@ const EditProduct = () => {
               </div>
               <form
                 className="food-form"
-                // action="/upload"
-                method="POST"
+                onSubmit={handleProductSubmit}
+                // method="POST"
                 encType="multipart/form-data"
               >
                 <div className="">
@@ -99,7 +103,7 @@ const EditProduct = () => {
                         className="form-input"
                         name="filename"
                         accept="images/*"
-                        hidden
+                        // hidden
                         onChange={handleImageUpload}
                       />
                     </div>
