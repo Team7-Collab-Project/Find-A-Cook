@@ -16,14 +16,14 @@ const _Products = ({ product }) => {
   // console.log(cart.items);
 
   // THIS CODE WORKS!! JUST COMMENTED OUT FOR NOW
-  // const dispatch = useDispatch();
-
-  // const handleAddToCart = () => {
-  // 	dispatch(addToCart(productItems));
-  // };
-
-
   const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+  	dispatch(addToCart(product));
+  };
+
+
+  // const dispatch = useDispatch();
 
   return (
     <>
@@ -44,7 +44,25 @@ const _Products = ({ product }) => {
             : product.product_description.substring(0, 60)
         }
        </p>
-       <Link
+
+        <Link
+            to={`/product/${product._id}`}
+            type='button'
+            className="btn btn-primary btn-sm mr-1 my-1"
+            >
+              View Product
+            </Link>
+            <button
+                type='button'
+                className="btn btn-warning btn-sm"
+                onClick={handleAddToCart}
+                >
+                  Add To Cart
+                </button>
+
+
+       {/* EDIT PAGE CODE */}
+       {/* <Link
        to={`/edit/product/${product._id}`}
        type="button"
        className="btn btn-secondary btn-sm">
@@ -54,7 +72,7 @@ const _Products = ({ product }) => {
        <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
           <i className="far fa-trash-alt pr-1"></i>
           Delete
-       </button>
+       </button> */}
         </div>
         
       </div>
