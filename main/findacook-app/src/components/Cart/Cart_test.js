@@ -1,11 +1,33 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../CSS/Style.css";
+import { ADD_TO_CART } from "../../redux/constants/cartConstants";
 
 const Cart_test = () => {
   const { cart } = useSelector((state) => state.cart);
 
   const handleGoBackBtn = () => {};
+
+  const dispatch = useDispatch();
+
+  const handleQtyChange = (e, product) => {
+    const cart = localStorage.getItem('cart')
+        ? JSON.parse(localStorage.getItem('cart'))
+        : [];
+
+    cart.forEach(cartItem => {
+        if (cartItem._id === product._id) {
+            cartItem.count = e.target.value;
+        }
+    });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    dispatch({
+        type: ADD_TO_CART,
+        payload: cart,
+    });
+};
 
   return (
     <>
@@ -47,7 +69,19 @@ const Cart_test = () => {
                             <span className='cartPriceSpan'>{product.price.toLocaleString("en-GB", {style:"currency", currency:"EUR"})}</span>
                         </td>
                         <td>
-                            <span className='cartQuantitySpan'>{product.count}</span>
+                            <span className='cartQuantitySpan'>
+                                <input type='number'
+                                    min='1'
+                                    value={product.count}
+                                    onChange={e =>
+                                        handleQtyChange(
+                                            e,
+                                            product
+                                        )
+                                    }
+                                    >
+                                </input>
+                            </span>
                         </td>
                         <td>
                             {' '}
