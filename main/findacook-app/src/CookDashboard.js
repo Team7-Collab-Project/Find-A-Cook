@@ -6,7 +6,6 @@ import HamburgNavbar from './components/HamburgNavbar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import Schedule from './components/Schedule';
 //import Maps from './components/Maps';
 import {
   Container,
@@ -91,6 +90,7 @@ function CookDashboard() {
               </div>
             </Col>
             <Col xs={9}>
+              
               <div id='cookname'>
                 <h2>Name</h2>
               </div>
@@ -98,14 +98,40 @@ function CookDashboard() {
             </Col>
             </Row>
             </Container>
+
           <Tabs>
             <TabList>
-              <Tab>Bookings</Tab>
+              <Tab>Orders</Tab>
               <Tab>Menu</Tab>
             </TabList>
             <TabPanel className='tablist'>
-              <h2>Bookings</h2>
-              <Schedule />
+              <h2>Orders List</h2>
+              <List>
+                <ListItem disablePadding className="ListItem">
+                    <ListItemButton className="ListItemButton">
+                        <table>
+                            <tr>
+                                <td><h2>John Brown</h2></td>
+                                <td><h4>259 Greenacres, Marshes Lower, Dundalk, Co. Louth, A91 D8X3</h4></td>
+                                <td><h4>Chicken Tikka Masala, Chicken Pakora</h4></td>
+                                <td><h2>24/02/22 18:00</h2></td>
+                            </tr>
+                        </table>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding className="ListItem">
+                    <ListItemButton className="ListItemButton">
+                        <table>
+                            <tr>
+                                <td><h2>Hannah O'Reilly</h2></td>
+                                <td><h4>4 Drive 2, Muirhevnamore, Dundalk, Co. Louth, A91 P2X6</h4></td>
+                                <td><h4>Chicken Korma, Chicken Pakora</h4></td>
+                                <td><h2>27/02/22 16:30</h2></td>
+                            </tr>
+                        </table>
+                    </ListItemButton>
+                </ListItem>
+                </List>
             </TabPanel>
             <TabPanel className='tablist'>
               <h2>Menu list</h2>
