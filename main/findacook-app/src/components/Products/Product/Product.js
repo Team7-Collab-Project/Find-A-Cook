@@ -1,56 +1,80 @@
-import React, {useState} from 'react';
-import { FaShoppingCart } from "react-icons/fa";
-import '../../CSS/Style.css'
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProduct } from '../../../redux/actions/productActions'
+import { addToCart } from '../../../redux/actions/cartActions';
 
-const Product = ({product}) => {
+const Product = () => {
 
-    // const [cart, setCart] = useState([]);
+    const navigate = useNavigate();
+	const { productId } = useParams();
 
-    // const addToCart = (productId) => {
-    //     let newCart;
-    
-    //     if (cart.length > 0) {
-    //       const productIds = cart.map((item) => item.productId);
-    
-    //       if (productIds.includes(productId)) {
-    //         alert("Product is already added in the cart..!");
-    //       } else {
-    //         newCart = [...cart, { productId }];
-    //       }
-    //     } else {
-    //       newCart = [{ productId }];
-    //     }
-    
-    //     setCart(newCart);
-    //   };
-    
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getProduct(productId));
+	}, [dispatch, productId]);
+
+	const { product } = useSelector(state => state.products);
+
+	const handleAddToCart = () => {
+		dispatch(addToCart(product));
+	};
+
+	const handleGoBackBtn = () => {
+		navigate(-1);
+	};
     return (
-        <div className=''>
-            <div className='cards'>
-            <div>
-                        <img
-                        className='product-image'
-                        src={product.images}
-                       />
-                    </div>
-                {product.name}
-                <div className='cardContent'>
-                    <h5 className='product-name'>
-                    {product.name}
-                    </h5>
-                    <h5 >
-                    {product.price}
-                    </h5>
-              
-                {/* <p>
-                    {product.description}
-                </p> */}
-                </div>
-                <div className='cardAction'>
-                <button title='Add To Cart'><FaShoppingCart /></button>
-                </div>
-            </div>
-        </div>
+        <>
+        		<section className='product-page m-4'>
+			<button
+				to='/admin'
+				className='btn btn-light text-primary mb-4'
+				onClick={handleGoBackBtn}
+			>
+				Go Back
+			</button>
+			{product && (
+				<div className='row'>
+					<div className='col-md-6'>
+						<img
+							className='img-fluid w-100 mb-4'
+							src={`/uploads/${product.filename}`}
+							alt='product'
+						/>
+					</div>
+					<div className='col-md-5'>
+						<h3 className='mb-4'>{product.item_name}</h3>
+						<p className='text-muted border-top py-2'>
+							Price:{' '}
+							{product.price.toLocaleString("en-GB", {
+                              style: "currency",
+                              currency: "EUR",
+                            })}
+						</p>
+
+						<p className='text-muted border-top py-2'>
+						{product.product_description}
+						</p>
+						{/* <button
+							className='btn btn-dark btn-large btn-block mb-5 py-2'
+							disabled={product.productQty <= 0}
+							onClick={handleAddToCart}
+						>
+							Add to Cart
+						</button> */}
+                                    <button
+                type='button'
+                className="btn btn-warning btn-sm"
+                onClick={handleAddToCart}
+                >
+                  Add To Cart
+                </button>
+					</div>
+				</div>
+			)}
+		</section>
+        </>
     )
 }
 

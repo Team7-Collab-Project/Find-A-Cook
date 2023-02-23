@@ -10,14 +10,19 @@ const AdminBody = () => {
 
     return(
         <>
-        <div className='adminBodyContainer'>
-            <div className='adminBodyRow'>
-                <div className='adminBodyRow'>
+        <div className="">
+        {/* <div class="productsHeader">
+            <h1>Temi Owolabi</h1>
+        </div> */}
+        <div className=''>
+            <div className=''>
+                <div className=''>
                     {products && products.map(product => (
                         <_Products key={product._id} product={product} />
                     ))}
                 </div>
             </div>
+        </div>
         </div>
         </>
     );

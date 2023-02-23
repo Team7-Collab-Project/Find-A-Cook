@@ -48,13 +48,16 @@ function Navbar() {
             <img src="../images/logo-new-edit-01.png"/>
             </div>  */}
             {/* <h3>Find A Cook</h3> */}
+            <a href='/'>
             <img src="../images/logo-new-edit-01.png"/>
+            </a>
+            {/* <img src="../images/logo-new-edit-01.png"/> */}
 			<nav ref={navRef}>
-				<a href="/#">Placeholder</a>
+				<a href="/#">Discover Cooks</a>
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
                 <Link to='/cart'>
-                <FaShoppingCart />{''}Cart <span>{cart.length}</span>
+                <FaShoppingCart />{' '}Cart <span>({cart.length})</span>
                 </Link>
 				{/* <a href="/#"><FaShoppingCart /></a> */}
 				{/* <Link onClick={handleShow}><FaShoppingCart />Cart ({productsCount} Items)</Link> */}
