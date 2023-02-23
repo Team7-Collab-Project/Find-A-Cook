@@ -1,111 +1,85 @@
-const express = require('express');
-const app = express();
-const connectDB = require('../database/db');
+// const express = require('express');
+// const app = express();
+// // const connectDB = require('../database/db');
+// const cors = require('cors');
+// const morgan = require('morgan');
+// const categoryRoutes = require('./routes/category');
+// const productRoutes = require('./routes/product');
+// const mongoose = require('mongoose');
+// const helmet = require('helmet');
 
-connectDB();
-
-const port = process.env.PORT || 3001;
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
-// const mysql = require("mysql");
-// const cors = require("cors");
-
-// const bodyParser = require('body-parser')
-// const cookieParser = require('cookie-parser')
-// const session = require('express-session')
-
-// const bcrypt = require('bcrypt')
-// const saltRounds = 10
-
+// app.use(cors());
 // app.use(express.json());
-// app.use(cors({
-//   origin: ["http://localhost:3000"],
-//   methods: ["GET", "POST"],
-//   credentials: true
-// }));
-// app.use(cookieParser())
-// app.use(bodyParser.urlencoded({extended: true}));
-
-// app.use(session({
-//   key: "userId",
-//   secret: "subscribe_to_findacook",
-//   resave: false,
-//   saveUninitialized: "false",
-//   cookie: {
-//     expires: 60 * 60 * 24,
-//   }
-// }))
-
-// const db = mysql.createConnection({
-//   user: "root",
-//   host: "localhost",
-//   password: "12345678",
-//   database: "test_db",
-// });
+// app.use(helmet());
+// app.use(morgan("common"));
+// app.use('/api/category', categoryRoutes);
+// app.use('/api/product', productRoutes);
+// // app.use('/uploads', express.static('uploads'));
 
 
-// app.post('/register', (req, res)=> {
-//   const name = req.body.name
-//   const email = req.body.email
-//   const password = req.body.password
+// // connectDB();
 
+// mongoose.set('strictQuery', false);
 
-//   bcrypt.hash(password, saltRounds, (err, hash) => {
+// const connectDB = async () => {
+//     try{
+//         await mongoose.connect(
+//             'mongodb+srv://Team7:oXVVWGS8BCRZB2FM@findacook.dr9enwh.mongodb.net/?retryWrites=true&w=majority',
+//             {
+//                 useNewUrlParser: true,
+//                 useUnifiedTopology: true
+//             }
+//         );
 
-//     if (err) {
-//       console.log(err)
+//         console.log('Database Connection Success');
+//     } catch (err) {
+//         console.log(err);
 //     }
+// };
+
+// connectDB();
+
+// const port = process.env.PORT || 3001;
+
+// app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
-//     db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)", [name, email, hash], (err, result)=> {
-//       console.log(err);
-//     });
-//   })
-// });
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const router = express.Router();
+const path = require("path");
 
-// app.get("/login", (req, res)=> {
-//   if (req.session.user) {
-//     res.send({loggedIn: true, user: req.session.user});
-//   } else {
-//     res.send({ loggedIn: false});
-//   }
-// });
+const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
 
-// app.get("/logout", (req, res) => {
-//   req.session.destroy();
-//   res.clearCookie("userId");
-//   res.send({ message: "Successfully logged out" });
-// });
+/* Loading the environment variables from the .env file. /
+dotenv.config();
+ 
+/ Connecting to the MongoDB database. */
+mongoose.set('strictQuery', true);
+mongoose.connect(
+    process.env.MONGO_URL,
+    { useNewUrlParser : true, useUnifiedTopology: true}, 
+    ()=>{
+    console.log("connected to MongoDB")
+    }
+);
 
-// app.post('/login', (req, res) => {
-//   const email = req.body.email
-//   const password = req.body.password
-
-//   db.query("SELECT * FROM users WHERE email = ?;", email, (err, result)=> {
-//     if (err) {
-//       res.send({err: err})
-//     } 
-
-
-//     if (result.length > 0){
-//       bcrypt.compare(password, result[0].password, (error, response) => {
-//         if (response) {
-//           req.session.user = result
-//           console.log(req.session.user)
-//           res.send(result)
-//         } else {
-//           res.send({ message: "Wrong username/password combination"})
-//         }
-//       })
-//     } else {
-//       res.send({ message: "User doesn't exist"})
-//     }
-    
-//   });
-// });
-
-// app.listen("3001", () => {
-//   console.log("running server")
-// });
+//Middleware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
 
 
+app.use('/api/category', categoryRoutes);
+app.use('/api/product', productRoutes);
+
+
+
+app.listen(8800,()=>{
+    console.log("Backend server is running!")
+});
