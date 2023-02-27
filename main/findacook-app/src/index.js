@@ -6,6 +6,7 @@ import LoginPage from './LoginPage';
 import UploadDocuments from './UploadDocuments';
 import RegistrationPage from './RegistrationPage';
 import GuestPage from './GuestPage';
+import TestPage from './TestPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import VerifyPage from './VerifyPage';
@@ -32,6 +33,8 @@ root.render(
         <Route path="/terms" element={<TermsPage/>}/>
         <Route path="/profile" element={<CookProfile/>}/>
         <Route path="/viewcooks" element={<ViewCooks/>}/>
+        <Route path="/test" element={<TestPage/>} />
+        <Route path="/documentupload" element={<UploadDocuments/>} />
       
     </Routes>
     {/* The various pages will be displayed by the `Main` component. */}
