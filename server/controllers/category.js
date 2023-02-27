@@ -1,12 +1,8 @@
 const Category = require('../schema/MenuCategorySchema');
 
-// exports.categoryController = (req, res) => {
-//     console.log('Inside Category Controller :)')
-// }
-
 exports.create = async (req, res) => {
     const { category_name, category_description } = req.body;
-    console.log('!!!!!!!!!!!!!!!!!!', req.body)
+    console.log('New Category: ', req.body)
 
     try {
         let newCategory = new Category({
