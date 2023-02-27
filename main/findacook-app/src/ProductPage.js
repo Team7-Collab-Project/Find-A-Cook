@@ -4,6 +4,8 @@ import _Products from "./components/Menu_Test/_Products";
 import data from "./components/Data/data";
 import Cart_test from "./components/Cart/Cart_test";
 import Products from "./components/Products/Products";
+import DemoStore from "./components/Demo/DemoStore";
+import CartProvider from "./CartContext";
 
 function ProductPage() {
   const { productItems } = data;
@@ -69,6 +71,13 @@ function ProductPage() {
 
   return (
     <>      
+
+<CartProvider>
+<Navbar />
+<DemoStore />
+</CartProvider>
+
+
     {/* <Cart_test
         visibilty={cartsVisibilty}
         productItems={productsInCart}
@@ -76,10 +85,20 @@ function ProductPage() {
 					setCartVisible(false)
 				}
       /> */}
-      <Navbar />
+      {/* <Navbar /> */}
+      {/* <DemoStore /> */}
+
+
       {/* <Products /> */}
       {/* <_Products productItems={productItems} handleAddProduct={(product) => addProductToCart(product)}/> */}
-      <_Products productItems={productItems} handleAddProduct={(product) => handleAddProduct(product, setCartItems)}/>
+
+      {/* This is the last working version below */}
+      {/* <_Products productItems={productItems} handleAddProduct={(product) => handleAddProduct(product, setCartItems)}/> */}
+
+
+
+  {/* <_Products productItems={productItems} /> */}
+
         {/* <Cart_test cartItems={cartItems} /> */}
 
 {/* <Cart_test
