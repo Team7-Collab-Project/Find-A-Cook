@@ -15,8 +15,12 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-macros": "^3.1.0",
+=======
+    "axios": "^1.3.2",
+>>>>>>> 6610151c7 (Create API for making post requests)
     "bootstrap": "^5.2.3",
 <<<<<<< HEAD
     "font-awesome": "^4.7.0",
@@ -31,7 +35,11 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+<<<<<<< HEAD
     "react-phone-input-2": "^2.15.1",
+=======
+    "react-redux": "^8.0.5",
+>>>>>>> 6610151c7 (Create API for making post requests)
     "react-router-dom": "^6.6.0",
     "react-scripts": "^5.0.1",
 <<<<<<< HEAD

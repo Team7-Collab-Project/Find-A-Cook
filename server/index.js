@@ -1,12 +1,24 @@
 const express = require('express');
 const app = express();
 const connectDB = require('../database/db');
+<<<<<<< HEAD
+=======
+const cors = require('cors');
+const morgan = require('morgan');
+const categoryRoutes = require('./routes/category');
+
+app.use(cors());
+app.use(express.json());
+app.use('/api/category', categoryRoutes);
+
+>>>>>>> 6610151c7 (Create API for making post requests)
 
 connectDB();
 
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+<<<<<<< HEAD
 // const mysql = require("mysql");
 // const cors = require("cors");
 
@@ -109,3 +121,5 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 // });
 
 
+=======
+>>>>>>> 6610151c7 (Create API for making post requests)
