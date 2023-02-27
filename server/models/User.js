@@ -31,6 +31,10 @@ const users = new mongoose.Schema(
             type: Date,
             required: true,
         },
+        verified: {
+            type: Boolean,
+            required: true,
+        }
         // address_id: {
         //     type: mongoose.Schema.Types.ObjectId,
 		// 	ref: 'AddressSchema',
