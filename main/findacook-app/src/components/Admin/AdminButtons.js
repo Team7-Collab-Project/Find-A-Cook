@@ -44,9 +44,9 @@ const AdminButtons = () => {
             <button className="form-footer-button" onClick={handleClose}>
               Close
             </button>
-            <button type="submit" className="form-footer-button">
+            {/* <button type="submit" className="form-footer-button">
               Submit
-            </button>
+            </button> */}
           </div>
         </Modal.Footer>
       </Modal>

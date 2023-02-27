@@ -18,9 +18,15 @@
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap": "^5.2.3",
+<<<<<<< HEAD
     "font-awesome": "^4.7.0",
     "google-maps-react": "^2.0.6",
     "navbar": "^2.1.0",
+=======
+    "http-proxy-middleware": "^2.0.6",
+    "morgan": "^1.10.0",
+    "multer": "*",
+>>>>>>> da31ccc27 (API Connection For Adding Products Working)
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
@@ -28,8 +34,14 @@
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.6.0",
     "react-scripts": "^5.0.1",
+<<<<<<< HEAD
     "react-tabs": "^6.0.0",
     "reactstrap": "^9.1.5",
+=======
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "validator": "^13.9.0",
+>>>>>>> da31ccc27 (API Connection For Adding Products Working)
     "web-vitals": "^2.1.4"
   },
   "scripts": {
