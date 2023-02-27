@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { createCategory } from "../../api/category";
 import isEmpty from 'validator/lib/isEmpty';
-import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
+// import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 
 const AddCategoryForm = () => {
 
@@ -103,8 +103,8 @@ const AddCategoryForm = () => {
           <h5 className='food-form-h5'>Create New Category</h5>
             </div>
             <div className="">
-                {error && showErrorMsg(error)}
-                {success && showSuccessMsg(success)}
+                {/* {error && showErrorMsg(error)} */}
+                {/* {success && showSuccessMsg(success)} */}
 
                 <Fragment>
                   <div className="group">

@@ -36,7 +36,6 @@ connectDB();
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-<<<<<<< HEAD
 // const mysql = require("mysql");
 // const cors = require("cors");
 
@@ -139,5 +138,3 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 // });
 
 
-=======
->>>>>>> 6610151c7 (Create API for making post requests)

@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { createProduct } from "../../api/product";
 import isEmpty from 'validator/lib/isEmpty';
-import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
+// import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 import { useDispatch } from 'react-redux';
 // import { createProduct } from '../../redux/actions/productActions';
 
@@ -237,8 +237,8 @@ const numberFormat = (value) =>
 							</button> */}
             </div>
             <div className="">
-                {error && showErrorMsg(error)}
-                {success && showSuccessMsg(success)}
+                {/* {error && showErrorMsg(error)} */}
+                {/* {success && showSuccessMsg(success)} */}
 
 <Fragment>
     <div className="group">

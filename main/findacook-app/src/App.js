@@ -12,6 +12,7 @@ import TestPage from './TestPage';
 import CartPage2 from './CartPage2';
 import OrderInfoPage from './OrderInfoPage';
 import ProductPage from './ProductPage';
+import SampleAdminDashboard from './SampleAdminDashboard';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
@@ -43,6 +44,7 @@ function App() {
       <Route path="/order" element={<OrderInfoPage/>} />
       <Route path="/product" element={<ProductPage/>} />
       <Route path="/documentupload" element={<UploadDocuments/>} />
+      <Route path="/admin" element={<SampleAdminDashboard/>} />
     
   </Routes>
     </div>
