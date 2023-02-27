@@ -28,6 +28,9 @@ function MenuListItem() {
                 <FaPlusCircle />
             </button>
             </div>
+            <div className='add'>
+            <button className='addCartButton'>Add to Cart</button>
+        </div>
  </div>
             <div className='ingredients'>
                 <h2>Ingredients</h2>

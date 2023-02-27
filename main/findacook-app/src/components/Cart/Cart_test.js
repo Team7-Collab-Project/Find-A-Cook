@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 import '../CSS/Style.css'
 
-function Cart_test() {
+const Cart_test = ({cartItems = []}) => {
 
     return(
         <div className='cartContainer'>
             <div className='cartLeftDiv'>
-                <table className='cartTable'>
+
+                {cartItems.length === 0 && (
+                    <div className='cart-items-empty'>No items are added.</div>
+                )}
+
+                <div>
+                    {cartItems.map((item) => (
+                        <div key={item.id} className="">
+                            <img
+                            className=''
+                            src={item.image}
+                            alt={item.name}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* <table className='cartTable'>
                     <tr className='cartTr'>
                     <th>Product</th>
                     <th>Name</th>
@@ -48,7 +65,7 @@ function Cart_test() {
                     <b className='totalTextTitle'>Total:</b>€20
                 </div>
                 <button className='cartButton'>CHECKOUT NOW!</button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
