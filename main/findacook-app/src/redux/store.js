@@ -4,12 +4,17 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import messageReducer from './reducers/messageReducer';
 import loadingReducer from './reducers/loadingReducer';
 import categoryReducer from './reducers/categoryReducer';
+import productReducer from './reducers/productReducer';
+import cartReducer from './reducers/cartReducers';
+
 
 
 const reducer = combineReducers({
 	loading: loadingReducer,
 	messages: messageReducer,
 	categories: categoryReducer,
+  cart: cartReducer,
+  products: productReducer,
 })
 
 const initialState = {}

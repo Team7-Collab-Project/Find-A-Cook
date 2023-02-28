@@ -18,6 +18,10 @@ import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
 import { useDispatch } from 'react-redux'
 import { getCategories } from './redux/actions/categoryActions';
+import Shipping from './Shipping';
+import EditProduct from './components/Admin/EditProduct';
+import Home from './Home';
+
 
 function App() {
 
@@ -38,9 +42,13 @@ function App() {
       <Route path="/test" element={<TestPage/>} />
       <Route path="/cart" element={<CartPage2/>} />
       <Route path="/order" element={<OrderInfoPage/>} />
-      <Route path="/product" element={<ProductPage/>} />
-      <Route path="/documentupload" element={<UploadDocuments/>} />
+      <Route path="/product/:productId" element={<ProductPage/>} />
       <Route path="/admin" element={<SampleAdminDashboard/>} />
+      <Route path="/documentupload" element={<UploadDocuments/>} />
+      <Route path="/shipping" element={<Shipping/>} />
+      <Route path="/edit/product/:productId" element={<EditProduct />} />
+      <Route path="/home" element={<Home />} />
+
     
   </Routes>
     </div>
