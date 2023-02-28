@@ -40,6 +40,10 @@
 =======
   "dependencies": {
     "axios": "*"
+<<<<<<< HEAD
 >>>>>>> 19105-menu-item-creation
+=======
+>>>>>>> 6610151c7 (Create API for making post requests)
+>>>>>>> c7467d075cb1372ecbe6148adf9de982635ba938
   }
 }

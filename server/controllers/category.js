@@ -22,6 +22,7 @@ exports.create = async (req, res) => {
             errorMessage: 'Please try again later',
         });
     }
+<<<<<<< HEAD
 };
 
 
@@ -56,3 +57,6 @@ exports.readAll = async (req, res) => {
       });
     }
   };
+=======
+};
+>>>>>>> c7467d075cb1372ecbe6148adf9de982635ba938
