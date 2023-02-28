@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaPlus, FaMinusCircle } from "react-icons/fa";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
 import AddFoodForm from "./AddFoodForm";
 import AddCategoryForm from "./AddCategoryForm";

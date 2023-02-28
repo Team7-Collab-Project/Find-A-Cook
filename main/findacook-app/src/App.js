@@ -12,17 +12,10 @@ import TestPage from './TestPage';
 import CartPage2 from './CartPage2';
 import OrderInfoPage from './OrderInfoPage';
 import ProductPage from './ProductPage';
-<<<<<<< HEAD
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import { commerce } from './lib/commerce';
-import SampleAdminDashboard from './SampleAdminDashboard';
-=======
 import SampleAdminDashboard from './SampleAdminDashboard';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
->>>>>>> c7467d075cb1372ecbe6148adf9de982635ba938
 
 function App() {
 
@@ -50,13 +43,8 @@ function App() {
       <Route path="/cart" element={<CartPage2/>} />
       <Route path="/order" element={<OrderInfoPage/>} />
       <Route path="/product" element={<ProductPage/>} />
-<<<<<<< HEAD
-      <Route path="/admin" element={<SampleAdminDashboard/>} />
-      <Route path="/documentupload" element={<UploadDocuments/>} />
-=======
       <Route path="/documentupload" element={<UploadDocuments/>} />
       <Route path="/admin" element={<SampleAdminDashboard/>} />
->>>>>>> c7467d075cb1372ecbe6148adf9de982635ba938
     
   </Routes>
     </div>

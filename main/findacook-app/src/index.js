@@ -17,7 +17,7 @@ import VerifyPage from './VerifyPage';
 import CookDashboard from './CookDashboard';
 import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
-import 'font-awesome/css/font-awesome.min.css';
+// import 'font-awesome/css/font-awesome.min.css';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
 import { commerce } from './lib/commerce';
