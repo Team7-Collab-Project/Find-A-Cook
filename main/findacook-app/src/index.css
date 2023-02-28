@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
 }
-
+/*Hero Pattern background generated from https://heropatterns.com/*/
 body {
   font-family: 'Poppins', sans-serif;
   /* background-color: #a3ca2f; */
@@ -17,6 +17,13 @@ body {
   margin: 30px auto;
   min-height: 300px;
   padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; 
 }
 
 #logo {
@@ -45,6 +52,7 @@ body {
 #backBtn {
   background-color: transparent;
   border-color: transparent;
+  
 }
 
 .btn {
@@ -64,6 +72,43 @@ body {
   font-family: inherit;
   margin-left: 85px;
 }
+
+#resendBtn{
+  width: 150px;
+  height: 50px;
+  font-size: 12px;
+  left: 25.5%;
+}
+
+#verifyBtn{
+  width: 250px;
+  height: 55px;
+  font-size: 20px;
+  left: 18%;
+}
+
+#loginBtn{
+  width: 250px;
+  height: 55px;
+  font-size: 20px;
+  right: 34%;
+}
+
+#regBtn{
+  width: 250px;
+  height: 55px;
+  font-size: 20px;
+  right: 34%;
+}
+
+#termsSubmitBtn{
+  width: 250px;
+  height: 55px;
+  font-size: 20px;
+  right: 5%;
+}
+
+
 
 .btn:focus {
   outline: none;
@@ -99,16 +144,74 @@ body {
   margin-bottom: 40px;
 }
 
-form {
+#verifyForm form{
+  max-height: 500px;
+}
+
+
+#loginForm{
   background-color: lightgray;
   border: black 2px solid;
   border-radius: 5%;
-  margin-top: 4%;
+  margin-top: 1%;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  height: 100%;
-  min-height: 800px;
+  width: 35%;
+  height: 80%;
+  min-height: 750px;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+#loginForm h2{
+  font-size: large;
+}
+
+#loginForm h3{
+  font-size: large;
+}
+
+#regisForm{
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  height: 80%;
+  min-height: 750px;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+#regisForm h3{
+  font-size: large;
+}
+
+#verifyForm{
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  min-height: 600px;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+#termsForm{
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  height: 80%;
+  min-height: 760px;
   margin-bottom: 4%;
   text-align: center;
 }
@@ -117,15 +220,16 @@ form {
   background-color: lightgray;
   border: black 2px solid;
   border-radius: 5%;
-  margin-top: 4%;
+  margin-top: 1%;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  height: 100%;
-  min-height: 800px;
+  width: 35%;
+  height: 80%;
+  min-height: 750px;
   margin-bottom: 4%;
   display: block;
   text-align: center;
+  
 }
 
 #documentform input[type=file] {
@@ -155,13 +259,48 @@ form {
   border: 1px #086688 solid;
   border-radius: 10px;
   margin: auto;
-  width: 10%;
+  width: 15%;
   position: relative;
   bottom: -20px;
 }
 #documentform #submit:hover {
   cursor: pointer;
 }
+
+#cookdash {
+  background-color: lightgray;
+  border: black 2px solid;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  max-width: 1450px;
+  margin-bottom: 4%;
+  display: block;
+  text-align: center;
+}
+
+.sidebar-open {
+  transform: translateX(300px);
+}
+
+#cookdashimg {
+  max-width: 100%;
+}
+
+#cookimgdiv {
+  float: left;
+  display: block;
+  width: 25%;
+}
+
+#cookname {
+  display: block;
+  text-align: left;
+  margin-left: 20px;
+}
+
 
 .loginForm {
   margin-left: 10%;
@@ -203,3 +342,392 @@ footer {
   margin-top: 30px;
   text-align: center;
 }
+
+#loginLogo{
+  display: inline;
+  background-color: #1f3744;
+  border-radius: 30px;
+  margin-right: auto;
+  margin-left: 32.8%;
+  padding-left: 25px;
+  padding-top: 15px;
+  margin-bottom: auto;
+  margin-top: 25px;
+}
+
+#regPhone {
+  background-color: white;
+}
+
+.formInput {
+  background-color: white;
+}
+
+#verifyCodes{
+  left: 30%;
+  float:left;
+  width: 80%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+#verifyCode1, #verifyCode2, #verifyCode3, #verifyCode4 {
+  background-color: white;
+  border: black solid 1px;
+  border-radius: 10%;
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  width: 50px;
+  height: 50px;
+} 
+
+#termsBox{
+  height: 500px;
+  width: 518px;
+  overflow: auto;
+  position: fixed;
+  left: 36.5%;
+}
+
+#termsContent{
+  height: 1780px;
+  width: 500px;
+  background-color: white;
+  font-size: small;
+  text-align: left;
+}
+
+#belowTerms{
+  position:fixed;
+  top: 85%;
+  left: 40%;
+}
+
+#agreeLbl {
+  left: 43%;
+  position:fixed;
+}
+
+#agree {
+  position: fixed;
+  left: 42%;
+}
+
+#remPass{
+  float:left;
+  display: flex;
+  position: relative;
+}
+
+#remPass p{
+  float:left;
+  display: flex;
+  position: absolute;
+  left: 80%;
+  width: 40%;
+}
+
+#twitLogin {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 38.4%;
+  top:81%;
+  width: 65px;
+  height: 65px;
+}
+
+#twitSign {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 38.4%;
+  top:84%;
+  width: 65px;
+  height: 65px;
+}
+
+#fbLogin {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 48.4%;
+  top:81%;
+  width: 65px;
+  height: 65px;
+}
+
+#fbSign {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 48.4%;
+  top:84%;
+  width: 65px;
+  height: 65px;
+}
+
+#gooLogin {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 58.4%;
+  top:81%;
+  width: 65px;
+  height: 65px;
+}
+
+#gooSign {
+  float:left;
+  display: block;
+  position: absolute;
+  left: 58.4%;
+  top:84%;
+  width: 65px;
+  height: 65px;
+}
+
+.navbar {
+  background-color: #333;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: block;
+  left: 0;
+}
+
+.navbar-menu {
+  cursor: pointer;
+  display: block;
+  left:0;
+}
+
+.navbar-sidebar {
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  min-height: 2000px;
+  display: none;
+  transition: left 0.5s ease-in-out;
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  transition: 0.5s;
+}
+
+.navbar-item {
+  margin: 10px 0;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.show {
+  display: block;
+  transform: translateX(0%);
+}
+
+#navLogo{
+  display: inline-block;
+  position: relative;
+  background-color: #1f3744;
+  border-radius: 30px;
+  height: 45px;
+  left: 333%;
+}
+
+#navProfile{
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  left: 100%;
+}
+
+#navSearch{
+  position: relative;
+  left: 67%;
+}
+
+.card-container {
+  width: 1000px;
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  position: fixed;
+  left: 25%;
+}
+
+#profileBG{
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-top: 1%;
+  height: 850px;
+  max-height: fit-content;
+  margin-bottom: 4%;
+  text-align: center;
+  width: 1350px;
+  max-width: fit-content;
+  overflow-y:visible;
+  position: relative;
+}
+
+#profileForm {
+  border-radius: 5%;
+  margin-top: 1%;
+  height: 850px;
+  width: fit-content;
+  max-height: fit-content;
+  margin-bottom: 4%;
+  text-align: center;
+  width: 700px;
+  overflow-y:visible;
+  position: relative;
+  left: 5%;
+}
+
+#profileForm Button{
+  position: fixed;
+  width:10%;
+  left: 40%;
+}
+
+#profileEditBtn{
+  width:100px;
+  height: 50px;
+  text-align: center;
+  left: -32.5%;
+  position:relative;
+  margin-top: 50px;
+}
+
+#profileBio {
+  max-height: 100px;
+  max-width: 750px;
+}
+
+#profileBioP {
+  word-wrap: break-word;
+}
+
+.link {
+  color: #FFF;
+}
+.link:hover {
+   color: #00F
+}
+
+#viewcooks {
+  background-color: lightgray;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 2000px;
+  max-width: 1000px;
+  margin-bottom: 4%;
+  display: block;
+  text-align: center;
+  z-index: -1;
+  overflow-y: scroll;
+}
+
+
+#cooklist h2 {
+  padding-left: 1%;
+  width: 200px;
+}
+
+#cooklist .ListItem {
+  line-height: 1000px;
+}
+
+#cooklist .ListItemButton {
+  height: 10em;
+}
+
+#cooklist .viewmenu {
+  text-align: right;
+}
+
+#cooklist table tr td {
+  width: 100%;
+}
+
+#cooklist table tr {
+  height: 100%;
+  line-height: 10em;
+}
+
+#cooklist table tr td img {
+  max-width: 60%;
+  max-height: 300px;
+}
+
+#cooklist table {
+  border-collapse: collapse;
+}
+
+.tablist .ListItem {
+  line-height: 8em;
+}
+
+.tablist .ListItemButton {
+  height: 8em;
+}
+
+.tablist table tr td img {
+  max-width: 60%;
+  max-height: 8em;
+}
+
+.tablist table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tablist table tr {
+  height: 100%;
+  line-height: 10em;
+}
+
+.tablist table tr td {
+  text-align: center;
+  width: 25%;
+}
+
+#dashboardBG {
+  height: 350px;
+  max-height: fit-content;
+  margin-bottom: 4%;
+  text-align: center;
+  width: 1350px;
+  max-width: fit-content;
+}
+
+

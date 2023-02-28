@@ -28,16 +28,6 @@ root.render(
   <Provider store={store}><App /></Provider>
     {/* <Routes>
       
-        <Route exact path="/" element={<LandingPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/register" element={<RegistrationPage/>} />
-        <Route path="/guest" element={<GuestPage/>} />
-        <Route path="/test" element={<TestPage/>} />
-        <Route path="/cart" element={<CartPage2/>} />
-        <Route path="/order" element={<OrderInfoPage/>} />
-        <Route path="/product" element={<ProductPage/>} />
-        <Route path="/documentupload" element={<UploadDocuments/>} />
-      
     </Routes> */}
     {/* The various pages will be displayed by the `Main` component. */}
   </BrowserRouter>
