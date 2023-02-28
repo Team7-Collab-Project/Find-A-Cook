@@ -12,13 +12,14 @@ import TestPage from './TestPage';
 import CartPage2 from './CartPage2';
 import OrderInfoPage from './OrderInfoPage';
 import ProductPage from './ProductPage';
+import SampleAdminDashboard from './SampleAdminDashboard';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
-import SampleAdminDashboard from './SampleAdminDashboard';
 import EditProduct from './components/Admin/EditProduct';
 import { useDispatch } from 'react-redux'
 import { getCategories } from './redux/actions/categoryActions';
+
 
 function App() {
 
@@ -40,10 +41,8 @@ function App() {
       <Route path="/cart" element={<CartPage2/>} />
       <Route path="/order" element={<OrderInfoPage/>} />
       <Route path="/product" element={<ProductPage/>} />
-      <Route path="/admin" element={<SampleAdminDashboard/>} />
       <Route path="/documentupload" element={<UploadDocuments/>} />
       <Route path="/edit/product/:productId" element={<EditProduct />} />
-    
   </Routes>
     </div>
   );
