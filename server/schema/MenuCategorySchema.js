@@ -2,10 +2,17 @@ const mongoose = require('mongoose');
 
 const categories = new mongoose.Schema(
     {
+<<<<<<< HEAD
         _id: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
+=======
+        // _id: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     required: true,
+        // },
+>>>>>>> 19105-menu-item-creation
         category_name: {
             type: String,
             required: true,
