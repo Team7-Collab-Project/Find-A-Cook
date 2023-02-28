@@ -24,6 +24,7 @@
     "font-awesome": "^4.7.0",
     "google-maps-react": "^2.0.6",
     "http-proxy-middleware": "^2.0.6",
+    "jquery": "^3.6.3",
     "morgan": "^1.10.0",
     "multer": "*",
     "navbar": "^2.1.0",
@@ -71,6 +72,10 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/google.maps": "^3.51.1"
+=======
+    "@types/jquery": "^3.5.16"
+>>>>>>> sprint11-css-changes
   }
 }
