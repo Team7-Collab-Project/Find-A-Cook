@@ -8,14 +8,13 @@ import _Products from "./components/Menu_Test/_Products";
 // import { cartItems } from './ProductPage'
 // import function from "./ProductPage";
 import { productItems } from './ProductPage';
-import ProductPage, { useCartItems } from './ProductPage';
+
 
 const CartPage2 = () => {
   // const [cartItems, setCartItems] = useState([]);
   // const [cartItems, setCartItems] = useState([]);
   // const { productItems } = data;
   // const [cartsVisibilty, setCartVisible] = useState(true);
-  const [cartItems, setCartItems] = useCartItems();
 
   const [productsInCart, setProducts] = useState(
     JSON.parse(localStorage.getItem("shopping-cart")) || []
@@ -56,6 +55,7 @@ const CartPage2 = () => {
   return (
     <>
       <Navbar />
+      <Cart_test />
       {/* <Cart_test cartItems={cartItems} /> */}
       {/* <Cart_test
         // visibilty={cartsVisibilty}
@@ -65,7 +65,7 @@ const CartPage2 = () => {
         onProductRemove={onProductRemove}
       /> */}
 
-    <Cart_test cartItems={cartItems} />
+
     </>
   );
 };

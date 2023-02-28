@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../CSS/Style.css";
 import { addToCart } from "../../redux/actions/cartActions";
 import { useDispatch } from "react-redux";
@@ -15,48 +15,84 @@ const _Products = ({ product }) => {
   // const productQuantity = cart.getProductQuantity(productItems.id);
   // console.log(cart.items);
 
+
   // THIS CODE WORKS!! JUST COMMENTED OUT FOR NOW
-  // const dispatch = useDispatch();
-
-  // const handleAddToCart = () => {
-  // 	dispatch(addToCart(productItems));
-  // };
-
-
   const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
+  // const dispatch = useDispatch();
 
   return (
     <>
-      <div className="col-md-4 my-3">
-        <div className="card h-100">
-   
-           <div>
-           <img className="img-fluid w-100" src={`/uploads/${product.filename}`} />
-           </div>
-           <div>
-                    <h3 className='card-body text-center'>{product.item_name}</h3>
-                    </div>
-                    <div className='product-price'>{product.price.toLocaleString("en-GB", {style:"currency", currency:"EUR"})}</div>
+      {/* <div className="cards">
+
+<div className="card">
+  <div className="card__image-holder">
+  <img className="imageDisplay" src={`/uploads/${product.filename}`} />
+  </div>
+  <div className="card-title">
+    <a href="#" className="toggle-info btn">
+      <span className="left"></span>
+      <span className="right"></span>
+    </a>
+
        
-       <p>
-        {product.product_description.length > 60
+        <small> {product.item_name}</small>
+        <small> {product.price}</small>
+
+  </div>
+  <div className="card-flap flap1">
+    <div className="card-description">
+    {product.product_description.length > 60
             ? product.product_description.substring(0, 60) + '...'
             : product.product_description.substring(0, 60)
         }
-       </p>
-       <Link
-       to={`/edit/product/${product._id}`}
-       type="button"
-       className="btn btn-secondary btn-sm">
-        <i className="far fa-edit pr-1"></i>
-        Edit
-       </Link>
-       <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
-          <i className="far fa-trash-alt pr-1"></i>
-          Delete
-       </button>
+    </div>
+    <div className="card-flap flap2">
+      <div className="card-actions">
+        <a href="#" className="btn">Read more</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div> */}
+
+      <div className="productBody">
+        <div class="theProductsContainer">
+          <div class="products">
+            <div class="product">
+              <div class="image">
+                <img src={`/uploads/${product.filename}`} alt="" />
+              </div>
+              <div class="namePrice">
+                    <h3>{product.item_name}</h3>
+                    <span>{product.price.toLocaleString("en-GB", {
+                              style: "currency",
+                              currency: "EUR",
+                            })}</span>
+                </div>
+                <p>    {product.product_description.length > 60
+            ? product.product_description.substring(0, 60) + '...'
+            : product.product_description.substring(0, 60)
+        }</p>
+                        <div class="read">
+                        <Link
+								to={`/product/${product._id}`}
+								type='button'
+								className='productButton'
+							>
+								Read More
+							</Link>
+                </div>
+            </div>
+          </div>
         </div>
-        
       </div>
     </>
   );
