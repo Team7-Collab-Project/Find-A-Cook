@@ -16,21 +16,18 @@ import SampleAdminDashboard from './SampleAdminDashboard';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
+import EditProduct from './components/Admin/EditProduct';
+import { useDispatch } from 'react-redux'
+import { getCategories } from './redux/actions/categoryActions';
 
 function App() {
 
-  // const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
-  // const fetchProducts = async () => {
-  //   const { data } = await commerce.products.list();
+  useEffect(() => {
+          dispatch(getCategories());
+  }, [dispatch]);
 
-  //   setProducts(data);
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  //  // fetchCart();
-  // }, []);
   return (
     <div>
           <Routes>
@@ -44,7 +41,8 @@ function App() {
       <Route path="/order" element={<OrderInfoPage/>} />
       <Route path="/product" element={<ProductPage/>} />
       <Route path="/documentupload" element={<UploadDocuments/>} />
-      <Route path="/admin" element={<SampleAdminDashboard/>} />
+      <Route path="/edit/product/:productId" element={<EditProduct />} />
+
     
   </Routes>
     </div>

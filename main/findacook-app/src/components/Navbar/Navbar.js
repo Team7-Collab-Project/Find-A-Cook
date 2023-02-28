@@ -3,18 +3,21 @@ import '../CSS/mystyle.css'
 import { useRef } from "react";
 import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../CartContext';
+// import { CartContext } from '../../CartContext';
 import { Modal } from "react-bootstrap";
-import DemoCart from '../Demo/DemoCart';
+// import DemoCart from '../Demo/DemoCart';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
-	const cart = useContext(CartContext);
+	// const cart = useContext(CartContext);
+
+    const { cart } = useSelector(state => state.cart)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-	const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
+	// const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
 
 	const navRef = useRef();
 
@@ -22,21 +25,21 @@ function Navbar() {
 		navRef.current.classList.toggle("responsive_nav");
 	};
 
-	const checkout = async () => {
-        await fetch('http://localhost:3001/checkout', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({items: cart.items})
-        }).then((response) => {
-            return response.json();
-        }).then((response) => {
-            if(response.url) {
-                window.location.assign(response.url); // Forwarding user to Stripe
-            }
-        });
-	}
+	// const checkout = async () => {
+    //     await fetch('http://localhost:3001/checkout', {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({items: cart.items})
+    //     }).then((response) => {
+    //         return response.json();
+    //     }).then((response) => {
+    //         if(response.url) {
+    //             window.location.assign(response.url); // Forwarding user to Stripe
+    //         }
+    //     });
+	// }
 
 	return (
 		<>
@@ -50,8 +53,11 @@ function Navbar() {
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
+                <Link to='/cart'>
+                <FaShoppingCart />{''}Cart <span>{cart.length}</span>
+                </Link>
 				{/* <a href="/#"><FaShoppingCart /></a> */}
-				<Link onClick={handleShow}><FaShoppingCart />Cart ({productsCount} Items)</Link>
+				{/* <Link onClick={handleShow}><FaShoppingCart />Cart ({productsCount} Items)</Link> */}
 				{/* <button><FaShoppingCart /></button> */}
 				<button
 					className="nav-btn nav-close-btn"
@@ -64,7 +70,7 @@ function Navbar() {
 			</button>
 		</header>
 
-<Modal show={show} onHide={handleClose}>
+{/* <Modal show={show} onHide={handleClose}>
 <Modal.Header closeButton>
           <Modal.Title>Checkout</Modal.Title>
         </Modal.Header>
@@ -87,7 +93,7 @@ function Navbar() {
                         <h1>There are no items in your cart!</h1>
                     }
         </Modal.Body>
-	</Modal>
+	</Modal> */}
 	</>
 	);
 }

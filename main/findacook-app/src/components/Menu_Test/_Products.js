@@ -1,52 +1,83 @@
-import React, { useState } from 'react';
-import '../CSS/Style.css'
-import { addToCart } from '../../redux/actions/cartActions';
-import { useDispatch } from 'react-redux';
-import { useContext } from 'react';
-import CartContext from '../../CartContext';
+import React, { useState } from "react";
+import "../CSS/Style.css";
+import { addToCart } from "../../redux/actions/cartActions";
+import { useDispatch } from "react-redux";
+import { useContext } from "react";
+import CartContext from "../../CartContext";
+import { deleteProduct } from "../../redux/actions/productActions";
+import { Link } from 'react-router-dom';
+
 
 // const _Products = ({productItems, handleAddProduct}) => {
-const _Products = ({productItems}) => {
+const _Products = ({ product }) => {
+  // const product = props.product;
+  // const cart = useContext(CartContext);
+  // const productQuantity = cart.getProductQuantity(productItems.id);
+  // console.log(cart.items);
 
-    // const product = props.product;
-    const cart = useContext(CartContext);
-    const productQuantity = cart.getProductQuantity(productItems.id);
-    // console.log(cart.items);
+  // THIS CODE WORKS!! JUST COMMENTED OUT FOR NOW
+  const dispatch = useDispatch();
 
-    // THIS CODE WORKS!! JUST COMMENTED OUT FOR NOW
-    // const dispatch = useDispatch();
+  const handleAddToCart = () => {
+  	dispatch(addToCart(product));
+  };
 
-	// const handleAddToCart = () => {
-	// 	dispatch(addToCart(productItems));
-	// };
 
-    return(
-        <div className='products'>
-            {productItems.map((productItem) => (
-                <div className='cards'>
-                    <div>
-                        <img
-                        className='product-image'
-                        src={productItem.image}
-                       />
+  // const dispatch = useDispatch();
+
+  return (
+    <>
+      <div className="col-md-4 my-3">
+        <div className="card h-100">
+   
+           <div>
+           <img className="img-fluid w-100" src={`/uploads/${product.filename}`} />
+           </div>
+           <div>
+                    <h3 className='card-body text-center'>{product.item_name}</h3>
                     </div>
-                    <div>
-                    <h3 className='product-name'>{productItem.name}</h3>
-                    </div>
-                    <div className='product-price'>€{productItem.price}</div>
-                    {/* <div className='add'>
-            <button className='addCartButton' onClick={handleAddToCart}>Add to Cart</button>
-        </div> */}
-                                                <div className='add'>
-            <button className='addCartButton' onClick={() => cart.addOneToCart(productItems.id)}>Add to Cart</button>
+                    <div className='product-price'>{product.price.toLocaleString("en-GB", {style:"currency", currency:"EUR"})}</div>
+       
+       <p>
+        {product.product_description.length > 60
+            ? product.product_description.substring(0, 60) + '...'
+            : product.product_description.substring(0, 60)
+        }
+       </p>
+
+        <Link
+            to={`/product/${product._id}`}
+            type='button'
+            className="btn btn-primary btn-sm mr-1 my-1"
+            >
+              View Product
+            </Link>
+            <button
+                type='button'
+                className="btn btn-warning btn-sm"
+                onClick={handleAddToCart}
+                >
+                  Add To Cart
+                </button>
+
+
+       {/* EDIT PAGE CODE */}
+       {/* <Link
+       to={`/edit/product/${product._id}`}
+       type="button"
+       className="btn btn-secondary btn-sm">
+        <i className="far fa-edit pr-1"></i>
+        Edit
+       </Link>
+       <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
+          <i className="far fa-trash-alt pr-1"></i>
+          Delete
+       </button> */}
         </div>
-                </div>
-            ))
+        
+      </div>
+    </>
+  );
+};
 
-            }
-
-        </div>
-    )
-}
-
-export default _Products
+export default _Products;
