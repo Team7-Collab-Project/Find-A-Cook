@@ -8,12 +8,13 @@ import productReducer from './reducers/productReducer';
 import cartReducer from './reducers/cartReducers';
 
 
+
 const reducer = combineReducers({
 	loading: loadingReducer,
 	messages: messageReducer,
 	categories: categoryReducer,
-    cart: cartReducer,
-    products: productReducer,
+  cart: cartReducer,
+  products: productReducer,
 })
 
 const initialState = {}

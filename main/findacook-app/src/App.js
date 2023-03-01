@@ -12,14 +12,14 @@ import TestPage from './TestPage';
 import CartPage2 from './CartPage2';
 import OrderInfoPage from './OrderInfoPage';
 import ProductPage from './ProductPage';
-import Shipping from './Shipping';
+import SampleAdminDashboard from './SampleAdminDashboard';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
-import SampleAdminDashboard from './SampleAdminDashboard';
-import EditProduct from './components/Admin/EditProduct';
 import { useDispatch } from 'react-redux'
 import { getCategories } from './redux/actions/categoryActions';
+import Shipping from './Shipping';
+import EditProduct from './components/Admin/EditProduct';
 import Home from './Home';
 
 
