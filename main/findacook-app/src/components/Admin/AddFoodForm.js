@@ -1,10 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
-<<<<<<< HEAD
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { createProduct } from "../../api/product";
-=======
-import "bootstrap/dist/css/bootstrap.min.css";
->>>>>>> sprint11-css-changes
 import isEmpty from "validator/lib/isEmpty";
 import { showErrorMsg, showSuccessMsg } from "../../helpers/message";
 // import { getCategories } from "../../api/category";

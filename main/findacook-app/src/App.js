@@ -48,7 +48,6 @@ function App() {
       <Route path="/shipping" element={<Shipping/>} />
       <Route path="/edit/product/:productId" element={<EditProduct />} />
       <Route path="/home" element={<Home />} />
-
     
   </Routes>
     </div>
