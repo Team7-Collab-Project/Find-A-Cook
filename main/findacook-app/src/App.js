@@ -31,6 +31,7 @@ function App() {
           dispatch(getCategories());
   }, [dispatch]);
 
+
   return (
     <div>
           <Routes>
@@ -42,13 +43,13 @@ function App() {
       <Route path="/test" element={<TestPage/>} />
       <Route path="/cart" element={<CartPage2/>} />
       <Route path="/order" element={<OrderInfoPage/>} />
+      <Route path="/edit/product/:productId" element={<EditProduct />} />
       <Route path="/product/:productId" element={<ProductPage/>} />
       <Route path="/admin" element={<SampleAdminDashboard/>} />
       <Route path="/documentupload" element={<UploadDocuments/>} />
       <Route path="/shipping" element={<Shipping/>} />
       <Route path="/edit/product/:productId" element={<EditProduct />} />
       <Route path="/home" element={<Home />} />
-    
   </Routes>
     </div>
   );

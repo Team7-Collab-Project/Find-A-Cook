@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import CartContext from "../../CartContext";
 import { deleteProduct } from "../../redux/actions/productActions";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 // const _Products = ({productItems, handleAddProduct}) => {
 const _Products = ({ product }) => {
@@ -13,6 +14,7 @@ const _Products = ({ product }) => {
   // const cart = useContext(CartContext);
   // const productQuantity = cart.getProductQuantity(productItems.id);
   // console.log(cart.items);
+
 
   // THIS CODE WORKS!! JUST COMMENTED OUT FOR NOW
   const dispatch = useDispatch();

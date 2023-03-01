@@ -23,7 +23,7 @@ const AdminBody = () => {
                 </div>
             </div>
         </div>
-        </div>
+
         </>
     );
 }
