@@ -32,6 +32,7 @@ const AddCategoryForm = () => {
     const handleMessages = evt => {
       dispatch(clearMessages());
       setErrorMsg('');
+
     }
 
     const handleCategoryChange = (evt) => {

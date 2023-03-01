@@ -12,7 +12,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import ProductPage from './ProductPage';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-
 import VerifyPage from './VerifyPage';
 import CookDashboard from './CookDashboard';
 import RegisinfoPage from './RegisInfoPage';
