@@ -6,7 +6,6 @@ import { useContext } from "react";
 import CartContext from "../../CartContext";
 import { deleteProduct } from "../../redux/actions/productActions";
 import { Link } from "react-router-dom";
-import $ from "jquery";
 
 // const _Products = ({productItems, handleAddProduct}) => {
 const _Products = ({ product }) => {
