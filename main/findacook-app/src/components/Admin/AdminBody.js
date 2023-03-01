@@ -11,9 +11,6 @@ const AdminBody = () => {
     return(
         <>
         <div className="">
-        {/* <div class="productsHeader">
-            <h1>Temi Owolabi</h1>
-        </div> */}
         <div className=''>
             <div className=''>
                 <div className=''>
@@ -22,6 +19,7 @@ const AdminBody = () => {
                     ))}
                 </div>
             </div>
+        </div>
         </div>
 
         </>
