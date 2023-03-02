@@ -116,11 +116,11 @@ function RegistrationPage() {
                                 <input type="date" name="date" class="input-text" placeholder="Birth Date" />
                             </div>
                             <div class="form-group mt-2">
-                                <button type="submit" class="btn-md btn-fg btn-block">Continue</button>
+                                <button type="submit" class="btn-md btn-fg btn-block">Register</button>
                             </div>
                         </form>
                     </div>
-                    <p>Already have an account? <a href="/login" class="linkButton">Register</a></p>
+                    <p>Already have an account? <a href="/login" class="linkButton">Sign In</a></p>
                 </div>
             </div>
         </div>
