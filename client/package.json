@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -11,7 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.7.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -37,13 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-=======
-  "dependencies": {
-    "axios": "*"
-<<<<<<< HEAD
->>>>>>> 19105-menu-item-creation
-=======
->>>>>>> 6610151c7 (Create API for making post requests)
->>>>>>> c7467d075cb1372ecbe6148adf9de982635ba938
   }
 }
