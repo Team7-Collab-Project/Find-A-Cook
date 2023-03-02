@@ -101,6 +101,15 @@ function RegistrationPage() {
                                 <input type="email" name="email" class="input-text" placeholder="Email Address" />
                             </div>
                             <div class="form-group form-fg">
+                                <input type="text" name="firstName" class="input-text" placeholder="First Name" />
+                            </div>
+                            <div class="form-group form-fg">
+                                <input type="text" name="surname" class="input-text" placeholder="Surname" />
+                            </div>
+                            <div class="form-group form-fg">
+                                <input type="number" name="number" class="input-text" placeholder="Phone Number" />
+                            </div>
+                            <div class="form-group form-fg">
                                 <input type="email" name="email" class="input-text" placeholder="Password" />
                             </div>
                             <div class="form-group form-fg">
@@ -111,7 +120,7 @@ function RegistrationPage() {
                             </div>
                         </form>
                     </div>
-                    <p>Already have an account? <a href="/login" class="linkButton">Sign In</a></p>
+                    <p>Already have an account? <a href="/login" class="linkButton">Register</a></p>
                 </div>
             </div>
         </div>
