@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import '../CSS/mystyle.css'
+import '../CSS/Style.css'
 import { useRef } from "react";
 import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
