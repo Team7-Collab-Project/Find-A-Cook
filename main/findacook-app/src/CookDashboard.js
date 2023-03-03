@@ -6,7 +6,7 @@ import HamburgNavbar from './components/HamburgNavbar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-//import Maps from './components/Maps';
+import Maps from './components/Maps';
 import {
   Container,
   Row,
@@ -76,8 +76,10 @@ function CookDashboard() {
   return (
     <><HamburgNavbar setIsOpen={setIsOpen}/>
       <div id='cookdash' className={`${isOpen ? 'sidebar-open' : ''}`}>
-      {/*<Maps center={{ lat: 37.7749, lng: -122.4194 }} zoom={11}/>*/}
-        <div><h1>Dashboard</h1></div>
+      <Container id="dashboardBG">
+        <Maps id="map" center={{ lat: 37.7749, lng: -122.4194 }} zoom={11}/>
+      </Container>
+        {/* <div><h1>Dashboard</h1></div>
         <Container id="dashboardBG">
           <Row>
             <Col xs={3}>
@@ -97,7 +99,7 @@ function CookDashboard() {
               <div id='bio'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
             </Col>
             </Row>
-            </Container>
+            </Container> */}
 
           <Tabs>
             <TabList>

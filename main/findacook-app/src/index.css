@@ -729,12 +729,13 @@ footer {
 }
 
 #dashboardBG {
-  height: 350px;
+  min-height: 500px;
   max-height: fit-content;
   margin-bottom: 4%;
   text-align: center;
   width: 1350px;
   max-width: fit-content;
+  margin-left: 0;
 }
 
 
