@@ -16,14 +16,26 @@ Find A Cook is a one-of-a-kind app that allows you to experience the taste of ex
 git git@github.com:Team7-Collab-Project/Find-A-Cook.git
 ```
 
-#### 2. Run Backend
+#### 2. Install Dependencies
+```
+npm install --save google-maps-react --legacy-peer-deps
+npm install --save react-tabs
+npm i --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome
+npm install @mui/material @emotion/react @emotion/styled
+npm i autosuggest-highlight
+npm install react-redux
+```
+
+#### 3. Run Backend
 ```
 cd server
 npm install 
 nodemon index.js
 ```
 
-#### 3. Run Frontend
+#### 4. Run Frontend
 ```
 cd client
 npm install 
