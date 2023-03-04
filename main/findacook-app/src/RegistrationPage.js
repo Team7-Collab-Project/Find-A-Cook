@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios, { Axios } from 'axios';
 import { Link } from "react-router-dom";
 import BackButton from "./components/BackButton";
 import FormControl from "@mui/material/FormControl";
@@ -10,69 +11,37 @@ import { FaEnvelope } from "react-icons/fa";
 import "./index.css";
 
 function RegistrationPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birth, setBirth] = useState("");
+  const [user, setUser] = useState({
+    user_first_name: "",
+    user_last_name: "",
+    user_phone_number: "",
+    user_email: "",
+    user_password: "",
+    user_birthday: ""
+  });
+  const [message, setMessage] = useState("");
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const today = new Date();
-    const birthDate = new Date(birth);
-    const age = today.getFullYear() - birthDate.getFullYear();
-    if (!email.match("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$")) {
-      window.alert("Invalid email");
-      return;
-    }
-    if (
-      !password.match(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-      )
-    ) {
-      window.alert(
-        "Password must contain 8 characters, an uppercase letter, a number and a special character"
-      );
-      return;
-    }
-    if (age < 18) {
-      window.alert("You must be at least 18 years old to register.");
-      return;
-    }
+    axios
+    .post('http://localhost:5001/user/signup', user)
+    .then((response) => {
+      console.log("response received", response.data);
+      setMessage(response.data.message);
+    })
+    .catch((error) => {
+      console.log("error received", error.response.data);
+      setMessage(error.response.data);
+    });
 
-    // Logic for registering
-    window.location.href = "/verify";
   };
   return (
     <>
-      {/* <BackButton /> */}
-
-      {/* <Link style={{textDecoration: 'none'}} to="/"><img id="loginLogo" alt="FindaCook logo" src="./images/logo-new-edit-01.png"/></Link>
-    <form id="regisForm" onSubmit={handleSubmit}>
-    <FormControl sx={{ width: '25ch' }}>
-          <br />
-          <TextField required variant="filled" helperText="Please enter your email" className='formInput' label="Email" value={email} onChange={(event) => setEmail(event.target.value)} inputProps={{ pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" }} />
-          <br />
-          <br />
-          <TextField required variant="filled" helperText="Please enter your password" className='formInput' label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} inputProps={{ pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"}}/>
-          <br />
-          <br />
-          <TextField required variant="filled" helperText="Please enter your date of birth" id="regBirth" className='formInput' type="date" value={birth} onChange={(event) => setBirth(event.target.value)}/>          <br />
-          <br />
-          <br/>
-            <button type="submit" className='btn' id="regBtn">Next</button>
-    </FormControl>
-      
-      <hr></hr><h2> OR </h2>
-      <h3>Sign-up with:</h3>
-      <br />
-      <img src="./images/twitIcon.png" id="twitSign" alt="Twitter Icon"></img>
-      <img src="./images/fbIcon.png" id="fbSign" alt="Facebook Icon"></img>
-      <img src="./images/googleIcon.png" id="gooSign" alt="Google Icon"></img>
-      <br />
-      <br />
-      <br />
-      <Link style={{textDecoration: 'none'}} to="/login"><p>Already have an account? Log in here</p></Link>
-      
-    </form> */}
 
 <div class="login-fg">
     <div class="container-fluid">
@@ -96,24 +65,24 @@ function RegistrationPage() {
                         <span>Or</span>
                     </div>
                     <div class="form-container">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Email Address" />
+                                <input type="email" name="user_email" class="input-text" placeholder="Email Address" value={user.user_email} onChange={handleInputChange}/>
                             </div>
                             <div class="form-group form-fg">
-                                <input type="text" name="firstName" class="input-text" placeholder="First Name" />
+                                <input type="text" name="user_first_name" class="input-text" placeholder="First Name" value={user.user_first_name} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <input type="text" name="surname" class="input-text" placeholder="Surname" />
+                                <input type="text" name="user_last_name" class="input-text" placeholder="Surname" value={user.user_last_name} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <input type="number" name="number" class="input-text" placeholder="Phone Number" />
+                                <input type="number" name="user_phone_number" class="input-text" placeholder="Phone Number" value={user.user_phone_number} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Password" />
+                                <input type="password" name="user_password" class="input-text" placeholder="Password" value={user.user_password} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <input type="date" name="date" class="input-text" placeholder="Birth Date" />
+                                <input type="date" name="user_birthday" class="input-text" placeholder="Birth Date" value={user.user_birthday} onChange={handleInputChange} />
                             </div>
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn-md btn-fg btn-block">Register</button>
