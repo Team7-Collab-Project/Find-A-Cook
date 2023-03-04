@@ -30,6 +30,7 @@ import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
 import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
+import ApplicationSubmitted from './ApplicationSubmitted';
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
       <Route path="/cooklogin" element={<CookLoginPage />} />
       <Route path="/cookregestration" element={<CookRegPage />} />
       <Route path="/complete-form" element={<CompleteForm />} />
+      <Route path="/submit" element={<ApplicationSubmitted />} />
   </Routes>
     </div>
   );

@@ -1324,7 +1324,7 @@ input[type=radio] {
   position: relative;
   z-index: 10;
   height: 60px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
   background: #202025;
   padding: 0 1rem;
   display: block;
@@ -1373,6 +1373,8 @@ input[type=radio] {
   margin: 0;
   min-width: 500px;
   max-width: 100%;
+  border-top:  5px solid #353535;
+  border-bottom: 5px solid #353535;
 }
 
 .personal-form-section{
@@ -1405,6 +1407,54 @@ input[type=radio] {
   position: relative;
   padding-top: 10px;
 }
+
+
+.successBody{
+  display: flex;
+	align-items:center;
+	justify-content:center;
+	color: black;
+	line-height: 1.5;
+}
+
+.successCard{
+  padding: 300px 1.5rem 1.5rem 1.5rem;
+	border: 1px solid grey;
+	border-radius: 3px;
+	width: 100%;
+	max-width: 600px;
+	text-align:center;
+	background-color: white;
+	background-size: 250px;
+	background-position: center 30px;
+  margin-top: 65px;
+}
+
+.applicationButton {
+  width: 100%;
+  max-width: 300px;
+  margin: .5rem auto;
+}
+
+
+.applicationBtn{
+  border: 0;
+	font-family:inherit;
+	padding: .4em 1em;
+  background: red;
+	color: white;
+  border-radius: 3px;
+}
+
+.applicationBtn:hover{
+  color: rgba(255, 255, 255, 0.712);
+  background: rgb(238, 78, 78);
+}
+
+
+
+
+
 
 
 
