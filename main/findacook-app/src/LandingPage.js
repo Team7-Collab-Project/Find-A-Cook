@@ -1,7 +1,7 @@
 import Button from './components/Button'
 import { Link} from 'react-router-dom'
 import { useState } from 'react';
-import Navbar from './components/Navbar/Navbar'
+import LandingNavbar from './components/Navbar/LandingNavbar'
 import Footer from './components/Footer/Footer';
 import AboutSection from './AboutSection';
 import InfoSection from './InfoSection';
@@ -21,7 +21,7 @@ const LandingPage = () => {
         // </div>
 
         <div className='home-container'>
-            <Navbar />
+            <LandingNavbar />
             <div className='home-banner-container'>
                 <div className='home-bannerImage-container'>
                    <img className='landingImg' src='./images/background-image.png' /> 
