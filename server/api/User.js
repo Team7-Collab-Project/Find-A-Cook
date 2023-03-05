@@ -162,6 +162,7 @@ const sendVerificationEmail = ({_id, user_email}, res) => {
 
 router.get("/verify/:userId/:uniqueString", (req, res) => {
     let {userId, uniqueString} = req.params;
+    const currentUrl = "http://localhost:3000";
     
 
     UserVerification
@@ -179,17 +180,17 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                     .deleteOne({_id: userId})
                     .then(result => {
                         let message = "Link has expired. Please sign up again.";
-                        res.redirect(`/user/verified/error=true&messages=${message}`);
+                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                     })
                     .catch((error) => {
                         let message = "Clearing user with expired unique string failed";
-                        res.redirect(`/user/verified/error=true&messages=${message}`);
+                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                     })
                 })
                 .catch((error) => {
                     console.log(error);
                     let message = "An error occurred while clearing expired user verification record";
-                    res.redirect(`/user/verified/error=true&messages=${message}`);
+                    res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                 })
             } else {
                 bcrypt
@@ -202,45 +203,45 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                             UserVerification
                             .deleteOne({userId})
                             .then(() => {
-                                res.sendFile(path.join(__dirname, "./../views/verified.html"));
+                                res.redirect(currentUrl + '/verificationpage');
                             })
                             .catch(error => {
                                 console.log(error);
                                 let message = "An error occurred while finalizing successful verification.";
-                                res.redirect(`/user/verified/error=true&messages=${message}`);
+                                res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                             })
                         })
                         .catch(error => {
                             console.log(error);
                             let message = "An error occurred while updating user record to show verified.";
-                            res.redirect(`/user/verified/error=true&messages=${message}`);
+                            res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                         })
                     } else {
                         let message = "Invalid verification details passed. Check your inbox";
-                        res.redirect(`/user/verified/error=true&messages=${message}`);
+                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                     }
                 })
                 .catch(error => {
                     let message = "An error occurred while compring unique strings";
-                    res.redirect(`/user/verified/error=true&messages=${message}`);
+                    res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                 })
             }
         } else {
             let message = "Account record doesn't exist or has been verified already. Please sign up or login.";
-            res.redirect(`/user/verified/error=true&messages=${message}`);
+            res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
         }
     })
     .catch((error) => {
         console.log(error);
         let message = "An error occurred while checking for existing user verification record";
-        res.redirect(`/user/verified/error=true&messages=${message}`);
+        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
     });
 });
 
 
-router.get("/verified", (req, res) => {
-    res.sendFile(path.join(__dirname, "./../views/verified.html"));
-})
+// router.get("/verified", (req, res) => {
+//     res.sendFile(path.join(__dirname, "./../views/verified.html"));
+// })
 
 
 // logging in

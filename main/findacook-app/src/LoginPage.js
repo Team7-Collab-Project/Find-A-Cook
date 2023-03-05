@@ -10,23 +10,7 @@ import { FaGoogle } from "react-icons/fa";
 
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  function handleLogin(event) {
-    event.preventDefault();
-    const { email, password } = event.target.elements;
   
-    // check if the checkbox is checked
-    if (RememberPassword.checked) {
-      // save email and password to local storage
-      localStorage.setItem("email", email.value);
-      localStorage.setItem("password", password.value);
-    } else {
-      // remove email and password from local storage
-      localStorage.removeItem("email");
-      localStorage.removeItem("password");
-    }
   
     // perform login
   }
