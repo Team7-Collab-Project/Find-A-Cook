@@ -66,23 +66,22 @@ const handleCategory = (e) => {
             </div>
 
             <nav className="">
-              <form className="form-inline my-2 my-lg-0">
+              <form className="search-container">
                 <input
-                  className="form-control mr-sm-2"
+                  id="search-bar"
                   type="search"
-                  placeholder="Search"
-                  aria-label="Search"
+                  placeholder="Search..."
                   name="search"
                   value={text}
                   onChange={handleSearch}
                 />
-                <button
-                  className="btn btn-outline-success my-2 my-sm-0"
+                {/* <button
+                  className=""
                   type="submit"
                   disabled={true}
                 >
                   Search
-                </button>
+                </button> */}
               </form>
             </nav>
 
