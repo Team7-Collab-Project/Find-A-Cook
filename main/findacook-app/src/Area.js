@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "./redux/actions/productActions";
-import { getCategories } from './redux/actions/categoryActions'
-import { getProductsByFilter } from './redux/actions/filterActions'
+import { getCategories } from "./redux/actions/categoryActions";
+import { getProductsByFilter } from "./redux/actions/filterActions";
 import _Products from "./components/Menu_Test/_Products";
 import { FaSlidersH } from "react-icons/fa";
 
 const Area = () => {
+  const [text, setText] = useState("");
+  const [categoryIds, setCategoryIds] = useState([]);
 
-  const [text, setText] = useState('');
-    
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,18 +21,34 @@ const Area = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-
   const { products } = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     setText(e.target.value);
 
-    dispatch(getProductsByFilter({type: 'text', query: e.target.value}))
+    dispatch(getProductsByFilter({ type: "text", query: e.target.value }));
+  };
+
+const handleCategory = (e) => {
+  const currentCategoryChecked = e.target.value;
+  const allCategoriesChecked = [...categoryIds]
+  const indexFound = allCategoriesChecked.indexOf(currentCategoryChecked);
+
+  let updatedCategoryIds;
+  if (indexFound === -1) {
+    updatedCategoryIds = [...categoryIds, currentCategoryChecked];
+    setCategoryIds(updatedCategoryIds);
+  } else {
+    updatedCategoryIds = [...categoryIds]
+    updatedCategoryIds.splice(indexFound, 1);
+    setCategoryIds(updatedCategoryIds);
   }
 
+  dispatch(getProductsByFilter({type: 'category', query: updatedCategoryIds}));
+}
 
-//   console.log(categories);
+  //   console.log(categories);
   return (
     <>
       <Navbar />
@@ -70,18 +86,26 @@ const Area = () => {
               </form>
             </nav>
 
+            <div className='border-top border-bottom bg-light p-3'>
+              {categories &&
+                categories.map((c) => (
+                  <div key={c._id} className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      name="category"
+                      value={c._id}
+                      id="flexCheckChecked"
+                      onChange={handleCategory}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexCheckChecked"
+                    ></label> {c.category_name}
 
-            <div>
-                {categories && categories.map((c) => (
-                    <div key={c._id} className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                        <label className="form-check-label" htmlFor="flexCheckChecked">
-                        </label>                             {c.category_name}
-                    </div>
+                  </div>
                 ))}
             </div>
-
-
           </div>
           <div className="col-md-9">
             <div className="row">
