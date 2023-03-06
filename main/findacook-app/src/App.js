@@ -27,6 +27,7 @@ import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
+import VerificationPage from './VerificationPage';
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/profile" element={<CookProfile />} />
       <Route path="/viewcooks" element={<ViewCooks />} />
+      <Route path="/verificationpage" element={<VerificationPage/>} />
   </Routes>
     </div>
   );

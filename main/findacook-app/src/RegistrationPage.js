@@ -88,6 +88,7 @@ function RegistrationPage() {
                                 <button type="submit" class="btn-md btn-fg btn-block">Register</button>
                             </div>
                         </form>
+                        {message}
                     </div>
                     <p>Already have an account? <a href="/login" class="linkButton">Sign In</a></p>
                 </div>
