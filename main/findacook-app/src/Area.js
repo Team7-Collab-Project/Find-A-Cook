@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "./redux/actions/productActions";
 import { getCategories } from './redux/actions/categoryActions'
+import { getProductsByFilter } from './redux/actions/filterActions'
 import _Products from "./components/Menu_Test/_Products";
 import { FaSlidersH } from "react-icons/fa";
 
@@ -20,12 +21,17 @@ const Area = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  const handleSearch = e => {
-    setText(e.target.value);
-  }
 
   const { products } = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
+
+  const handleSearch = e => {
+    setText(e.target.value);
+
+    dispatch(getProductsByFilter({type: 'text', query: e.target.value}))
+  }
+
+
 //   console.log(categories);
   return (
     <>
@@ -50,11 +56,14 @@ const Area = () => {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  name="search"
+                  value={text}
                   onChange={handleSearch}
                 />
                 <button
                   className="btn btn-outline-success my-2 my-sm-0"
                   type="submit"
+                  disabled={true}
                 >
                   Search
                 </button>
