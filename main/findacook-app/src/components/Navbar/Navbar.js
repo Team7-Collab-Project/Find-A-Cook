@@ -57,6 +57,9 @@ function Navbar() {
 				<a href="/#">Discover Cooks</a>
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
+
+                // name of user
+
                 <LogoutButton/>
                 <Link to='/cart'>
                 <FaShoppingCart />{' '}Cart <span>({cart.length})</span>
