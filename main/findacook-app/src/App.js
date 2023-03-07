@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import LoginPage from './LoginPage';
+import CookLoginPage from './CookLoginPage';
 import UploadDocuments from './UploadDocuments';
 import RegistrationPage from './RegistrationPage';
 import GuestPage from './GuestPage';
@@ -28,6 +29,9 @@ import TermsPage from './TermsPage';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
 import VerificationPage from './VerificationPage';
+import CookRegPage from './CookRegPage'
+import CompleteForm from './CompleteForm';
+import ApplicationSubmitted from './ApplicationSubmitted';
 
 
 function App() {
@@ -64,6 +68,10 @@ function App() {
       <Route path="/profile" element={<CookProfile />} />
       <Route path="/viewcooks" element={<ViewCooks />} />
       <Route path="/verificationpage" element={<VerificationPage/>} />
+      <Route path="/cooklogin" element={<CookLoginPage />} />
+      <Route path="/cookregestration" element={<CookRegPage />} />
+      <Route path="/complete-form" element={<CompleteForm />} />
+      <Route path="/submit" element={<ApplicationSubmitted />} />
   </Routes>
     </div>
   );

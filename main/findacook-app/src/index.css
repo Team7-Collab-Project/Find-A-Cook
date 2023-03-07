@@ -1314,3 +1314,153 @@ input[type=radio] {
     font-size: 26px;
   }
 }
+
+
+
+
+
+
+.thing1{
+  position: relative;
+  z-index: 10;
+  height: 60px;
+  border-bottom: 2px solid #ddd;
+  background: #202025;
+  padding: 0 1rem;
+  display: block;
+}
+
+.formLogo{
+  display: block;
+  float: left;
+  line-height: 0;
+}
+
+.formLogo img{
+  margin-top: 2px;
+  width: 150px;
+  height: 100%;
+  padding: 10px;
+}
+
+.thing2{
+  background: #fff;
+  padding: 32px 0;
+  border-bottom: solid 1px #d4e3ed;
+  overflow: hidden;
+  display: block;
+}
+
+.personal-info-text{
+  max-width: 1200px;
+  margin: 0 auto 0;
+  padding-left: 24px;
+  padding-right: 24px;
+  display: block;
+}
+
+
+
+.personal-form-container{
+  background: white;
+  height: 100vh; overflow-y: scroll;
+}
+
+.personal-form-body{
+  width: 100%;
+  background: #353535;
+  padding: 0px 30vmin;
+  margin: 0;
+  min-width: 500px;
+  max-width: 100%;
+  border-top:  5px solid #353535;
+  border-bottom: 5px solid #353535;
+}
+
+.personal-form-section{
+  padding: 20px 30vmin;
+}
+
+.personal-form input{
+  border: 0;
+  border-bottom: 2px solid #dddddd;
+  width: 100%;
+  margin-top: 40px;
+  padding: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: block;
+}
+
+
+.personal-form textarea{
+  border: 2px solid #dddddd;
+  border-radius: 10px;
+  border-bottom: 2px solid #dddddd;
+  width: 100%;
+  margin-top: 40px;
+  padding: 5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.personal-form label{
+  display: block;
+  position: relative;
+  padding-top: 10px;
+}
+
+
+.successBody{
+  display: flex;
+	align-items:center;
+	justify-content:center;
+	color: black;
+	line-height: 1.5;
+}
+
+.successCard{
+  padding: 300px 1.5rem 1.5rem 1.5rem;
+	border: 1px solid grey;
+	border-radius: 3px;
+	width: 100%;
+	max-width: 600px;
+	text-align:center;
+	background-color: white;
+	background-size: 250px;
+	background-position: center 30px;
+  margin-top: 65px;
+}
+
+.applicationButton {
+  width: 100%;
+  max-width: 300px;
+  margin: .5rem auto;
+}
+
+
+.applicationBtn{
+  border: 0;
+	font-family:inherit;
+	padding: .4em 1em;
+  background: red;
+	color: white;
+  border-radius: 3px;
+}
+
+.applicationBtn:hover{
+  color: rgba(255, 255, 255, 0.712);
+  background: rgb(238, 78, 78);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
