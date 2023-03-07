@@ -30,13 +30,21 @@ const cooks = new mongoose.Schema(
             default: 'pending',
             required: true,
         },
+        cook_average_rating: {
+            type: Float,
+            required: true,
+        }, //The average of all ratings for a given cook
+        cook_total_rating: {
+            type: Int,
+            required: true,
+        }, //The total number of ratings a given cook has received
     },
     { timestamps: true }
 );
 
-const CookSchema = mongoose.model('Cook', cooks);
+const ReviewSchema = mongoose.model('Review', reviews);
 
-module.exports = CookSchema;
+module.exports = ReviewSchema;
 
 
 
