@@ -6,6 +6,7 @@ import { getCategories } from "./redux/actions/categoryActions";
 import { getProductsByFilter } from "./redux/actions/filterActions";
 import _Products from "./components/Menu_Test/_Products";
 import { FaSlidersH } from "react-icons/fa";
+import { FaMapPin } from "react-icons/fa";
 
 const Area = () => {
   const [text, setText] = useState("");
@@ -25,7 +26,7 @@ const Area = () => {
   const { categories } = useSelector((state) => state.categories);
 
   const handleSearch = (e) => {
-    setText(e.target.value);
+    setText(e.target.value); 
 
     dispatch(getProductsByFilter({ type: "text", query: e.target.value }));
   };
@@ -54,7 +55,7 @@ const handleCategory = (e) => {
       <Navbar />
       <section className="shop-page m-4">
         <div className="jumbotron">
-          <h1 className="display-4">Dundalk</h1>
+          <h5 className=""> <FaMapPin/> 107 Priorland Grove, Dundalk, Co.Louth</h5>
         </div>
         <div className="row">
           <div className="col-md-3 border-right">
@@ -64,6 +65,8 @@ const handleCategory = (e) => {
                 <FaSlidersH />
               </span>
             </div>
+
+            <br />
 
             <nav className="">
               <form className="search-container">
@@ -75,6 +78,7 @@ const handleCategory = (e) => {
                   value={text}
                   onChange={handleSearch}
                 />
+            
                 {/* <button
                   className=""
                   type="submit"
@@ -84,21 +88,22 @@ const handleCategory = (e) => {
                 </button> */}
               </form>
             </nav>
-
-            <div className='border-top border-bottom bg-light p-3'>
+    <br />
+            <div class="">
               {categories &&
                 categories.map((c) => (
-                  <div key={c._id} className="form-check">
+                  <div key={c._id} className="">
                     <input
-                      className="form-check-input"
+                      className=""
                       type="checkbox"
                       name="category"
                       value={c._id}
                       id="flexCheckChecked"
                       onChange={handleCategory}
+                      // checked
                     />
                     <label
-                      className="form-check-label"
+                      className="checkbox checked"
                       htmlFor="flexCheckChecked"
                     ></label> {c.category_name}
 
@@ -106,7 +111,7 @@ const handleCategory = (e) => {
                 ))}
             </div>
           </div>
-          <div className="col-md-9">
+          <div className="col-md-6">
             <div className="row">
               {products &&
                 products.map((product) => (

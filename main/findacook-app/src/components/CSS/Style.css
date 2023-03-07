@@ -425,18 +425,19 @@ label {
 
 
 .productBody{
-	background-color: #eee;
+	
     min-height: 100vh;
     display: grid;
     place-content: center;
+	columns: 2 auto;
 }
 
 .theProductsContainer{
     width: 80vw;
     height:80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
 }
 
 
