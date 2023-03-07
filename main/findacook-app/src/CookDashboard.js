@@ -20,7 +20,7 @@ import {
 } from "react-bootstrap";
 import { MAP_SETTINGS } from './components/Maps';
 import { Marker } from 'google-maps-react';
-import { MOCK_ORIGINS_DATA, MOCK_DESTINATIONS_DATA } from './data';
+import { MOCK_ORIGINS_DATA } from './data';
 
 
 function CookDashboard({origins, destinations}) {
@@ -91,32 +91,15 @@ function CookDashboard({origins, destinations}) {
       <div id='cookdash' className={`${isOpen ? 'sidebar-open' : ''}`}>
       <Container id="dashboardBG">
         <Maps 
-          id="googlemap" 
+          key={1}
           origins={MOCK_ORIGINS_DATA}
-          destinations={MOCK_DESTINATIONS_DATA}
-          suppressMarkers={true}
+          suppressMarkers={false}
           >
-          {origins.map(({ coordinates: { lat, lon: lng }, id }) => (
             <Marker
-              key={id}
-              position={{ lat, lng }}
-              icon={{
-                url: 'https://hea.ie/assets/uploads/2017/04/DKIT-1000x500.jpg',
-                scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
-              }}
+              title='dkit1'
+              position={{ lat: 53.986397, lng: -6.393929 }}
             />
-          ))}
-          {destinations.map(({ coordinates: { lat, lon: lng }, id }) => (
-            <Marker
-              key={id}
-              position={{ lat, lng }}
-              icon={{
-                url: 'https://hea.ie/assets/uploads/2017/04/DKIT-1000x500.jpg',
-                scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
-              }}
-            />
-          ))}
-            </Maps>
+          </Maps>
             
       </Container>
         {/* <div><h1>Dashboard</h1></div>
