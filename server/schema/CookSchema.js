@@ -42,9 +42,9 @@ const cooks = new mongoose.Schema(
     { timestamps: true }
 );
 
-const ReviewSchema = mongoose.model('Review', reviews);
+const CookSchema = mongoose.model('Cook', cooks);
 
-module.exports = ReviewSchema;
+module.exports = CookSchema;
 
 
 
