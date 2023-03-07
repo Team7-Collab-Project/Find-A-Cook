@@ -327,4 +327,25 @@ router.get('/myprofile', (req, res) => {
     });
   });
 
+  router.get("/userinfo", (req, res) => {
+    if (req.session.user) {
+        const { user_first_name, user_last_name } = req.session.user;
+        res.json({
+            status: "SUCCESS",
+            message: "User information found",
+            data: {
+                firstName: user_first_name,
+                lastName: user_last_name
+            }
+        });
+    } else {
+        res.json({
+            status: "FAILED",
+            message: "No user information found",
+        });
+    }
+});
+  
+  
+
 module.exports = router;
