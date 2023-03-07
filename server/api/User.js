@@ -266,11 +266,9 @@ router.post('/signin', (req, res) => {
                     const hashedPassword = data[0].user_password;
                     bcrypt.compare(user_password, hashedPassword).then(result => {
                     if (result) {
-                        res.json({
-                            status: "SUCCESS",
-                            message: "Sign in succesful",
-                            data: data
-                        })
+                        req.session.user = result
+                        console.log(req.session.user)
+                        res.send(result)
                     } else {
                         res.json({
                             status: "FAILED",
@@ -300,5 +298,16 @@ router.post('/signin', (req, res) => {
         })
     }
 })
+
+// handle a request that requires a logged-in user
+router.get('/myprofile', (req, res) => {
+    // retrieve the session data for the current user
+    const { user } = req.session;
+    if (!user) {
+      res.send('You must be logged in to view your profile');
+    } else {
+      res.send(`Welcome back, ${user}!`);
+    }
+  });
 
 module.exports = router;
