@@ -28,7 +28,8 @@ import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
-import CookRegPage from './CookRegPage'
+import ReviewCook from './ReviewCook';
+import CookRegPage from './CookRegPage';
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
 
@@ -70,6 +71,7 @@ function App() {
       <Route path="/cookregestration" element={<CookRegPage />} />
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
+      <Route path="/reviewcook" element={<ReviewCook />} />
   </Routes>
     </div>
   );
