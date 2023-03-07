@@ -18,9 +18,12 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
+import { MAP_SETTINGS } from './components/Maps';
+import { Marker } from 'google-maps-react';
+import { MOCK_ORIGINS_DATA, MOCK_DESTINATIONS_DATA } from './data';
 
 
-function CookDashboard() {
+function CookDashboard({origins, destinations}) {
 
 
   const [selectedFile, setSelectedFile] = useState();
@@ -29,6 +32,16 @@ function CookDashboard() {
   const [isOpen, setIsOpen] = useState(false);
   const [clicksOutside, setClicksOutside] = useState(0);
   const navbarRef = React.useRef(null);
+
+  const {
+    MARKER_SIZE,
+    DEFAULT_ZOOM,
+    DEFAULT_CENTER,
+    DEFAULT_MAP_OPTIONS,
+    // PIXEL_OFFSET,
+    // DIRECTIONS_OPTIONS,
+  } = MAP_SETTINGS
+
 
   const handleClickOutside = event => {
     if (isOpen && navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -77,7 +90,34 @@ function CookDashboard() {
     <><HamburgNavbar setIsOpen={setIsOpen}/>
       <div id='cookdash' className={`${isOpen ? 'sidebar-open' : ''}`}>
       <Container id="dashboardBG">
-        <Maps id="map" center={{ lat: 37.7749, lng: -122.4194 }} zoom={11}/>
+        <Maps 
+          id="googlemap" 
+          origins={MOCK_ORIGINS_DATA}
+          destinations={MOCK_DESTINATIONS_DATA}
+          suppressMarkers={true}
+          >
+          {origins.map(({ coordinates: { lat, lon: lng }, id }) => (
+            <Marker
+              key={id}
+              position={{ lat, lng }}
+              icon={{
+                url: 'https://hea.ie/assets/uploads/2017/04/DKIT-1000x500.jpg',
+                scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
+              }}
+            />
+          ))}
+          {destinations.map(({ coordinates: { lat, lon: lng }, id }) => (
+            <Marker
+              key={id}
+              position={{ lat, lng }}
+              icon={{
+                url: 'https://hea.ie/assets/uploads/2017/04/DKIT-1000x500.jpg',
+                scaledSize: new window.google.maps.Size(MARKER_SIZE, MARKER_SIZE),
+              }}
+            />
+          ))}
+            </Maps>
+            
       </Container>
         {/* <div><h1>Dashboard</h1></div>
         <Container id="dashboardBG">
