@@ -310,4 +310,21 @@ router.get('/myprofile', (req, res) => {
     }
   });
 
+  router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        res.json({
+          status: "FAILED",
+          message: "Error occurred while logging out",
+        })
+      } else {
+        res.clearCookie("userId");
+        res.json({
+          status: "SUCCESS",
+          message: "Logged out successfully",
+        })
+      }
+    });
+  });
+
 module.exports = router;
