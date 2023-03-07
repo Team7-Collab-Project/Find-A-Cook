@@ -7,36 +7,37 @@ import RememberPassword from './components/RememberPassword';
 import { BsTwitter } from 'react-icons/bs';
 import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
+import axios from 'axios';
+import { useNavigate, Redirect } from "react-router-dom";
 
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleLogin(event) {
-    event.preventDefault();
-    const { email, password } = event.target.elements;
-  
-    // check if the checkbox is checked
-    if (RememberPassword.checked) {
-      // save email and password to local storage
-      localStorage.setItem("email", email.value);
-      localStorage.setItem("password", password.value);
-    } else {
-      // remove email and password from local storage
-      localStorage.removeItem("email");
-      localStorage.removeItem("password");
-    }
-  
-    // perform login
-  }
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Logic for logging in
-    window.location.href = "/cookdashboard";
-  };
+  axios.defaults.withCredentials = true
+  const Login = () => {
+    axios.post('http://localhost:5001/user/signin', {
+        user_email: email,
+        user_password: password,
+    }).then((res) => {
+        if (res.data.status === "SUCCESS") {
+            console.log(res.data);
+            // redirect to dashboard
+            navigate("/home")
+        } else {
+            // display error message
+            setMessage(res.data.message)
+        }
+    }).catch((err) => {
+        console.error(err);
+        // display error message
+        setMessage(err.response.data.message)
+    });
+};
 
   return (
     <>
@@ -62,16 +63,17 @@ function LoginPage() {
                         <span>Or</span>
                     </div>
                     <div class="form-container">
-                        <form>
+                        <form onSubmit={Login}>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Email Address" />
+                                <input type="email" name="email" class="input-text" placeholder="Email Address" onChange={(event) =>setEmail(event.target.value)}/>
                             </div>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Password" />
+                                <input type="password" name="password" class="input-text" placeholder="Password" onChange={(event) =>setPassword(event.target.value)}/>
                             </div>
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn-md btn-fg btn-block">Login</button>
                             </div>
+                            {message}
                         </form>
                     </div>
                     <p>New Here? <a href="/register" class="linkButton">Sign Up!</a></p>

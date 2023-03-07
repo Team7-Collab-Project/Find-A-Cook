@@ -1,0 +1,30 @@
+.verification-body {
+    background-color: #064e3b;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .verification-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .verification-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .verification-content svg {
+    margin-bottom: 20px;
+  }
+  
+  .verification-content p {
+    font-size: 18px;
+  }
+  
