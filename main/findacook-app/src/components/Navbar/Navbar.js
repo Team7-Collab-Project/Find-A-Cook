@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from "react-bootstrap";
 // import DemoCart from '../Demo/DemoCart';
 import { useSelector } from 'react-redux';
+import LogoutButton from '../LogoutOut';
 
 function Navbar() {
 	// const cart = useContext(CartContext);
@@ -56,6 +57,7 @@ function Navbar() {
 				<a href="/#">Discover Cooks</a>
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
+                <LogoutButton/>
                 <Link to='/cart'>
                 <FaShoppingCart />{' '}Cart <span>({cart.length})</span>
                 </Link>
