@@ -81,6 +81,23 @@ const _Products = ({ product }) => {
             ? product.product_description.substring(0, 60) + '...'
             : product.product_description.substring(0, 60)
         }</p>
+
+       {/* EDIT PAGE CODE */}
+       
+       {/* <Link
+       to={`/edit/product/${product._id}`}
+       type="button"
+       className="btn btn-secondary btn-sm">
+        <i className="far fa-edit pr-1"></i>
+        Edit
+       </Link> */}
+
+
+       {/* <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
+          <i className="far fa-trash-alt pr-1"></i>
+          Delete
+       </button> */}
+
                         <div class="read">
                         <Link
 								to={`/product/${product._id}`}

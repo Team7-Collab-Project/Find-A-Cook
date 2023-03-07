@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
@@ -32,6 +31,7 @@ import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
 import Area from './Area';
+import SubscriptionPage from './SubscriptionPage'
 
 
 function App() {
@@ -72,6 +72,7 @@ function App() {
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
       <Route path="/area" element={<Area />} />
+      <Route path="/subscription" element={<SubscriptionPage />} />
   </Routes>
     </div>
   );

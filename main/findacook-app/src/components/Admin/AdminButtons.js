@@ -39,11 +39,11 @@ const AdminButtons = () => {
             </button>
           </div>
 
-          <div className="col-md-4 my-1">
+          {/* <div className="col-md-4 my-1">
             <Button variant="outline-success" >
               <span>View Orders</span>
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
 
