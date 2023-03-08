@@ -58,7 +58,7 @@ function Navbar() {
 				<a href="/#">Placeholder</a>
 				<a href="/#">Placeholder</a>
 
-                // name of user
+                {/* name of user */}
 
                 <LogoutButton/>
                 <Link to='/cart'>

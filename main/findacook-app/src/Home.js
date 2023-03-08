@@ -8,7 +8,7 @@ function HomePage() {
     useEffect(()=> {
         axios.get('http://localhost:5001/user/userinfo')
         .then((res) => {
-            setFirstName(res.data.user_first_name);
+            setFirstName(res.data.message);
         })
         .catch((err) => {
             console.error(err);

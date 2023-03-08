@@ -162,7 +162,6 @@ const sendVerificationEmail = ({_id, user_email}, res) => {
 
 router.get("/verify/:userId/:uniqueString", (req, res) => {
     let {userId, uniqueString} = req.params;
-    const currentUrl = "http://localhost:3000";
     
 
     UserVerification
@@ -180,17 +179,17 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                     .deleteOne({_id: userId})
                     .then(result => {
                         let message = "Link has expired. Please sign up again.";
-                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                        res.redirect(`/user/verified/error=true&messages=${message}`);
                     })
                     .catch((error) => {
                         let message = "Clearing user with expired unique string failed";
-                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                        res.redirect(`/user/verified/error=true&messages=${message}`);
                     })
                 })
                 .catch((error) => {
                     console.log(error);
                     let message = "An error occurred while clearing expired user verification record";
-                    res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                    res.redirect(`/user/verified/error=true&messages=${message}`);
                 })
             } else {
                 bcrypt
@@ -203,45 +202,45 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                             UserVerification
                             .deleteOne({userId})
                             .then(() => {
-                                res.redirect(currentUrl + '/verificationpage');
+                                res.sendFile(path.join(__dirname, "./../views/verified.html"));
                             })
                             .catch(error => {
                                 console.log(error);
                                 let message = "An error occurred while finalizing successful verification.";
-                                res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                                res.redirect(`/user/verified/error=true&messages=${message}`);
                             })
                         })
                         .catch(error => {
                             console.log(error);
                             let message = "An error occurred while updating user record to show verified.";
-                            res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                            res.redirect(`/user/verified/error=true&messages=${message}`);
                         })
                     } else {
                         let message = "Invalid verification details passed. Check your inbox";
-                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                        res.redirect(`/user/verified/error=true&messages=${message}`);
                     }
                 })
                 .catch(error => {
                     let message = "An error occurred while compring unique strings";
-                    res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+                    res.redirect(`/user/verified/error=true&messages=${message}`);
                 })
             }
         } else {
             let message = "Account record doesn't exist or has been verified already. Please sign up or login.";
-            res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+            res.redirect(`/user/verified/error=true&messages=${message}`);
         }
     })
     .catch((error) => {
         console.log(error);
         let message = "An error occurred while checking for existing user verification record";
-        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
+        res.redirect(`/user/verified/error=true&messages=${message}`);
     });
 });
 
 
-// router.get("/verified", (req, res) => {
-//     res.sendFile(path.join(__dirname, "./../views/verified.html"));
-// })
+router.get("/verified", (req, res) => {
+    res.sendFile(path.join(__dirname, "./../views/verified.html"));
+})
 
 
 // logging in
@@ -266,9 +265,13 @@ router.post('/signin', (req, res) => {
                     const hashedPassword = data[0].user_password;
                     bcrypt.compare(user_password, hashedPassword).then(result => {
                     if (result) {
-                        req.session.user = result
+                        req.session.user = data[0];
                         console.log(req.session.user)
-                        res.send(result)
+                        //res.send(result)
+                        res.json({
+                            status: "SUCCESS",
+                            message: "Successfully logged in",
+                        })
                     } else {
                         res.json({
                             status: "FAILED",
@@ -299,18 +302,23 @@ router.post('/signin', (req, res) => {
     }
 })
 
-// handle a request that requires a logged-in user
-router.get('/myprofile', (req, res) => {
-    // retrieve the session data for the current user
-    const { user } = req.session;
-    if (!user) {
-      res.send('You must be logged in to view your profile');
+router.get("/userinfo", (req, res) => {
+    console.log(req.session)
+    const user = req.session.user;
+    if(user) {
+        res.json({
+            status: "SUCCESS",
+            message: `${user.user_first_name}`
+        })
     } else {
-      res.send(`Welcome back, ${user}!`);
+        res.json({
+            status: "FAILED",
+            message: "ERROR",
+        })
     }
-  });
+});
 
-  router.post('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
     req.session.destroy((err) => {
       if (err) {
         res.json({
@@ -327,25 +335,5 @@ router.get('/myprofile', (req, res) => {
     });
   });
 
-  router.get("/userinfo", (req, res) => {
-    if (req.session.user) {
-        const { user_first_name, user_last_name } = req.session.user;
-        res.json({
-            status: "SUCCESS",
-            message: "User information found",
-            data: {
-                firstName: user_first_name,
-                lastName: user_last_name
-            }
-        });
-    } else {
-        res.json({
-            status: "FAILED",
-            message: "No user information found",
-        });
-    }
-});
-  
-  
 
 module.exports = router;

@@ -18,8 +18,9 @@ function LoginPage() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true
-  const Login = () => {
+  //axios.defaults.withCredentials = true
+  const Login = (event) => {
+    event.preventDefault();
     axios.post('http://localhost:5001/user/signin', {
         user_email: email,
         user_password: password,
@@ -65,10 +66,10 @@ function LoginPage() {
                     <div class="form-container">
                         <form onSubmit={Login}>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Email Address" onChange={(event) =>setEmail(event.target.value)}/>
+                                <input type="email" name="email" class="input-text" placeholder="Email Address" onChange={(event) => setEmail(event.target.value)}/>
                             </div>
                             <div class="form-group form-fg">
-                                <input type="password" name="password" class="input-text" placeholder="Password" onChange={(event) =>setPassword(event.target.value)}/>
+                                <input type="password" name="password" class="input-text" placeholder="Password" onChange={(event) => setPassword(event.target.value)}/>
                             </div>
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn-md btn-fg btn-block">Login</button>

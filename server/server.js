@@ -23,7 +23,7 @@ app.use(session({
     key: "userId",
     secret: "subscribe_to_findacook",
     resave: false,
-    saveUninitialized: "false",
+    saveUninitialized: false,
     cookie: {
         expires: 60 * 60 * 24,
     }
