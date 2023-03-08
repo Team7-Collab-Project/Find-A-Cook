@@ -30,6 +30,8 @@ import ViewCooks from './ViewCooks';
 import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
+import PaymentSuccessful from './PaymentSuccessful';
+import PaymentUnsuccessful from './PaymentUnsucessful';
 import Area from './Area';
 import SubscriptionPage from './SubscriptionPage'
 
@@ -73,6 +75,8 @@ function App() {
       <Route path="/submit" element={<ApplicationSubmitted />} />
       <Route path="/area" element={<Area />} />
       <Route path="/subscription" element={<SubscriptionPage />} />
+      <Route path="/paymentsuccessful" element={<PaymentSuccessful />} />
+      <Route path="/paymentunsuccessful" element={<PaymentUnsuccessful />} />
   </Routes>
     </div>
   );

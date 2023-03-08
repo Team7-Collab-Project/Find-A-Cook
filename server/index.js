@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const stripe = require('stripe')('STRIPE_API_SECRET_KEY');
 
 // const connectDB = require('../database/db');
 // const connectDB = require('../database/db');
@@ -8,14 +9,98 @@ const morgan = require('morgan');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const filterRoutes = require('./routes/filter');
+// const subscriptionController = require('./routes/subscribe')
 const mongoose = require('mongoose');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/category', categoryRoutes);
+// app.use('/api/subscribe', subscriptionController);
 app.use('/api/product', productRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/filter', filterRoutes);
+
+
+app.post('/create_customer', async (request, response) => {
+    const customerEmailAddress = request.body.customerEmailId;
+    const customer = await stripe.customers.create({
+        description: `${customerEmailAddress} via API`,
+        email: customerEmailAddress
+    });
+    console.log(customer);
+    let theCreatedCustomerId = customer.id;
+    response.send({
+        customerId: theCreatedCustomerId
+    });
+});
+
+app.post('/create_checkout_link', async (request, response) => {
+    const priceId = request.body.priceId;
+    const customerId = request.body.customerId;
+    const session = await stripe.checkout.sessions.create({
+        billing_address_collection: 'auto',
+        line_items: [
+            {
+                price: priceId,
+                quantity: 1,
+            },
+        ],
+        mode: 'subscription',
+        success_url: `http://localhost:3000/paymentsuccessful/?success=true`,
+        cancel_url: `http://localhost:3000/paymentunsuccessful/?canceled=true`,
+        customer: customerId
+    });
+    console.log(session);
+    response.send({
+        url: session.url
+    });
+});
+
+// app.post('/create-subscription', ( req  ,res ) => {
+
+//     createSubscription(req);
+//     // console.log(createSubscription)
+
+// })
+
+// async function createSubscription(createSubscriptionRequest) {
+  
+//     // create a stripe customer
+//     const customer = await stripe.customers.create({
+//       name: createSubscriptionRequest.name,
+//       email: createSubscriptionRequest.email,
+//       payment_method: createSubscriptionRequest.paymentMethod,
+//       invoice_settings: {
+//         default_payment_method: createSubscriptionRequest.paymentMethod,
+//       },
+//     });
+
+
+//     // get the price id from the front-end
+//     const priceId = createSubscriptionRequest.priceId;
+
+//     // create a stripe subscription
+//     const subscription = await stripe.subscriptions.create({
+//       customer: customer.id,
+//       items: [{ price: priceId }],
+//       payment_settings: {
+//         payment_method_options: {
+//           card: {
+//             request_three_d_secure: 'any',
+//           },
+//         },
+//         payment_method_types: ['card'],
+//         save_default_payment_method: 'on_subscription',
+//       },
+//       expand: ['latest_invoice.payment_intent'],
+//     });
+
+//     // return the client secret and subscription id
+//     return {
+//       clientSecret: subscription.latest_invoice.payment_intent.client_secret,
+//       subscriptionId: subscription.id,
+//     };
+//   }
 
 
 // connectDB();
