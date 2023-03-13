@@ -45,53 +45,16 @@ const events = [
 function Schedule(){
   const [newEvent, setNewEvent] = useState({title:"", start:"",end:""})
   const [allEvents, setAllEvents] = useState(events)
-  const [selectedDate, setSelectedDate] = useState();
   const calendarRef = useRef(null);
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
     setNewEvent({title:"", start:"",end:""});
   }
-  
-  
-
-  useEffect(() => {
-    const ref = calendarRef.current;
-    const listenSlotClick = (event) => {
-      const elements = document.elementsFromPoint(event.clientX, event.clientY);
-      const dayElement = elements.find((element) =>
-        element.matches(".rbc-day-bg")
-      );
-      if (dayElement) {
-        const date = new Date(dayElement.getAttribute("data-date"));
-        setSelectedDate(date);
-      }
-    };
-    if (calendarRef && ref) {
-      ref.addEventListener("click", listenSlotClick);
-      return () => {
-        ref.removeEventListener("click", listenSlotClick);
-      };
-    }
-  });
 
   return (
     <>
-    <div className="modal show" style={{ display: 'block', position: 'initial' }}>
-          <h2>Add new booking</h2>
-          <input type="text" 
-            placeholder='Add Title' 
-            style={{width:"20%", marginRight: "10px"}}
-            value={newEvent.title} 
-            onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
-          />
-          <DatePicker placeholderText='Start Date' style={{marginRight: "10px"}}
-          selected={selectedDate} onChange={(start) => setNewEvent({...newEvent,start})}/>
-          <DatePicker placeholderText='EndDate'
-          selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent,end})}/>
-      
-          <Button variant="primary" onClick={() => {handleAddEvent();}}>Add Event</Button>
-    </div>
+    
     <div ref={calendarRef} style={{backgroundColor:"white", border: "black solid 2px", borderTopLeftRadius: "5%", borderTopRightRadius: "5%"}}>
       <Calendar
         components={{
@@ -104,6 +67,21 @@ function Schedule(){
         style={{ height: 500, margin: "50px" }}
         selectable={true}
       />
+    </div>
+    <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+          <h2>Add new booking</h2>
+          <input type="text" 
+            placeholder='Add Title' 
+            style={{width:"20%", marginRight: "10px"}}
+            value={newEvent.title} 
+            onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+          />
+          <DatePicker placeholderText='Start Date' style={{marginRight: "10px"}}
+          selected={(newEvent.start)} onChange={(start) => setNewEvent({...newEvent,start})}/>
+          <DatePicker placeholderText='End Date'
+          selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent,end})}/>
+      
+          <Button variant="primary" onClick={() => {handleAddEvent();}}>Add Event</Button>
     </div>
     </>
   );
