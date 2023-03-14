@@ -30,11 +30,11 @@ const cooks = new mongoose.Schema(
             default: 'pending',
             required: true,
         },
-        cook_average_rating: {
+        cook_rating_sum: {
             type: Float,
             required: true,
-        }, //The average of all ratings for a given cook
-        cook_total_rating: {
+        }, //The sum of all ratings for a given cook
+        cook_rating_count: {
             type: Int,
             required: true,
         }, //The total number of ratings a given cook has received
