@@ -9,6 +9,7 @@ require('dotenv').config();
 
 const bcrypt = require('bcrypt');
 const path = require("path");
+const { builtinModules } = require('module');
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -32,7 +33,7 @@ router.post('/cooksignup', (req, res) => {
         return res.status(400).send('Password must be at least 8 characters and contain at least one number and one speactail character');
     }
 
-    if (!emailPassword.test(cook_email)) {
+    if (!emailPattern.test(cook_email)) {
         return res.status(400).send('Invalid email format');
     }
 
@@ -87,7 +88,7 @@ router.post('/cooksignup', (req, res) => {
     });
 });
 
-router.post('cooksignin', (req, res) => {
+router.post('/cooksignin', (req, res) => {
     const { cook_email, cook_password } = req.body;
 
     if( !cook_email || !cook_password) {
@@ -160,6 +161,7 @@ router.get("/cookinfo", (req, res) => {
     }
 });
 
+module.exports = router;
 // router.post('cooklogout', (req, res) => {
 
 // })
