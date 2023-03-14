@@ -23,9 +23,9 @@ const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 router.post('/cooksignup', (req, res) => {
-    const { cook_email, cook_first_name, cook_last_name, cook_password, cook_phone, cook_birthday} = req.body;
+    const { cook_email, cook_first_name, cook_last_name, cook_password, cook_birthday, specialties, description, date_joined, application_status, verified, cook_address, profile_picture, cook_bio } = req.body;
 
-    if ( !cook_email || !cook_first_name || !cook_last_name || !cook_password || !cook_phone || !cook_birthday) {
+    if ( !cook_email || !cook_first_name || !cook_last_name || !cook_password || !cook_birthday) {
         return res.status(400).send('All fields are required');
     }
 
@@ -56,17 +56,17 @@ router.post('/cooksignup', (req, res) => {
             const cook = new Cook({
                 cook_first_name: cook_first_name,
                 cook_last_name: cook_last_name,
-                cook_phone: cook_phone,
                 cook_email: cook_email,
                 cook_password: cook_password,
                 cook_birthday: cook_birthday,
-                cook_bio: "",
-                description: "",
-                date_joined: currentDate,
-                specialties: [],
+                cook_bio: cook_bio,
+                description: description,
+                date_joined: date_joined,
+                specialties: specialties,
                 verified: false,
-                profile_picture: "",
-                cook_address: "",
+                profile_picture: profile_picture,
+                cook_address: cook_address,
+                application_status: application_status,
                 
             });
 
