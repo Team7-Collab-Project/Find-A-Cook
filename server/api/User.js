@@ -290,7 +290,7 @@ router.post('/signin', (req, res) => {
             } else {
                 res.json({
                     status: "FAILED",
-                    message: "Ivalid credentials entered"
+                    message: "Invalid credentials entered"
                 })
             }
         }).catch(err => {

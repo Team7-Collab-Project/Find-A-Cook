@@ -3,13 +3,20 @@ const { ObjectId } = mongoose.Schema;
 
 const cooks = new mongoose.Schema(
     {
-        _id: {
-            type: mongoose.Schema.Types.ObjectId,
+        cook_email: {
+            type: String,
             required: true,
         },
-        user_id: {
-            type: mongoose.Schema.Types.ObjectId,
-			ref: 'UserSchema',
+        cook_first_name: {
+            type: String,
+            required: true,
+        },
+        cook_last_name: {
+            type: String,
+            required: true,
+        },
+        cook_password: {
+            type: String,
             required: true,
         },
         specialties: {
@@ -30,6 +37,26 @@ const cooks = new mongoose.Schema(
             default: 'pending',
             required: true,
         },
+        verified: {
+            type: Boolean,
+            required: true,
+        },
+        cook_birthday: {
+            type: Date,
+            required: true,
+        },
+        cook_address: {
+            type: String,
+            required: true,
+        },
+        profile_picture: {
+            type: String,
+            required: true,
+        },
+        cook_bio: {
+            type: String,
+            required: true,
+        }
     },
     { timestamps: true }
 );

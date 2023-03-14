@@ -160,6 +160,6 @@ router.get("/cookinfo", (req, res) => {
     }
 });
 
-router.post('cooklogout', (req, res) => {
-    
-})
+// router.post('cooklogout', (req, res) => {
+
+// })
