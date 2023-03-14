@@ -69,7 +69,7 @@ function App() {
       <Route path="/viewcooks" element={<ViewCooks />} />
       <Route path="/verificationpage" element={<VerificationPage/>} />
       <Route path="/cooklogin" element={<CookLoginPage />} />
-      <Route path="/cookregestration" element={<CookRegPage />} />
+      <Route path="/cookregistration" element={<CookRegPage />} />
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
   </Routes>
