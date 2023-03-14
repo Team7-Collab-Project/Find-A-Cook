@@ -9,6 +9,7 @@ import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import "./index.css";
+import Autocomplete from "react-google-autocomplete";
 
 function RegistrationPage() {
   const [user, setUser] = useState({
@@ -80,6 +81,11 @@ function RegistrationPage() {
                             </div>
                             <div class="form-group form-fg">
                                 <input type="password" name="user_password" class="input-text" placeholder="Password" value={user.user_password} onChange={handleInputChange} />
+                            </div>
+                            <div class="form-group form-fg">
+                                <Autocomplete apiKey='AIzaSyD4l4KxJDpJogg0g3HdUFrXpWkekqmKreQ' onPlaceSelected={(place) => {
+                                    console.log(place);
+                                }} value={user.user_birthday} onChange={handleInputChange} class="input-text" placeholder="Address" />
                             </div>
                             <div class="form-group form-fg">
                                 <input type="date" name="user_birthday" class="input-text" placeholder="Birth Date" value={user.user_birthday} onChange={handleInputChange} />
