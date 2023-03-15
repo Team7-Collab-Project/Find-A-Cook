@@ -3,10 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import HamburgNavbar from "./components/HamburgNavbar";
 import Navbar from "./components/Navbar/Navbar";
 import { FaCheck, FaTwitter } from "react-icons/fa";
-import { BsTwitter } from 'react-icons/bs';
+
 import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
@@ -15,17 +14,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 //import Maps from './components/Maps';
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Button,
-  Card,
-  Badge,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+
 
 function CookDashboard() {
   return (
