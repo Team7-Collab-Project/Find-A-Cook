@@ -83,7 +83,7 @@ function RegistrationPage() {
                                 <input type="password" name="user_password" class="input-text" placeholder="Password" value={user.user_password} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <Autocomplete types={[]} apiKey='API_KEY' onPlaceSelected={(place) => {
+                                <Autocomplete apiOptions={{ types:'' }} apiKey='API_KEY' onPlaceSelected={(place) => {
                                     console.log(place)
                                 }} value={user.user_address} onChange={handleInputChange} class="input-text" placeholder="Address" />
                             </div>
