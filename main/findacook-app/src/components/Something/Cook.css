@@ -40,8 +40,8 @@
   }
 
   .card__img img{
-    width: fit-content;
-    height: fit-content;
+    max-width: 100%;
+    height: auto;
   }
   .card__details {
     position: relative;
@@ -100,4 +100,26 @@
     padding: 10px;
     font-size: 10px;
     text-align: right;
+  }
+
+  .cookImg {
+	margin-top: -25px;
+	margin-left: 300px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden; 
+  }
+
+  .verifiedImg{
+    width: 25px;
+  }
+
+  .modalButton{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
