@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 //import BackButton from './components/BackButton';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "react-tabs/style/react-tabs.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar/Navbar";
 import { FaCheck, FaTwitter } from "react-icons/fa";
-
+import Footer from './components/Footer/Footer';
 import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
@@ -16,63 +16,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 //import Maps from './components/Maps';
 
 
+
 function CookDashboard() {
   return (
     <>
-      {/* <div className="thisBody">
-        <aside className="sidebar">
-          <div class="cook-name">
-            <div class="cook-profile-pic">
-              <img src="../images/cook1.jpg" alt="" />
-            </div>
 
-            <span class="logo_name">Jen Smyth</span>
-          </div>
-
-          <div class="menu-items">
-            <ul class="nav-links">
-              <li>
-                <a href="#">
-                  <i class="uil uil-estate"></i>
-                  <span class="link-name">Dahsboard</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="uil uil-files-landscapes"></i>
-                  <span class="link-name">Bookings</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="uil uil-chart"></i>
-                  <span class="link-name">Menu</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="uil uil-thumbs-up"></i>
-                  <span class="link-name">Reviews</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="uil uil-comments"></i>
-                  <span class="link-name">Settings</span>
-                </a>
-              </li>
-            </ul>
-
-            <ul class="logout-mode">
-              <li>
-                <a href="#">
-                  <i class="uil uil-signout"></i>
-                  <span class="link-name">Logout</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </aside>
 
         <section class="dashboard">
           <Navbar />
@@ -209,13 +157,13 @@ function CookDashboard() {
             </div>
           </div>
         </section>
-      </div> */}
+  
 
 
 
 {/* CUSTOMER VIEW */}
 
-      <Navbar />
+      {/* <Navbar />
 
       <div class="test-container">
         <div class="profile-picture">
@@ -288,7 +236,8 @@ function CookDashboard() {
 			</div>
 		</div>
 	</div>
-  </div>
+  
+  </div> */}
 
 
     </>
