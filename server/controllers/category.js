@@ -56,3 +56,44 @@ exports.readAll = async (req, res) => {
       });
     }
   };
+
+
+  exports.delete = async (req, res) => {
+    try {
+      const categoryId = req.params.categoryId;
+      const deleteCategory = await Category.findByIdAndDelete(categoryId);
+
+      res.json(deleteCategory);
+    } catch (err) {
+      console.log(err, 'categoryController.delete error');
+      res.status(500).json({
+        errorMessage: 'Please try again later',
+      });
+    }
+  }
+
+  exports.read = async (req, res) => {
+    try {
+      const categoryId = req.params.categoryId;
+      const category = await Category.findById(categoryId);
+
+      res.json(category);
+      console.log(category);
+    } catch (err) {
+      console.log('Category Read Error: ', err);
+      res.status(500).json({
+        errorMessage: 'Please try again later',
+      });
+    }
+  };
+
+
+  exports.update = async (req, res) => {
+    const categoryId = req.params.categoryId;
+  
+    const oldCategory = await Category.findByIdAndUpdate(categoryId, req.body);
+  
+    res.json({
+      successMessage: 'Category successfully updated',
+    });
+  };
