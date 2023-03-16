@@ -37,6 +37,8 @@ import Area from './Area';
 import SubscriptionPage from './SubscriptionPage'
 import AdminCookListPage from './AdminCookListPage';
 import CategoriesPage from './CategoriesPage';
+import ViewBookingsPage from './ViewBookingsPage';
+import BookingPage from './BookingPage';
 
 function App() {
 
@@ -81,6 +83,8 @@ function App() {
       <Route path="/adminview" element={<AdminviewPage />} />
       <Route path="/cooklist" element={<AdminCookListPage />} />
       <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/bookings" element={<ViewBookingsPage />} />
+      <Route path="/complete-booking" element={<BookingPage />} />
       {/* <Route path="/edit/category/:categoryId" element={<EditCategory />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} /> */}
   </Routes>

@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const filterRoutes = require('./routes/filter');
+const bookingRoutes = require('./routes/booking');
 // const subscriptionController = require('./routes/subscribe')
 const mongoose = require('mongoose');
 
@@ -19,6 +20,7 @@ app.use('/api/category', categoryRoutes);
 app.use('/api/product', productRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/filter', filterRoutes);
+app.use('/api/booking', bookingRoutes);
 
 
 app.post('/create_customer', async (request, response) => {

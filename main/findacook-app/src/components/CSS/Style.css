@@ -70,26 +70,6 @@ nav {
 	height: 100px;
 }
 
-.cartTable {
-	/* width: 100%;
-	border-spacing: 20px; */
-
-
-	width: 100%;
-	border-collapse: collapse;
-}
-
-.cartNameSpan {
-	font-weight: 500;
-	color: #a3ca2f;
-	font-size: 18px;
-}
-
-.cartTotalPriceSpan {
-	font-weight: 800;
-	font-size: 18px;
-}
-
 .cartRight {
 	flex: 1;
 }
@@ -640,68 +620,11 @@ label {
 }
 
 
-.cart-page{
-	margin: 80px auto;
-}
-
-.cart-info{
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.cartTable th{
-	text-align: left;
-	padding: 5px;
-	color: #fff;
-	background: #ff523b;
-	font-weight: normal;
-}
-
-.cartTable td{
-	padding: 10px 5px;
-}
-
-#cartImg{
-	width: 10em;
-	padding: 0.7em;
-}
-
-.cartTable td a{
-	color: #ff523b;
-	font-size: 12px;
-	cursor: pointer;
-}
-
-.cartTable td a:hover{
-	color: #ff523b;
-}
 
 
-.cartTable td input{
-	width: 40px;
-	height: 30px;
-	padding: 5px;
-}
 
-.total-price{
-	display: flex;
-	justify-content: flex-end;
-}
 
-.total-price table{
-	border-top: 3px solid #ff523b;
-	width: 100%;
-	max-width: 350px;
-}
 
-td:last-child{
-	text-align: right;
-	padding: 0.5em;
-}
-
-th:last-child{
-	text-align: right;
-}
 
 @media only screen and (max-width: 1024px) {
 	header .nav-btn {
@@ -1112,3 +1035,4 @@ th:last-child{
 .adminCatDelete{
 	cursor: pointer;
 }
+

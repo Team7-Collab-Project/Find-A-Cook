@@ -11,14 +11,6 @@ exports.create = async (req, res) => {
     const {item_name, product_description, price, category} = req.body;
 
     try{
-        // let newProduct = new Product({
-        // filename: filename,
-        // category:category,
-        // product_description:product_description,
-        // item_name:item_name,
-        // price:price,
-        // });
-
         let newProduct = new Product();
         newProduct.filename = filename;
         newProduct.item_name = item_name;

@@ -13,6 +13,8 @@ import { FaCertificate } from "react-icons/fa";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
+import Sidebar from "./components/Sidebar";
+import Topbar from "./components/Topbar";
 //import Maps from './components/Maps';
 
 
@@ -21,34 +23,18 @@ function CookDashboard() {
   return (
     <>
 
+    <Topbar />
+    <Sidebar />
 
-        <section class="dashboard">
-          <Navbar />
+    <section class="dashboard">
 
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="profile-user-box card-box bg-custom">
-                <div class="row">
-                  <div class="col-sm-10">
-                    <div class="text-right">
-                      <button type="button" class="btn btn-light waves-effect">
-                        <i class="mdi mdi-account-settings-variant mr-1"></i>{" "}
-                        Edit Profile
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
+    <div class="row">
             <div class="col-xl-4">
               <div class="card-box">
                 <h4 class="header-title mt-0">Personal Information</h4>
                 <div class="panel-body">
                   <p class="text-muted font-13">
-                    Hye, I’m Soeng Souy residing in this beautiful world. I
+                    Hye, Im Soeng Souy residing in this beautiful world. I
                     create websites and mobile apps with great UX and UI design.
                     I have done work with big companies like Nokia, Google and
                     Yahoo. Meet me or Contact me for any queries. One Extra line
@@ -72,7 +58,7 @@ function CookDashboard() {
                       <strong>Location :</strong> <span class="m-l-15">KH</span>
                     </p>
                     <p class="text-muted font-13">
-                      <strong>Languages :</strong>{" "}
+                      <strong>Cuisine(s) :</strong>{" "}
                       <span class="m-l-5">
                         <span
                           class="flag-icon flag-icon-us m-r-5 m-t-0"
@@ -103,44 +89,6 @@ function CookDashboard() {
                       </span>
                     </p>
                   </div>
-                  <ul class="social-links list-inline mt-4 mb-0">
-                    <li class="list-inline-item">
-                      <a
-                        title=""
-                        data-placement="top"
-                        data-toggle="tooltip"
-                        class="tooltips"
-                        href=""
-                        data-original-title="Facebook"
-                      >
-                        <i class="fa fa-facebook"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a
-                        title=""
-                        data-placement="top"
-                        data-toggle="tooltip"
-                        class="tooltips"
-                        href=""
-                        data-original-title="Twitter"
-                      >
-                        <i class="fa fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a
-                        title=""
-                        data-placement="top"
-                        data-toggle="tooltip"
-                        class="tooltips"
-                        href=""
-                        data-original-title="Skype"
-                      >
-                        <i class="fa fa-skype"></i>
-                      </a>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -156,9 +104,8 @@ function CookDashboard() {
               </div>
             </div>
           </div>
-        </section>
-  
 
+    </section>
 
 
 {/* CUSTOMER VIEW */}

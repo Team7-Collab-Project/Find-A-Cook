@@ -18,7 +18,7 @@ const CategoriesPage = () => {
         <>
         <Topbar />
         <Sidebar />
- <CategoryButton />
+        <CategoryButton />
         <OpenCategory />
                
         </>

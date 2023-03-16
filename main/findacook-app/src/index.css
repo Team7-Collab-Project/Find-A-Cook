@@ -1660,3 +1660,8 @@ margin-top: 5em;
   .checked {
 	color: gold;
   }
+
+  .dashboard{
+    margin-left: 20em;
+    margin-top: 2.5em;
+  }

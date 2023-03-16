@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "../CSS/Style.css";
+import "./Cart.css";
 import { ADD_TO_CART } from "../../redux/constants/cartConstants";
 import { deleteFromCart } from "../../redux/actions/cartActions";
 import { Link, useNavigate } from "react-router-dom";
