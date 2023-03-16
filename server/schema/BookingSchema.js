@@ -13,14 +13,6 @@ const bookings = new mongoose.Schema(
     ref: 'Cook',
           required: true,
       },
-        customerEmail: {
-            type: String,
-            required: true
-          },
-          deliveryAddress: {
-            type: String,
-            required: true
-          },
         items: [
             {
               name: String,

@@ -21,10 +21,10 @@ const Sidebar = () => {
                     <span class="link-name">🧑🏻‍🍳 Dashboard</span>
                 </a></li>
                 <li><a href="/bookings">
-                    <span class="link-name">✏️ View Bookings</span>
+                    <span class="link-name">📖 View Bookings</span>
                 </a></li>
                 <li><a href="/categories">
-                    <span class="link-name">✏️ View Menu</span>
+                    <span class="link-name">🍔 View Menu</span>
                 </a></li>
             </ul>
             

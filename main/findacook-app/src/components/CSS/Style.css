@@ -8,7 +8,7 @@
 }
 
 :root {
-	--mainColor: #1f3744;
+	--mainColor: rgb(42, 39, 39);
 	--mainColorLight: #5767aa;
 	--secondaryColor: #60AAD1;
 	--textColor: #eee;
