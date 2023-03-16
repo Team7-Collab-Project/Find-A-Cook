@@ -6,14 +6,14 @@ function TermsandConditions({submitCode}) {
     const termsBoxRef = useRef(null);
 
     const handleScroll = () => {
-        if (termsBoxRef.current.scrollTop >= 1270){
+        if (termsBoxRef.current.scrollTop >= 500){
             setIsDisabled(false);
         }
     }
 
     return (
         <div>
-          <div id="termsBox" ref={termsBoxRef} onScroll={handleScroll}>
+        <div id="termsBox" ref={termsBoxRef} onScroll={handleScroll}>
             {/* content of the termsBox */}
             <div id="termsContent">
                     <b><u>A Cook:</u></b>
@@ -59,13 +59,18 @@ function TermsandConditions({submitCode}) {
                     <br />
                     <b>See above for disclaimer of warranties, app restrictions, termination, intellectual property, data protection.</b>
                 </div>
-            </div>
+                </div>
             <br />
             <div id="belowTerms">
                 <input id="agree" type="checkbox" name="agree" value="agree" disabled={isDisabled} required></input>
                 <label id="agreeLbl">I agree to the Terms & Conditions</label>
                 <br />
-                <input className="btn" id="termsSubmitBtn" type="submit" value="Submit" disabled={isDisabled}></input>
+                <div class='row'>
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                        <input className="btn" id="termsSubmitBtn" type="submit" value="Submit" disabled={isDisabled}></input>
+                    </div>
+                </div>
             </div>
         </div>
     );
