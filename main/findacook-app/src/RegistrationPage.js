@@ -18,6 +18,7 @@ function RegistrationPage() {
     user_phone_number: "",
     user_email: "",
     user_password: "",
+    user_address: "",
     user_birthday: ""
   });
   const [message, setMessage] = useState("");
@@ -83,10 +84,9 @@ function RegistrationPage() {
                                 <input type="password" name="user_password" class="input-text" placeholder="Password" value={user.user_password} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <Autocomplete apiOptions={{ types:'' }} apiKey='API_KEY' onPlaceSelected={(place) => {
-                                    console.log(place)
-                                }} value={user.user_address} onChange={handleInputChange} class="input-text" placeholder="Address" />
+                                <Autocomplete options={{ types: ["address"], componentRestrictions: { country: "ie" } }} apiOptions={{ region: 'ie' }} apiKey='API_KEY' placeholder="Address" value={user.address} onChange={handleInputChange} className="input-text"/>
                             </div>
+                            
                             <div class="form-group form-fg">
                                 <input type="date" name="user_birthday" class="input-text" placeholder="Birth Date" value={user.user_birthday} onChange={handleInputChange} />
                             </div>
