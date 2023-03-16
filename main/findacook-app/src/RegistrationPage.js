@@ -84,7 +84,7 @@ function RegistrationPage() {
                                 <input type="password" name="user_password" class="input-text" placeholder="Password" value={user.user_password} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
-                                <Autocomplete options={{ types: ["address"], componentRestrictions: { country: "ie" } }} apiOptions={{ region: 'ie' }} apiKey='{process.env.REACT_APP_GOOGLE_MAP_KEY}' placeholder="Address" value={user.address} onChange={handleInputChange} className="input-text"/>
+                                <Autocomplete options={{ types: ["address"], componentRestrictions: { country: "ie" } }} apiOptions={{ region: 'ie' }} apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY} placeholder="Address" value={user.address} onChange={handleInputChange} className="input-text"/>
                             </div>
                             
                             <div class="form-group form-fg">
