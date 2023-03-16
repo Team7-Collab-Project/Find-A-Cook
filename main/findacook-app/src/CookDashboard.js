@@ -95,8 +95,8 @@ function CookDashboard() {
             <div class="col-xl-8">
               <div class="row">
                 <div class="col-sm-4">
-                  <div className="product">
-                    <div class="image">
+                  <div className="cook-img-container">
+                    <div className="cook-dash-img">
                       <img src="../images/cook1.jpg" alt="" />
                     </div>
                   </div>
