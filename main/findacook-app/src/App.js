@@ -32,6 +32,7 @@ import VerificationPage from './VerificationPage';
 import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
+import TestApp from './TestApp';
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
       <Route path="/cookregistration" element={<CookRegPage />} />
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
+      <Route path="/testapp" element={<TestApp />} />
   </Routes>
     </div>
   );

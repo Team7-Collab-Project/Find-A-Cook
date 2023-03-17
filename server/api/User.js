@@ -85,7 +85,7 @@ router.post('/signup', (req, res) => {
             });
 
             // Save the user to the database
-            user.
+            user
             .save()
             .then((result) => {
                 // handle account verification
