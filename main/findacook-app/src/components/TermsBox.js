@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 
 
-function TermsandConditions({submitCode}) {
+function TermsandConditions() {
     const [isDisabled, setIsDisabled] = useState(true);
+    const [data, setData] = useState('');
     const termsBoxRef = useRef(null);
 
     const handleScroll = () => {
@@ -10,6 +11,16 @@ function TermsandConditions({submitCode}) {
             setIsDisabled(false);
         }
     }
+
+    // const submitForm = () => {
+    //     setData(true);
+    // }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Logic for registering
+        window.location.href = "/login";
+      };
 
     return (
         <div>
@@ -68,7 +79,7 @@ function TermsandConditions({submitCode}) {
                 <div class='row'>
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                        <input className="btn" id="termsSubmitBtn" type="submit" value="Submit" disabled={isDisabled}></input>
+                        <input className="btn" id="termsSubmitBtn" form='register-form' type="submit" value="Submit" onClick={handleSubmit} disabled={isDisabled}></input>
                     </div>
                 </div>
             </div>

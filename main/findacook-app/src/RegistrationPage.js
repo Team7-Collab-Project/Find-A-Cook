@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios, { Axios } from 'axios';
 import { Link } from "react-router-dom";
 import BackButton from "./components/BackButton";
@@ -38,7 +38,7 @@ function RegistrationPage() {
    const onShow = React.useCallback(() => setRender(true), []);
 
    
-
+  const submitButtonRef = useRef(null);
    
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -78,7 +78,7 @@ function RegistrationPage() {
                     <div class="or-login clearfix">
                         <span>Or</span>
                     </div>
-                    <div class="form-container">
+                    <div id="register-form" class="form-container">
                         <form onSubmit={handleSubmit}>
                             <div class="form-group form-fg">
                                 <input type="email" name="user_email" class="input-text" placeholder="Email Address" value={user.user_email} onChange={handleInputChange}/>
@@ -102,7 +102,7 @@ function RegistrationPage() {
                                 <input type="date" name="user_birthday" class="input-text" placeholder="Birth Date" value={user.user_birthday} onChange={handleInputChange} />
                             </div>
                             <div class="form-group mt-2">
-                                <button onClick={onShow}  class="btn-md btn-fg btn-block">Register</button>
+                            <button onClick={onShow} form='register-form' class="btn-md btn-fg btn-block">Register</button>
                                 {hasRender && <ModalWindow />}
                             </div>
                         </form>
