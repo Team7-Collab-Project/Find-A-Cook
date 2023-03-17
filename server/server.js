@@ -1,12 +1,13 @@
 const app = require('express')();
 const port = 5001;
 const cors = require("cors");
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const session = require("express-session");
 
 require('./config/db')
 
 const UserRouter = require('./api/User');
+const CookRouter = require('./api/Cook')
 
 
 const bodyParser = require('express').json;
@@ -17,7 +18,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(cookieParser());
+//app.use(cookieParser());
 
 app.use(session({
     key: "userId",
@@ -31,6 +32,7 @@ app.use(session({
 
 
 app.use('/user', UserRouter)
+app.use('/cook', CookRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

@@ -20,13 +20,13 @@ const AdminButtons = () => {
       <div className="">
         <div className="">
           <div className="">
-            <button
+            {/* <button
             className="add-food-btn"
               onClick={handleFoodShow}
             >
               <FaPlus />
               <span> Add Food</span>
-            </button>
+            </button> */}
           </div>
 
           <div className="">
@@ -39,11 +39,11 @@ const AdminButtons = () => {
             </button>
           </div>
 
-          <div className="col-md-4 my-1">
+          {/* <div className="col-md-4 my-1">
             <Button variant="outline-success" >
               <span>View Orders</span>
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
 

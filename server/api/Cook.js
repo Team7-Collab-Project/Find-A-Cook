@@ -9,6 +9,7 @@ require('dotenv').config();
 
 const bcrypt = require('bcrypt');
 const path = require("path");
+const { builtinModules } = require('module');
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -22,9 +23,9 @@ const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 router.post('/cooksignup', (req, res) => {
-    const { cook_email, cook_first_name, cook_last_name, cook_password, cook_phone, cook_birthday} = req.body;
+    const { cook_email, cook_first_name, cook_last_name, cook_password, cook_birthday } = req.body;
 
-    if ( !cook_email || !cook_first_name || !cook_last_name || !cook_password || !cook_phone || !cook_birthday) {
+    if ( !cook_email || !cook_first_name || !cook_last_name || !cook_password || !cook_birthday) {
         return res.status(400).send('All fields are required');
     }
 
@@ -32,7 +33,7 @@ router.post('/cooksignup', (req, res) => {
         return res.status(400).send('Password must be at least 8 characters and contain at least one number and one speactail character');
     }
 
-    if (!emailPassword.test(cook_email)) {
+    if (!emailPattern.test(cook_email)) {
         return res.status(400).send('Invalid email format');
     }
 
@@ -55,17 +56,17 @@ router.post('/cooksignup', (req, res) => {
             const cook = new Cook({
                 cook_first_name: cook_first_name,
                 cook_last_name: cook_last_name,
-                cook_phone: cook_phone,
                 cook_email: cook_email,
-                cook_password: cook_password,
+                cook_password: hash,
                 cook_birthday: cook_birthday,
-                cook_bio: "",
-                description: "",
+                cook_bio: "This is the cooks bio",
+                description: "This is the cooks Description",
                 date_joined: currentDate,
                 specialties: [],
                 verified: false,
-                profile_picture: "",
-                cook_address: "",
+                profile_picture: "profile picture",
+                cook_address: "cooks address",
+                application_status: "pending",
                 
             });
 
@@ -80,14 +81,14 @@ router.post('/cooksignup', (req, res) => {
             .catch((err) => {
                 res.json({
                     status: "FAILED",
-                    message: "An error occured while hashing password!",
+                    message: "An error occured!",
                 })
             })
         });
     });
 });
 
-router.post('cooksignin', (req, res) => {
+router.post('/cooksignin', (req, res) => {
     const { cook_email, cook_password } = req.body;
 
     if( !cook_email || !cook_password) {
@@ -96,7 +97,7 @@ router.post('cooksignin', (req, res) => {
             message: "Empty credentials provided",
         })
     } else {
-        Cook.find({cook_password})
+        Cook.find({cook_email})
         .then(data => {
             if (data.length) {
                 if (!data[0].verified) {
@@ -150,7 +151,12 @@ router.get("/cookinfo", (req, res) => {
     if(cook) {
         res.json({
             status: "SUCCESS",
-            message: `${cook.cook_first_name}`
+            firstn: `${cook.cook_first_name}`,
+            lastn: `${cook.cook_last_name}`,
+            special: `${cook.specialties}`,
+            descrip: `${cook.description}`,
+            profile: `${cook.profile_picture}`,
+            bio: `${cook.cook_bio}`
         })
     } else {
         res.json({
@@ -160,6 +166,67 @@ router.get("/cookinfo", (req, res) => {
     }
 });
 
+router.get("/allcooks", async (req, res) => {
+    try {
+      const cooks = await Cook.find({}, { cook_first_name: 1, profile_picture: 1, cook_bio: 1, description: 1, _id: 0 });
+  
+      res.json({
+        status: "SUCCESS",
+        cooks: cooks,
+      });
+    } catch (err) {
+      res.json({
+        status: "FAILED",
+        message: "Error retrieving cooks",
+        error: err,
+      });
+    }
+  });
+  
+
+router.put("/editprofile", (req, res) => {
+    const { cook_first_name, cook_last_name, specialties, description, profile_picture, cook_bio } = req.body;
+    const cook = req.session.cook;
+  
+    if (cook) {
+      Cook.updateOne(
+        { _id: cook._id },
+        {
+          $set: {
+            cook_first_name: cook_first_name,
+            cook_last_name: cook_last_name,
+            specialties: specialties,
+            description: description,
+            profile_picture: profile_picture,
+            cook_bio: cook_bio,
+          },
+        }
+      )
+        .then((result) => {
+          res.json({
+            status: "SUCCESS",
+            message: "Profile updated successfully",
+          });
+        })
+        .catch((err) => {
+          res.json({
+            status: "FAILED",
+            message: "Error updating profile",
+            error: err,
+          });
+        });
+    } else {
+      res.json({
+        status: "FAILED",
+        message: "Not authorized to edit profile",
+      });
+    }
+  });
+
+
+  
+
+module.exports = router;
 // router.post('cooklogout', (req, res) => {
 
 // })

@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
@@ -32,6 +31,14 @@ import VerificationPage from './VerificationPage';
 import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
+import TestApp from './TestApp';
+import PaymentSuccessful from './PaymentSuccessful';
+import PaymentUnsuccessful from './PaymentUnsucessful';
+import AdminviewPage from './AdminViewPage';
+import Area from './Area';
+import SubscriptionPage from './SubscriptionPage'
+import AdminCookListPage from './AdminCookListPage';
+import CategoriesPage from './CategoriesPage';
 
 
 function App() {
@@ -59,7 +66,6 @@ function App() {
       <Route path="/admin" element={<SampleAdminDashboard/>} />
       <Route path="/documentupload" element={<UploadDocuments/>} />
       <Route path="/shipping" element={<Shipping/>} />
-      <Route path="/edit/product/:productId" element={<EditProduct />} />
       <Route path="/home" element={<Home />} />
       <Route path="/verify" element={<VerifyPage />} />
       <Route path="/cookdashboard" element={<CookDashboard />} />
@@ -72,6 +78,16 @@ function App() {
       <Route path="/cookregistration" element={<CookRegPage />} />
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
+      <Route path="/testapp" element={<TestApp />} />
+      <Route path="/area" element={<Area />} />
+      <Route path="/subscription" element={<SubscriptionPage />} />
+      <Route path="/paymentsuccessful" element={<PaymentSuccessful />} />
+      <Route path="/paymentunsuccessful" element={<PaymentUnsuccessful />} />
+      <Route path="/adminview" element={<AdminviewPage />} />
+      <Route path="/cooklist" element={<AdminCookListPage />} />
+      <Route path="/categories" element={<CategoriesPage />} />
+      {/* <Route path="/edit/category/:categoryId" element={<EditCategory />} />
+      <Route path="/category/:categoryId" element={<CategoryPage/>} /> */}
   </Routes>
     </div>
   );

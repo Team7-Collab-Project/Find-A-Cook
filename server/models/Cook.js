@@ -64,16 +64,3 @@ const cooks = new mongoose.Schema(
 const CookSchema = mongoose.model('Cook', cooks);
 
 module.exports = CookSchema;
-
-
-
-
-
-
-
-
-
-
-
-
-

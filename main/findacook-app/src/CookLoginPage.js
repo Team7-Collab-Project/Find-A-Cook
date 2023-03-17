@@ -74,7 +74,7 @@ function CookLoginPage() {
                             </div>
                         </form>
                     </div>
-                    <p>Interested in becoming a <strong>cook</strong>? <a href="/cookregestration" class="linkButton">Sign Up!</a></p>
+                    <p>Interested in becoming a <strong>cook</strong>? <a href="/cookregistration" class="linkButton">Sign Up!</a></p>
                 </div>
             </div>
         </div>
