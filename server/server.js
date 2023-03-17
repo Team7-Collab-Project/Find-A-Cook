@@ -1,7 +1,7 @@
 const app = require('express')();
 const port = 5001;
 const cors = require("cors");
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const session = require("express-session");
 
 require('./config/db')
@@ -18,7 +18,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(cookieParser());
+//app.use(cookieParser());
 
 app.use(session({
     key: "userId",
