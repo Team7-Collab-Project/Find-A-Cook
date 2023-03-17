@@ -5,18 +5,18 @@ import TermsandConditions from './TermsBox';
 import CloseButton from 'react-bootstrap/CloseButton';
 
 
-function ModalWindow() {
+function ModalWindow(submitForm) {
 
 const [show, setShow] = useState(false);
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
 
-const handleSubmit = (event) => {
-    event.preventDefault();
-    // Logic for registering
-    window.location.href = "/login";
-  };
+// const handleSubmit = (event) => {
+//     event.preventDefault();
+//     // Logic for registering
+//     window.location.href = "/login";
+//   };
 
 return (
     <>
@@ -29,8 +29,8 @@ return (
           <Modal.Title>Terms and Conditions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form id="termsForm" onSubmit={handleSubmit}>
-            <TermsandConditions submitCode={handleSubmit}/>  
+        <form id="termsForm" >
+            <TermsandConditions/>  
         </form>
         </Modal.Body>
         
