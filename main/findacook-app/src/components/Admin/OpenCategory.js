@@ -1,112 +1,36 @@
-// import React, { Fragment, useState } from 'react';
-// // import isEmpty from 'validator/lib/isEmpty';
-// // import { showErrorMsg, showSuccessMsg } from '../helpers/message';
-// // import { showErrorMsg, showSuccessMsg } from '../../helpers/message';
-// import { showLoading } from '../../helpers/loading';
-// // redux
-// import { useSelector, useDispatch } from 'react-redux';
-// import { clearMessages } from '../../redux/actions/messageActions';
-// import { createCategory } from '../../redux/actions/categoryActions';
+import React from 'react';
+import CategoryDisplay from '../Menu_Test/CategoryDisplay'
+import { deleteCategory } from "../../redux/actions/categoryActions";
 
-// const OpenCategory = () => {
-// 	// /****************************
-// 	//  * REDUX GLOBAL STATE PROPERTIES
-// 	//  ***************************/
-// 	// const { successMsg, errorMsg } = useSelector(state => state.messages);
-// 	const { loading } = useSelector(state => state.loading);
+import { useSelector } from 'react-redux';
 
-// 	const dispatch = useDispatch();
-// 	/****************************
-// 	 * COMPONENT STATE PROPERTIES
-// 	 ***************************/
-// 	const [category, setCategory] = useState('');
-// 	// const [clientSideErrorMsg, setClientSideErrorMsg] = useState('');
+const OpenCategory = () => {
 
-// 	/****************************
-// 	 * EVENT HANDLERS
-// 	 ***************************/
-// 	const handleMessages = evt => {
-// 		dispatch(clearMessages());
-// 	};
+    const {categories} = useSelector(state => state.categories)
+    console.log('cool', categories)
 
-// 	const handleCategoryChange = evt => {
-// 		dispatch(clearMessages());
-// 		setCategory(evt.target.value);
-// 	};
+    return(
+        <>
 
-// 	const handleCategorySubmit = evt => {
-// 		evt.preventDefault();
+<table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {categories &&
+          categories.map(category => (
+            <CategoryDisplay key={category._id} category={category} />
+          ))}
+      </tbody>
+    </table>
 
-//         const data = { category };
-//         dispatch(createCategory(data));
-//         setCategory('');
 
-// 		// if (isEmpty(category)) {
-// 		// 	setClientSideErrorMsg('Please enter a category');
-// 		// } else {
-// 		// 	const data = { category };
-// 		// 	dispatch(createCategory(data));
-// 		// 	setCategory('');
-// 		// }
-// 	};
+        </>
+    );
+}
 
-// 	/****************************
-// 	 * RENDERER
-// 	 ***************************/
-// 	return (
-// 		<div id='addCategoryModal' className='modal' onClick={handleMessages}>
-// 			<div className='modal-dialog modal-dialog-centered modal-lg'>
-// 				<div className='modal-content'>
-// 					<form onSubmit={handleCategorySubmit}>
-// 						<div className='modal-header bg-info text-white'>
-// 							<h5 className='modal-title'>Add Category</h5>
-// 							<button className='close' data-dismiss='modal'>
-// 								<span>
-// 									<i className='fas fa-times'></i>
-// 								</span>
-// 							</button>
-// 						</div>
-// 						<div className='modal-body my-2'>
-// 							{/* {clientSideErrorMsg &&
-// 								showErrorMsg(clientSideErrorMsg)} */}
-// 							{/* {errorMsg && showErrorMsg(errorMsg)}
-// 							{successMsg && showSuccessMsg(successMsg)} */}
-
-// 							{loading ? (
-// 								<div className='text-center'>
-// 									{showLoading()}
-// 								</div>
-// 							) : (
-// 								<Fragment>
-// 									<label className='text-secondary'>
-// 										Category
-// 									</label>
-// 									<input
-// 										type='text'
-// 										className='form-control'
-// 										name='category'
-// 										value={category}
-// 										onChange={handleCategoryChange}
-// 									/>
-// 								</Fragment>
-// 							)}
-// 						</div>
-// 						<div className='modal-footer'>
-// 							<button
-// 								className='btn btn-secondary'
-// 								data-dismiss='modal'
-// 							>
-// 								Close
-// 							</button>
-// 							<button type='submit' className='btn btn-info'>
-// 								Submit
-// 							</button>
-// 						</div>
-// 					</form>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// export default OpenCategory;
+export default OpenCategory

@@ -5,7 +5,9 @@ import {
 } from '../constants/messageConstants';
 import {
 	GET_CATEGORIES,
-	CREATE_CATEGORY
+	CREATE_CATEGORY,
+	DELETE_CATEGORY,
+	EDIT_CATEGORY
 } from '../constants/categoryConstants';
 import axios from 'axios';
 
@@ -44,6 +46,44 @@ export const createCategory = formData => async dispatch => {
 		dispatch({ type: CREATE_CATEGORY, payload: response.data.category });
 	} catch (err) {
 		console.log('createCategory api error: ', err);
+		dispatch({ type: STOP_LOADING });
+		dispatch({
+			type: SHOW_ERROR_MESSAGE,
+			payload: err.response.data.errorMessage,
+		});
+	}
+};
+
+export const deleteCategory = caetegoryId => async dispatch => {
+	try {
+		dispatch({ type: START_LOADING });
+		const response = await axios.delete(`/api/category/${caetegoryId}`);
+		dispatch({ type: STOP_LOADING });
+		dispatch({
+			type: DELETE_CATEGORY,
+			payload: response.data,
+		});
+	} catch (err) {
+		console.log('deleteCategory API error: ', err);
+		dispatch({ type: STOP_LOADING });
+		dispatch({
+			type: SHOW_ERROR_MESSAGE,
+			payload: err.response.data.errorMessage,
+		});
+	}
+}
+
+export const editCategory = caetegoryId => async dispatch => {
+	try {
+		dispatch({ type: START_LOADING });
+		const response = await axios.get(`/api/category/${caetegoryId}`);
+		dispatch({ type: STOP_LOADING });
+		dispatch({
+			type: EDIT_CATEGORY,
+			payload: response.data,
+		});
+	} catch (err) {
+		console.log('getCategories api error: ', err);
 		dispatch({ type: STOP_LOADING });
 		dispatch({
 			type: SHOW_ERROR_MESSAGE,
