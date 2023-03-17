@@ -1,6 +1,31 @@
 import React, {useState} from 'react';
 import { Modal, Carousel, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+import { DatePicker, TimePicker } from 'antd';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import 'antd/dist/reset.css';
 import "./Cook.css";
+
+// const range = (start, end) => {
+//     const result = [];
+//     for (let i = start; i < end; i++) {
+//       result.push(i);
+//     }
+//     return result;
+//   };
+
+// // eslint-disable-next-line arrow-body-style
+// const disabledDate = (current) => {
+//     // Can not select days before today and today
+//     return current && current < dayjs().endOf('day');
+//   };
+
+//   const disabledDateTime = () => ({
+//     disabledHours: () => range(0, 24).splice(4, 20),
+//     disabledMinutes: () => range(30, 60),
+//     disabledSeconds: () => [55, 56],
+//   });
 
 const Cook = () => {
 
@@ -11,6 +36,10 @@ const Cook = () => {
 
     return(
         <>
+        <div>
+        <DatePicker />
+        <TimePicker format="HH:mm" minuteStep={5}/>
+        </div>
       <div class="test-container">
 
         <div class="profile-info">
@@ -23,6 +52,9 @@ const Cook = () => {
         <div className="smallText">Cuisine: Korean</div>
         <div className="smallText">Rating: ⭐⭐⭐⭐ (123 Reviews)</div>
 
+        <Link to={`/booking`}>
+        <button onClick={handleShow}>Book Now</button>
+        </Link>
         <button onClick={handleShow}>View Details</button>
 
         <div className='cookCards'>

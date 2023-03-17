@@ -6,9 +6,7 @@ const Homepage = () => {
 
   return (
     <>
-
             <Cook />
-
 
     </>
   );
