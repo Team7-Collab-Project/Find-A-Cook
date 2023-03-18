@@ -939,3 +939,73 @@ th:last-child{
 	color: #4c4c4c;
 	cursor: pointer;
   }
+
+
+  #viewcooksBG
+  {
+	width: 20em;
+	height: 30em;
+	background-color: #ff523b;
+  }
+  
+
+
+.cookImage{
+	width: 15em;
+}
+
+
+.cooksList1{
+	width: 50em;
+	height: 80em;
+	background-color: orange;
+	margin: auto;
+}
+
+.cooksListTable{
+
+	background-color: whitesmoke;
+	width: 50em;
+	/* height: 80em; */
+	/* padding-top: 2em; */
+	margin: auto;
+	
+	
+}
+
+
+.customerImage{
+
+	border-radius: 50%;
+	margin-right: 1em;
+	width: 2em;
+	height: 2em;
+}
+
+.desc{
+	text-align: justify;
+	margin-left: 2em;
+	margin-right: 2em;
+	margin-top: .5em;
+}
+
+.reviewHeader{
+	text-align: left;
+	margin-left: 2em;
+	margin-top: 2em;
+}
+
+.starRatings{
+	text-align: left;
+	margin-left: 2em;
+	margin-top: 1em;
+	color: #fcb70c;
+}
+
+.reviewTableRow{
+	margin-top: 5em;
+}
+
+.ReviewTableBody{
+	margin-bottom: 5em;
+}

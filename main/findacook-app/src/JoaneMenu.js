@@ -71,9 +71,10 @@ function JoaneMenu() {
 				console.error('Error:', error);
 			});
 	};
+    
 
   return (
-    <><HamburgNavbar setIsOpen={setIsOpen}/>
+    <><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link><HamburgNavbar setIsOpen={setIsOpen}/>
       <div id='cookdash' className={`${isOpen ? 'sidebar-open' : ''}`}>
       {/*<Maps center={{ lat: 37.7749, lng: -122.4194 }} zoom={11}/>*/}
         <div><h1>Dashboard</h1></div>
@@ -148,67 +149,70 @@ function JoaneMenu() {
 
             <TabPanel>
 
-            <table class="cooksListTable">
-<tbody>
-<tr>
+            <table class="cooksListTable" cellspacing="0" >
+
+<tr class="reviewTableRow">
     <div class="reviewHeader">
         <img class="customerImage"src='./images/user1.png'/>
     Joane
     </div>
 
-    <p class="desc">Purus in massa tempor nec. Turpis egestas pretium aenean pharetra magna ac placerat. Adipiscing at in tellus integer feugiat scelerisque. Et tortor consequat id porta nibh. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim. Id eu nisl nunc mi ipsum faucibus. Eget lorem dolor sed viverra. Tellus in hac habitasse platea dictumst. Egestas erat imperdiet sed euismod nisi. Facilisi morbi tempus iaculis urna id volutpat lacus. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Ultricies integer quis auctor elit sed vulputate mi.
-
-Volutpat consequat mauris nunc congue nisi vitae. Auctor eu augue ut lectus arcu bibendum. Porttitor eget dolor morbi non arcu risus quis varius quam. Sit amet porttitor eget dolor. Integer feugiat scelerisque varius morbi enim. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Nunc sed blandit libero volutpat sed cras. Sit amet venenatis urna cursus eget nunc scelerisque viverra. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et ligula.</p>
-    <p>
+    <div class="ReviewTableBody">
+    <p class="starRatings">
         
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span></p>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star-half-o"></span>
+        <span class="fa fa-star-o"></span></p>
 
-h
+    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+
 </tr>
-<tr>
-<td><img class="customerImage"src='./images/user2.jpeg'/></td>
-<td>
-    <p>Maurice</p>
-    <p>Italian</p>
-    <p><span class="fa fa-star checked"></span>
+<tr class="reviewTableRow">
+<div class="reviewHeader">
+<img class="customerImage"src='./images/user2.jpeg'/>
+
+    Maurice
+    </div>
+    <div class="ReviewTableBody">
+    <p class="starRatings"><span class="fa fa-star checked"></span>
 <span class="fa fa-star checked"></span>
 <span class="fa fa-star checked"></span>
 <span class="fa fa-star"></span>
 <span class="fa fa-star"></span></p>
-</td>
-<td>eg</td>
+<p class="desc">Purus in massa tempor nec. Turpis egestas pretium aenean pharetra magna ac placerat. Adipiscing at in tellus integer feugiat scelerisque. Et tortor consequat id </p>
+</div>
 </tr>
-<tr>
-<td><img class="customerImage"src='./images/user3.jpg'/></td>
-<td>
-    <p>Julian</p>
-    <p>Spanish</p>
-    <p><span class="fa fa-star checked"></span>
+<tr class="reviewTableRow">
+<div class="reviewHeader">
+<img class="customerImage"src='./images/user3.jpg'/>
+
+    Julian
+    </div>
+    <div class="ReviewTableBody">
+    <p class="starRatings"><span class="fa fa-star checked"></span>
 <span class="fa fa-star checked"></span>
 <span class="fa fa-star checked"></span>
 <span class="fa fa-star"></span>
 <span class="fa fa-star"></span></p>
-</td>
-<td>fdg</td>
-</tr>
-<tr>
-<td><img class="customerImage"src='./images/user4.jpg'/></td>
-<td>
-    <p>Mort</p>
-    <p>Outermongolian</p>
-    <p><span class="fa fa-star checked"></span>
+<p class="desc">Purus in massa tempor nec. Turpis egestas pretium aenean pharetra magna ac placerat. Adipiscing at in tellus integer feugiat scelerisque. Et tortor consequat id olutpat consequat mauris nunc congue nisi vitae. Auctor eu augue ut lectus arcu bibendum. Porttitor eget dolor morbi non arcu </p>
+</div></tr>
+<tr class="reviewTableRow">
+<div class="reviewHeader">
+<img class="customerImage"src='./images/user4.jpg'/>
+
+    MortMenu
+    </div>
+    <div class="ReviewTableBody">
+    <p class="starRatings"><span class="fa fa-star checked"></span>
 <span class="fa fa-star checked"></span>
 <span class="fa fa-star checked"></span>
 <span class="fa fa-star"></span>
 <span class="fa fa-star"></span></p>
-</td>
-<td>rey</td>
-</tr>
-</tbody>
+<p class="desc">Purus in massa tempor nec. Turpis egestas pretium aenean pharetra magna ac placerat. Adipiscing at in tellus integer feugiat scelerisque. Et tortor consequat id Et tortor consequat id c placerat. Adipiscing at in tellus integer feugiat scelerisque. Et tortor consequat id Et tortor consequatolutpat consequat mauris nunc congue</p>
+</div></tr>
 </table>
                 
             </TabPanel>

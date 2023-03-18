@@ -32,6 +32,10 @@ import ReviewCook from './ReviewCook';
 import CookRegPage from './CookRegPage';
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
+import JoaneMenu from './JoaneMenu';
+import MauriceMenu from './MauriceMenu';
+import JulianMenu from './JulianMenu';
+import MortMenu from './MortMenu';
 
 
 function App() {
@@ -72,6 +76,10 @@ function App() {
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
       <Route path="/reviewcook" element={<ReviewCook />} />
+      <Route path="/joanemenu" element={<JoaneMenu />} />
+      <Route path="/mauricemenu" element={<MauriceMenu />} />
+      <Route path="/julianmenu" element={<JulianMenu />} />
+      <Route path="/mortmenu" element={<MortMenu />} />
   </Routes>
     </div>
   );
