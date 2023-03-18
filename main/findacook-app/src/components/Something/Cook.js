@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Modal, Carousel, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { DatePicker, TimePicker } from 'antd';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import 'antd/dist/reset.css';
+import { useDispatch } from "react-redux";
 import "./Cook.css";
 
 // const range = (start, end) => {
@@ -27,32 +24,31 @@ import "./Cook.css";
 //     disabledSeconds: () => [55, 56],
 //   });
 
-const Cook = () => {
+const Cook = ({ cook }) => {
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const dispatch = useDispatch();
     return(
         <>
-        <div>
-        <DatePicker />
-        <TimePicker format="HH:mm" minuteStep={5}/>
-        </div>
-      <div class="test-container">
+
+
 
         <div class="profile-info">
 
           <div class="product-section">
 
           <div className="card__details">
-        <h3>Soeng Souy</h3>
+            
+        <h3>{cook.cook_first_name}</h3>
         <img src="../images/cook1.jpg" alt="User Profile Picture" className='cookImg' />
-        <div className="smallText">Cuisine: Korean</div>
+        <div className="smallText">Cuisine: </div>
         <div className="smallText">Rating: ⭐⭐⭐⭐ (123 Reviews)</div>
-
-        <Link to={`/booking`}>
+      
+        <Link to={`/cook/${cook._id}`}>
         <button onClick={handleShow}>Book Now</button>
         </Link>
         <button onClick={handleShow}>View Details</button>
@@ -70,54 +66,13 @@ const Cook = () => {
       </div>
 
 
-      <div className="card__details">
-        <h3>Soeng Souy</h3>
-        <img src="../images/cook1.jpg" alt="User Profile Picture" className='cookImg' />
-        <div className="smallText">Cuisine: Korean</div>
-        <div className="smallText">Rating: ⭐⭐⭐⭐ (123 Reviews)</div>
-        <button>View Details</button>
-
-        <div className='cookCards'>
-    <div className="cookCard">
-      <div className="card__img">
-
-          <picture>
-            <img src="../images/bao.jpg" />
-</picture>
-      </div>
-</div>
-</div>
-      </div>
-
-
-      <div className="card__details">
-        <h3>Soeng Souy</h3>
-        <img src="../images/cook1.jpg" alt="User Profile Picture" className='cookImg' />
-        <div className="smallText">Cuisine: Korean</div>
-        <div className="smallText">Rating: ⭐⭐⭐⭐ (123 Reviews)</div>
-        <button>View Details</button>
-
-        <div className='cookCards'>
-    <div className="cookCard">
-      <div className="card__img">
-
-          <picture>
-            <img src="../images/bao.jpg" />
-</picture>
-      </div>
-</div>
-</div>
-      </div>
-
 			</div>
 		</div>
-	</div>
-
 
 
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-            <Modal.Title>Soeng Souy <img src='../images/verified.png' className='verifiedImg'/></Modal.Title>
+            <Modal.Title>{cook.cook_first_name} <img src='../images/verified.png' className='verifiedImg'/></Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <Carousel>

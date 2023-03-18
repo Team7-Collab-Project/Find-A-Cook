@@ -1,47 +1,17 @@
-/* table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  thead {
-    background-color: #ddd;
-    font-weight: bold;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
-  
-  th {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  td:last-child {
-    text-transform: capitalize;
-  } */
-
-
   .container {
     display: flex;
     flex-wrap: wrap;
   }
 
-  table {
+  .adminCookDisplay {
     /* position: absolute; */
     z-index: 2;
     /* left: 30%;
     top: 85%; */
-    margin-left: 50em;
-    margin-top: 20em;
+    margin-left: 20em;
+    margin-top: 5em;
     transform: translate(-50%,-50%);
-    width: 60%; 
+    width: 70%; 
     border-collapse: collapse;
     border-spacing: 0;
     box-shadow: 0 2px 15px rgba(64,64,64,.7);
@@ -50,13 +20,13 @@
 
 }
 
-td , th{
+.adminCookDisplay td , .adminCookDisplay th{
     padding: 15px 20px;
     text-align: center;
     
    
    }
-   th{
+   .adminCookDisplay th{
     background-color: #1f3744;
     color: #fafafa;
     font-family: 'Open Sans',Sans-serif;
@@ -65,11 +35,16 @@ td , th{
    
    }
 
-   tr{
+  .adminCookDisplay tr{
     width: 100%;
     background-color: #fafafa;
     font-family: 'Montserrat', sans-serif;
    }
-   tr:nth-child(even){
+  .adminCookDisplay tr:nth-child(even){
     background-color: #eeeeee;
+   }
+
+   .applicationIcon{
+    width: 2em;
+    cursor: pointer;
    }

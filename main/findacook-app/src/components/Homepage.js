@@ -1,13 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Cook from './Something/Cook'
+import './Something/Cook.css'
+import { DatePicker, TimePicker } from 'antd';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import 'antd/dist/reset.css';
 
 
 const Homepage = () => {
+  const [cooks, setCooks] = useState([]);
+  
+  useEffect(() => {
+    fetchCooks();
+  }, []);
 
+  const fetchCooks = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/cook/allcooks");
+      setCooks(response.data.cooks);
+    } catch (error) {
+      console.error("Error fetching cooks:", error);
+    }
+  };
   return (
     <>
-            <Cook />
+            <div>
+        <DatePicker />
+        <TimePicker format="HH:mm" minuteStep={5}/>
+        </div>
 
+      <div class="test-container">
+{cooks.map((cook, index) => (
+         <Cook key={cook._id} cook={cook}/>
+          ))}
+          
+</div>
     </>
   );
 };

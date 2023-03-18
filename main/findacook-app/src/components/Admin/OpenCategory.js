@@ -1,6 +1,7 @@
 import React from 'react';
 import CategoryDisplay from '../Menu_Test/CategoryDisplay'
 import { deleteCategory } from "../../redux/actions/categoryActions";
+import '../CSS/Test.css'
 
 import { useSelector } from 'react-redux';
 
@@ -12,7 +13,7 @@ const OpenCategory = () => {
     return(
         <>
 
-<table>
+<table className='adminCategoryTable'>
       <thead>
         <tr>
           <th>Category</th>
