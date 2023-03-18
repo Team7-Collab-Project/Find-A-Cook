@@ -1036,3 +1036,22 @@ label {
 	cursor: pointer;
 }
 
+
+.tooltiptext {
+	visibility: hidden;
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	opacity: 0.9;
+  
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+  }
+
+  .verifiedTooltip:hover .tooltiptext {
+	visibility: visible;
+  }
