@@ -1,19 +1,30 @@
 import { useState, useRef } from 'react';
 
 
-function TermsandConditions({submitCode}) {
+function TermsandConditions() {
     const [isDisabled, setIsDisabled] = useState(true);
+    const [data, setData] = useState('');
     const termsBoxRef = useRef(null);
 
     const handleScroll = () => {
-        if (termsBoxRef.current.scrollTop >= 1270){
+        if (termsBoxRef.current.scrollTop >= 500){
             setIsDisabled(false);
         }
     }
 
+    // const submitForm = () => {
+    //     setData(true);
+    // }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Logic for registering
+        window.location.href = "/login";
+      };
+
     return (
         <div>
-          <div id="termsBox" ref={termsBoxRef} onScroll={handleScroll}>
+        <div id="termsBox" ref={termsBoxRef} onScroll={handleScroll}>
             {/* content of the termsBox */}
             <div id="termsContent">
                     <b><u>A Cook:</u></b>
@@ -59,13 +70,18 @@ function TermsandConditions({submitCode}) {
                     <br />
                     <b>See above for disclaimer of warranties, app restrictions, termination, intellectual property, data protection.</b>
                 </div>
-            </div>
+                </div>
             <br />
             <div id="belowTerms">
                 <input id="agree" type="checkbox" name="agree" value="agree" disabled={isDisabled} required></input>
                 <label id="agreeLbl">I agree to the Terms & Conditions</label>
                 <br />
-                <input className="btn" id="termsSubmitBtn" type="submit" value="Submit" disabled={isDisabled}></input>
+                <div class='row'>
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                        <input className="btn" id="termsSubmitBtn" form='register-form' type="submit" value="Submit" onClick={handleSubmit} disabled={isDisabled}></input>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios, { Axios } from 'axios';
 import { Link } from "react-router-dom";
 import BackButton from "./components/BackButton";
@@ -9,6 +9,13 @@ import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import "./index.css";
+import Autocomplete from "react-google-autocomplete";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import ModalWindow from './components/Modal';
+import { render } from "react-dom";
+
+
 
 function RegistrationPage() {
   const [user, setUser] = useState({
@@ -17,6 +24,7 @@ function RegistrationPage() {
     user_phone_number: "",
     user_email: "",
     user_password: "",
+    user_address: "",
     user_birthday: ""
   });
   const [message, setMessage] = useState("");
@@ -26,6 +34,12 @@ function RegistrationPage() {
     setUser({ ...user, [name]: value });
   };
 
+  const [hasRender, setRender] = useState(false);
+   const onShow = React.useCallback(() => setRender(true), []);
+
+   
+  const submitButtonRef = useRef(null);
+   
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -64,7 +78,7 @@ function RegistrationPage() {
                     <div class="or-login clearfix">
                         <span>Or</span>
                     </div>
-                    <div class="form-container">
+                    <div id="register-form" class="form-container">
                         <form onSubmit={handleSubmit}>
                             <div class="form-group form-fg">
                                 <input type="email" name="user_email" class="input-text" placeholder="Email Address" value={user.user_email} onChange={handleInputChange}/>
@@ -82,10 +96,14 @@ function RegistrationPage() {
                                 <input type="password" name="user_password" class="input-text" placeholder="Password" value={user.user_password} onChange={handleInputChange} />
                             </div>
                             <div class="form-group form-fg">
+                                <Autocomplete options={{ types: ["address"], componentRestrictions: { country: "ie" } }} apiOptions={{ region: 'ie' }} apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY} placeholder="Address" value={user.address} onChange={handleInputChange} className="input-text"/>
+                            </div>
+                            <div class="form-group form-fg">
                                 <input type="date" name="user_birthday" class="input-text" placeholder="Birth Date" value={user.user_birthday} onChange={handleInputChange} />
                             </div>
                             <div class="form-group mt-2">
-                                <button type="submit" class="btn-md btn-fg btn-block">Register</button>
+                            <button onClick={onShow} form='register-form' class="btn-md btn-fg btn-block">Register</button>
+                                {hasRender && <ModalWindow />}
                             </div>
                         </form>
                         {message}
