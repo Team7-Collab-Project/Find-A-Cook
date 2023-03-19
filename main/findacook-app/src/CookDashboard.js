@@ -13,6 +13,7 @@ import { FaCertificate } from "react-icons/fa";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
+import Scheduler from "./components/Scheduler";
 //import Maps from './components/Maps';
 
 
@@ -155,6 +156,7 @@ function CookDashboard() {
                 </div>
               </div>
             </div>
+            <Scheduler/>
           </div>
         </section>
   
