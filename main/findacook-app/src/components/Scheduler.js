@@ -10,18 +10,6 @@ import "react-datepicker/dist/react-datepicker.css"
 import DatePicker from "react-datepicker";
 import Button from 'react-bootstrap/Button';
 
-
-const event = new Scheduler({
-  title: 'James Willem',
-  start: '2023-03-12T12:00:00',
-  end: '2023-03-12T14:30:30'
-})
-await event.save();
-
-const firstEvent = await Scheduler.findOne({});
-console.log(firstEvent);
-
-
 const locales = {
   "en-IE": require("date-fns/locale/en-IE")
 }
@@ -39,9 +27,31 @@ function Scheduler(){
   const [allEvents, setAllEvents] = useState(events)
   const calendarRef = useRef(null);
 
+ useEffect(() => {
+    axios.get("/api/schedules").then((response) => {
+        if (response.data.status === "SUCCESS") {
+            const fetchedEvents = response.data.events.map((event) => ({
+                title: event.schedule_title,
+                start: new Date(event.schedule_start),
+                end: new Date(event.schedule_end),
+            }));
+            setEvents(fetchedEvents);
+        }
+    });
+ }, []);
+
   function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent]);
-    setNewEvent({title:"", start:"",end:""});
+    axios
+    .post("/api/schedules/addschedule", newEvent)
+    .then((response) => {
+      if (response.data.status === "SUCCESS") {
+        setEvents([...events, newEvent]);
+        setNewEvent({ title: "", start: "", end: "" });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   return (
@@ -49,9 +59,6 @@ function Scheduler(){
     
     <div ref={calendarRef} style={{backgroundColor:"white", border: "black solid 2px", borderTopLeftRadius: "5%", borderTopRightRadius: "5%"}}>
       <Calendar
-        components={{
-          dateCellWrapper: ({ children, value }) => React.cloneElement(children, { "data-date": value })
-        }}
         localizer={localizer}
         events={allEvents}
         startAccessor="start"
