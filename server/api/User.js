@@ -265,10 +265,12 @@ router.post('/signin', (req, res) => {
                     const hashedPassword = data[0].user_password;
                     bcrypt.compare(user_password, hashedPassword).then(result => {
                     if (result) {
+                        req.session.user = data[0];
+                        console.log(req.session.user)
+                        //res.send(result)
                         res.json({
                             status: "SUCCESS",
-                            message: "Sign in succesful",
-                            data: data
+                            message: "Successfully logged in",
                         })
                     } else {
                         res.json({
@@ -288,7 +290,7 @@ router.post('/signin', (req, res) => {
             } else {
                 res.json({
                     status: "FAILED",
-                    message: "Ivalid credentials entered"
+                    message: "Invalid credentials entered"
                 })
             }
         }).catch(err => {
@@ -299,5 +301,39 @@ router.post('/signin', (req, res) => {
         })
     }
 })
+
+router.get("/userinfo", (req, res) => {
+    console.log(req.session)
+    const user = req.session.user;
+    if(user) {
+        res.json({
+            status: "SUCCESS",
+            message: `${user.user_first_name}`
+        })
+    } else {
+        res.json({
+            status: "FAILED",
+            message: "ERROR",
+        })
+    }
+});
+
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        res.json({
+          status: "FAILED",
+          message: "Error occurred while logging out",
+        })
+      } else {
+        res.clearCookie("userId");
+        res.json({
+          status: "SUCCESS",
+          message: "Logged out successfully",
+        })
+      }
+    });
+  });
+
 
 module.exports = router;

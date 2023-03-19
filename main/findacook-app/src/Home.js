@@ -1,20 +1,36 @@
-import React from 'react';
 import Homepage from './components/Homepage'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 
-import { useSelector } from 'react-redux';
+function HomePage() {
+    const [firstname, setFirstName] = useState("")
+    axios.defaults.withCredentials = true
+    useEffect(()=> {
+        axios.get('http://localhost:5001/user/userinfo')
+        .then((res) => {
+            setFirstName(res.data.message);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, [])
+
 
 const Home = () => {
     
+  return (
+    <>
+      <Navbar />
+      <Homepage />
+      <div className="container">
+        <h1>Welcome to Find A Cook {firstname}</h1>
 
-    return(
-        <>
-        <Navbar />
-        <Homepage />
+        <p>Explore our recipes and find your new favorite dish.</p>
+      </div>
+    </>
+  );
 
-
-        </>
-    );
 }
 
-export default Home
+export default HomePage;

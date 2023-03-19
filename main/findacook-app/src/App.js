@@ -27,9 +27,11 @@ import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
+import VerificationPage from './VerificationPage';
 import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
 import ApplicationSubmitted from './ApplicationSubmitted';
+import TestApp from './TestApp';
 import PaymentSuccessful from './PaymentSuccessful';
 import PaymentUnsuccessful from './PaymentUnsucessful';
 import AdminviewPage from './AdminViewPage';
@@ -39,6 +41,7 @@ import AdminCookListPage from './AdminCookListPage';
 import CategoriesPage from './CategoriesPage';
 import ViewBookingsPage from './ViewBookingsPage';
 import BookingPage from './BookingPage';
+
 
 function App() {
 
@@ -72,10 +75,12 @@ function App() {
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/profile" element={<CookProfile />} />
       <Route path="/viewcooks" element={<ViewCooks />} />
+      <Route path="/verificationpage" element={<VerificationPage/>} />
       <Route path="/cooklogin" element={<CookLoginPage />} />
-      <Route path="/cookregestration" element={<CookRegPage />} />
+      <Route path="/cookregistration" element={<CookRegPage />} />
       <Route path="/complete-form" element={<CompleteForm />} />
       <Route path="/submit" element={<ApplicationSubmitted />} />
+      <Route path="/testapp" element={<TestApp />} />
       <Route path="/area" element={<Area />} />
       <Route path="/subscription" element={<SubscriptionPage />} />
       <Route path="/paymentsuccessful" element={<PaymentSuccessful />} />
