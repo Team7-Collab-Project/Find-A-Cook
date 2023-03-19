@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 
-function HomePage() {
+const Home = () => {
     const [firstname, setFirstName] = useState("")
     axios.defaults.withCredentials = true
     useEffect(()=> {
@@ -17,7 +17,7 @@ function HomePage() {
     }, [])
 
 
-const Home = () => {
+
     
   return (
     <>
@@ -33,4 +33,4 @@ const Home = () => {
 
 }
 
-export default HomePage;
+export default Home;
