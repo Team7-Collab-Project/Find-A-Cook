@@ -5,10 +5,18 @@ import { getCook } from '../../redux/actions/cookActions'
 import { BsArrowDownLeft } from 'react-icons/bs';
 import { BsArrowDownRight } from 'react-icons/bs';
 import { FaWindowClose } from 'react-icons/fa'
+import { Modal, Button } from "react-bootstrap";
+import BookingForm from './BookingForm';
 
 const CustomerBooking = () => {
 	const [slideNumber, setSlideNumber] = useState(0);
 	const [open, setOpen] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
 
 	const handleOpen = (i) => {
 		setSlideNumber(i);
@@ -38,6 +46,12 @@ const CustomerBooking = () => {
 	useEffect(() => {
 		dispatch(getCook(cookId));
 	}, [dispatch, cookId]);
+
+	const handleClick = () => {
+
+		  setOpenModal(true);
+
+	  };
 
 	const { cook } = useSelector(state => state.cooks);
   console.log(cook)
@@ -169,7 +183,7 @@ const CustomerBooking = () => {
           )}
 
 <div className="cookWrapper">
-<button className="bookNow">Book Now!</button>
+<button className="bookNow" onClick={handleShow}>Book Now!</button>
  	  <div class="profile-picture">
  		<img src={`/uploads/${cook.profile_picture}`} alt="Profile Picture" />
  	  </div>
@@ -251,6 +265,61 @@ const CustomerBooking = () => {
 </div>
 
 			)}
+			{/* {openModal && <BookingForm setOpen={setOpenModal} cookId={cookId}/>} */}
+
+
+
+
+			<Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+            <Modal.Title>Select your menu items: </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className="rItem" >
+            <div className="rItemInfo">
+              <div className="rTitle">Bao Buns</div>
+              <div className="rDesc">Yum</div>
+
+              <div className="rPrice">€10</div>
+            </div>
+            <div className="selectFood">
+
+                <div className="food">
+                  <input
+                    type="checkbox"
+                  />
+                </div>
+        
+            </div>
+
+          </div>
+
+		  <div className="rItem" >
+            <div className="rItemInfo">
+              <div className="rTitle">Beef Burger </div>
+              <div className="rDesc">Tasty</div>
+
+              <div className="rPrice">€10</div>
+            </div>
+            <div className="selectFood">
+
+                <div className="food">
+                  <input
+                    type="checkbox"
+                  />
+                </div>
+        
+            </div>
+
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+            <button className='modalButton' onClick={handleClose}>
+                Close
+            </button>
+        </Modal.Footer>
+    </Modal>
+  
 </>
     );
   };

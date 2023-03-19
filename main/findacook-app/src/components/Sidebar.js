@@ -23,7 +23,7 @@ const Sidebar = () => {
                 <li><a href="/bookings">
                     <span class="link-name">📖 View Bookings</span>
                 </a></li>
-                <li><a href="/categories">
+                <li><a href="/menu">
                     <span class="link-name">🍔 View Menu</span>
                 </a></li>
             </ul>
