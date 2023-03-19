@@ -18,6 +18,7 @@ import reportWebVitals from './reportWebVitals';
 import { commerce } from './lib/commerce';
 import { useDispatch } from 'react-redux'
 import { getCategories } from './redux/actions/categoryActions';
+import { getCooks } from './redux/actions/cookActions';
 import Shipping from './Shipping';
 import EditProduct from './components/Admin/EditProduct';
 import Home from './Home';
@@ -47,6 +48,10 @@ function App() {
 
   useEffect(() => {
           dispatch(getCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+          dispatch(getCooks());
   }, [dispatch]);
 
 
