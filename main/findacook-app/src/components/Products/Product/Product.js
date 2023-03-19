@@ -8,6 +8,7 @@ const Product = () => {
 
     const navigate = useNavigate();
 	const { productId } = useParams();
+	console.log('SAYOOOO',productId)
 
 	const dispatch = useDispatch();
 

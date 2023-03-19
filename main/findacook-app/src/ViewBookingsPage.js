@@ -15,21 +15,29 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-import CookDashboardComponent from "./components/Something/CookDashboardComponent";
 //import Maps from './components/Maps';
+import Booking from "./components/Booking/Booking";
 
 
 
-function CookDashboard() {
+function ViewBookingsPage() {
   return (
     <>
 
     <Topbar />
     <Sidebar />
-    <CookDashboardComponent />
+
+    <section class="dashboard">
+
+    <Booking />
+
+    </section>
+
+
+
 
     </>
   );
 }
 
-export default CookDashboard;
+export default ViewBookingsPage;

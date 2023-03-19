@@ -1,3 +1,4 @@
+import Homepage from './components/Homepage'
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
@@ -15,9 +16,13 @@ function HomePage() {
         });
     }, [])
 
+
+const Home = () => {
+    
   return (
     <>
       <Navbar />
+      <Homepage />
       <div className="container">
         <h1>Welcome to Find A Cook {firstname}</h1>
 
@@ -25,6 +30,7 @@ function HomePage() {
       </div>
     </>
   );
+
 }
 
 export default HomePage;

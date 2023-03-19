@@ -68,7 +68,8 @@ const _Products = ({ product }) => {
 								to={`/product/${product._id}`}
 								type='button'
 								className='productButton'
-							>
+							> 
+              
 								Read More
 							</Link>
                 </div>

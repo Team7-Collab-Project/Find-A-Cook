@@ -6,6 +6,7 @@ import loadingReducer from './reducers/loadingReducer';
 import categoryReducer from './reducers/categoryReducer';
 import productReducer from './reducers/productReducer';
 import cartReducer from './reducers/cartReducers';
+import cookReducer from './reducers/cookReducer';
 
 
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
 	categories: categoryReducer,
   cart: cartReducer,
   products: productReducer,
+  cooks: cookReducer,
 })
 
 const initialState = {}
