@@ -1,5 +1,6 @@
 import CookList from "./components/cooks/CookList";
 import Navbar from './components/Navbar/Navbar';
+import EditProfile from "./components/cooks/EditProfile";
 
 function TestApp() {
 
@@ -8,6 +9,7 @@ function TestApp() {
             <Navbar />
             {/* Other components */}
             <CookList />
+            {/* <EditProfile /> */}
         </div>
       );
 }
