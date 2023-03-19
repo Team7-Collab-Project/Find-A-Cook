@@ -4,6 +4,9 @@ const router = express.Router();
 const Cook = require('./../models/Cook')
 const nodemailer = require('nodemailer');
 const {v4:uuid} = require("uuid");
+const upload = require('../middleware/multer');
+const MenuCategorySchema = require('./../models/MenuCategory');
+
 
 require('dotenv').config();
 
@@ -184,6 +187,54 @@ router.get("/allcooks", async (req, res) => {
   });
   
 
+  router.get('/menucategories', async (req, res) => {
+    try {
+      const menuCategories = await MenuCategorySchema.find();
+      res.json({ status: 'SUCCESS', menuCategories });
+    } catch (err) {
+      res.json({ status: 'FAILED', message: 'Error retrieving menu categories' });
+    }
+  });
+
+
+  router.post('/addmenuitem', async (req, res) => {
+    const cook = req.session.cook;
+  
+    if (!cook) {
+      return res.json({
+        status: 'FAILED',
+        message: 'Not authorized to add menu items',
+      });
+    }
+  
+    const { item_name, product_description, price, category, imageurls, currentbookings } = req.body;
+  
+    try {
+      const menuItem = new MenuItemSchema({
+        cook_id: cook._id,
+        item_name,
+        product_description,
+        price,
+        category,
+        imageurls,
+        currentbookings,
+      });
+  
+      await menuItem.save();
+      res.json({
+        status: 'SUCCESS',
+        message: 'Menu item added successfully',
+      });
+    } catch (err) {
+      res.json({
+        status: 'FAILED',
+        message: 'Error adding menu item',
+        error: err,
+      });
+    }
+  });
+  
+
 router.put("/editprofile", (req, res) => {
     const { cook_first_name, cook_last_name, specialties, description, profile_picture, cook_bio } = req.body;
     const cook = req.session.cook;
@@ -223,8 +274,35 @@ router.put("/editprofile", (req, res) => {
     }
   });
 
-
+  router.post('/uploadprofilepicture', upload.single('profile_picture'), async (req, res) => {
+    const cook = req.session.cook;
+    
+    if (cook) {
+      const profile_picture = req.file.path;
   
+      try {
+        await Cook.updateOne({ _id: cook._id }, { $set: { profile_picture } });
+        res.json({
+          status: 'SUCCESS',
+          message: 'Profile picture uploaded successfully',
+          imagePath: profile_picture,
+        });
+      } catch (err) {
+        res.json({
+          status: 'FAILED',
+          message: 'Error uploading profile picture',
+          error: err,
+        });
+      }
+    } else {
+      res.json({
+        status: 'FAILED',
+        message: 'Not authorized to upload profile picture',
+      });
+    }
+  });
+  
+
 
 module.exports = router;
 // router.post('cooklogout', (req, res) => {

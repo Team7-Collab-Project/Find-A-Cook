@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MenuCategorySchema = require('./MenuCategory');
 const { ObjectId } = mongoose.Schema;
 
 const cooks = new mongoose.Schema(
@@ -19,10 +20,11 @@ const cooks = new mongoose.Schema(
             type: String,
             required: true,
         },
-        specialties: {
-            type: Array,
-            required: true,
-        },
+        specialties: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category'
+
+        }],
         description: {
             type: String,
             required: true,

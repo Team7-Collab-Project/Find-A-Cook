@@ -5,11 +5,13 @@ import Navbar from './components/Navbar/Navbar';
 
 const Home = () => {
     const [firstname, setFirstName] = useState("")
+    const [secondname, setSecondName] = useState("")
     axios.defaults.withCredentials = true
     useEffect(()=> {
         axios.get('http://localhost:5001/user/userinfo')
         .then((res) => {
-            setFirstName(res.data.message);
+            setFirstName(res.data.fname);
+            setSecondName(res.data.sname);
         })
         .catch((err) => {
             console.error(err);
