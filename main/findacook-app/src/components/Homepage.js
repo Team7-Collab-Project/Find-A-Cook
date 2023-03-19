@@ -25,11 +25,33 @@ const Homepage = () => {
   };
   return (
     <>
-            <div>
+    <div>
+
+        <nav className="">
+    
         <DatePicker />
         <TimePicker format="HH:mm" minuteStep={5}/>
-        </div>
-
+      
+              <form className="search-container">
+                <input
+                  id="search-bar"
+                  type="search"
+                  placeholder="Search..."
+                  name="search"
+                  // value={text}
+                  // onChange={handleSearch}
+                />
+            
+                {/* <button
+                  className=""
+                  type="submit"
+                  disabled={true}
+                >
+                  Search
+                </button> */}
+              </form>
+            </nav>
+            </div>
       <div class="test-container">
 {cooks.map((cook, index) => (
          <Cook key={cook._id} cook={cook}/>

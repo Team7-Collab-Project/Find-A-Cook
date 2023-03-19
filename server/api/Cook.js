@@ -168,7 +168,7 @@ router.get("/cookinfo", (req, res) => {
 
 router.get("/allcooks", async (req, res) => {
     try {
-      const cooks = await Cook.find({}, { cook_first_name: 1, cook_last_name: 1, profile_picture: 1, application_status: 1, cook_bio: 1, description: 1, _id: 1 });
+      const cooks = await Cook.find({}, { cook_first_name: 1, cook_last_name: 1, profile_picture: 1, application_status: 1, cook_bio: 1, description: 1, _id: 1,specialties: 1 });
   
       res.json({
         status: "SUCCESS",
@@ -223,21 +223,6 @@ router.put("/editprofile", (req, res) => {
     }
   });
 
-//   router.get('/cookdetails/:cookId', async (req, res) =>{
-//     try {
-//       const cookId = req.params.cookId;
-//       const cook = await Cook.findById(cookId);
-  
-//       res.json(cook);
-//       console.log(cook);
-//       console.log(cookId);
-//     } catch (err) {
-//       console.log('Cook Read Error: ', err);
-//       res.status(500).json({
-//         errorMessage: 'Please try again later',
-//       });
-//     }
-//   })
   
 
 module.exports = router;
