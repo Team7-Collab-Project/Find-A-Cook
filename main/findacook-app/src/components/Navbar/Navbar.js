@@ -1,4 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 import '../CSS/Style.css'
 import { useRef } from "react";
 import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
@@ -26,21 +27,17 @@ function Navbar() {
 		navRef.current.classList.toggle("responsive_nav");
 	};
 
-	// const checkout = async () => {
-    //     await fetch('http://localhost:3001/checkout', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({items: cart.items})
-    //     }).then((response) => {
-    //         return response.json();
-    //     }).then((response) => {
-    //         if(response.url) {
-    //             window.location.assign(response.url); // Forwarding user to Stripe
-    //         }
-    //     });
-	// }
+    const [firstname, setFirstName] = useState("")
+    axios.defaults.withCredentials = true
+    useEffect(()=> {
+        axios.get('http://localhost:5001/user/userinfo')
+        .then((res) => {
+            setFirstName(res.data.message);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, [])
 
 	return (
 		<>
@@ -54,9 +51,12 @@ function Navbar() {
             </a>
             {/* <img src="../images/logo-new-edit-01.png"/> */}
 			<nav ref={navRef}>
+
+<h5>{firstname}</h5>
 				<a href="/home">Discover Cooks</a>
 				<a href="/#">My Bookings</a>
 				{/* <a href="/#">Temi</a> */}
+
 
                 {/* name of user */}
 

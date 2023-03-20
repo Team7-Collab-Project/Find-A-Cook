@@ -7,7 +7,7 @@ const session = require("express-session");
 require('./config/db')
 
 const UserRouter = require('./api/User');
-const CookRouter = require('./api/Cook')
+const CookRouter = require('./api/Cook');
 
 
 const bodyParser = require('express').json;
