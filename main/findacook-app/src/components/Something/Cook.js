@@ -37,9 +37,10 @@ const Cook = ({ cook }) => {
 
 
 
-        <div class="profile-info">
+    
 
-          <div class="product-section">
+
+          
 
           <div className="card__details">
             
@@ -66,8 +67,8 @@ const Cook = ({ cook }) => {
       </div>
 
 
-			</div>
-		</div>
+		
+		
 
 
     <Modal show={show} onHide={handleClose}>

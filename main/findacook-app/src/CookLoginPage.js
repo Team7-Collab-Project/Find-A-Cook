@@ -14,26 +14,28 @@ function CookLoginPage() {
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
-  const login = async (event) => {
+  const login = (event) => {
     event.preventDefault();
-    
-    try {
-      const res = await axios.post('http://localhost:5001/cook/cooksignin', {
+    axios.post('http://localhost:5001/cook/cooksignin', {
         cook_email: email,
         cook_password: password,
-      });
+    }).then((res) => {
+        if (res.data.status === "SUCCESS") {
+            console.log(res.data);
 
-      if (res.data.status === "SUCCESS") {
-        console.log(res.data);
-        navigate("/cookdashboard");
-      } else {
-        setMessage(res.data.message);
-      }
-    } catch (err) {
-      console.error(err);
-      setMessage(err.response.data.message);
-    }
-  };
+            navigate("/cookdashboard")
+        } else {
+            // setMessage(err.response.data.message)
+
+            setMessage('Some Error')
+        }
+    }).catch((err) => {
+        console.error(err);
+        setMessage(err.response.data.message)
+    });
+  
+};
+
   
   return (
     <>
@@ -73,6 +75,7 @@ function CookLoginPage() {
                         </form>
                     </div>
                     <p>Interested in becoming a <strong>cook</strong>? <a href="/cookregistration" class="linkButton">Sign Up!</a></p>
+                    <p>Or <a href='/'>Go Back to Homepage</a></p>
                 </div>
             </div>
         </div>

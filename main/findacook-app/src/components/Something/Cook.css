@@ -55,6 +55,7 @@
     display: grid;
     grid-gap: 5px;
     flex-basis: calc(33.33% - 20px);
+    margin-top: 10px;
   }
 
  .card__details h3 {
@@ -117,6 +118,16 @@
   }
 
   .modalButton{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+  .logoutButton{
     background-color: black;
     color: white;
     padding: 10px 20px;

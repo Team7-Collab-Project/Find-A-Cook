@@ -152,6 +152,7 @@ router.post('/cooksignin', (req, res) => {
 router.get("/cookinfo", (req, res) => {
     console.log(req.session)
     const cook = req.session.cook;
+    // console.log(cook);
     if(cook) {
         res.json({
             status: "SUCCESS",
@@ -160,7 +161,8 @@ router.get("/cookinfo", (req, res) => {
             special: `${cook.specialties}`,
             descrip: `${cook.description}`,
             profile: `${cook.profile_picture}`,
-            bio: `${cook.cook_bio}`
+            bio: `${cook.cook_bio}`,
+            email: `${cook.cook_email}`
         })
     } else {
         res.json({

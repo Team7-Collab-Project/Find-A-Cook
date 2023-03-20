@@ -78,6 +78,7 @@ function LoginPage() {
                         </form>
                     </div>
                     <p>New Here? <a href="/register" class="linkButton">Sign Up!</a></p>
+                    <p>Or <a href='/'>Go Back to Homepage</a></p>
                 </div>
             </div>
         </div>

@@ -9,12 +9,19 @@ function TestApp() {
 
     return (
         <div>
+
+            <Topbar />
+            <Sidebar />
+
+            <EditProfile />
+
             < Topbar />
             < Sidebar />
             {/* Other components */}
             {/* <CookList /> */}
-            {/* <EditProfile /> */}
+   
             <AddMenuItem />
+
         </div>
       );
 }
