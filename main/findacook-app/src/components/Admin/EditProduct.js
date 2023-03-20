@@ -8,6 +8,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import { useNavigate } from 'react-router-dom';
 
+
 const EditProduct = () => {
   const { productId } = useParams();
   console.log("id 2", productId);

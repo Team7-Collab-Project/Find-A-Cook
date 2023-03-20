@@ -1,13 +1,26 @@
 import { useState } from "react";
 import "./AdminSidebar/Sidebar.css"
+import axios from "axios";
+import { useNavigate, Redirect } from "react-router-dom";
 
-// import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar"
-// import 'react-pro-sidebar/dist/css/styles.css'
 
 const Sidebar = () => {
-    // const [isCollapsed, setIsCollapsed] = useState(false);
-    // const [selected, setSelected] = useState('Dashboard');
-
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        try {
+          const response = await axios.post("http://localhost:5001/user/logout");
+          if (response.data.status === "SUCCESS") {
+            alert("Logged out successfully");
+            // Redirect user to login or any other appropriate page
+            navigate('/')
+          } else {
+            alert("Error logging out");
+          }
+        } catch (error) {
+          console.error("Error logging out:", error);
+          alert("Error logging out");
+        }
+      };
 
     return (
 <>
@@ -29,14 +42,17 @@ const Sidebar = () => {
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="/testapp">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Settings</span>
                 </a></li>
-                <li><a href="#">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+                        <li>
+                            <a href="#" onClick={handleLogout}>
+                                <i class="uil uil-signout"></i>
+                                <span class="link-name">Logout</span>
+                            </a>
+                        </li>
+
             </ul>
         </div>
     </aside>

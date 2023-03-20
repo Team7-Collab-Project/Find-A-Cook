@@ -25,11 +25,11 @@ const Home = () => {
     <>
       <Navbar />
       <Homepage />
-      <div className="container">
+      {/* <div className="container">
         <h1>Welcome to Find A Cook {firstname}</h1>
 
         <p>Explore our recipes and find your new favorite dish.</p>
-      </div>
+      </div> */}
     </>
   );
 
