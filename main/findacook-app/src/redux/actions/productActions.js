@@ -59,7 +59,7 @@ export const getProducts = () => async dispatch => {
 
 export const getProduct = productId => async dispatch => {
 	try {
-		// console.log("id3", productId)
+		console.log("id3", productId)
 		dispatch({ type: START_LOADING });
 		const response = await axios.get(`/api/product/${productId}`);
 		dispatch({ type: STOP_LOADING });

@@ -10,17 +10,13 @@ const AdminBody = () => {
 
     return(
         <>
-        <div className="">
-        <div className=''>
-            <div className=''>
-                <div className=''>
+
+                <div>
                     {products && products.map(product => (
                         <_Products key={product._id} product={product} />
                     ))}
                 </div>
-            </div>
-        </div>
-        </div>
+
 
         </>
     );

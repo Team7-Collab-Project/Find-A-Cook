@@ -3,36 +3,37 @@ const { ObjectId } = mongoose.Schema;
 
 const bookings = new mongoose.Schema(
     {
-        _id: {
+        user: {
             type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
             required: true,
         },
-        user_id: {
-            type: mongoose.Schema.Types.ObjectId,
-			ref: 'UserId',
-            required: true,
-        },
-        user_last_name: {
-            type: String,
-            required: true, //COOK REF
-        },
-        order_date_time: {
+        cook: {
+          type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cook',
+          required: true,
+      },
+        items: [
+            {
+              name: String,
+              quantity: Number,
+              price: Number
+            }
+          ],
+          total: {
+            type: Number,
+            required: true
+          },
+          bookingDate: {
             type: Date,
-            required: true,
-        },
-        total_price: {
-            type: Float,
-            required: true,
-        },
-        // customer_cook_rating: {
-        //     type: String, 
-        //     required: true, //REVIEW REF
-        // },
-        address_id: {
-            type: mongoose.Schema.Types.ObjectId,
-			ref: 'AddressSchema',
-            required: true,
-        },
+            default: Date.now,
+            required: true
+          },
+          status: {
+            type: String,
+            enum: ['Pending', 'Accepted', 'Declined'],
+            default: 'Pending'
+          },
     },
     { timestamps: true }
 );

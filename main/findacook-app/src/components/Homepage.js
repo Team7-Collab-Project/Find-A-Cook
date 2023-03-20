@@ -1,75 +1,63 @@
-import React, { useState } from "react";
-// import "../CSS/Style.css";
-import { addToCart } from "../redux/actions/cartActions"
-import { useDispatch } from "react-redux";
-// import { useContext } from "react";
-// import CartContext from "../../CartContext";
-// import { deleteProduct } from "../../redux/actions/productActions";
-// import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Cook from './Something/Cook'
+import './Something/Cook.css'
+import { DatePicker, TimePicker } from 'antd';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import 'antd/dist/reset.css';
 
 
-// const _Products = ({productItems, handleAddProduct}) => {
-const Homepage = ({ product }) => {
-  // const product = props.product;
-  // const cart = useContext(CartContext);
-  // const productQuantity = cart.getProductQuantity(productItems.id);
-  // console.log(cart.items);
+const Homepage = () => {
+  const [cooks, setCooks] = useState([]);
+  
+  useEffect(() => {
+    fetchCooks();
+  }, []);
 
-  // THIS CODE WORKS!! JUST COMMENTED OUT FOR NOW
-  const dispatch = useDispatch();
-
-  const handleAddToCart = () => {
-  	dispatch(addToCart(product));
+  const fetchCooks = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/cook/allcooks");
+      setCooks(response.data.cooks);
+    } catch (error) {
+      console.error("Error fetching cooks:", error);
+    }
   };
-
-
-  // const dispatch = useDispatch();
-
   return (
     <>
+    <div>
 
-<div className="cards">
-
-<div className="card">
-  <div className="card__image-holder">
-  <img className="imageDisplay" src={`/uploads/${product.filename}`} />
-  </div>
-  <div className="card-title">
-    <a href="#" className="toggle-info btn">
-      <span className="left"></span>
-      <span className="right"></span>
-    </a>
-
-       
-        <small> {product.item_name}</small>
-        <small> {product.price}</small>
-
-  </div>
-  <div className="card-flap flap1">
-    <div className="card-description">
-    {product.product_description.length > 60
-            ? product.product_description.substring(0, 60) + '...'
-            : product.product_description.substring(0, 60)
-        }
-    </div>
-    <div className="card-flap flap2">
-      <div className="card-actions">
-        <a href="#" className="btn">Read more</a>
-      </div>
-    </div>
-  </div>
+        <nav className="">
+    
+        <DatePicker />
+        <TimePicker format="HH:mm" minuteStep={5}/>
+      
+              <form className="search-container">
+                <input
+                  id="search-bar"
+                  type="search"
+                  placeholder="Search..."
+                  name="search"
+                  // value={text}
+                  // onChange={handleSearch}
+                />
+            
+                {/* <button
+                  className=""
+                  type="submit"
+                  disabled={true}
+                >
+                  Search
+                </button> */}
+              </form>
+            </nav>
+            </div>
+      <div class="test-container">
+{cooks.map((cook, index) => (
+         <Cook key={cook._id} cook={cook}/>
+          ))}
+          
 </div>
-
-
-
-</div>
-
-
-
-
-
-
-
     </>
   );
 };

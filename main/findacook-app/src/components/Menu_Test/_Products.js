@@ -27,41 +27,6 @@ const _Products = ({ product }) => {
 
   return (
     <>
-      {/* <div className="cards">
-
-<div className="card">
-  <div className="card__image-holder">
-  <img className="imageDisplay" src={`/uploads/${product.filename}`} />
-  </div>
-  <div className="card-title">
-    <a href="#" className="toggle-info btn">
-      <span className="left"></span>
-      <span className="right"></span>
-    </a>
-
-       
-        <small> {product.item_name}</small>
-        <small> {product.price}</small>
-
-  </div>
-  <div className="card-flap flap1">
-    <div className="card-description">
-    {product.product_description.length > 60
-            ? product.product_description.substring(0, 60) + '...'
-            : product.product_description.substring(0, 60)
-        }
-    </div>
-    <div className="card-flap flap2">
-      <div className="card-actions">
-        <a href="#" className="btn">Read more</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-</div> */}
 
       <div className="productBody">
         <div class="theProductsContainer">
@@ -81,12 +46,30 @@ const _Products = ({ product }) => {
             ? product.product_description.substring(0, 60) + '...'
             : product.product_description.substring(0, 60)
         }</p>
+
+       {/* EDIT PAGE CODE */}
+       
+       {/* <Link
+       to={`/edit/product/${product._id}`}
+       type="button"
+       className="btn btn-secondary btn-sm">
+        <i className="far fa-edit pr-1"></i>
+        Edit
+       </Link> */}
+
+
+       {/* <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(product._id))}>
+          <i className="far fa-trash-alt pr-1"></i>
+          Delete
+       </button> */}
+
                         <div class="read">
                         <Link
 								to={`/product/${product._id}`}
 								type='button'
 								className='productButton'
-							>
+							> 
+              
 								Read More
 							</Link>
                 </div>

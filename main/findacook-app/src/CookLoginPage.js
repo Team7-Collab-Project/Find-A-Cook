@@ -1,43 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import BackButton from './components/BackButton';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import RememberPassword from './components/RememberPassword';
 import { BsTwitter } from 'react-icons/bs';
 import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
+import { useNavigate, Redirect } from "react-router-dom";
+import axios from 'axios';
 
 
 function CookLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleLogin(event) {
+  const [message, setMessage] = useState('')
+  const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
+  const login = async (event) => {
     event.preventDefault();
-    const { email, password } = event.target.elements;
-  
-    // check if the checkbox is checked
-    if (RememberPassword.checked) {
-      // save email and password to local storage
-      localStorage.setItem("email", email.value);
-      localStorage.setItem("password", password.value);
-    } else {
-      // remove email and password from local storage
-      localStorage.removeItem("email");
-      localStorage.removeItem("password");
+    
+    try {
+      const res = await axios.post('http://localhost:5001/cook/cooksignin', {
+        cook_email: email,
+        cook_password: password,
+      });
+
+      if (res.data.status === "SUCCESS") {
+        console.log(res.data);
+        navigate("/cookdashboard");
+      } else {
+        setMessage(res.data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage(err.response.data.message);
     }
-  
-    // perform login
-  }
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Logic for logging in
-    window.location.href = "/cookdashboard";
   };
-
+  
   return (
     <>
     <div class="login-fg">
@@ -62,19 +59,20 @@ function CookLoginPage() {
                         <span>Or</span>
                     </div>
                     <div class="form-container">
-                        <form>
+                        <form onSubmit={login}>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Email Address" />
+                                <input type="email" name="email" class="input-text" placeholder="Email Address" onChange={(event) => setEmail(event.target.value)} />
                             </div>
                             <div class="form-group form-fg">
-                                <input type="email" name="email" class="input-text" placeholder="Password" />
+                                <input type="password" name="password" class="input-text" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
                             </div>
+                            {message}
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn-md btn-fg btn-block">Login</button>
                             </div>
                         </form>
                     </div>
-                    <p>Interested in becoming a <strong>cook</strong>? <a href="/cookregestration" class="linkButton">Sign Up!</a></p>
+                    <p>Interested in becoming a <strong>cook</strong>? <a href="/cookregistration" class="linkButton">Sign Up!</a></p>
                 </div>
             </div>
         </div>

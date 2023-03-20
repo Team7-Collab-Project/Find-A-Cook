@@ -162,7 +162,7 @@ const sendVerificationEmail = ({_id, user_email}, res) => {
 
 router.get("/verify/:userId/:uniqueString", (req, res) => {
     let {userId, uniqueString} = req.params;
-    
+    const currentUrl = "http://localhost:3000";
 
     UserVerification
     .find({userId})
@@ -179,17 +179,17 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                     .deleteOne({_id: userId})
                     .then(result => {
                         let message = "Link has expired. Please sign up again.";
-                        res.redirect(`/user/verified/error=true&messages=${message}`);
+                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                     })
                     .catch((error) => {
                         let message = "Clearing user with expired unique string failed";
-                        res.redirect(`/user/verified/error=true&messages=${message}`);
+                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                     })
                 })
                 .catch((error) => {
                     console.log(error);
                     let message = "An error occurred while clearing expired user verification record";
-                    res.redirect(`/user/verified/error=true&messages=${message}`);
+                    res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                 })
             } else {
                 bcrypt
@@ -202,38 +202,38 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                             UserVerification
                             .deleteOne({userId})
                             .then(() => {
-                                res.sendFile(path.join(__dirname, "./../views/verified.html"));
+                                res.redirect(currentUrl + `/verificationpage`)
                             })
                             .catch(error => {
                                 console.log(error);
                                 let message = "An error occurred while finalizing successful verification.";
-                                res.redirect(`/user/verified/error=true&messages=${message}`);
+                                res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                             })
                         })
                         .catch(error => {
                             console.log(error);
                             let message = "An error occurred while updating user record to show verified.";
-                            res.redirect(`/user/verified/error=true&messages=${message}`);
+                            res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                         })
                     } else {
                         let message = "Invalid verification details passed. Check your inbox";
-                        res.redirect(`/user/verified/error=true&messages=${message}`);
+                        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                     }
                 })
                 .catch(error => {
                     let message = "An error occurred while compring unique strings";
-                    res.redirect(`/user/verified/error=true&messages=${message}`);
+                    res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
                 })
             }
         } else {
             let message = "Account record doesn't exist or has been verified already. Please sign up or login.";
-            res.redirect(`/user/verified/error=true&messages=${message}`);
+            res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
         }
     })
     .catch((error) => {
         console.log(error);
         let message = "An error occurred while checking for existing user verification record";
-        res.redirect(`/user/verified/error=true&messages=${message}`);
+        res.redirect(currentUrl + `/verificationpage/error=true&messages=${message}`);
     });
 });
 
@@ -265,10 +265,12 @@ router.post('/signin', (req, res) => {
                     const hashedPassword = data[0].user_password;
                     bcrypt.compare(user_password, hashedPassword).then(result => {
                     if (result) {
+                        req.session.user = data[0];
+                        console.log(req.session.user)
+                        //res.send(result)
                         res.json({
                             status: "SUCCESS",
-                            message: "Sign in succesful",
-                            data: data
+                            message: "Successfully logged in",
                         })
                     } else {
                         res.json({
@@ -288,7 +290,7 @@ router.post('/signin', (req, res) => {
             } else {
                 res.json({
                     status: "FAILED",
-                    message: "Ivalid credentials entered"
+                    message: "Invalid credentials entered"
                 })
             }
         }).catch(err => {
@@ -299,5 +301,40 @@ router.post('/signin', (req, res) => {
         })
     }
 })
+
+router.get("/userinfo", (req, res) => {
+    console.log(req.session)
+    const user = req.session.user;
+    if(user) {
+        res.json({
+            status: "SUCCESS",
+            fname: `${user.user_first_name}`,
+            sname: `${user.user_last_name}`
+        })
+    } else {
+        res.json({
+            status: "FAILED",
+            message: "ERROR",
+        })
+    }
+});
+
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        res.json({
+          status: "FAILED",
+          message: "Error occurred while logging out",
+        })
+      } else {
+        res.clearCookie("userId");
+        res.json({
+          status: "SUCCESS",
+          message: "Logged out successfully",
+        })
+      }
+    });
+  });
+
 
 module.exports = router;
