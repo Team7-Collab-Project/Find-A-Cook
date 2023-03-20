@@ -952,6 +952,19 @@ th:last-child{
 
 .cookImage{
 	width: 15em;
+	height: 10em;
+}
+
+.cookImageDiv{
+	width: 15em;
+	height: 10em;
+	overflow: hidden;
+}
+
+.cookImageTd{
+	width: 15em;
+	height: 10em;
+	padding-right: 1em;
 }
 
 
@@ -965,6 +978,9 @@ th:last-child{
 .cooksListTable{
 
 	background-color: whitesmoke;
+	color: #1f3744;
+	font-family: "Titilium Web";
+	font-size: 15pt;
 	width: 50em;
 	/* height: 80em; */
 	/* padding-top: 2em; */
@@ -999,6 +1015,10 @@ th:last-child{
 	text-align: left;
 	margin-left: 2em;
 	margin-top: 1em;
+	color: #fcb70c;
+}
+
+.starRatings2{
 	color: #fcb70c;
 }
 
