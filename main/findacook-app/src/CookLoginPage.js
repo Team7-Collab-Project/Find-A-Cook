@@ -1,9 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import BackButton from './components/BackButton';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import RememberPassword from './components/RememberPassword';
 import { BsTwitter } from 'react-icons/bs';
 import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
@@ -18,25 +13,27 @@ function CookLoginPage() {
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
 
-  const login = (event) => {
+  axios.defaults.withCredentials = true;
+  const login = async (event) => {
     event.preventDefault();
-    axios.post('http://localhost:5001/cook/cooksignin', {
+    
+    try {
+      const res = await axios.post('http://localhost:5001/cook/cooksignin', {
         cook_email: email,
         cook_password: password,
-    }).then((res) => {
-        if (res.data.status === "SUCCESS") {
-            console.log(res.data);
+      });
 
-            navigate("/cookdashboard")
-        } else {
-            setMessage(err.response.data.message)
-        }
-    }).catch((err) => {
-        console.error(err);
-        setMessage(err.response.data.message)
-    });
-  
-};
+      if (res.data.status === "SUCCESS") {
+        console.log(res.data);
+        navigate("/cookdashboard");
+      } else {
+        setMessage(res.data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage(err.response.data.message);
+    }
+  };
   
   return (
     <>
