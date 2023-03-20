@@ -27,6 +27,7 @@ import RegisinfoPage from './RegisInfoPage';
 import TermsPage from './TermsPage';
 import CookProfile from './CookProfile';
 import ViewCooks from './ViewCooks';
+
 import VerificationPage from './VerificationPage';
 import CookRegPage from './CookRegPage'
 import CompleteForm from './CompleteForm';
@@ -41,6 +42,12 @@ import AdminCookListPage from './AdminCookListPage';
 import CategoriesPage from './CategoriesPage';
 import ViewBookingsPage from './ViewBookingsPage';
 import BookingPage from './BookingPage';
+
+import ReviewCook from './ReviewCook';
+import JoaneMenu from './JoaneMenu';
+import MauriceMenu from './MauriceMenu';
+import JulianMenu from './JulianMenu';
+import MortMenu from './MortMenu';
 
 
 function App() {
@@ -93,6 +100,11 @@ function App() {
       <Route path="/cook/:cookId" element={<BookingPage/>} />
       {/* <Route path="/edit/category/:categoryId" element={<EditCategory />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} /> */}
+      <Route path="/reviewcook" element={<ReviewCook />} />
+      <Route path="/joanemenu" element={<JoaneMenu />} />
+      <Route path="/mauricemenu" element={<MauriceMenu />} />
+      <Route path="/julianmenu" element={<JulianMenu />} />
+      <Route path="/mortmenu" element={<MortMenu />} />
   </Routes>
     </div>
   );

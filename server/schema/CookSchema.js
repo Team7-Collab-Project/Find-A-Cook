@@ -30,6 +30,14 @@ const cooks = new mongoose.Schema(
             default: 'pending',
             required: true,
         },
+        cook_rating_sum: {
+            type: Float,
+            required: true,
+        }, //The sum of all ratings for a given cook
+        cook_rating_count: {
+            type: Int,
+            required: true,
+        }, //The total number of ratings a given cook has received
     },
     { timestamps: true }
 );
