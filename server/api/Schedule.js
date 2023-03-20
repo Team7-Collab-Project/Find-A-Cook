@@ -5,7 +5,7 @@ const Schedule = require('../models/Schedule');
 
 //Schedule stuff
 
-router.post("/addschedule", (req,res) => {
+router.post("/addschedules", (req,res) => {
     const {schedule_title, schedule_start, schedule_end } = req.body;
     if (!schedule_title || !schedule_start || !schedule_end) {
         return res.status(400).send('All fields are required');
