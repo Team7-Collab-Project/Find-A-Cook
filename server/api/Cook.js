@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 const {v4:uuid} = require("uuid");
 const upload = require('../middleware/multer');
 const MenuCategorySchema = require('./../models/MenuCategory');
+const MenuItemSchema = require('./../models/Menu')
 
 
 require('dotenv').config();
@@ -207,17 +208,16 @@ router.get("/allcooks", async (req, res) => {
       });
     }
   
-    const { item_name, product_description, price, category, imageurls, currentbookings } = req.body;
+    const { item_name, product_description, price, category, imageurls } = req.body;
   
     try {
       const menuItem = new MenuItemSchema({
         cook_id: cook._id,
-        item_name,
-        product_description,
-        price,
-        category,
-        imageurls,
-        currentbookings,
+        item_name: item_name,
+        product_description: product_description,
+        category: category,
+        imageurls: imageurls || [],
+        price: price,
       });
   
       await menuItem.save();

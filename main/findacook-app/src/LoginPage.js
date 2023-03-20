@@ -18,7 +18,7 @@ function LoginPage() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  //axios.defaults.withCredentials = true
+  axios.defaults.withCredentials = true
   const Login = (event) => {
     event.preventDefault();
     axios.post('http://localhost:5001/user/signin', {
