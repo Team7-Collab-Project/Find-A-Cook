@@ -1,18 +1,34 @@
 const Cook = require('../schema/CookSchema');
 
 exports.create = async (req, res) => {
-    const { _id, user_id, specialties, description, date_joined, application_status } = req.body;
+    const { cook_email,  cook_first_name, cook_last_name, cook_password, verified, cook_birthday, cook_address, profile_picture, cook_bio, _id, user_id, specialties, description, date_joined, application_status } = req.body;
     console.log('New Cook: ', req.body)
 
     try {
+        // let newCook = new Cook({
+        //     _id: _id,
+        //     user_id: user_id,
+        //     specialties: specialties,
+        //     description: description,
+        //     date_joined: date_joined,
+        //     application_status: application_status
+        // });
+
         let newCook = new Cook({
-            _id: _id,
-            user_id: user_id,
-            specialties: specialties,
-            description: description,
-            date_joined: date_joined,
-            application_status: application_status
-        });
+          cook_email: cook_email,
+          cook_first_name:  cook_first_name,
+          cook_last_name: cook_last_name,
+          cook_password: cook_password,
+          specialties: specialties,
+          description: description,
+          date_joined: date_joined,
+          application_status: application_status,
+          verified: verified,
+          cook_birthday: cook_birthday,
+          cook_address: cook_address,
+          profile_picture: profile_picture,
+          cook_bio: cook_bio,
+      });
 
         await newCook.save();
 
