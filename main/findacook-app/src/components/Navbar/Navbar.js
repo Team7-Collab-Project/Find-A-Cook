@@ -54,16 +54,18 @@ function Navbar() {
             </a>
             {/* <img src="../images/logo-new-edit-01.png"/> */}
 			<nav ref={navRef}>
-				<a href="/#">Discover Cooks</a>
-				<a href="/#">Placeholder</a>
-				<a href="/#">Placeholder</a>
+				<a href="/home">Discover Cooks</a>
+				<a href="/#">My Bookings</a>
+				{/* <a href="/#">Temi</a> */}
 
                 {/* name of user */}
 
-                <LogoutButton/>
+
                 <Link to='/cart'>
                 <FaShoppingCart />{' '}Cart <span>({cart.length})</span>
-                </Link>
+                </Link>{' '}
+
+                <LogoutButton/>
 				{/* <a href="/#"><FaShoppingCart /></a> */}
 				{/* <Link onClick={handleShow}><FaShoppingCart />Cart ({productsCount} Items)</Link> */}
 				{/* <button><FaShoppingCart /></button> */}

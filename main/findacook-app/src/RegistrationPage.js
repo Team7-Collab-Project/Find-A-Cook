@@ -91,6 +91,7 @@ function RegistrationPage() {
                         {message}
                     </div>
                     <p>Already have an account? <a href="/login" class="linkButton">Sign In</a></p>
+                    <p>Or <a href='/'>Go Back to Homepage</a></p>
                 </div>
             </div>
         </div>

@@ -123,6 +123,7 @@ function CookRegPage() {
                         </form>
                     </div>
                     <p>Already one of us? <a href="/cooklogin" className="linkButton">Sign In</a></p>
+                    <p>Or <a href='/'>Go Back to Homepage</a></p>
                 </div>
             </div>
         </div>

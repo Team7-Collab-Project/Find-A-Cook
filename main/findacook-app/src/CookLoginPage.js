@@ -18,6 +18,7 @@ function CookLoginPage() {
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
 
+  axios.defaults.withCredentials = true;
   const login = (event) => {
     event.preventDefault();
     axios.post('http://localhost:5001/cook/cooksignin', {
@@ -78,6 +79,7 @@ function CookLoginPage() {
                         </form>
                     </div>
                     <p>Interested in becoming a <strong>cook</strong>? <a href="/cookregistration" class="linkButton">Sign Up!</a></p>
+                    <p>Or <a href='/'>Go Back to Homepage</a></p>
                 </div>
             </div>
         </div>

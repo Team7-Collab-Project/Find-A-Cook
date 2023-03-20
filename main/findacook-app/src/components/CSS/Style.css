@@ -59,6 +59,39 @@ nav {
 	align-items: center;
 }
 
+.dropDown {
+	padding: 0;
+  margin: 0;
+	list-style: none;
+	position: relative;
+	}
+
+	.dropDown li {
+		display:inline-block;
+		background-color: #E64A19;
+		}
+	
+
+	
+
+.dropDown {
+	display: none;
+	position: absolute; 
+	top: 60px; /* the height of the main nav */
+}
+
+.dropDown li:hover > .dropDown {
+	display:inherit;
+}
+	
+/* Fisrt Tier Dropdown */
+.dropDown li {
+	width:170px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
 .imgContainer {
 	width: 100px;
 	height: 100px;
