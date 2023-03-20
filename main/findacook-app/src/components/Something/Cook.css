@@ -55,6 +55,7 @@
     display: grid;
     grid-gap: 5px;
     flex-basis: calc(33.33% - 20px);
+    margin-top: 10px;
   }
 
  .card__details h3 {

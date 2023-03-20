@@ -52,11 +52,15 @@ const Homepage = () => {
               </form>
             </nav>
             </div>
+  
       <div class="test-container">
+      <div class="profile-info">
+      <div class="product-section">
 {cooks.map((cook, index) => (
          <Cook key={cook._id} cook={cook}/>
           ))}
-          
+       </div>   
+       </div>   
 </div>
     </>
   );
