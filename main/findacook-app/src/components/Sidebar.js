@@ -29,7 +29,7 @@ const Sidebar = () => {
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="/testapp">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Settings</span>
                 </a></li>

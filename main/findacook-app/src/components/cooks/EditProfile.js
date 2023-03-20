@@ -1,59 +1,56 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../redux/actions/productActions";
+import { getCook } from '../../redux/actions/cookActions';
 import { getCategories } from "../../redux/actions/categoryActions";
-import Navbar from "../Navbar/Navbar";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-
-const EditProduct = () => {
-  const { productId } = useParams();
-  console.log("id 2", productId);
+function EditProfile() {
+  const { cookId } = useParams();
+  console.log("TESTY TEST", cookId);
 
   const navigate = useNavigate();
 
-  // const productId = match.params.productId;
-
   const dispatch = useDispatch();
-  const { product } = useSelector((state) => state.products);
+  const { cook } = useSelector((state) => state.cooks);
   const { categories } = useSelector((state) => state.categories);
 
-  const [filename, setFilename] = useState(null);
-  const [category, setCategory] = useState("");
-  const [product_description, setProduct_description] = useState("");
-  const [item_name, setItem_name] = useState("");
-  const [price, setPrice] = useState("");
+  const [profile_picture, setProfile_picture] = useState(null);
+  const [cook_first_name, setCook_first_name] = useState("");
+  const [cook_last_name, setCook_last_name] = useState("");
+  const [specialties, setSpecialties] = useState([]);
+  const [description, setDescription] = useState("");
+
+
 
   useEffect(() => {
-    if (!product) {
-      dispatch(getProduct(productId));
+    if (!cook) {
+      dispatch(getCook(cookId));
       dispatch(getCategories());
     } else {
-      setFilename(product.filename);
-      setCategory(product.category);
-      setProduct_description(product.product_description);
-      setItem_name(product.item_name);
-      setPrice(product.price);
+      setProfile_picture(cook.profile_picture);
+      setCook_first_name(cook.cook_first_name);
+      setCook_last_name(cook.cook_last_name);
+      setSpecialties(cook.specialties);
+      setDescription(cook.description);
     }
-  }, [dispatch, productId, product]);
+  }, [dispatch, cookId, cook]);
 
   const handleImageUpload = (e) => {
     const image = e.target.files[0];
-    setFilename(image);
+    setProfile_picture(image);
   };
 
-  const handleProductSubmit = async e => {
+  const handleCookSubmit = async e => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('filename', filename);
-    formData.append('category', category);
-    formData.append('product_description', product_description);
-    formData.append('item_name', item_name);
-    formData.append('price', price);
+    formData.append('profile_picture', profile_picture);
+    formData.append('cook_first_name', cook_first_name);
+    formData.append('cook_last_name', cook_last_name);
+    formData.append('specialties', specialties);
+    formData.append('description', description);
 
     const config = {
         headers: {
@@ -61,35 +58,31 @@ const EditProduct = () => {
         }
     }
 
-    await axios.put(`/api/product/${productId}`, formData, config)
+    await axios.put(`/api/cook/${cookId}`, formData, config)
         .then(res => {
-            console.log('Successfully updated product:', res);
-            navigate('/admin')
+            console.log('Successfully updated cook:', res);
+            navigate('/cookdashboard')
         }).catch(err => {
             console.log(err);
         })
   };
 
+
   return (
-    <>
-      <Fragment>
-        <Navbar />
-        <div className="food-form-container">
-          <div>
+      <>
+<Fragment>
+<div className="food-form-container">
+<div>
             <div className="">
-              <div>
-                <Link to="/admin">
-                  <span>Go Back</span>
-                </Link>
-              </div>
+
               <form
-                className="food-form"
-                onSubmit={handleProductSubmit}
+                className="cook-update-form"
+                onSubmit={handleCookSubmit}
                 // method="POST"
                 encType="multipart/form-data"
               >
                 <div className="">
-                  <h5 className="food-form-h5">Update Food</h5>
+                  <h5 className="cook-update-form-h5">Update Personal Information</h5>
                   {/* <button className='close' data-dismiss='modal'>
 								<span>
 									<i className='fas fa-times'></i>
@@ -102,26 +95,26 @@ const EditProduct = () => {
                       <input
                         type="file"
                         className="form-input"
-                        name="filename"
+                        name="profile_picture"
                         accept="images/*"
                         // hidden
                         onChange={handleImageUpload}
                       />
                     </div>
 
-                    {filename && filename.name ? (
+                    {profile_picture && profile_picture.name ? (
                       <span className="badge badge-secondary">
-                        {filename.name}
+                        {profile_picture.name}
                       </span>
-                    ) : filename ? (
+                    ) : profile_picture ? (
                       <img
                         className="img-thumbnail"
                         style={{
                           width: "120px",
                           height: "80px",
                         }}
-                        src={`/uploads/${filename}`}
-                        alt="product"
+                        src={`/uploads/${profile_picture}`}
+                        alt="Profile Picture"
                       />
                     ) : null}
 
@@ -129,50 +122,50 @@ const EditProduct = () => {
                       <input
                         type="text"
                         className="form-input"
-                        name="item_name"
-                        value={item_name}
-                        onChange={(e) => setItem_name(e.target.value)}
+                        name="cook_first_name"
+                        value={cook_first_name}
+                        onChange={(e) => setCook_first_name(e.target.value)}
                       />
                       <span className="highlight"></span>
                       <span className="bar"></span>
-                      <label>Name</label>
+                      <label>First Name</label>
+                    </div>
+
+                    <div className="group">
+                      <input
+                        type="text"
+                        className="form-input"
+                        name="cook_last_name"
+                        value={cook_last_name}
+                        onChange={(e) => setCook_last_name(e.target.value)}
+                      />
+                      <span className="highlight"></span>
+                      <span className="bar"></span>
+                      <label>Last Name</label>
                     </div>
 
                     <div className="group">
                       <textarea
                         type="textarea"
                         className="form-input"
-                        name="product_description"
-                        value={product_description}
-                        onChange={(e) => setProduct_description(e.target.value)}
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                       />
                       <span className="highlight"></span>
                       <span className="bar"></span>
                       <label>Description</label>
                     </div>
 
-                    <div className="group">
-                      {/* <input type='text' className="form-input" value={numberFormat(num)} required/> */}
-                      <input
-                        type="text"
-                        className="form-input"
-                        name="price"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                      />
-                      <span className="highlight"></span>
-                      <span className="bar"></span>
-                      <label>Price</label>
-                    </div>
 
                     <div className="group">
                       <div className="form-row">
                         <div className="form-group">
                           <select
                             className="form-control"
-                            name="category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
+                            name="specialties"
+                            value={specialties}
+                            onChange={(e) => setSpecialties(e.target.value)}
                           >
                             <option>Choose One...</option>
                             {categories &&
@@ -185,23 +178,34 @@ const EditProduct = () => {
                         </div>
                       </div>
                     </div>
+
                   </Fragment>
                 </div>
 
                 {/* TODO: ADD CATEGORY OPTION... */}
-                <button type="submit" className="form-footer-button">
+                <button type="submit" className="cook-form-footer-button">
                   Submit
                 </button>
               </form>
-            </div>
-          </div>
-          {/* <button type="submit" className="form-footer-button" onClick={handleProductSubmit}>
-              Submit
-            </button> */}
-        </div>
-      </Fragment>
-    </>
-  );
-};
 
-export default EditProduct;
+              </div>
+              </div>
+</div>
+</Fragment>
+
+
+
+
+
+
+
+
+      
+      
+      </>
+
+
+  );
+}
+
+export default EditProfile;
