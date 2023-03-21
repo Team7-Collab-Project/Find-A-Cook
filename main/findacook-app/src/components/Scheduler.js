@@ -129,6 +129,61 @@ const events = [
     title: "Joseph",
     start: new Date(2023,1,24,12,0),
     end: new Date(2023,1,24,15,0)
+  },
+  {
+    title:"Joseline",
+    start: new Date(2023,2,14,12,0),
+    end: new Date(2023,2,14,15,0)
+  },
+  {
+    title:"Unavailable",
+    start: new Date(2023,2,18),
+    end: new Date(2023,2,27)
+  },
+  {
+    title:"George",
+    start: new Date(2023,2,28,12,0),
+    end: new Date(2023,2,28,15,0)
+  },
+  {
+    title:"Conor",
+    start: new Date(2023,3,12,12,0),
+    end: new Date(2023,2,12,15,0)
+  },
+  {
+    title:"Desmond",
+    start: new Date(2023,3,25,12,0),
+    end: new Date(2023,3,25,15,0)
+  },
+  {
+    title:"Unavailable",
+    start: new Date(2023,4,1),
+    end: new Date(2023,4,5)
+  },
+  {
+    title:"Temi",
+    start: new Date(2023,4,5,12,0),
+    end: new Date(2023,4,5,15,0)
+  },
+  {
+    title:"Santos",
+    start: new Date(2023,4,10,12,0),
+    end: new Date(2023,4,10,15,0)
+  },
+  {
+    title:"Kamil",
+    start: new Date(2023,4,21,12,0),
+    end: new Date(2023,4,21,15,0)
+  },
+  {
+    title:"Unavailable",
+    start: new Date(2023,5),
+    end: new Date(2023,5)
+  },
+  {
+    title:"Mabel",
+    start: new Date(2023,6,1,12,0),
+    end: new Date(2023,6,1,15,0)
   }
 ]
 
