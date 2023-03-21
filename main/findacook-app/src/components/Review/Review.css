@@ -1,0 +1,30 @@
+
+
+
+.review_details{
+    position: relative;
+    /* top: -36px; */
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(3, 6, 31, 0.15);
+    display: grid;
+    grid-gap: 5px;
+    flex-basis: calc(33.33% - 20px);
+    margin-top: 10px;
+}
+
+.star_rating{
+    width:40%;
+}
+
+.review_date{
+    width:50%;
+    position: relative;
+}
+
+.review_title{
+    font-weight: bold;
+}
