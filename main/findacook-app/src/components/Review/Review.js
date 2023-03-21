@@ -16,8 +16,27 @@ const Review = ({ review }) => {
     var curr_year = date_formatted.getFullYear();
 
 
-    //number to stars function from https://codereview.stackexchange.com/questions/177945/convert-rating-value-to-visible-stars-using-fontawesome-icons
+    //number to stars function adapted from https://codereview.stackexchange.com/questions/177945/convert-rating-value-to-visible-stars-using-fontawesome-icons
     document.getElementById("stars").innerHTML = getStars(review.rating_value);
+
+
+    return (
+        <>
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+            <div className='review_details'>
+                <div className='star_rating'>Rating: <span id='stars'></span></div>
+                <div className='review_date'>{curr_date + "/" + curr_month + "/" + curr_year}</div>
+                <div className='review_title'>{review.review_title}</div>
+                <div className='review_body'>{review.review_body}</div>
+            </div>
+
+        </>
+
+    )
+
+    
 
     function getStars(rating) {
 
@@ -40,23 +59,6 @@ const Review = ({ review }) => {
         return output.join('');
 
     }
-
-
-    return (
-        <>
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
-
-            <div className='review_details'>
-                <div className='star_rating'>Rating: <span id='stars'></span></div>
-                <div className='review_date'>{curr_date + "/" + curr_month + "/" + curr_year}</div>
-                <div className='review_title'>{review.review_title}</div>
-                <div className='review_body'>{review.review_body}</div>
-            </div>
-
-        </>
-
-    )
 }
 
 export default Review;
