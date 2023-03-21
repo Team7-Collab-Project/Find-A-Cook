@@ -48,7 +48,7 @@ import JoaneMenu from './JoaneMenu';
 import MauriceMenu from './MauriceMenu';
 import JulianMenu from './JulianMenu';
 import MortMenu from './MortMenu';
-
+import AddMenu from './AddMenuItem';
 
 function App() {
 
@@ -105,6 +105,7 @@ function App() {
       <Route path="/mauricemenu" element={<MauriceMenu />} />
       <Route path="/julianmenu" element={<JulianMenu />} />
       <Route path="/mortmenu" element={<MortMenu />} />
+      <Route path="/addmenu" element={<AddMenu />} />
   </Routes>
     </div>
   );
