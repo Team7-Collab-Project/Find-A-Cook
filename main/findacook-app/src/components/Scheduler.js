@@ -98,7 +98,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import {useState, useEffect, useRef} from "react";
 import DatePicker from "react-datepicker";
+import TimePicker from "react-time-picker";
 import Button from 'react-bootstrap/Button';
+
 
 
 const locales = {
@@ -130,8 +132,8 @@ const events = [
   }
 ]
 
-function Schedule(){
-  const [newEvent, setNewEvent] = useState({title:"", start:"",end:""})
+function Scheduler(){
+  const [newEvent, setNewEvent] = useState({title:"", start:"",startTime:"", end:"", endTime:""})
   const [allEvents, setAllEvents] = useState(() => {
     const savedEvents = window.localStorage.getItem('Saved Events');
     return savedEvents ? JSON.parse(savedEvents) : events;
@@ -140,7 +142,7 @@ function Schedule(){
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
-    setNewEvent({title:"", start:"",end:""});
+    setNewEvent({title:"", start:"",startTime:"", end:"", endTime:""});
   }
 
   useEffect(() => {
@@ -160,12 +162,10 @@ function Schedule(){
 
   return (
     <>
-    
-    <div ref={calendarRef} style={{backgroundColor:"white", border: "black solid 2px", borderTopLeftRadius: "5%", borderTopRightRadius: "5%"}}>
+    <hr></hr>
+    <div id="calendarBox">
+    <div id="calendar" ref={calendarRef} style={{backgroundColor:"white", border: "black solid 2px", borderTopLeftRadius: "5%", borderTopRightRadius: "5%", left:"3.5%"}}>
       <Calendar
-        components={{
-          dateCellWrapper: ({ children, value }) => React.cloneElement(children, { "data-date": value })
-        }}
         localizer={localizer}
         events={allEvents}
         startAccessor="start"
@@ -174,20 +174,23 @@ function Schedule(){
         selectable={true}
       />
     </div>
-    <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+    <div id="scheduleBooking" style={{ display: 'block', position: 'initial' }}>
           <h2>Add new booking</h2>
-          <input type="text" 
+          <input id="titleInput" type="text" 
             placeholder='Add Title' 
             style={{width:"20%", marginRight: "10px"}}
             value={newEvent.title} 
             onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
           />
-          <DatePicker placeholderText='Start Date' style={{marginRight: "10px"}}
+          <DatePicker id="DateInput" className="bookingInputs" placeholderText='Start Date' style={{marginRight: "10px"}}
           selected={(newEvent.start)} onChange={(start) => setNewEvent({...newEvent,start})}/>
-          <DatePicker placeholderText='End Date'
+          <TimePicker id="TimeInput" className="bookingInputs" placeholderText='Start Time' selected={(newEvent.startTime)} onChange={(startTime) => setNewEvent({...newEvent,startTime})}/>
+          <DatePicker id="DateInput" className="bookingInputs" placeholderText='End Date'
           selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent,end})}/>
+          <TimePicker id="TimeInput" className="bookingInputs" placeholderText='End Time' selected={(newEvent.endTime)} onChange={(endTime) => setNewEvent({...newEvent,endTime})}/>
       
-          <Button variant="primary" onClick={() => {handleAddEvent();}}>Add Event</Button>
+          <Button id="bookBtn" variant="primary" onClick={() => {handleAddEvent();}}>Add Event</Button>
+    </div>
     </div>
     </>
   );
@@ -195,4 +198,4 @@ function Schedule(){
 
 
 
-export default Schedule;
+export default Scheduler;
