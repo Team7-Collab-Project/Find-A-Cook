@@ -101,7 +101,7 @@ const CustomerBooking = () => {
  			  <p><img src='/images/rating.jpg' id="rating-img"/>(67 reviews)</p>
  		  </div>
  		<p>{cook.description}</p>
-     <span className="hotelPriceHighlight">
+     <span className="selectedDatesHighlight">
           Selected Date: {theDate}
             </span>
 
