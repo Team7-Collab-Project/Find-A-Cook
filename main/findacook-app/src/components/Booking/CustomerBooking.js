@@ -10,6 +10,7 @@ import BookingForm from './BookingForm';
 import axios from "axios";
 import './Reviews.css';
 import Review from './../Review/Review';
+import CreateReview from '../Review/CreateReview';
 
 const CustomerBooking = () => {
 	const [slideNumber, setSlideNumber] = useState(0);
@@ -283,6 +284,7 @@ const CustomerBooking = () => {
 			</div>
 
       <div className="reviewWrapper">
+        <CreateReview/>
         <h1 className="reviewHeader">{cook.cook_first_name}'s Reviews</h1>
         {reviews.map((review, index) => (
          <Review key={review._id} review={review}/>

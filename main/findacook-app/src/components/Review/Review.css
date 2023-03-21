@@ -28,3 +28,54 @@
 .review_title{
     font-weight: bold;
 }
+
+.create_rating_wrapper{
+    all: unset;
+    position: relative;
+    /* top: -36px; */
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(3, 6, 31, 0.15);
+    display: grid;
+    grid-gap: 5px;
+    flex-basis: calc(33.33% - 20px);
+    margin-top: 10px;
+}
+
+.star_wrapper{
+    
+    font-size: xx-large;
+    color: #fcb70c;
+}
+
+.create_rating_wrapper span{
+    all: unset;
+}
+
+.create_rating_wrapper span label{
+    all: unset;
+}
+
+.create_review_title{
+    all: unset;
+    /* float: left;
+    width: 100%;
+    padding: 11px 45px 11px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    outline: none;
+    color: #616161;
+    border-radius: 3px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
+}
+
+.create_review_body{
+    all: unset;
+    width: 100%;
+}
