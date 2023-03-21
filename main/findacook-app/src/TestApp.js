@@ -13,10 +13,10 @@ function TestApp() {
             <Topbar />
             <Sidebar />
 
-            <EditProfile />
+            {/* <EditProfile /> */}
 
-            < Topbar />
-            < Sidebar />
+            {/* < Topbar />
+            < Sidebar /> */}
             {/* Other components */}
             {/* <CookList /> */}
    
