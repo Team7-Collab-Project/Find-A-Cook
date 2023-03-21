@@ -47,7 +47,7 @@ function Navbar() {
             </div>  */}
             {/* <h3>Find A Cook</h3> */}
             <a href='/'>
-            <img src="../images/logo-new-edit-01.png"/>
+            <img src="/images/logo-new-edit-01.png"/>
             </a>
             {/* <img src="../images/logo-new-edit-01.png"/> */}
 			<nav ref={navRef}>
