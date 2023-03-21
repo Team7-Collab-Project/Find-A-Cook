@@ -7,6 +7,7 @@ const {v4:uuid} = require("uuid");
 const upload = require('../middleware/multer');
 const MenuCategorySchema = require('./../models/MenuCategory');
 const MenuItemSchema = require('./../models/Menu')
+const Review = require('./../models/Review')
 
 
 require('dotenv').config();
@@ -300,6 +301,23 @@ router.put("/editprofile", (req, res) => {
       res.json({
         status: 'FAILED',
         message: 'Not authorized to upload profile picture',
+      });
+    }
+  });
+
+  router.get("/allreviews", async (req, res) => {
+    try {
+      const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1 });
+  
+      res.json({
+        status: "SUCCESS",
+        reviews: reviews,
+      });
+    } catch (err) {
+      res.json({
+        status: "FAILED",
+        message: "Error retrieving reviews",
+        error: err,
       });
     }
   });

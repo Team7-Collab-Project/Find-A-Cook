@@ -7,6 +7,9 @@ import { BsArrowDownRight } from 'react-icons/bs';
 import { FaWindowClose } from 'react-icons/fa'
 import { Modal, Button } from "react-bootstrap";
 import BookingForm from './BookingForm';
+import axios from "axios";
+import './Reviews.css';
+import Review from './../Review/Review';
 
 const CustomerBooking = () => {
 	const [slideNumber, setSlideNumber] = useState(0);
@@ -55,7 +58,25 @@ const CustomerBooking = () => {
 
 	const { cook } = useSelector(state => state.cooks);
   console.log(cook)
-  
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/cook/allreviews");
+      console.log(response)
+      setReviews(response.data.reviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
+
+
+
     return (
 <>
 
@@ -261,6 +282,12 @@ const CustomerBooking = () => {
 
 			</div>
 
+      <div className="reviewWrapper">
+        <h1 className="reviewHeader">{cook.cook_first_name}'s Reviews</h1>
+        {reviews.map((review, index) => (
+         <Review key={review._id} review={review}/>
+          ))}
+      </div>
 
 </div>
 
