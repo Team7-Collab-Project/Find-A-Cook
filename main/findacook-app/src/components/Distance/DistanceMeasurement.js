@@ -17,7 +17,12 @@ const CookList = () => {
       }
     };
 
-    console.log(cooks[0]);
+
+    // console.log(cooks[1]);
+
+    cooks.forEach( cooks => {
+      console.log(cooks.cook_address);
+ })
   
     // return (
     //   <div>
