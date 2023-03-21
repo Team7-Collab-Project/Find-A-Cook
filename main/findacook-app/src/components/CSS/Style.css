@@ -1353,6 +1353,13 @@ label {
 	margin-left: 20em;
   }
 
+  .hotelPriceHighlight {
+	color: #008009;
+	font-weight: 800;
+	margin-left: 52em;
+	text-decoration: underline;
+  }
+
 /*calendar style */
 #calendarBox {
 	position: relative;
