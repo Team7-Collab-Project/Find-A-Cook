@@ -4,9 +4,21 @@ const router = express.Router();
 const Cook = require('./../models/Cook')
 const nodemailer = require('nodemailer');
 const {v4:uuid} = require("uuid");
-const upload = require('../middleware/multer');
+//const upload = require('../middleware/multer');
 const MenuCategorySchema = require('./../models/MenuCategory');
 const MenuItemSchema = require('./../models/Menu')
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + '-' + file.originalname);
+    },
+  });
+  
+  const upload = multer({ storage: storage });
 
 
 require('dotenv').config();
@@ -200,7 +212,9 @@ router.get("/allcooks", async (req, res) => {
   });
 
 
-  router.post('/addmenuitem', async (req, res) => {
+  router.post('/addmenuitem', upload.single('imageurls'), async (req, res) => {
+    console.log(req.files);
+    console.log(req.body);
     const cook = req.session.cook;
   
     if (!cook) {
@@ -210,7 +224,8 @@ router.get("/allcooks", async (req, res) => {
       });
     }
   
-    const { item_name, product_description, price, category, imageurls } = req.body;
+    const { item_name, product_description, price, category } = req.body;
+    const imageurls = req.file ? req.file.path : null;
   
     try {
       const menuItem = new MenuItemSchema({
@@ -218,7 +233,7 @@ router.get("/allcooks", async (req, res) => {
         item_name: item_name,
         product_description: product_description,
         category: category,
-        imageurls: imageurls || [],
+        imageurls: imageurls,
         price: price,
       });
   
