@@ -49,7 +49,6 @@ const CustomerBooking = () => {
 	const handleClick = () => {
 
 		  setOpenModal(true);
-      
 
 	  };
 
