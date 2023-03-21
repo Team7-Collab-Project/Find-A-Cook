@@ -56,6 +56,7 @@ const CreateReview = () => {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setReview({ ...review, [name]: value });
+        console.log(review)
     };
 
     const handleSubmit = (event) => {
@@ -77,27 +78,28 @@ const CreateReview = () => {
                 <h3>Leave a Rating</h3>
                 <div className='star_wrapper'>
                     <Rating
-                        name="simple-controlled"
+                        name="rating_value"
                         defaultValue={0}
                         // precision={0.5}
                         value={value}
                         size="large"
-                        onChange={(event, newValue) => {
-                            setValue(newValue);
-                            console.log(newValue)
-                        }}
+                        // onChange={(event, newValue) => {
+                        //     setValue(newValue);
+                        //     console.log(newValue)
+                        // }}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div className='review_form'>
                     <form onSubmit={handleSubmit}>
                         <div className='create_review_title'>
-                            <input type="text" name="review_title" class="input-text" placeholder="Review Title" value={review.review_title} onChange={handleInputChange} />
+                            <input type="text" name="review_title" placeholder="Review Title" value={review.review_title} onChange={handleInputChange} />
                         </div>
                         <div className='create_review_body'>
-                            <input type="text" name="review_body" class="input-text" placeholder="Review Body" value={review.review_body} onChange={handleInputChange} />
+                            <input type="text" name="review_body" placeholder="Review Body" value={review.review_body} onChange={handleInputChange} />
                         </div>
                         <div className='review_submit'>
-                            <button type="submit" class="btn-md btn-fg btn-block">Submit Review</button>
+                            <button type="submit" >Submit Review</button>
                         </div>
                     </form>
                 </div>

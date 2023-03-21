@@ -3,6 +3,7 @@ import { Modal, Carousel, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import './Review.css'
+import { Rating } from '@mui/material';
 
 
 const Review = ({ review }) => {
@@ -51,7 +52,14 @@ const Review = ({ review }) => {
 
             <div className='review_details'>
                 {/* <div className='star_rating'>Rating: <span id='stars'></span></div> */}
-                <div className='=star_rating'>Rating: {review.rating_value}</div>
+                <div className='=star_rating'>
+                    {/* Rating: {review.rating_value} */}
+                    <Rating
+                        name='rating_value'
+                        value={review.rating_value}
+                        readOnly
+                    />
+                </div>
                 <div className='review_date'>{curr_date + "/" + curr_month + "/" + curr_year}</div>
                 <div className='review_title'>{review.review_title}</div>
                 <div className='review_body'>{review.review_body}</div>
@@ -61,7 +69,7 @@ const Review = ({ review }) => {
 
     )
 
-    
+
 }
 
 export default Review;
