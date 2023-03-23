@@ -17,11 +17,23 @@ const CookList = () => {
       }
     };
 
+    const [userAddress, setuserAddress] = useState("")
+    axios.defaults.withCredentials = true
+    useEffect(()=> {
+        axios.get('http://localhost:5001/user/userinfo')
+        .then((res) => {
+            setuserAddress(res.data.message);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, [])
+
 
     // console.log(cooks[1]);
 
-    cooks.forEach( cooks => {
-      console.log(cooks.cook_address);
+    cooks.forEach( cook => {
+      console.log(cook.cook_address);
  })
   
     // return (
@@ -41,5 +53,5 @@ const CookList = () => {
     // );
   };
   
-  export default CookList;
+  export default DistanceMeasurement;
   

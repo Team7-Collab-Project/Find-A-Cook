@@ -9,7 +9,6 @@ import { FaFacebook } from 'react-icons/fa';
 import { FaGoogle } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import "./index.css";
-import CookList from "./components/Distance/DistanceMeasurement"
 
 function RegistrationPage() {
   const [user, setUser] = useState({
@@ -43,7 +42,6 @@ function RegistrationPage() {
   };
   return (
     <>
-<CookList></CookList>
 <div class="login-fg">
     <div class="container-fluid">
         <div class="row">
