@@ -26,6 +26,7 @@ npm install --save @fortawesome/react-fontawesome
 npm install @mui/material @emotion/react @emotion/styled
 npm i autosuggest-highlight
 npm install react-redux
+npm i react-geocode --save
 ```
 
 #### 3. Run Backend

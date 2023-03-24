@@ -1,0 +1,137 @@
+.cookSection{
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.test-container {
+	display: flex;
+	flex-direction: row;
+	/* align-items: center; */
+	justify-content: center;
+	height: 100vh;
+	margin-top: 5em;
+}
+.cookCards{
+        margin-top: 1rem;
+        padding: 10px;
+        display: grid;
+        grid-gap: 20px;
+        font-family: 'Roboto', sans-serif;
+}
+
+.cookCards .cookCard {
+    position: relative;
+    max-height: 340px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+  }
+
+  .cookCards .card__img {
+    width: 100%;
+    /* max-height: 200px; */
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .card__img img{
+    max-width: 100%;
+    height: auto;
+  }
+  .card__details {
+    position: relative;
+    top: -36px;
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(3, 6, 31, 0.15);
+    display: grid;
+    grid-gap: 5px;
+    flex-basis: calc(33.33% - 20px);
+    margin-top: 10px;
+  }
+
+ .card__details h3 {
+    font-size: 22px;
+    font-weight: 400;
+  }
+ .card__details .smallText {
+    color: #777777;
+    font-size: 12px;
+  }
+ .card__details .price {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+ .card__details .price .price__l {
+    width: 100%;
+    text-align: right;
+  }
+
+.card__details .price .price__l .price__label {
+    font-weight: 600;
+    text-align: right;
+  }
+.card__details .price .star img {
+    width: 14px;
+  }
+.card__details button {
+    cursor: pointer;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #1f3744;
+    color: #FFFFFF;
+    display: inline;
+  }
+.card__details button:focus {
+    outline: none;
+  }
+  .cookCards .cookCard .credit-img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    font-size: 10px;
+    text-align: right;
+  }
+
+  .cookImg {
+	margin-top: -25px;
+	margin-left: 300px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden; 
+  }
+
+  .verifiedImg{
+    width: 25px;
+  }
+
+  .modalButton{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+  .logoutButton{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

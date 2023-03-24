@@ -1,30 +1,39 @@
+import Homepage from './components/Homepage'
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
+import DistanceMeasurement from './components/Distance/DistanceMeasurement';
 
-function HomePage() {
+const Home = () => {
     const [firstname, setFirstName] = useState("")
+    const [secondname, setSecondName] = useState("")
     axios.defaults.withCredentials = true
     useEffect(()=> {
         axios.get('http://localhost:5001/user/userinfo')
         .then((res) => {
-            setFirstName(res.data.message);
+            setFirstName(res.data.fname);
+            setSecondName(res.data.sname);
         })
         .catch((err) => {
             console.error(err);
         });
     }, [])
 
+
+
+    
   return (
     <>
       <Navbar />
-      <div className="container">
+      <Homepage />
+      <DistanceMeasurement/>
+      {/* <div className="container">
         <h1>Welcome to Find A Cook {firstname}</h1>
-
         <p>Explore our recipes and find your new favorite dish.</p>
-      </div>
+      </div> */}
     </>
   );
+
 }
 
-export default HomePage;
+export default Home;
