@@ -1093,6 +1093,19 @@ label {
 	color: #D97A07;
 }
 
+.payment-card-email input{
+	width: 100%;
+	margin-top: 1em;
+	height: 30px;
+	cursor: pointer;
+}
+
+.payment-card-email label{
+	position: relative;
+	color: #D97A07;
+	font-weight: 900;
+}
+
 .adminCatDelete{
 	cursor: pointer;
 }

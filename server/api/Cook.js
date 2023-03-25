@@ -327,21 +327,26 @@ router.put("/editprofile", (req, res) => {
 
   
   router.post('/verify_cook', async (req, res) => {
+    // Extract cook email from the request body
     const { cook_email } = req.body;
     if (!cook_email) {
+      // Return error if cook email is not provided
       res.status(400).json({ success: false, message: 'Cook email is required' });
     } else {
-      // Check if the cook email is valid (you can add your own logic here)
+      // Check if the cook email exists in the database
       const cook = await Cook.findOne({ email: cook_email });
       if (cook) {
+        // Update the verified field of the cook to true
         await Cook.updateOne({ cook_email: cook_email },  {$set:{ verified: true }});
+        // Return success message if cook email is found and verified is updated to true
         res.status(200).json({ success: true, message: 'Cook has been verified!' });
       } else {
+        // Return error if cook email is not found in the database
         res.status(400).json({ success: false, message: 'Cook not found in the database' });
       }
     }
   });
-  
+
   
   
 
