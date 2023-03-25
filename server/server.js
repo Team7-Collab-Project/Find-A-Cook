@@ -23,18 +23,18 @@ app.use(cors({
 
 
 
-app.post('/create_customer', async (request, response) => {
-    const customerEmailAddress = request.body.customerEmailId;
-    const customer = await stripe.customers.create({
-        description: `${customerEmailAddress} via API`,
-        email: customerEmailAddress
-    });
-    console.log(customer);
-    let theCreatedCustomerId = customer.id;
-    response.send({
-        customerId: theCreatedCustomerId
-    });
-});
+// app.post('/create_customer', async (request, response) => {
+//     const customerEmailAddress = request.body.customerEmailId;
+//     const customer = await stripe.customers.create({
+//         description: `${customerEmailAddress} via API`,
+//         email: customerEmailAddress
+//     });
+//     // console.log(customer);
+//     let theCreatedCustomerId = customer.id;
+//     response.send({
+//         customerId: theCreatedCustomerId
+//     });
+// });
 
 app.post('/create_checkout_link', async (request, response) => {
     const priceId = request.body.priceId;
@@ -59,18 +59,18 @@ app.post('/create_checkout_link', async (request, response) => {
     });
 });
 
-app.post('/verify_cook', async (request, response) => {
-    const cook_email = request.body.cook_email;
-    const customer = await stripe.customers.retrieve(request.body.customerId);
-    if (customer.email === cook_email && customer.subscriptions.data.length > 0) {
-        // mark the cook as verified in the database
-        const Cook = require('./api/Cook');
-        await Cook.findOneAndUpdate({ cook_email: cook_email }, { verified: true });
-        response.status(200).send({ success: true });
-    } else {
-        response.status(400).send({ error: 'Verification failed' });
-    }
-});
+// app.post('/verify_cook', async (request, response) => {
+//     const cook_email = request.body.cook_email;
+//     const customer = await stripe.customers.retrieve(request.body.customerId);
+//     if (customer.email === cook_email && customer.subscriptions.data.length > 0) {
+//         // mark the cook as verified in the database
+//         const Cook = require('./api/Cook');
+//         await Cook.findOneAndUpdate({ cook_email: cook_email }, { verified: true });
+//         response.status(200).send({ success: true });
+//     } else {
+//         response.status(400).send({ error: 'Verification failed' });
+//     }
+// });
 
 app.post('/create-subscription', async (req, res) => {
     const subscription = await createSubscription(req.body);

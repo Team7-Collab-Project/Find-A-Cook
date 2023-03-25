@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const stripe = require('stripe')('sk_test_51MYbfMDYuzoeBKxGcMhrNfA5j9wjsN4QqBDDofXq7ZXgfJhZB1K5R9MrUQZAEGVdzUgxgFcLyzSWIXLgbtUSD2Fz00NY3BBAUN');
 const Cook = require('./../models/Cook')
 const nodemailer = require('nodemailer');
 const {v4:uuid} = require("uuid");
@@ -326,7 +326,24 @@ router.put("/editprofile", (req, res) => {
 
 
   
-
+  router.post('/verify_cook', async (req, res) => {
+    const { cook_email } = req.body;
+    if (!cook_email) {
+      res.status(400).json({ success: false, message: 'Cook email is required' });
+    } else {
+      // Check if the cook email is valid (you can add your own logic here)
+      const cook = await Cook.findOne({ email: cook_email });
+      if (cook) {
+        await Cook.updateOne({ cook_email: cook_email },  {$set:{ verified: true }});
+        res.status(200).json({ success: true, message: 'Cook has been verified!' });
+      } else {
+        res.status(400).json({ success: false, message: 'Cook not found in the database' });
+      }
+    }
+  });
+  
+  
+  
 
 module.exports = router;
 // router.post('cooklogout', (req, res) => {
