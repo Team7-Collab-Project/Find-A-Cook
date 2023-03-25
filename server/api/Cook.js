@@ -208,6 +208,7 @@ router.get("/allcooks", async (req, res) => {
       res.json({ status: 'SUCCESS', menuCategories });
     } catch (err) {
       res.json({ status: 'FAILED', message: 'Error retrieving menu categories' });
+      console.log(err);
     }
   });
 
@@ -318,6 +319,12 @@ router.put("/editprofile", (req, res) => {
       });
     }
   });
+  
+  
+
+
+
+
   
 
 

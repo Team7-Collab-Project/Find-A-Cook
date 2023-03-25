@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const stripe = require('stripe')('STRIPE_API_SECRET_KEY');
+// const stripe = require('stripe')('sk_test_51MYbfMDYuzoeBKxGcMhrNfA5j9wjsN4QqBDDofXq7ZXgfJhZB1K5R9MrUQZAEGVdzUgxgFcLyzSWIXLgbtUSD2Fz00NY3BBAUN');
 
 // const connectDB = require('../database/db');
 // const connectDB = require('../database/db');
@@ -9,8 +9,6 @@ const morgan = require('morgan');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const filterRoutes = require('./routes/filter');
-const bookingRoutes = require('./routes/booking');
-const cookRoutes = require('./routes/cook');
 // const subscriptionController = require('./routes/subscribe')
 const mongoose = require('mongoose');
 
@@ -19,46 +17,44 @@ app.use(express.json());
 app.use('/api/category', categoryRoutes);
 // app.use('/api/subscribe', subscriptionController);
 app.use('/api/product', productRoutes);
-app.use('/api/cook', cookRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/filter', filterRoutes);
-app.use('/api/booking', bookingRoutes);
 
 
-app.post('/create_customer', async (request, response) => {
-    const customerEmailAddress = request.body.customerEmailId;
-    const customer = await stripe.customers.create({
-        description: `${customerEmailAddress} via API`,
-        email: customerEmailAddress
-    });
-    console.log(customer);
-    let theCreatedCustomerId = customer.id;
-    response.send({
-        customerId: theCreatedCustomerId
-    });
-});
+// app.post('/create_customer', async (request, response) => {
+//     const customerEmailAddress = request.body.customerEmailId;
+//     const customer = await stripe.customers.create({
+//         description: `${customerEmailAddress} via API`,
+//         email: customerEmailAddress
+//     });
+//     console.log(customer);
+//     let theCreatedCustomerId = customer.id;
+//     response.send({
+//         customerId: theCreatedCustomerId
+//     });
+// });
 
-app.post('/create_checkout_link', async (request, response) => {
-    const priceId = request.body.priceId;
-    const customerId = request.body.customerId;
-    const session = await stripe.checkout.sessions.create({
-        billing_address_collection: 'auto',
-        line_items: [
-            {
-                price: priceId,
-                quantity: 1,
-            },
-        ],
-        mode: 'subscription',
-        success_url: `http://localhost:3000/paymentsuccessful/?success=true`,
-        cancel_url: `http://localhost:3000/paymentunsuccessful/?canceled=true`,
-        customer: customerId
-    });
-    console.log(session);
-    response.send({
-        url: session.url
-    });
-});
+// app.post('/create_checkout_link', async (request, response) => {
+//     const priceId = request.body.priceId;
+//     const customerId = request.body.customerId;
+//     const session = await stripe.checkout.sessions.create({
+//         billing_address_collection: 'auto',
+//         line_items: [
+//             {
+//                 price: priceId,
+//                 quantity: 1,
+//             },
+//         ],
+//         mode: 'subscription',
+//         success_url: `http://localhost:3000/paymentsuccessful/?success=true`,
+//         cancel_url: `http://localhost:3000/paymentunsuccessful/?canceled=true`,
+//         customer: customerId
+//     });
+//     console.log(session);
+//     response.send({
+//         url: session.url
+//     });
+// });
 
 // app.post('/create-subscription', ( req  ,res ) => {
 
