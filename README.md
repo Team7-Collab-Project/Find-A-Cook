@@ -26,6 +26,12 @@ npm install --save @fortawesome/react-fontawesome
 npm install @mui/material @emotion/react @emotion/styled
 npm i autosuggest-highlight
 npm install react-redux
+npm i moment --legacy-peer-deps
+npm i @fullcalendar/core --legacy-peer-deps
+npm i @fullcalendar/react --legacy-peer-deps
+npm i @fullcalendar/daygrid --legacy-peer-deps
+npm i react-datetime --legacy-peer-deps
+npm i react-modal --legacy-peer-deps
 ```
 
 #### 3. Run Backend
