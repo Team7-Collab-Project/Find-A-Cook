@@ -8,7 +8,6 @@ require('./config/db')
 
 const UserRouter = require('./api/User');
 const CookRouter = require('./api/Cook');
-const ScheduleRouter = require('./api/Schedule');
 
 
 const bodyParser = require('express').json;
@@ -34,7 +33,7 @@ app.use(session({
 
 app.use('/user', UserRouter)
 app.use('/cook', CookRouter)
-app.use('/schedule', ScheduleRouter)
+app.use('/calendar', require("./controllers/schedule"))
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

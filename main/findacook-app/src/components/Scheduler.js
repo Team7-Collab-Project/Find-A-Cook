@@ -86,26 +86,14 @@ function Scheduler(){
   );
 }
 
+
+
 export default Scheduler;*/
-import React from 'react'
 
-import {Calendar, dateFnsLocalizer} from "react-big-calendar";
-import format from "date-fns/format";
-import parse from "date-fns/parse";
-import startOfWeek from 'date-fns/startOfWeek';
-import getDay from "date-fns/getDay";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import "react-datepicker/dist/react-datepicker.css";
-import {useState, useEffect, useRef} from "react";
-import DatePicker from "react-datepicker";
-import TimePicker from "react-time-picker";
-import Button from 'react-bootstrap/Button';
-
-
-
-const locales = {
+/*const locales = {
   "en-IE": require("date-fns/locale/en-IE")
 }
+
 const localizer = dateFnsLocalizer({
   format,
   parse,
@@ -113,88 +101,86 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales
 })
+*/
+  //const [newEvent, setNewEvent] = useState({title:"", start:"",startTime:"", end:"", endTime:""})
+  //const [allEvents, setAllEvents] = useState(() => {
+  //  const savedEvents = window.localStorage.getItem('Saved Events');
+  //  return savedEvents ? JSON.parse(savedEvents) : events;
+  //});
 
-const events = [
-  {
-    title: "Brian Cullen",
-    start: new Date(2023,1,28,15,0,0),
-    end: new Date(2023,1,28,18,30,0)
-  },
-  {
-    title: "Unavailable",
-    start: new Date(2023,1,15),
-    end: new Date(2023,1,22)
-  },
-  {
-    title: "Joseph",
-    start: new Date(2023,1,24,12,0),
-    end: new Date(2023,1,24,15,0)
-  },
-  {
-    title:"Joseline",
-    start: new Date(2023,2,14,12,0),
-    end: new Date(2023,2,14,15,0)
-  },
-  {
-    title:"Unavailable",
-    start: new Date(2023,2,18),
-    end: new Date(2023,2,27)
-  },
-  {
-    title:"George",
-    start: new Date(2023,2,28,12,0),
-    end: new Date(2023,2,28,15,0)
-  },
-  {
-    title:"Conor",
-    start: new Date(2023,3,12,12,0),
-    end: new Date(2023,2,12,15,0)
-  },
-  {
-    title:"Desmond",
-    start: new Date(2023,3,25,12,0),
-    end: new Date(2023,3,25,15,0)
-  },
-  {
-    title:"Unavailable",
-    start: new Date(2023,4,1),
-    end: new Date(2023,4,5)
-  },
-  {
-    title:"Temi",
-    start: new Date(2023,4,5,12,0),
-    end: new Date(2023,4,5,15,0)
-  },
-  {
-    title:"Santos",
-    start: new Date(2023,4,10,12,0),
-    end: new Date(2023,4,10,15,0)
-  },
-  {
-    title:"Kamil",
-    start: new Date(2023,4,21,12,0),
-    end: new Date(2023,4,21,15,0)
-  },
-  {
-    title:"Unavailable",
-    start: new Date(2023,5),
-    end: new Date(2023,5)
-  },
-  {
-    title:"Mabel",
-    start: new Date(2023,6,1,12,0),
-    end: new Date(2023,6,1,15,0)
-  }
-]
-
-function Scheduler(){
-  const [newEvent, setNewEvent] = useState({title:"", start:"",startTime:"", end:"", endTime:""})
-  const [allEvents, setAllEvents] = useState(() => {
-    const savedEvents = window.localStorage.getItem('Saved Events');
-    return savedEvents ? JSON.parse(savedEvents) : events;
-  });
-  const calendarRef = useRef(null);
-
+    /*const events = [
+    {
+      title: "Brian Cullen",
+      start: new Date(2023,1,28,15,0,0),
+      end: new Date(2023,1,28,18,30,0)
+    },
+    {
+      title: "Unavailable",
+      start: new Date(2023,1,15),
+      end: new Date(2023,1,22)
+    },
+    {
+      title: "Joseph",
+      start: new Date(2023,1,24,12,0),
+      end: new Date(2023,1,24,15,0)
+    },
+    {
+      title:"Joseline",
+      start: new Date(2023,2,14,12,0),
+      end: new Date(2023,2,14,15,0)
+    },
+    {
+      title:"Unavailable",
+      start: new Date(2023,2,18),
+      end: new Date(2023,2,27)
+    },
+    {
+      title:"George",
+      start: new Date(2023,2,28,12,0),
+      end: new Date(2023,2,28,15,0)
+    },
+    {
+      title:"Conor",
+      start: new Date(2023,3,12,12,0),
+      end: new Date(2023,2,12,15,0)
+    },
+    {
+      title:"Desmond",
+      start: new Date(2023,3,25,12,0),
+      end: new Date(2023,3,25,15,0)
+    },
+    {
+      title:"Unavailable",
+      start: new Date(2023,4,1),
+      end: new Date(2023,4,5)
+    },
+    {
+      title:"Temi",
+      start: new Date(2023,4,5,12,0),
+      end: new Date(2023,4,5,15,0)
+    },
+    {
+      title:"Santos",
+      start: new Date(2023,4,10,12,0),
+      end: new Date(2023,4,10,15,0)
+    },
+    {
+      title:"Kamil",
+      start: new Date(2023,4,21,12,0),
+      end: new Date(2023,4,21,15,0)
+    },
+    {
+      title:"Unavailable",
+      start: new Date(2023,5),
+      end: new Date(2023,5)
+    },
+    {
+      title:"Mabel",
+      start: new Date(2023,6,1,12,0),
+      end: new Date(2023,6,1,15,0)
+    }
+  ]*/
+/*
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
     setNewEvent({title:"", start:"",startTime:"", end:"", endTime:""});
@@ -214,13 +200,7 @@ function Scheduler(){
     console.log('Retrieved Events from localStorage', JSON.parse(data));
     if (data !== null) setAllEvents(JSON.parse(data));
   }, []);
-
-  return (
-    <>
-    <hr></hr>
-    <div id="calendarBox">
-    <div id="calendar" ref={calendarRef} style={{backgroundColor:"white", border: "black solid 2px", borderTopLeftRadius: "5%", borderTopRightRadius: "5%", left:"3.5%"}}>
-      <Calendar
+  <Calendar
         localizer={localizer}
         events={allEvents}
         startAccessor="start"
@@ -228,8 +208,8 @@ function Scheduler(){
         style={{ height: 500, margin: "50px" }}
         selectable={true}
       />
-    </div>
-    <div id="scheduleBooking" style={{ display: 'block', position: 'initial' }}>
+
+      <div id="scheduleBooking" style={{ display: 'block', position: 'initial' }}>
           <h2>Add new booking</h2>
           <input id="titleInput" type="text" 
             placeholder='Add Title' 
@@ -246,11 +226,69 @@ function Scheduler(){
       
           <Button id="bookBtn" variant="primary" onClick={() => {handleAddEvent();}}>Add Event</Button>
     </div>
+*/
+
+import React from 'react'
+
+//import {Calendar, dateFnsLocalizer} from "react-big-calendar";
+import format from "date-fns/format";
+import parse from "date-fns/parse";
+import startOfWeek from 'date-fns/startOfWeek';
+import getDay from "date-fns/getDay";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css";
+import {useState, useEffect, useRef} from "react";
+import DatePicker from "react-datepicker";
+import TimePicker from "react-time-picker";
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import moment from 'moment';
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import AddEventModal from './AddEventModal';
+
+function Scheduler(){
+  const [modalOpen,setModalOpen] = useState(false);
+  const [events, setEvents] = useState({title:"", start:"", end:""})
+  const calendarRef = useRef(null);
+
+  const onEventAdded = (event) => {
+    let calendarApi = calendarRef.current.getApi();
+    calendarApi.addEvent({
+      title: event.title,
+      start:moment(event.start).toDate(),
+      end:moment(event.end).toDate()
+    });
+  };
+
+  async function handleEventAdd(data){
+      await axios.post("/calendar/addevent",data.event);
+  }
+
+  async function handleDateSet(data){
+    const response = await axios.get("/calendar/getevents?start="+moment(data.start).toISOString+"&end="+moment(data.end).toISOString);
+      setEvents(response.data);
+  }
+
+  return (
+    <>
+    <hr></hr>
+    <div id="calendarBox">
+      <button onClick={() => setModalOpen(true)}>Add Event</button>
+    <div id="calendar" ref={calendarRef} style={{backgroundColor:"white", border: "black solid 2px", borderTopLeftRadius: "5%", borderTopRightRadius: "5%", left:"3.5%"}}>
+      <FullCalendar
+        ref={calendarRef}
+        events={events}
+        plugin={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        eventAdd={(event) => handleEventAdd(event)}
+        datesSet={(date) => handleDateSet(date)}
+      />
+    </div>
+    <AddEventModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onEventAdded={event => onEventAdded(event)}/>
     </div>
     </>
   );
 }
-
-
 
 export default Scheduler;
