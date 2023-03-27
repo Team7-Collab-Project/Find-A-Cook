@@ -9,8 +9,7 @@ import moment from 'moment';
 const Homepage = () => {
   const [cooks, setCooks] = useState([]);
   const [bookingDate, setBookingDate] = useState();
-  const [cuisine, setCuisine] = useState('');
-  const [dish, setDish] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     fetchCooks();
@@ -25,27 +24,23 @@ const Homepage = () => {
     }
   };
 
-  const handleCuisineChange = (event) => {
-    setCuisine(event.target.value);
-  };
-
-  const handleDishChange = (event) => {
-    setDish(event.target.value);
-  };
-
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post("http://localhost:5001/cook/searchhh", {
-        type: "cuisine", // or type: "dish"
-        query: { cuisine: cuisine, dish: dish }
+        type: searchValue.includes(' ') ? 'dish' : 'cuisine', // set type based on input
+        query: searchValue.includes(' ')
+          ? { dish: searchValue } // for dish queries
+          : { cuisine: searchValue } // for cuisine queries
       });
       setCooks(response.data.cooks);
     } catch (error) {
       console.error("Error searching for cooks:", error);
     }
   };
-
+  
+  
+  
   const filterByDate = (dates) => {
     const date = dates.format('DD-MM-YYYY');
     setBookingDate(date);
@@ -58,25 +53,17 @@ const Homepage = () => {
           <DatePicker format={'DD-MM-YYYY'} onChange={filterByDate} />
           <form className="search-container" onSubmit={handleSearch}>
             <input
-              id="search-cuisine"
+              id="search"
               type="search"
-              placeholder="Search by cuisine..."
-              name="search-cuisine"
-              value={cuisine}
-              onChange={handleCuisineChange}
-            />
-            <input
-              id="search-dish"
-              type="search"
-              placeholder="Search by dish..."
-              name="search-dish"
-              value={dish}
-              onChange={handleDishChange}
+              placeholder="Search by cuisine or dish..."
+              name="search"
+              value={searchValue}
+              onChange={(event) => setSearchValue(event.target.value)}
             />
             <button
               className=""
               type="submit"
-              disabled={!cuisine && !dish}
+              disabled={!searchValue}
             >
               Search
             </button>

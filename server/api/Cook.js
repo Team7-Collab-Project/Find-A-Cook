@@ -366,9 +366,11 @@ router.put("/editprofile", (req, res) => {
             return res.json({ cooks: [] });
           }
           cooks = await Cook.find({ specialties: cuisine._id });
+          console.log('Found cooks by cuisine:', cooks); // add this line
           break;
         case 'dish':
-          cooks = await Cook.find({ 'menuItems.name': query.dish });
+          cooks = await Cook.find({ 'dishes.dish': query.dish });
+          console.log('Found cooks by dish:', cooks); // add this line
           break;
       }
   
@@ -384,7 +386,6 @@ router.put("/editprofile", (req, res) => {
       });
     }
   });
-  
 
 
   // router.post('/searchhh', async (req, res) => {
