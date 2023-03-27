@@ -51,7 +51,8 @@ const CreateReview = () => {
     const [review, setReview] = useState({
         review_title: "",
         review_body: "",
-        rating_value: ""
+        rating_value: "",
+        filename: "",
     });
 
     const handleInputChange = (event) => {

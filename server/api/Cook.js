@@ -307,7 +307,7 @@ router.post('/uploadprofilepicture', upload.single('profile_picture'), async (re
 
 router.get("/allreviews", async (req, res) => {
   try {
-    const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1 });
+    const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1, filename: 1 });
 
     res.json({
       status: "SUCCESS",
@@ -323,7 +323,7 @@ router.get("/allreviews", async (req, res) => {
 });
 
 router.post('/createreview', (req, res) => {
-  const { rating_value, review_title, review_body } = req.body;
+  const { rating_value, review_title, review_body, filename } = req.body;
 
   if (!review_title || !review_body || !rating_value) {
     return res.status(400).send('All fields are required');
@@ -336,7 +336,8 @@ router.post('/createreview', (req, res) => {
     date: currentDate,
     _id: "641900c2165b39b72508c676",
     cook_id: "641094da44b88f022a0262a4",
-    user_id: "63e57a473c7b9d011c6c3019"
+    user_id: "63e57a473c7b9d011c6c3019",
+    filename: filename,
   });
 
   review
