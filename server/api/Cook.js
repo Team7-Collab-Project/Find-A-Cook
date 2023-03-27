@@ -347,6 +347,35 @@ router.put("/editprofile", (req, res) => {
     }
   });
 
+
+  router.post('/searchhh', async (req, res) => {
+    const { type, query } = req.body;
+  
+    try {
+      let cooks;
+  
+      switch (type) {
+        case 'cuisine':
+          const cuisine = await MenuCategorySchema.findOne({ category_name: query.cuisine });
+          cooks = await Cook.find({ specialties: cuisine._id });
+          break;
+        case 'dish':
+          cooks = await Cook.find({ 'menuItems.name': query.dish });
+          break;
+      }
+  
+      if (!cooks.length) {
+        cooks = await Cook.find({});
+      }
+  
+      res.json({ cooks });
+    } catch (err) {
+      console.log(err, 'filter Controller error');
+      res.status(500).json({
+        errorMessage: 'Please try again later',
+      });
+    }
+  });
   
   
 

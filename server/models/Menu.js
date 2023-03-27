@@ -11,6 +11,7 @@ const menus = new Schema(
     item_name: {
       type: String,
       required: true,
+      index: true,
     },
     product_description: {
       type: String,

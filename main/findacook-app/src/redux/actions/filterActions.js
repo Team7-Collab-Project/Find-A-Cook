@@ -23,20 +23,20 @@ export const getProductsByFilter = arg => async dispatch => {
 	}
 };
 
-export const getCooksByFilter = arg => async dispatch => {
+export const getCooksByFilter = (specialty, dish) => async dispatch => {
 	try {
-		const response = await axios.post('/api/filter/search', arg);
-
-		dispatch({
-			type: GET_COOKS,
-			payload: response.data.cooks,
-		});
+	  const response = await axios.post('/api/filter/search', { specialty, dish });
+  
+	  dispatch({
+		type: GET_COOKS,
+		payload: response.data.cooks,
+	  });
 	} catch (err) {
-		console.log('getCooksByFilter api error: ', err);
-		dispatch({ type: STOP_LOADING });
-		dispatch({
-			type: SHOW_ERROR_MESSAGE,
-			payload: err.response.data.errorMessage,
-		});
+	  console.log('getCooksByFilter api error: ', err);
+	  dispatch({ type: STOP_LOADING });
+	  dispatch({
+		type: SHOW_ERROR_MESSAGE,
+		payload: err.response.data.errorMessage,
+	  });
 	}
-};
+  };
