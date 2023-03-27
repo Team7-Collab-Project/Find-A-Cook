@@ -360,7 +360,7 @@ router.put("/editprofile", (req, res) => {
   
       switch (type) {
         case 'cuisine':
-          const cuisine = await MenuCategorySchema.findOne({ category_name: query.cuisine });
+          const cuisine = await MenuCategorySchema.findOne({ category_name: { $regex: new RegExp(`^${query.cuisine}$`, 'i') } });
           if (!cuisine) {
             // Return an empty response if the cuisine is not found
             return res.json({ cooks: [] });
@@ -369,7 +369,7 @@ router.put("/editprofile", (req, res) => {
           console.log('Found cooks by cuisine:', cooks); // add this line
           break;
         case 'dish':
-          cooks = await Cook.find({ 'dishes.dish': query.dish });
+          cooks = await Cook.find({ 'dishes.dish': { $regex: new RegExp(`^${query.dish}$`, 'i') } });
           console.log('Found cooks by dish:', cooks); // add this line
           break;
       }
@@ -386,7 +386,6 @@ router.put("/editprofile", (req, res) => {
       });
     }
   });
-
 
   // router.post('/searchhh', async (req, res) => {
   //   const { type, query } = req.body;
