@@ -46,6 +46,7 @@ const CreateReview = () => {
     // )
 
     const [value, setValue] = useState(0)
+    const [filename, setFilename] = useState(null);
 
     const [review, setReview] = useState({
         review_title: "",
@@ -72,6 +73,11 @@ const CreateReview = () => {
 
     };
 
+    const handleImageUpload = (e) => {
+        const image = e.target.files[0];
+        setFilename(image);
+    };
+
     return (
         <>
             <div className='create_rating_wrapper'>
@@ -88,6 +94,16 @@ const CreateReview = () => {
                         //     console.log(newValue)
                         // }}
                         onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="file"
+                        className="form-input"
+                        name="filename"
+                        accept="images/*"
+                        // hidden
+                        onChange={handleImageUpload}
                     />
                 </div>
                 <div className='review_form'>
