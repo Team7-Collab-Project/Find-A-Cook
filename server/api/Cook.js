@@ -323,29 +323,91 @@ router.put("/editprofile", (req, res) => {
   
 
 
-
-
+  router.post('/:cookId/dish', async (req, res) => {
+    try {
+      const dish = new MenuItemSchema(req.body);
+      dish.cook_id = req.params.cookId;
+      await dish.save();
   
-  router.post('/verify_cook', async (req, res) => {
-    // Extract cook email from the request body
-    const { cook_email } = req.body;
-    if (!cook_email) {
-      // Return error if cook email is not provided
-      res.status(400).json({ success: false, message: 'Cook email is required' });
-    } else {
-      // Check if the cook email exists in the database
-      const cook = await Cook.findOne({ email: cook_email });
-      if (cook) {
-        // Update the verified field of the cook to true
-        await Cook.updateOne({ cook_email: cook_email },  {$set:{ verified: true }});
-        // Return success message if cook email is found and verified is updated to true
-        res.status(200).json({ success: true, message: 'Cook has been verified!' });
-      } else {
-        // Return error if cook email is not found in the database
-        res.status(400).json({ success: false, message: 'Cook not found in the database' });
-      }
+      // Find the cook and add the dish to their dishes array
+      const cook = await Cook.findByIdAndUpdate(
+        req.params.cookId,
+        { $push: { dishes: dish } },
+        { new: true }
+      );
+  
+      res.status(201).json(dish);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
     }
   });
+
+
+  router.get('/:cookId', async (req, res) => {
+    try {
+      // Find the cook by ID and populate their dishes
+      const cook = await Cook.findById(req.params.cookId).populate('dishes');
+      // Return the cook's dishes
+      res.json(cook.dishes);
+    } catch (error) {
+      // Return an error message if there is an error
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+router.post('/searchcooks', async (req, res) => {
+  // Get the type (cuisine, dish, or both) and search query from the request body
+  const { type, query } = req.body;
+
+  try {
+    let cooks;
+
+    switch (type) {
+      case 'cuisine':
+        // Find the menu category that matches the cuisine query
+        const cuisine = await MenuCategorySchema.findOne({ category_name: { $regex: new RegExp(`^${query.toString()}$`, 'i') } });
+        if (!cuisine) {
+          // Return an empty response if the cuisine is not found
+          return res.json({ cooks: [] });
+        }
+        // Find all cooks with the matching cuisine
+        cooks = await Cook.find({ specialties: cuisine._id });
+        console.log('Found cooks by cuisine:', cooks); // log the found cooks
+        break;
+      case 'dish':
+        // Find all cooks with a dish that matches the dish query
+        cooks = await Cook.find({ 'dishes.dish': { $regex: new RegExp(`${query.toString()}`, 'i') } });
+        console.log('Found cooks by dish:', cooks); // log the found cooks
+        break;
+      case 'both':
+        // Find all cooks with a dish or cuisine that matches the search query
+        cooks = await Cook.find({
+          $or: [
+            { 'specialties': { $in: await MenuCategorySchema.find({category_name: {$regex: new RegExp(`${query}`, 'i')}}).select('_id') } },
+            { 'dishes.dish': { $regex: new RegExp(`${query}`, 'i') } }
+          ]
+        });
+        console.log('Found cooks by both:', cooks); // log the found cooks
+        break;
+    }
+
+    // If no cooks were found, return an empty array
+    if (!cooks.length) {
+      return res.json({ cooks: [] });
+    }
+
+    // Return the found cooks
+    res.json({ cooks });
+  } catch (err) {
+    console.log(err, 'filter Controller error');
+    // Return an error message if there is an error
+    res.status(500).json({
+      errorMessage: 'Please try again later',
+    });
+  }
+});
+
+  
 
   
   

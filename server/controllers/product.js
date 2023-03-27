@@ -1,21 +1,22 @@
-const Product = require('../schema/MenuItemSchema');
+const Product = require('../models/Menu');
 const fs = require('fs');
 // const MenuCategorySchema = require('./MenuCategorySchema');
 
 exports.create = async (req, res) => {
     console.log('req.body: ', req.body);
-    console.log('req.file: ', req.file);
-    { /**ADD USER */}
+    // console.log('req.file: ', req.file);
 
-    const {filename} = req.file;
-    const {item_name, product_description, price, category} = req.body;
+
+    // const {filename} = req.file;
+    const {item_name, product_description, price, cook_id, category} = req.body;
 
     try{
         let newProduct = new Product();
-        newProduct.filename = filename;
+        // newProduct.filename = filename;
         newProduct.item_name = item_name;
         newProduct.product_description = product_description;
         newProduct.price = price;
+        newProduct.cook_id = cook_id;
         newProduct.category = category;
 
         

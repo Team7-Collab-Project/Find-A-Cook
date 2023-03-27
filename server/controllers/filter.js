@@ -1,36 +1,29 @@
-const Product = require("../schema/MenuItemSchema");
+const Cook = require("../models/Cook");
 
 exports.searchByQueryType = async (req, res) => {
   const { type, query } = req.body;
   console.log(req.body);
 
   try {
-    let products;
+    let cooks;
 
     console.log('query:', query);
 
+    console.log("Type: ", type);
     switch (type) {
-      case "text":
-        products = await Product.find({ $text: { $search: query } });
-        console.log(products);
+      case "cuisine":
+        cooks = await Cook.find({ specialties: query.cuisine });
+        console.log(cooks);
         break;
-      case "category":
-        products = await Product.find({ category: query });
-        console.log(query);
-
-        // products = await Product.find({ productCategory: query })
-        // if (products.length === 0) {
-        //     return res.status(404).json({
-        //         errorMessage: 'No products found for the specified category',
-        //     });
-        // }
-    
+      case "dish":
+        cooks = await Cook.find({ "menuItems.name": query.dish });
+        console.log(cooks);
         break;
     }
-    if (!products.length > 0) {
-      products = await Product.find({});
+    if (!cooks.length > 0) {
+      cooks = await Cook.find({});
     }
-    res.json({ products });
+    res.json({ cooks });
   } catch (err) {
     console.log(err, "filter Controller error");
     res.status(500).json({

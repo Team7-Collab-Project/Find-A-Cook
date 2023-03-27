@@ -8,11 +8,12 @@ const menus = new Schema(
       ref: 'Cook',
       required: true,
     },
-    item_name: {
+    dish: {
       type: String,
       required: true,
+      index: true,
     },
-    product_description: {
+    dish_description: {
       type: String,
       required: true,
     },
@@ -25,7 +26,7 @@ const menus = new Schema(
       ref: 'Category',
       required: true,
     },
-    imageurls: String,
+    // imageurls: String,
     // currentbookings: []
   },
   { timestamps: true }
