@@ -27,20 +27,33 @@ const Homepage = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5001/cook/searchhh", {
-        type: searchValue.includes(' ') ? 'dish' : 'cuisine', // set type based on input
-        query: searchValue.includes(' ')
-          ? { dish: searchValue } // for dish queries
-          : { cuisine: searchValue } // for cuisine queries
-      });
+      let response;
+      if (searchValue === '') {
+        response = await axios.get("http://localhost:5001/cook");
+      } else {
+        response = await axios.post("http://localhost:5001/cook/searchhh", {
+          type: searchValue.includes(' ') ? 'dish' : 'cuisine', // set type based on input
+          query: searchValue.includes(' ')
+            ? { dish: searchValue } // for dish queries
+            : { cuisine: searchValue } // for cuisine queries
+        });
+      }
       setCooks(response.data.cooks);
     } catch (error) {
       console.error("Error searching for cooks:", error);
     }
   };
   
-  
-  
+  const handleClearSearch = async () => {
+    setSearchValue('');
+    try {
+      const response = await axios.get("http://localhost:5001/cook/allcooks");
+      setCooks(response.data.cooks);
+    } catch (error) {
+      console.error("Error fetching cooks:", error);
+    }
+  };
+
   const filterByDate = (dates) => {
     const date = dates.format('DD-MM-YYYY');
     setBookingDate(date);
@@ -66,6 +79,14 @@ const Homepage = () => {
               disabled={!searchValue}
             >
               Search
+            </button>
+            <button
+              className="clearSearch"
+              type="button"
+              onClick={handleClearSearch}
+              disabled={searchValue === ''}
+            >
+              Clear Search
             </button>
           </form>
         </nav>

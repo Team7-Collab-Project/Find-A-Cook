@@ -1397,3 +1397,47 @@ label {
 	width: auto;
 	right: 10%;
 }
+
+.search-container input[type=search] {
+	font-size: 16px;
+	padding: 10px;
+	border: none;
+	border-bottom: 2px solid #ddd;
+	outline: none;
+	margin-right: 10px;
+	width: 300px;
+  }
+  
+  .search-container button[type=submit] {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+  }
+  
+  .search-container button[type=submit]:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+  }
+
+  .search-container button[type=button]:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+  }
+
+  .search-container .clearSearch {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: #333;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 10px;
+	padding: 6px 12px;
+  }
+
+  .search-container .clearSearch:hover {
+	background-color: #ddd;
+  }
