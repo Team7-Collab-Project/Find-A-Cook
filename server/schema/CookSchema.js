@@ -9,7 +9,7 @@ const cooks = new mongoose.Schema(
         },
         user_id: {
             type: mongoose.Schema.Types.ObjectId,
-			ref: 'UserSchema',
+			ref: 'CookSchema',
             required: true,
         },
         specialties: {

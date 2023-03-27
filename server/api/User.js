@@ -318,6 +318,22 @@ router.get("/userinfo", (req, res) => {
     }
 });
 
+// router.get("/useraddress", (req, res) => {
+//     console.log(req.session)
+//     const user = req.session.user;
+//     if(user) {
+//         res.json({
+//             status: "SUCCESS",
+//             message: `${user.user_address}`
+//         })
+//     } else {
+//         res.json({
+//             status: "FAILED",
+//             message: "ERROR",
+//         })
+//     }
+// });
+
 router.post('/logout', (req, res) => {
     req.session.destroy((err) => {
       if (err) {

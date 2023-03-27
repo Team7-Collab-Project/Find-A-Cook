@@ -8,16 +8,16 @@ const Home = () => {
     const [firstname, setFirstName] = useState("")
     const [secondname, setSecondName] = useState("")
     axios.defaults.withCredentials = true
-    useEffect(()=> {
-        axios.get('http://localhost:5001/user/userinfo')
-        .then((res) => {
-            setFirstName(res.data.fname);
-            setSecondName(res.data.sname);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-    }, [])
+    // useEffect(()=> {
+    //     axios.get('http://localhost:5001/user/userinfo')
+    //     .then((res) => {
+    //         setFirstName(res.data.fname);
+    //         setSecondName(res.data.sname);
+    //     })
+    //     .catch((err) => {
+    //         console.error(err);
+    //     });
+    // }, [])
 
 
 
@@ -26,7 +26,7 @@ const Home = () => {
     <>
       <Navbar />
       <Homepage />
-      <DistanceMeasurement/>
+      {/* <DistanceMeasurement/> */}
       {/* <div className="container">
         <h1>Welcome to Find A Cook {firstname}</h1>
         <p>Explore our recipes and find your new favorite dish.</p>
