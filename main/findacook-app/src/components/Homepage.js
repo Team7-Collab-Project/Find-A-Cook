@@ -27,7 +27,6 @@ const Homepage = () => {
     }
   };
 
-  // Async function to handle the search submission
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
@@ -35,11 +34,11 @@ const Homepage = () => {
       if (searchValue === '') { // if search input is empty, fetch all cooks
         response = await axios.get("http://localhost:5001/cook");
       } else { // otherwise, search by cuisine or dish
+        console.log("searchValue:", searchValue);
+        const trimmedSearchValue = searchValue.trim(); // trim the search value
         response = await axios.post("http://localhost:5001/cook/searchcooks", {
-          type: searchValue.includes(' ') ? 'dish' : 'cuisine', // set type based on input
-          query: searchValue.includes(' ')
-            ? { dish: searchValue } // for dish queries
-            : { cuisine: searchValue } // for cuisine queries
+          type: 'both',
+          query: trimmedSearchValue
         });
       }
       setCooks(response.data.cooks); // set the state with the search result
@@ -47,6 +46,9 @@ const Homepage = () => {
       console.error("Error searching for cooks:", error);
     }
   };
+  
+  
+  
   
   // Async function to clear the search and fetch all cooks
   const handleClearSearch = async () => {
