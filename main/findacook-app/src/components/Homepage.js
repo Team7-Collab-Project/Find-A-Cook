@@ -7,56 +7,62 @@ import moment from 'moment';
 
 
 const Homepage = () => {
-  const [cooks, setCooks] = useState([]);
-  const [bookingDate, setBookingDate] = useState();
-  const [searchValue, setSearchValue] = useState('');
+  // Define state variables for the component
+  const [cooks, setCooks] = useState([]); // array of cook objects
+  const [bookingDate, setBookingDate] = useState(); // selected booking date
+  const [searchValue, setSearchValue] = useState(''); // search input value
 
+  // Use an effect hook to fetch cooks data on component mount
   useEffect(() => {
     fetchCooks();
   }, []);
 
+  // Async function to fetch cooks data from server
   const fetchCooks = async () => {
     try {
       const response = await axios.get("http://localhost:5001/cook/allcooks");
-      setCooks(response.data.cooks);
+      setCooks(response.data.cooks); // set the state with the data
     } catch (error) {
       console.error("Error fetching cooks:", error);
     }
   };
 
+  // Async function to handle the search submission
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
       let response;
-      if (searchValue === '') {
+      if (searchValue === '') { // if search input is empty, fetch all cooks
         response = await axios.get("http://localhost:5001/cook");
-      } else {
-        response = await axios.post("http://localhost:5001/cook/searchhh", {
+      } else { // otherwise, search by cuisine or dish
+        response = await axios.post("http://localhost:5001/cook/searchcooks", {
           type: searchValue.includes(' ') ? 'dish' : 'cuisine', // set type based on input
           query: searchValue.includes(' ')
             ? { dish: searchValue } // for dish queries
             : { cuisine: searchValue } // for cuisine queries
         });
       }
-      setCooks(response.data.cooks);
+      setCooks(response.data.cooks); // set the state with the search result
     } catch (error) {
       console.error("Error searching for cooks:", error);
     }
   };
   
+  // Async function to clear the search and fetch all cooks
   const handleClearSearch = async () => {
     setSearchValue('');
     try {
       const response = await axios.get("http://localhost:5001/cook/allcooks");
-      setCooks(response.data.cooks);
+      setCooks(response.data.cooks); // set the state with all the cooks
     } catch (error) {
       console.error("Error fetching cooks:", error);
     }
   };
 
+  // Function to handle the booking date selection
   const filterByDate = (dates) => {
     const date = dates.format('DD-MM-YYYY');
-    setBookingDate(date);
+    setBookingDate(date); // set the state with the selected date
   };
 
   return (

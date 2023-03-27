@@ -345,14 +345,18 @@ router.put("/editprofile", (req, res) => {
 
   router.get('/:cookId', async (req, res) => {
     try {
+      // Find the cook by ID and populate their dishes
       const cook = await Cook.findById(req.params.cookId).populate('dishes');
+      // Return the cook's dishes
       res.json(cook.dishes);
     } catch (error) {
+      // Return an error message if there is an error
       res.status(400).json({ message: error.message });
     }
   });
   
-  router.post('/searchhh', async (req, res) => {
+  router.post('/searchcooks', async (req, res) => {
+    // Get the type (cuisine or dish) and query from the request body
     const { type, query } = req.body;
   
     try {
@@ -360,61 +364,39 @@ router.put("/editprofile", (req, res) => {
   
       switch (type) {
         case 'cuisine':
+          // Find the menu category that matches the cuisine query
           const cuisine = await MenuCategorySchema.findOne({ category_name: { $regex: new RegExp(`^${query.cuisine}$`, 'i') } });
           if (!cuisine) {
             // Return an empty response if the cuisine is not found
             return res.json({ cooks: [] });
           }
+          // Find all cooks with the matching cuisine
           cooks = await Cook.find({ specialties: cuisine._id });
-          console.log('Found cooks by cuisine:', cooks); // add this line
+          console.log('Found cooks by cuisine:', cooks); // log the found cooks
           break;
         case 'dish':
+          // Find all cooks with a dish that matches the dish query
           cooks = await Cook.find({ 'dishes.dish': { $regex: new RegExp(`^${query.dish}$`, 'i') } });
-          console.log('Found cooks by dish:', cooks); // add this line
+          console.log('Found cooks by dish:', cooks); // log the found cooks
           break;
       }
   
+      // If no cooks were found, return all cooks
       if (!cooks.length) {
         cooks = await Cook.find({});
       }
   
+      // Return the found cooks
       res.json({ cooks });
     } catch (err) {
       console.log(err, 'filter Controller error');
+      // Return an error message if there is an error
       res.status(500).json({
         errorMessage: 'Please try again later',
       });
     }
   });
 
-  // router.post('/searchhh', async (req, res) => {
-  //   const { type, query } = req.body;
-  
-  //   try {
-  //     let cooks;
-  
-  //     switch (type) {
-  //       case 'cuisine':
-  //         const cuisine = await MenuCategorySchema.findOne({ category_name: query.cuisine });
-  //         cooks = await Cook.find({ specialties: cuisine._id });
-  //         break;
-  //       case 'dish':
-  //         cooks = await Cook.find({ 'menuItems.name': query.dish });
-  //         break;
-  //     }
-  
-  //     if (!cooks.length) {
-  //       cooks = await Cook.find({});
-  //     }
-  
-  //     res.json({ cooks });
-  //   } catch (err) {
-  //     console.log(err, 'filter Controller error');
-  //     res.status(500).json({
-  //       errorMessage: 'Please try again later',
-  //     });
-  //   }
-  // });
   
   
 
