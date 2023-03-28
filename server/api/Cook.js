@@ -8,6 +8,8 @@ const upload = require('../middleware/multer');
 const MenuCategorySchema = require('./../models/MenuCategory');
 const MenuItemSchema = require('./../models/Menu')
 const Review = require('./../models/Review')
+const multer = require('multer')
+
 
 
 require('dotenv').config();
@@ -322,23 +324,35 @@ router.get("/allreviews", async (req, res) => {
   }
 });
 
-router.post('/createreview', (req, res) => {
-  console.log(req.body);
-  const { rating_value, review_title, review_body, filename } = req.body;
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./server/api/uploads/");
+  },
+  filename:(req, file, callback) =>{
+    callback(null, file.originalname);
+  }
+})
+ 
+const upload1 = multer({storage: storage});
+
+router.post('/createreview', upload1.single('img'), async (req, res) => {
+  // console.log(req.body);
+  // const { rating_value, review_title, review_body, img } = req.body;
 
   if (!review_title || !review_body || !rating_value) {
     return res.status(400).send('All fields are required');
   }
   const currentDate = new Date();
   const review = new Review({
-    rating_value: rating_value,
-    review_title: review_title,
-    review_body: review_body,
-    date: currentDate,
+    rating_value: req.body.rating_value,
+    review_title: req.body.review_title,
+    review_body: req.body.review_body,
+    date: req.body.currentDate,
     _id: "641900c2165b39b72508c676",
     cook_id: "641094da44b88f022a0262a4",
     user_id: "63e57a473c7b9d011c6c3019",
-    filename: filename,
+    img: req.file.img
   });
 
   review

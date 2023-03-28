@@ -33,9 +33,13 @@ const reviews = new mongoose.Schema(
             type: Date,
             required: true,
         }, //The date the review was created or last edited
-        filename: {
-            type: String,
-            required: true,
+        // filename: {
+        //     type: String,
+        //     required: true,
+        // }
+        img:{
+            data: Buffer,
+            contentType: String
         }
     },
     { timestamps: true }

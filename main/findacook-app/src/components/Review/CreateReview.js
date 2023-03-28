@@ -47,7 +47,7 @@ const CreateReview = () => {
     // )
 
     const [value, setValue] = useState(0)
-    const [filename, setFilename] = useState({filename: ""});
+    const [filename, setFilename] = useState("");
 
     const [review, setReview] = useState({
         review_title: "",
@@ -99,22 +99,28 @@ const CreateReview = () => {
                     />
                 </div>
                 <div>
-                    <input
+                    {/* <input
                         type="file"
                         className="form-input"
                         name="filename"
                         accept="images/*"
                         // hidden
                         onChange={handleImageUpload}
-                    />
+                    /> */}
+
                 </div>
-                {/* <FileBase64
-                    multiple={false}
-                    onDone={({base64}) => setFilename({ ...filename, filename: base64})} 
-                    //onDone = {handleInputChange}
-                /> */}
                 <div className='review_form'>
                     <form onSubmit={handleSubmit}>
+                        <div>
+                            <input
+                                type="file"
+                                className="form-input"
+                                name="filename"
+                                accept="images/*"
+                                // hidden
+                                onChange={handleImageUpload}
+                            />
+                        </div>
                         <div className='create_review_title'>
                             <input type="text" name="review_title" placeholder="Review Title" value={review.review_title} onChange={handleInputChange} />
                         </div>
