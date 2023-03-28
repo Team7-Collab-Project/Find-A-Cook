@@ -40,9 +40,9 @@ const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 
 router.post('/signup', (req, res) => {
-    const { user_first_name, user_last_name, user_phone_number, user_email, user_password, user_birthday } = req.body;
+    const { user_first_name, user_last_name, user_phone_number, user_email, user_password, user_address, user_birthday } = req.body;
 
-    if (!user_first_name || !user_last_name || !user_phone_number || !user_email ||!user_password || !user_birthday) {
+    if (!user_first_name || !user_last_name || !user_phone_number || !user_email ||!user_password || !user_address || !user_birthday) {
       return res.status(400).send('All fields are required');
     }
 
@@ -80,6 +80,7 @@ router.post('/signup', (req, res) => {
                 user_phone_number: user_phone_number,
                 user_email: user_email,
                 user_password: hash,
+                user_address: user_address,
                 user_birthday: user_birthday,
                 verified: false,
             });
