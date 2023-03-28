@@ -7,6 +7,7 @@ import './Review.css'
 // import { Ratings } from 'react-ratings-declarative'
 import Rating from '@mui/material/Rating';
 import axios, { Axios } from 'axios';
+import FileBase64 from 'react-file-base64';
 
 
 const CreateReview = () => {
@@ -46,25 +47,25 @@ const CreateReview = () => {
     // )
 
     const [value, setValue] = useState(0)
-    const [filename, setFilename] = useState(null);
+    const [filename, setFilename] = useState({filename: ""});
 
     const [review, setReview] = useState({
         review_title: "",
         review_body: "",
         rating_value: "",
-        filename: "",
     });
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setReview({ ...review, [name]: value });
         console.log(review)
+        console.log(filename)
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
-            .post('http://localhost:5001/cook/createreview', review)
+            .post('http://localhost:5001/cook/createreview', review, filename)
             .then((response) => {
                 console.log("response received", response.data);
             })
@@ -88,7 +89,7 @@ const CreateReview = () => {
                         name="rating_value"
                         defaultValue={0}
                         // precision={0.5}
-                        value={value}
+                        value={review.value}
                         size="large"
                         // onChange={(event, newValue) => {
                         //     setValue(newValue);
@@ -107,6 +108,11 @@ const CreateReview = () => {
                         onChange={handleImageUpload}
                     />
                 </div>
+                {/* <FileBase64
+                    multiple={false}
+                    onDone={({base64}) => setFilename({ ...filename, filename: base64})} 
+                    //onDone = {handleInputChange}
+                /> */}
                 <div className='review_form'>
                     <form onSubmit={handleSubmit}>
                         <div className='create_review_title'>

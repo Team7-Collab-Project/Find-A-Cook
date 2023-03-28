@@ -323,6 +323,7 @@ router.get("/allreviews", async (req, res) => {
 });
 
 router.post('/createreview', (req, res) => {
+  console.log(req.body);
   const { rating_value, review_title, review_body, filename } = req.body;
 
   if (!review_title || !review_body || !rating_value) {
