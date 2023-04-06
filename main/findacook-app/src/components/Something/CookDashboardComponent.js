@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCook } from '../../redux/actions/cookActions'
 import axios from 'axios';
 import Scheduler from '../Scheduler';
+import Maps from '../Maps';
 
 const CookDashboard = () => {
   const navigate = useNavigate();
@@ -106,6 +107,7 @@ const CookDashboard = () => {
  
      </section>
       <Scheduler />
+      <Maps />
 
 </>
     );

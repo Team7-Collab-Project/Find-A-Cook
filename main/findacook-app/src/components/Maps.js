@@ -5,18 +5,18 @@ const MapContainer = (props) => {
   return (
     <Map
       google={props.google}
-      style={{width: "100%", height:"30%"}}
+      style={{width: "50%", height:"50%"}}
       zoom={14}
       initialCenter={{
-        lat: 37.7749,
-        lng: -122.4194,
+        lat: 53.982390,
+        lng: -6.392318,
       }}
     >
-      <Marker position={{ lat: 37.7749, lng: -122.4194 }} />
+      <Marker position={{ lat: 53.982390, lng: -6.392318 }} />
     </Map>
   );
 };
 
 export default GoogleApiWrapper({
-  apiKey: 'API_KEY_GOES_HERE',
+  apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
 })(MapContainer);
