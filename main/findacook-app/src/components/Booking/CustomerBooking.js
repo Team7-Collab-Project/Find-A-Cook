@@ -7,6 +7,10 @@ import { BsArrowDownRight } from 'react-icons/bs';
 import { FaWindowClose } from 'react-icons/fa'
 import { Modal, Button } from "react-bootstrap";
 import BookingForm from './BookingForm';
+import axios from "axios";
+import './Reviews.css';
+import Review from './../Review/Review';
+import CreateReview from '../Review/CreateReview';
 import moment from 'moment';
 
 const CustomerBooking = () => {
@@ -54,9 +58,29 @@ const CustomerBooking = () => {
 
 	const { cook } = useSelector(state => state.cooks);
 
+  console.log(cook)
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/cook/allreviews");
+      console.log(response)
+      setReviews(response.data.reviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
+
+
   // const { roomid, bookingDate } = useParams();
   const theDate = moment(bookingDate, 'DD-MM-YYYY').format('DD-MM-YYYY');
   
+
     return (
 <>
 
@@ -171,6 +195,13 @@ const CustomerBooking = () => {
 
 			</div>
 
+      <div className="reviewWrapper">
+        <CreateReview/>
+        <h1 className="reviewHeader">{cook.cook_first_name}'s Reviews</h1>
+        {reviews.map((review, index) => (
+         <Review key={review._id} review={review}/>
+          ))}
+      </div>
 
 </div>
 
