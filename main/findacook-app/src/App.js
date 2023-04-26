@@ -45,7 +45,7 @@ import BookingPage from './BookingPage';
 
 import ReviewCook from './ReviewCook';
 import Posts from './uploadImageTest';
-
+import AddMenu from './AddMenuItem';
 
 function App() {
 
@@ -94,11 +94,12 @@ function App() {
       <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/bookings" element={<ViewBookingsPage />} />
       <Route path="/cook" element={<BookingPage />} />
-      <Route path="/cook/:cookId" element={<BookingPage/>} />
+      <Route path="/cook/:cookId/:bookingDate" element={<BookingPage/>} />
       {/* <Route path="/edit/category/:categoryId" element={<EditCategory />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} /> */}
       <Route path="/reviewcook" element={<ReviewCook />} />
       <Route path="/posts" element={<Posts />} />
+      <Route path="/addmenu" element={<AddMenu />} />
   </Routes>
     </div>
   );

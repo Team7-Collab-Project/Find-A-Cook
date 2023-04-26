@@ -5,7 +5,7 @@ import AddMenuItem from "./components/cooks/AddCookItem";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 
-function TestApp() {
+function AddMenu() {
 
     return (
         <div>
@@ -13,17 +13,10 @@ function TestApp() {
             <Topbar />
             <Sidebar />
 
-            {/* <EditProfile /> */}
-
-            {/* < Topbar />
-            < Sidebar /> */}
-            {/* Other components */}
-            {/* <CookList /> */}
-   
             <AddMenuItem />
 
         </div>
       );
 }
 
-export default TestApp;
+export default AddMenu;

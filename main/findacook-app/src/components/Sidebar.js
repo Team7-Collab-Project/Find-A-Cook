@@ -39,6 +39,9 @@ const Sidebar = () => {
                 <li><a href="/menu">
                     <span class="link-name">🍔 View Menu</span>
                 </a></li>
+                <li><a href="/addmenu">
+                    <span class="link-name">🌭 Add Menu Item</span>
+                </a></li>
             </ul>
             
             <ul class="logout-mode">
