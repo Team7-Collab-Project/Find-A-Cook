@@ -11,16 +11,16 @@ const Review = require('./../models/Review')
 const multer = require('multer')
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname);
-    },
-  });
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, 'uploads/');
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, Date.now() + '-' + file.originalname);
+//     },
+//   });
   
-  const upload = multer({ storage: storage });
+//   const upload = multer({ storage: storage });
 
 
 
@@ -319,20 +319,40 @@ router.post('/uploadprofilepicture', upload.single('profile_picture'), async (re
   }
 });
 
-router.get("/allreviews", async (req, res) => {
-  try {
-    const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1, filename: 1 });
+// router.get("/reviews/:cookId", async (req, res) => {
+//   try {
+//     const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1, filename: 1 });
 
-    res.json({
-      status: "SUCCESS",
-      reviews: reviews,
-    });
-  } catch (err) {
-    res.json({
-      status: "FAILED",
-      message: "Error retrieving reviews",
-      error: err,
-    });
+//     res.json({
+//       status: "SUCCESS",
+//       reviews: reviews,
+//     });
+//   } catch (err) {
+//     res.json({
+//       status: "FAILED",
+//       message: "Error retrieving reviews",
+//       error: err,
+//     });
+//   }
+// });
+router.get('/reviews/:cookId', async (req, res) => {
+  try {
+    const cookId = req.params.cookId;
+
+    
+    await client.connect();
+    const db = client.db(); 
+    const reviewsCollection = db.collection('reviews');
+
+    // Query the reviews with the matching cookId
+    const reviews = await reviewsCollection.find({ cookId }).toArray();
+
+    res.status(200).json({ success: true, data: reviews });
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ success: false, message: 'Error fetching reviews' });
+  } finally {
+    await client.close();
   }
 });
 
