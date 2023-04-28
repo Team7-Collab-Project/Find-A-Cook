@@ -319,46 +319,14 @@ router.post('/uploadprofilepicture', upload.single('profile_picture'), async (re
   }
 });
 
-// router.get("/reviews/:cookId", async (req, res) => {
-//   try {
-//     const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1, filename: 1 });
-
-//     res.json({
-//       status: "SUCCESS",
-//       reviews: reviews,
-//     });
-//   } catch (err) {
-//     res.json({
-//       status: "FAILED",
-//       message: "Error retrieving reviews",
-//       error: err,
-//     });
-//   }
-// });
-router.get('/reviews/:cookId', async (req, res) => {
+router.get("/allreviews", async (req, res) => {
   try {
     const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1, filename: 1 });
 
-    const cookId = parseInt(req.query.cookId);
-    console.log(cookId);
-
-    if (!cookId) {
-      res.status(400).send({ error: 'Please provide a cookId.' });
-      return;
-    }
-
-    const filteredReviews = reviews.filter(review => review.cook_id === cookId);
-    
-
-
-
     res.json({
       status: "SUCCESS",
-      reviews: filteredReviews,
+      reviews: reviews,
     });
-
-
-
   } catch (err) {
     res.json({
       status: "FAILED",
@@ -366,8 +334,40 @@ router.get('/reviews/:cookId', async (req, res) => {
       error: err,
     });
   }
-
 });
+// router.get('/reviews/:cookId', async (req, res) => {
+//   try {
+//     const reviews = await Review.find({}, { rating_value: 1, review_title: 1, review_body: 1, date: 1, user_id: 1, cook_id: 1, _id: 1, filename: 1 });
+
+//     const cookId = parseInt(req.query.cookId);
+//     console.log(cookId);
+
+//     if (!cookId) {
+//       res.status(400).send({ error: 'Please provide a cookId.' });
+//       return;
+//     }
+
+//     const filteredReviews = reviews.filter(review => review.cook_id === cookId);
+    
+
+
+
+//     res.json({
+//       status: "SUCCESS",
+//       reviews: filteredReviews,
+//     });
+
+
+
+//   } catch (err) {
+//     res.json({
+//       status: "FAILED",
+//       message: "Error retrieving reviews",
+//       error: err,
+//     });
+//   }
+
+// });
 
 
 const storage = multer.diskStorage({

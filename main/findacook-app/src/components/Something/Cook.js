@@ -3,7 +3,7 @@ import { Modal, Carousel, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import "./Cook.css";
-import AverageReview from './AverageReview';
+import AverageReview from '../Review/AverageReview';
 
 const Cook = ({ cook, bookingDate }) => {
 
