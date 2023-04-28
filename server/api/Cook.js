@@ -164,7 +164,7 @@ router.post('/cooksignin', (req, res) => {
 router.get("/cookinfo", (req, res) => {
     console.log(req.session)
     const cook = req.session.cook;
-    // console.log(cook);
+    console.log(cook);
     if(cook) {
         res.json({
             status: "SUCCESS",
@@ -173,6 +173,7 @@ router.get("/cookinfo", (req, res) => {
             special: `${cook.specialties}`,
             descrip: `${cook.description}`,
             profile: `${cook.profile_picture}`,
+            address: `${cook.cook_address}`,
             bio: `${cook.cook_bio}`,
             email: `${cook.cook_email}`
         })
@@ -186,7 +187,7 @@ router.get("/cookinfo", (req, res) => {
 
 router.get("/allcooks", async (req, res) => {
     try {
-      const cooks = await Cook.find({}, { cook_first_name: 1, cook_last_name: 1, profile_picture: 1, application_status: 1, cook_bio: 1, description: 1, _id: 1,specialties: 1 });
+      const cooks = await Cook.find({}, { cook_first_name: 1, cook_last_name: 1, profile_picture: 1, application_status: 1, cook_address: 1, cook_bio: 1, description: 1, _id: 1,specialties: 1 });
   
       res.json({
         status: "SUCCESS",

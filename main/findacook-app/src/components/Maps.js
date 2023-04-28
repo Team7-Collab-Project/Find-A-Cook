@@ -1,21 +1,144 @@
-import React from 'react';
-import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import React, { Component } from 'react';
+import { GoogleApiWrapper, Map, InfoWindow, Marker } from 'google-maps-react';
 
-const MapContainer = (props) => {
+var markers = []
+
+
+// function populateMarkers(schedulelist) {
+//   var latlng = [];
+//     // const schedulelist = this.props.schedule
+//     console.log(schedulelist.title)
+//     schedulelist.forEach(schedule => {
+//       // latlng.push(schedule.lat)
+//       // latlng.push(schedule.lng)
+
+//       markers.push( {title: schedule.title, position: {lat: schedule.lat , lng: schedule.lng}})
+
+//       // new google.maps.LatLng(schedule.lat,schedule.lng);
+      
+//       console.log(markers)
+//     });
+// }
+
+class MapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.data = this.props.data;
+    this.schedule = this.props.schedule;
+  }
+  
+  state = {
+    activeMarker: {},
+    selectedPlace: {},
+    showingInfoWindow: false
+  };
+
+  onMarkerClick = (props, marker) =>
+  this.setState({
+    activeMarker: marker,
+    selectedPlace: props,
+    showingInfoWindow: true
+  });
+
+  onInfoWindowClose = () =>
+    this.setState({
+      activeMarker: null,
+      showingInfoWindow: false
+    });
+
+  onMapClicked = () => {
+    if (this.state.showingInfoWindow)
+      this.setState({
+        activeMarker: null,
+        showingInfoWindow: false
+      });
+  };
+  schedulelist = this.props.schedule
+
+  // componentDidMount() {
+  //   var latlng = [];
+  //   const schedulelist = this.props.schedule
+  //   console.log(schedulelist.title)
+  //   schedulelist.forEach(schedule => {
+  //     // latlng.push(schedule.lat)
+  //     // latlng.push(schedule.lng)
+
+  //     markers.push( {title: schedule.title, position: {lat: schedule.lat , lng: schedule.lng}})
+
+  //     // new google.maps.LatLng(schedule.lat,schedule.lng);
+      
+  //     console.log(markers)
+  //   });
+  // }
+
+  render() {
+    const data = this.props.data;
+    var i = 0;
+    var latlng = [];
+    const schedulelist = this.props.schedule
+    console.log(schedulelist.title)
+    schedulelist.forEach(schedule => {
+      // latlng.push(schedule.lat)
+      // latlng.push(schedule.lng)
+
+      markers.push( {title: schedule.title, start: schedule.start, position: {lat: schedule.lat , lng: schedule.lng}})
+
+      // new google.maps.LatLng(schedule.lat,schedule.lng);
+      
+      console.log(markers)
+    });
   return (
+    
+    <div class="mapdiv">
+      <br></br>
+      {/* <p>data: {this.props.data}</p>
+      <p>schedule: {this.props.schedule[1].title}</p> */}
+      <br></br>
     <Map
-      google={props.google}
+    onClick={this.onMapClicked}
+      // google={props.google}
+      google={this.props.google}
       style={{width: "50%", height:"50%"}}
       zoom={14}
       initialCenter={{
-        lat: 53.982390,
-        lng: -6.392318,
+        lat: this.props.data[0],
+        lng: this.props.data[1]
       }}
     >
-      <Marker position={{ lat: 53.982390, lng: -6.392318 }} />
+      <Marker  onClick={this.onMarkerClick} position={{ lat: this.props.data[0], lng: this.props.data[1] }} name={'You'} />
+
+      {markers.map(({ title, starttime, position }) => (
+        <Marker
+          position={position}
+          onClick={this.onMarkerClick}
+          name={title}
+          start={starttime}
+        >
+          
+            <InfoWindow onClose={this.onInfoWindowClose}
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+                  <div>
+                    <h1>{this.state.selectedPlace.name}</h1>
+                    <h4>{this.state.selectedPlace.start}</h4>
+                  </div>
+            </InfoWindow>
+        </Marker>
+      ))}
+
+      <InfoWindow onClose={this.onInfoWindowClose}
+      marker={this.state.activeMarker}
+      visible={this.state.showingInfoWindow}>
+            <div>
+              <h3>{this.state.selectedPlace.name}</h3>
+              <h4>{this.state.selectedPlace.start}</h4>
+            </div>
+        </InfoWindow>
     </Map>
+    </div>
   );
 };
+}
 
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,

@@ -15,7 +15,7 @@ const ScheduleRouter = require('./api/Schedule');
 const bodyParser = require('express').json;
 app.use(bodyParser());
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3002"],
     methods: ["GET", "POST"],
     credentials: true
 }));
@@ -44,8 +44,8 @@ app.post('/create_checkout_link', async (request, response) => {
             },
         ],
         mode: 'subscription',
-        success_url: `http://localhost:3000/paymentsuccessful/?success=true&cook_email=${cook_email}`,
-        cancel_url: `http://localhost:3000/paymentunsuccessful/?canceled=true`,
+        success_url: `http://localhost:3002/paymentsuccessful/?success=true&cook_email=${cook_email}`,
+        cancel_url: `http://localhost:3002/paymentunsuccessful/?canceled=true`,
         customer_email: cook_email
     });
     
