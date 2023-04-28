@@ -11,16 +11,18 @@ const AverageReview = ({ cookId }) => {
             try {
                 const response = await axios.get(`http://localhost:5001/cook/allreviews`);
 
-                const filteredReviews = response.data.reviews.filter(review => review.cookId === cook.cookId);
+                const filteredReviews = response.data.reviews.filter(review => review.cook_id === cookId);
                 console.log(filteredReviews)
-                setReviews(filteredReviews.data.reviews);
+                console.log(cookId)
+                console.log(response.data.reviews[0].cook_id)
+                setReviews(filteredReviews);
 
-                const reviews = response.data.reviews;
+                // const reviews = response.data.reviews;
                 // console.log(reviews.reviews);
 
-                const totalScore = reviews.reduce((acc, review) => acc + review.rating_value, 0);
-                // console.log(totalScore);
-                const avgScore = (totalScore / reviews.length).toFixed(1);
+                const totalScore = filteredReviews.reduce((acc, review) => acc + review.rating_value, 0);
+                console.log(totalScore);
+                const avgScore = (totalScore / filteredReviews.length).toFixed(1);
                 console.log(avgScore);
 
                 setAverageScore(avgScore);
@@ -44,7 +46,6 @@ const AverageReview = ({ cookId }) => {
 
     return (
         <div>
-            <h3>Average Review Score</h3>
             <p>{averageScore}</p>
         </div>
     );
