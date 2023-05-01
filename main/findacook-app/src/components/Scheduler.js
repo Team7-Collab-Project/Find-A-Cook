@@ -188,14 +188,14 @@ const events = [
 ]
 
 function Scheduler(){
+  const [message, setMessage] = useState("");
   const [newEvent, setNewEvent] = useState({title:"", start:"", end:""})
+  const calendarRef = useRef(null);
   const [allEvents, setAllEvents] = useState(() => {
     const savedEvents = window.localStorage.getItem('Saved Events');
     return savedEvents ? JSON.parse(savedEvents) : events;
   });
-  const calendarRef = useRef(null);
-
-  function handleAddEvent() {
+function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
     setNewEvent({title:"", start:"", end:""});
   }
@@ -214,7 +214,6 @@ function Scheduler(){
     console.log('Retrieved Events from localStorage', JSON.parse(data));
     if (data !== null) setAllEvents(JSON.parse(data));
   }, []);
-  
 
   return (
     <>
