@@ -76,7 +76,7 @@ class MapContainer extends React.Component {
     var i = 0;
     var latlng = [];
     const schedulelist = this.props.schedule
-    console.log(schedulelist.title)
+    // console.log(schedulelist.title)
     schedulelist.forEach(schedule => {
       // latlng.push(schedule.lat)
       // latlng.push(schedule.lng)
@@ -86,7 +86,7 @@ class MapContainer extends React.Component {
       // new google.maps.LatLng(schedule.lat,schedule.lng);
       
       console.log(markers)
-    });
+    }); 
   return (
     
     <div class="mapdiv">
@@ -107,22 +107,16 @@ class MapContainer extends React.Component {
     >
       <Marker  onClick={this.onMarkerClick} position={{ lat: this.props.data[0], lng: this.props.data[1] }} name={'You'} />
 
-      {markers.map(({ title, starttime, position }) => (
+      {markers.map(({ title, start, position }) => (
         <Marker
           position={position}
           onClick={this.onMarkerClick}
           name={title}
-          start={starttime}
+          starttime={start}
+          icon={{ url: `https://maps.google.com/mapfiles/ms/icons/arrow.png`}}
         >
           
-            <InfoWindow onClose={this.onInfoWindowClose}
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-                  <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                    <h4>{this.state.selectedPlace.start}</h4>
-                  </div>
-            </InfoWindow>
+           
         </Marker>
       ))}
 
@@ -131,7 +125,7 @@ class MapContainer extends React.Component {
       visible={this.state.showingInfoWindow}>
             <div>
               <h3>{this.state.selectedPlace.name}</h3>
-              <h4>{this.state.selectedPlace.start}</h4>
+              <h4>{this.state.selectedPlace.starttime}</h4>
             </div>
         </InfoWindow>
     </Map>

@@ -72,18 +72,19 @@ const CookDashboard = () => {
 
 // console.log(scheduleTitle)
 
-  const [data, setData] = useState('');
+  // const [data, setData] = useState('');
   
-  const parentToChild = () => {
-    setData(address);
-  }
-  console.log(address)
+  // const parentToChild = () => {
+  //   setData(address);
+  // }
+  // console.log(address)
 
   
   const [userLat, setUserLat] = useState();
   const [userLng, setUserLng] = useState();
   var latlng = []
 
+  
   Geocode.fromAddress(address).then(
     (response) => {
       setUserLat(response.results[0].geometry.location.lat);
@@ -96,11 +97,13 @@ const CookDashboard = () => {
     }
   )
 
-  latlng.push(userLat)
+  console.log("lat - " + userLat + "- lng - " + userLng)
+  if(latlng) {latlng.push(userLat)
   latlng.push(userLng)
+  }
 
-  var schedule = [{title: "Brian Cullen", start: "2023-02-28T15:00", lat: 54.001024 , lng: -6.386164},
-  {title: "Joseph Bell", start: "2023-02-24T12:00", lat: 54.002736 , lng: -6.422944}
+  var schedule = [{title: "Brian Cullen", start: "2023-02-28 15:00", lat: 54.001024 , lng: -6.386164},
+  {title: "Joseph Bell", start: "2023-02-24 12:00", lat: 54.002736 , lng: -6.422944}
                   ]
 
     return (
