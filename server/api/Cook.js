@@ -176,6 +176,7 @@ router.get("/cookinfo", (req, res) => {
       special: `${cook.specialties}`,
       descrip: `${cook.description}`,
       profile: `${cook.profile_picture}`,
+            address: `${cook.cook_address}`,
       bio: `${cook.cook_bio}`,
       email: `${cook.cook_email}`
     })
@@ -188,22 +189,22 @@ router.get("/cookinfo", (req, res) => {
 });
 
 router.get("/allcooks", async (req, res) => {
-  try {
-    const cooks = await Cook.find({}, { cook_first_name: 1, cook_last_name: 1, profile_picture: 1, application_status: 1, cook_bio: 1, description: 1, _id: 1, specialties: 1 });
-
-    res.json({
-      status: "SUCCESS",
-      cooks: cooks,
-    });
-  } catch (err) {
-    res.json({
-      status: "FAILED",
-      message: "Error retrieving cooks",
-      error: err,
-    });
-  }
-});
-
+    try {
+      const cooks = await Cook.find({}, { cook_first_name: 1, cook_last_name: 1, profile_picture: 1, application_status: 1, cook_address: 1, cook_bio: 1, description: 1, _id: 1, specialties: 1 });
+  
+      res.json({
+        status: "SUCCESS",
+        cooks: cooks,
+      });
+    } catch (err) {
+      res.json({
+        status: "FAILED",
+        message: "Error retrieving cooks",
+        error: err,
+      });
+    }
+  });
+  
 
 router.get('/menucategories', async (req, res) => {
   try {
@@ -337,14 +338,14 @@ router.get("/allreviews", async (req, res) => {
 });
 
 
-const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "./server/api/uploads/");
-  },
-  filename:(req, file, callback) =>{
-    callback(null, file.originalname);
-  }
-})
+// const storage = multer.diskStorage({
+//   destination: (req, file, callback) => {
+//     callback(null, "./server/api/uploads/");
+//   },
+//   filename:(req, file, callback) =>{
+//     callback(null, file.originalname);
+//   }
+// })
  
 const upload1 = multer({storage: storage});
 
