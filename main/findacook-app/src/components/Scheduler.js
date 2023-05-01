@@ -88,7 +88,7 @@ function Scheduler(){
 
 export default Scheduler;*/
 import React from 'react'
-
+import axios from 'axios';
 import {Calendar, dateFnsLocalizer} from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -188,16 +188,16 @@ const events = [
 ]
 
 function Scheduler(){
-  const [newEvent, setNewEvent] = useState({title:"", start:"",startTime:"", end:"", endTime:""})
+  const [message, setMessage] = useState("");
+  const [newEvent, setNewEvent] = useState({title:"", start:"", end:""})
+  const calendarRef = useRef(null);
   const [allEvents, setAllEvents] = useState(() => {
     const savedEvents = window.localStorage.getItem('Saved Events');
     return savedEvents ? JSON.parse(savedEvents) : events;
   });
-  const calendarRef = useRef(null);
-
-  function handleAddEvent() {
+function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
-    setNewEvent({title:"", start:"",startTime:"", end:"", endTime:""});
+    setNewEvent({title:"", start:"", end:""});
   }
 
   useEffect(() => {
@@ -229,21 +229,26 @@ function Scheduler(){
         selectable={true}
       />
     </div>
-    <div id="scheduleBooking" style={{ display: 'block', position: 'initial' }}>
+    <div id="scheduleBooking" style={{ display: 'block', 
+    position: 'initial',
+    border:"2px solid black", 
+    borderTopLeftRadius: "5%", 
+    borderTopRightRadius: "5%", 
+    borderBottomLeftRadius: "5%", 
+    borderBottomRightRadius: "5%",
+    height: "10%",
+    width: "30%"}}>
           <h2>Add new booking</h2>
           <input id="titleInput" type="text" 
             placeholder='Add Title' 
-            style={{width:"20%", marginRight: "10px"}}
+            style={{width:"20%", marginRight: "10px",marginLeft:"4px"}}
             value={newEvent.title} 
             onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
           />
           <DatePicker id="DateInput" className="bookingInputs" placeholderText='Start Date' style={{marginRight: "10px"}}
           selected={(newEvent.start)} onChange={(start) => setNewEvent({...newEvent,start})}/>
-          <TimePicker id="TimeInput" className="bookingInputs" placeholderText='Start Time' selected={(newEvent.startTime)} onChange={(startTime) => setNewEvent({...newEvent,startTime})}/>
           <DatePicker id="DateInput" className="bookingInputs" placeholderText='End Date'
-          selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent,end})}/>
-          <TimePicker id="TimeInput" className="bookingInputs" placeholderText='End Time' selected={(newEvent.endTime)} onChange={(endTime) => setNewEvent({...newEvent,endTime})}/>
-      
+          selected={newEvent.end} onChange={(end) => setNewEvent({...newEvent,end})}/>  
           <Button id="bookBtn" variant="primary" onClick={() => {handleAddEvent();}}>Add Event</Button>
     </div>
     </div>

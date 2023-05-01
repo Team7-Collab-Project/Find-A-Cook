@@ -9,18 +9,19 @@ const MenuCategorySchema = require('./../models/MenuCategory');
 const MenuItemSchema = require('./../models/Menu')
 const Review = require('./../models/Review')
 const multer = require('multer')
+const Schedule = require('../models/Schedule');
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname);
-    },
-  });
+//const storage = multer.diskStorage({
+//    destination: (req, file, cb) => {
+//      cb(null, 'uploads/');
+//    },
+//    filename: (req, file, cb) => {
+//      cb(null, Date.now() + '-' + file.originalname);
+//    },
+ // });
   
-  const upload = multer({ storage: storage });
+//  const upload = multer({ storage: storage });
 
 
 
@@ -443,6 +444,67 @@ router.post('/createreview', upload1.single('img'), async (req, res) => {
 
 
   
+//Schedule stuff
+
+router.post("/addschedules", async (req,res) => {
+  try {
+    const {schedule_title, schedule_start, schedule_end} = req.body;
+    if (!schedule_title || !schedule_start || !schedule_end){
+      return res.status(400).send('All fields are required');
+    }
+    const schedule = new Schedule({
+        schedule_title,
+        schedule_start,
+        schedule_end
+    });
+
+    await schedule.save();
+
+    res.json({
+        status: "SUCCESS",
+        message: "successfully saved schedule",
+        schedule
+    });
+  } catch (err) {
+    res.json({
+        status: "FAILED",
+        message: "An error occurred!",
+        error: err.message
+    });
+  }
+});
+
+router.get("/schedules", async (req, res) => {
+  try {
+    const schedules = await Schedule.find({}, {schedule_title: 1, schedule_start: 1, schedule_end: 1});
+    res.json({
+      status: "SUCCESS",
+      schedules
+    });
+  } catch (err) {
+    res.json({
+      status: "FAILED",
+      message: "Error retrieving schedules",
+      error: err.message,
+    });
+  }
+});
+
+   /*console.log(req.session)
+  const schedule = req.session.schedule;
+  if(schedule) {
+      res.json({
+          status: "SUCCESS",
+          title: `${schedule.schedule_title}`,
+          start: `${schedule.schedule_start}`,
+          end: `${schedule.schedule_end}`
+      })
+  } else {
+      res.json({
+          status: "FAILED",
+          message: "Error finding schedule"
+      })
+  }*/
   
 
 module.exports = router;
