@@ -44,19 +44,16 @@ import ViewBookingsPage from './ViewBookingsPage';
 import BookingPage from './BookingPage';
 
 import ReviewCook from './ReviewCook';
-import JoaneMenu from './JoaneMenu';
-import MauriceMenu from './MauriceMenu';
-import JulianMenu from './JulianMenu';
-import MortMenu from './MortMenu';
+import Posts from './uploadImageTest';
 import AddMenu from './AddMenuItem';
 
 function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-          dispatch(getCategories());
-  }, [dispatch]);
+  // useEffect(() => {
+  //         dispatch(getCategories());
+  // }, [dispatch]);
 
 
   return (
@@ -101,10 +98,7 @@ function App() {
       {/* <Route path="/edit/category/:categoryId" element={<EditCategory />} />
       <Route path="/category/:categoryId" element={<CategoryPage/>} /> */}
       <Route path="/reviewcook" element={<ReviewCook />} />
-      <Route path="/joanemenu" element={<JoaneMenu />} />
-      <Route path="/mauricemenu" element={<MauriceMenu />} />
-      <Route path="/julianmenu" element={<JulianMenu />} />
-      <Route path="/mortmenu" element={<MortMenu />} />
+      <Route path="/posts" element={<Posts />} />
       <Route path="/addmenu" element={<AddMenu />} />
   </Routes>
     </div>

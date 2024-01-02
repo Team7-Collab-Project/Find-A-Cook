@@ -18,7 +18,7 @@ const reviews = new mongoose.Schema(
             required: true,
         }, //The id of the cook who is receiving the rating
         rating_value: {
-            type: Int,
+            type: Number,
             required: true,
         }, //The rating value (1-10)
         review_title: {
@@ -33,13 +33,8 @@ const reviews = new mongoose.Schema(
             type: Date,
             required: true,
         }, //The date the review was created or last edited
-        // filename: {
-        //     type: String,
-        //     required: true,
-        // }
         img:{
-            data: Buffer,
-            contentType: String
+            type: String,
         }
     },
     { timestamps: true }

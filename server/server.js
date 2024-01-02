@@ -9,7 +9,7 @@ require('./config/db')
 
 const UserRouter = require('./api/User');
 const CookRouter = require('./api/Cook');
-const ScheduleRouter = require('./api/Schedule');
+
 
 
 const bodyParser = require('express').json;
@@ -44,8 +44,8 @@ app.post('/create_checkout_link', async (request, response) => {
             },
         ],
         mode: 'subscription',
-        success_url: `http://localhost:3000/paymentsuccessful/?success=true&cook_email=${cook_email}`,
-        cancel_url: `http://localhost:3000/paymentunsuccessful/?canceled=true`,
+        success_url: `http://localhost:3002/paymentsuccessful/?success=true&cook_email=${cook_email}`,
+        cancel_url: `http://localhost:3002/paymentunsuccessful/?canceled=true`,
         customer_email: cook_email
     });
     
@@ -119,7 +119,7 @@ app.use(session({
 
 app.use('/user', UserRouter)
 app.use('/cook', CookRouter)
-app.use('/schedule', ScheduleRouter)
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
