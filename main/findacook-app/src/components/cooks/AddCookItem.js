@@ -8,7 +8,7 @@ function AddMenuItem() {
     product_description: '',
     price: '',
     category: '',
-    imageurls: [],
+    imageurls: null,
   });
 
   const [categories, setCategories] = useState([]);
@@ -46,25 +46,30 @@ function AddMenuItem() {
 
   
   const handleImageChange = (e) => {
-    const fileList = Array.from(e.target.files);
+    const fileList = e.target.files[0];
     setForm({ ...form, imageurls: fileList });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // You will need to adjust this code to handle file uploads properly
+    
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => {
-      if (key === 'imageurls') {
-        value.forEach((file, index) => formData.append(`imageurls[${index}]`, file));
-      } else {
-        formData.append(key, value);
-      }
-    });
+        if (key === 'imageurls' && value) {
+          formData.append('imageurls', value);
+        } else {
+          formData.append(key, value);
+        }
+      });
   
     try {
-      await axios.post('http://localhost:5001/cook/addmenuitem', formData);
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        };
+      await axios.post('http://localhost:5001/cook/addmenuitem', formData, config);
       alert('Menu item added successfully');
       setForm({
         item_name: '',
@@ -86,6 +91,7 @@ function AddMenuItem() {
           <label>Item Name:</label>
           <input
             type="text"
+            placeholder='Name'
             name="item_name"
             value={form.item_name}
             onChange={handleChange}
@@ -96,6 +102,7 @@ function AddMenuItem() {
           <label>Product Description:</label>
           <input
             type="text"
+            placeholder='Description'
             name="product_description"
             value={form.product_description}
             onChange={handleChange}
@@ -108,6 +115,7 @@ function AddMenuItem() {
             type="number"
             step="0.01"
             name="price"
+            placeholder='Price'
             value={form.price}
             onChange={handleChange}
             required
@@ -133,7 +141,6 @@ function AddMenuItem() {
           <input
             type="file"
             name="imageurls"
-            multiple
             onChange={handleImageChange}
           />
         </div>

@@ -25,8 +25,8 @@ const menus = new Schema(
       ref: 'Category',
       required: true,
     },
-    imageurls: [],
-    currentbookings: []
+    imageurls: String,
+    // currentbookings: []
   },
   { timestamps: true }
 );

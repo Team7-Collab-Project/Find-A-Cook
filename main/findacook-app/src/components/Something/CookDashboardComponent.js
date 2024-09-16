@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCook } from '../../redux/actions/cookActions'
 import axios from 'axios';
+import Scheduler from '../Scheduler';
 
 const CookDashboard = () => {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ const CookDashboard = () => {
            </div>
  
      </section>
-
+      <Scheduler />
 
 </>
     );

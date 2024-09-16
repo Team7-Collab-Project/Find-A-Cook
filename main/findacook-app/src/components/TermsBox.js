@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 
 
-function TermsandConditions() {
+function TermsandConditions({handleSubmit, onShow}) {
     const [isDisabled, setIsDisabled] = useState(true);
     const [data, setData] = useState('');
     const termsBoxRef = useRef(null);
@@ -16,11 +16,11 @@ function TermsandConditions() {
     //     setData(true);
     // }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Logic for registering
-        window.location.href = "/login";
-      };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     // Logic for registering
+    //     window.location.href = "/login";
+    //   };
 
     return (
         <div>

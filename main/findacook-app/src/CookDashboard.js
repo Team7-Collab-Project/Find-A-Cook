@@ -27,7 +27,6 @@ function CookDashboard() {
     <Topbar />
     <Sidebar />
     <CookDashboardComponent />
-
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"; 
+import axios from "axios"; 
 
 const PaymentField = (props) => {
   const plans = [
@@ -11,49 +11,23 @@ const PaymentField = (props) => {
     },
   ];
 
-  const [customerId, setCustomerId] = useState(null);
-  const [customerEmailID, setCustomerEmailID] = useState(null);
-  const [createCustomerButtonText, setCreateCustomerButtonText] =
-    useState("Create Customer");
-  let createCustomer = () => {
-    setCreateCustomerButtonText(
-      "Talking to Stripe to create customer. Please wait.."
-    );
-    let data = {
-      customerEmailId: customerEmailID,
-    };
-    fetch("http://localhost:3001/create_customer", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setCustomerId(data.customerId);
-        props.updateCustomerIdFunction(data.customerId);
-        setCreateCustomerButtonText("Done! Customer Created :-)");
-      });
-  };
+  const [cook_email, setCookEmail] = useState(""); // Initializing state for cook's email
 
   const checkout = (priceId) => {
     let data = {
       priceId: priceId,
-      customerId: props.customerId,
+      customerEmailId: cook_email,
     };
-    fetch("http://localhost:3001/create_checkout_link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        window.location.replace(data.url);
+    axios
+      .post("http://localhost:5001/create_checkout_link", data) //POST request with data as payload
+      .then((response) => {
+        window.open(response.data.url, '_self'); //If the request is successful, URL is opened that's returned from the server in the same window ('_self').
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
+  
 
   return (
     <>
@@ -63,7 +37,7 @@ const PaymentField = (props) => {
             <img src="./images/payment_cook.jpg" alt="" />
           </div>
           <div class="payment-card-body">
-            <div class="payment-card-title">Order Summary</div>
+            <div class="payment-card-title">Subscription Details</div>
             <div class="payment-card-text">
               You are one step closer to being able to offer tasty dishes to the
               world!
@@ -73,11 +47,21 @@ const PaymentField = (props) => {
                 <img src="./images/smallPotIcon.png" alt="" />
               </div>
               <div class="payment-card-plan-text">
-                <div class="payment-card-plan-title">Annual Plan</div>
+                <div class="payment-card-plan-title">Annual Subscription Plan</div>
                 <div class="payment-card-plan-price">€200/year</div>
               </div>
             </div>
-
+            <div className="payment-card-email">
+              <label htmlFor="cook-email">Enter Your Email:</label>
+              <input
+                type="email"
+                id="cook_email"
+                name="cook_email"
+                placeholder="johndoe@email.com"
+                onChange={(e) => setCookEmail(e.target.value)}
+                value={cook_email}
+              />
+            </div>
             {plans.map((plan) => {
               return (
                 <>
@@ -92,7 +76,7 @@ const PaymentField = (props) => {
 
             <div class="card-cancel-button">
               <a href="/">
-                <button>Cancel Order</button>
+                <button>Cancel</button>
               </a>
             </div>
           </div>

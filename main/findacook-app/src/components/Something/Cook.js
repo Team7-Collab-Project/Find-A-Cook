@@ -4,27 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import "./Cook.css";
 
-// const range = (start, end) => {
-//     const result = [];
-//     for (let i = start; i < end; i++) {
-//       result.push(i);
-//     }
-//     return result;
-//   };
-
-// // eslint-disable-next-line arrow-body-style
-// const disabledDate = (current) => {
-//     // Can not select days before today and today
-//     return current && current < dayjs().endOf('day');
-//   };
-
-//   const disabledDateTime = () => ({
-//     disabledHours: () => range(0, 24).splice(4, 20),
-//     disabledMinutes: () => range(30, 60),
-//     disabledSeconds: () => [55, 56],
-//   });
-
-const Cook = ({ cook }) => {
+const Cook = ({ cook, bookingDate }) => {
 
     const [show, setShow] = useState(false);
 
@@ -35,13 +15,6 @@ const Cook = ({ cook }) => {
     return(
         <>
 
-
-
-    
-
-
-          
-
           <div className="card__details">
             
         <h3>{cook.cook_first_name}</h3>
@@ -49,7 +22,7 @@ const Cook = ({ cook }) => {
         <div className="smallText">Cuisine: {cook.specialties} </div>
         <div className="smallText">Rating: ⭐⭐⭐⭐ (123 Reviews)</div>
       
-        <Link to={`/cook/${cook._id}`}>
+        <Link to={`/cook/${cook._id}/${bookingDate}`}>
         <button onClick={handleShow}>Book Now</button>
         </Link>
         <button onClick={handleShow}>View Details</button>
@@ -65,10 +38,6 @@ const Cook = ({ cook }) => {
 </div>
 </div>
       </div>
-
-
-		
-		
 
 
     <Modal show={show} onHide={handleClose}>

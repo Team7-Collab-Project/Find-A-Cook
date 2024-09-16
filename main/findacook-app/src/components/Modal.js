@@ -5,7 +5,7 @@ import TermsandConditions from './TermsBox';
 import CloseButton from 'react-bootstrap/CloseButton';
 
 
-function ModalWindow(submitForm) {
+function ModalWindow({handleSubmit, onShow}) {
 
 const [show, setShow] = useState(false);
 
@@ -30,7 +30,7 @@ return (
         </Modal.Header>
         <Modal.Body>
         <form id="termsForm" >
-            <TermsandConditions/>  
+            <TermsandConditions handleSubmit={handleSubmit} onShow={onShow}/>  
         </form>
         </Modal.Body>
         
